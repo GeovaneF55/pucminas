@@ -1,0 +1,43 @@
+Inserindo o 9
+[ 9(fator 0) ]
+-> esq
+Inserindo o 8
+[ 9(fator -1) 8(fator 0) ]
+-> esq
+-> esq
+Inserindo o 4
+Rotacionar DIR(9)
+[ 8(fator 0) 4(fator 0) 9(fator 0) ]
+-> esq
+-> dir
+Inserindo o 6
+[ 8(fator -1) 4(fator 1) 6(fator 0) 9(fator 0) ]
+-> esq
+-> dir
+-> esq
+Inserindo o 5
+Rotacionar DIR(6)
+Rotacionar ESQ(4)
+[ 8(fator -1) 5(fator 0) 4(fator 0) 6(fator 0) 9(fator 0) ]
+-> esq
+-> esq
+-> esq
+Inserindo o 3
+Rotacionar DIR(8)
+[ 5(fator 0) 4(fator -1) 3(fator 0) 8(fator 0) 6(fator 0) 9(fator 0) ]
+-> dir
+-> esq
+-> dir
+Inserindo o 7
+[ 5(fator 1) 4(fator -1) 3(fator 0) 8(fator -1) 6(fator 1) 7(fator 0) 9(fator 0) ]
+-> esq
+-> esq
+-> esq
+Inserindo o 2
+Rotacionar DIR(4)
+[ 5(fator 1) 3(fator 0) 2(fator 0) 4(fator 0) 8(fator -1) 6(fator 1) 7(fator 0) 9(fator 0) ]
+-> esq
+-> esq
+-> esq
+Inserindo o 1
+[ 5(fator 0) 3(fator -1) 2(fator -1) 1(fator 0) 4(fator 0) 8(fator -1) 6(fator 1) 7(fator 0) 9(fator 0) ]

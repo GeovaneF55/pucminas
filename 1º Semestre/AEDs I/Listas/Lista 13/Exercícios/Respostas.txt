@@ -1,0 +1,65 @@
+Lista 13 - Exercícios que não necessitam de código
+
+1.
+	a) Verdadeiro
+	b) Verdadeiro
+	c) Falso - Construtor não retorna dados, ele constrói um objeto
+	d) Verdadeiro
+	e) Verdadeiro
+Resposta: Letra C
+
+2.
+	a) Falso
+	b) Falso
+	c) Falso
+	d) Falso
+	e) Verdadeiro - A variável de instância A passa a fazer referência ao objeto de B
+Resposta: Letra E
+
+3.
+	a) Verdadeiro
+	b) Verdadeiro
+	c) Falso - Ao criar uma instância file só estamos associando a uma variável o tipo File,
+	   para criar o arquivo é necessário evocar o método createFile() da classe
+	d) Verdadeiro
+	e) Verdadeiro
+Resposta: Letra C
+
+4.
+	Código: Exercicio4/Exercicio4.java
+	
+5.
+	Código: Exercicio5/Exercicio5.java
+
+6.
+	a) Soma todos os números anteriores ao valor paramétrico fornecido, inclusive ele
+	b) Código: Exercicio6/Exercicio6B.java
+	
+7.
+	Código: Exercicio7/Exercicio7.java
+
+8.
+	Código: Exercicio8/Exercicio8.java
+
+9.
+	Código: Exercicio9/Exercicio9.java
+
+10.
+	a) Verdadeiro
+	b) Verdadeiro
+	c) Verdadeiro
+	d) Falso - O bloco finally sempre será executado após o try e/ou após o catch
+	e) Verdadeiro
+Resposta: Letra D
+
+11.
+	Código: Exercicio11/Exercicio11.java
+
+12.
+	Código: Exercicio12/Exercicio12.java
+
+13.
+	Código: Exercicio13/Exercicio13.java
+
+14.
+	Código: Exercicio14/Exercicio14.java

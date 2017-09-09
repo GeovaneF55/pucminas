@@ -1,0 +1,38 @@
+1. Baixe os arquivos psel  do  SGA
+2. Marque o tempo de execução para ordenar vetores de tamanhos 1000, 10000, 100000,... até o maior que vc conseguir com duas, quatro, oito,... 32 threads.
+3. Faça o mesmo que no 2 para o seleçao sequencial (sem threads, claro).
+4. Houve diferença significativa? Relate.
+
+para TAM de 1000 até TAM_MAX faça 
+  para threads de 1 até 32 faça
+    para v de 1 até 10 faça
+       tempoI = clock();
+       selecao();
+       tempoF = clock();
+       somaTempo = somaTempo + (tempoF - tempoI);
+    fim para
+    tempo = somaTempo / 10;
+  fim para threads
+fim para TAM 
+
+
+Tabelas:
+pse1.c
+TAMANHO 	1	2	4	8	16	32
+1000		4.3	5.6	5.9	7.09	8.9	9.98
+10000		7	7.9	8.7	8.77	10.6	12.6
+...
+
+
+pse1crit.c
+TAMANHO 	1	2	4	8	16	32
+1000		4.3	5.6	5.9	7.09	8.9	9.98
+10000		7	7.9	8.7	8.77	10.6	12.6
+...
+
+
+pse1reduct.c
+TAMANHO 	1	2	4	8	16	32
+1000		4.3	5.6	5.9	7.09	8.9	9.98
+10000		7	7.9	8.7	8.77	10.6	12.6
+...

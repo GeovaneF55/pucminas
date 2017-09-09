@@ -1,0 +1,2 @@
+cd Documentos/PUC\ Minas/3º\ Semestre/Laboratório\ de\ Arquitetura\ de\ Computadores/Programas/Logisim/
+java -jar logisim-generic-2.7.1.jar
