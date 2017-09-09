@@ -99,7 +99,7 @@ class TP1Extra{
 	 * @param grafo Grafo.
 	 * @param nome String.
 	 * @return resposta String.
-         */
+     */
 	public static String dependencias(Grafo grafo, String nome){
 		String resposta = "";
 
@@ -292,13 +292,13 @@ class Grafo {
  	 * @return existe boolean.
 	 */
 	public boolean existeAresta(Vertice v1, Vertice v2){
-		boolean existe = false;		
+		boolean existe = false;
 		Aresta aresta;
 
 		int i=0;
 		while(existe == false && i < arestas.size()){
 			aresta = getAresta(i);
-			if(aresta.existeAresta(v1, v2, getDigrafo())){ 
+			if(aresta.existeAresta(v1, v2, getDigrafo())){
 				existe = true;
 			}
 			i++;
@@ -454,7 +454,7 @@ class Aresta {
 	 */
 	public boolean existeAresta(Vertice v1, Vertice v2, boolean digrafo){
 		boolean existe = false;
-		
+
 		if((getV1() == v1)&&(getV2() == v2)){
 			existe = true;
 		}
@@ -469,11 +469,11 @@ class Aresta {
 	 * @return contem boolean.
 	 */
 	public boolean contemVertice(Vertice v){
-		boolean contem = false;		
-		if(getV1() == v){ 
+		boolean contem = false;
+		if(getV1() == v){
 			contem = true;
 		}
-		if(getV2() == v){ 
+		if(getV2() == v){
 			contem = true;
 		}
 		return contem;
