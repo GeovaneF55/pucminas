@@ -1,0 +1,305 @@
+1.
+
+@ARTICLE{1299165, 
+author={J. Lotspiech and S. Nusser and F. Pestoni}, 
+journal={Proceedings of the IEEE}, 
+title={Anonymous trust: digital rights management using broadcast encryption}, 
+year={2004}, 
+volume={92}, 
+number={6}, 
+pages={898-909}, 
+keywords={content management;copyright;cryptography;data privacy;multimedia communication;protocols;DRM system;anonymous trust;broadcast encryption;content distribution system;cryptography;digital rights management;home entertainment network;key management schemes;privacy protection;xCP cluster protocol;Content management;Cryptographic protocols;Heart;Home automation;Internet;Motion pictures;Protection;Public key;Public key cryptography;Security;Broadcast encryption;DRM;digital rights management;home network;xCP}, 
+doi={10.1109/JPROC.2004.827353}, 
+ISSN={0018-9219}, 
+month={June},}
+
+2.
+
+@ARTICLE{6142487, 
+author={C. Okida and D. Goya and R. Terada}, 
+journal={IEEE Latin America Transactions}, 
+title={Java Cryptographic Library for Smartphones}, 
+year={2012}, 
+volume={10}, 
+number={1}, 
+pages={1377-1384}, 
+keywords={Java;cryptographic protocols;public key cryptography;smart phones;JME compliant cryptographic library;Java cryptographic library;cryptographic protocols;elliptic curves;mobile application development;smartphones;Cryptography;Java;Libraries;Mobile communication;NIST;Smart phones;Software;Bilinear Pairings;Cryptographic Library;Elliptic Curve Cryptography;Java Micro Edition;Mobile Application}, 
+doi={10.1109/TLA.2012.6142487}, 
+ISSN={1548-0992}, 
+month={Jan},}
+
+3.
+
+@ARTICLE{6985604, 
+author={K. Biswas and V. Muthukkumarasamy and K. Singh}, 
+journal={IEEE Sensors Journal}, 
+title={An Encryption Scheme Using Chaotic Map and Genetic Operations for Wireless Sensor Networks}, 
+year={2015}, 
+volume={15}, 
+number={5}, 
+pages={2801-2809}, 
+keywords={chaotic communication;computational complexity;cryptographic protocols;public key cryptography;random sequences;security of data;statistical analysis;telecommunication security;wireless sensor networks;KATAN;LED protocol;Mica2 sensor mote;TWINE protocol;XOR;chaotic map parameters;computational complexity;cryptanalytic attacks;cryptographic scheme;data blocks;elliptic curve points;encryption scheme;encryption system;environmental management;genetic operations;industry control;lightweight block cipher;pseudorandom bit sequence;security mechanisms;security strength;statistical tests;strategic surveillance;structural health monitoring;wireless sensor networks;Ciphers;Elliptic curves;Encryption;Sensors;Wireless sensor networks;Chaotic map;Crossover;Data Encryption;Elliptic curve;Mutation;Pseudorandom bit sequence generator;Wireless Sensor Network;Wireless sensor network;chaotic map;crossover;data encryption;elliptic curve;mutation;pseudorandom bit sequence generator}, 
+doi={10.1109/JSEN.2014.2380816}, 
+ISSN={1530-437X}, 
+month={May},}
+
+4.
+
+@INPROCEEDINGS{7784596, 
+author={S. A. Salami and J. Baek and K. Salah and E. Damiani}, 
+booktitle={2016 11th International Conference on Availability, Reliability and Security (ARES)}, 
+title={Lightweight Encryption for Smart Home}, 
+year={2016}, 
+pages={382-388}, 
+keywords={Internet of Things;cryptography;data communication;data privacy;domestic appliances;electronic data interchange;home computing;Internet of Things;IoT;data exchange;data transmissions;home appliances;identity-based encryption;lightweight encryption;security analysis;smart home system;user privacy;user safety;Identity-Based Encryption;Internet of Things;IoT;Lightweight Encryption;Security;Smart Home}, 
+doi={10.1109/ARES.2016.40}, 
+month={Aug},}
+
+5.
+
+@ARTICLE{1184124, 
+author={Kuo-Feng Hwang and Chin-Chen Chang}, 
+journal={IEEE Transactions on Wireless Communications}, 
+title={A self-encryption mechanism for authentication of roaming and teleconference services}, 
+year={2003}, 
+volume={2}, 
+number={2}, 
+pages={400-407}, 
+keywords={cryptography;land mobile radio;message authentication;personal communication networks;protocols;teleconferencing;GLOMONET;authentication protocol;distributed security management;global mobility network;home network;long-term secret key;mobile equipment;network service area;original authentication key;original security manager;personal communication systems;roaming services;secure teleconference service;self-encryption mechanism;temporary security manager;Authentication;Contracts;Cryptography;GSM;Helium;Home automation;Mobile communication;Personal communication networks;Protocols;Teleconferencing}, 
+doi={10.1109/TWC.2003.809452}, 
+ISSN={1536-1276}, 
+month={Mar},}
+
+6.
+
+@INPROCEEDINGS{6567421, 
+author={V. F. Taylor and D. T. Fokum}, 
+booktitle={2013 Proceedings of IEEE Southeastcon}, 
+title={Securing wireless sensor networks from denial-of-service attacks using artificial intelligence and the CLIPS expert system tool}, 
+year={2013}, 
+pages={1-6}, 
+keywords={C language;artificial intelligence;cryptography;expert systems;telecommunication computing;telecommunication security;wireless sensor networks;C language integrated production system tool;CLIPS expert system tool;artificial intelligence;autonomous sensor nodes;base station;cryptographic key protection;data collection;denial-of-service attacks;energy constraints;environmental monitoring applications;false routing information;healthcare applications;home applications;limited processing power;malicious nodes;military applications;sensitive data protection;spurious control information;strong encryption approaches;tamper proof packaging;unwelcome sensor network;wireless sensor network security;Computer crime;Expert systems;Intrusion detection;Monitoring;Peer-to-peer computing;Wireless sensor networks}, 
+doi={10.1109/SECON.2013.6567421}, 
+ISSN={1091-0050}, 
+month={April},}
+
+7.
+
+@INPROCEEDINGS{6569124, 
+author={B. K. Samanthula and W. Jiang and S. Madria}, 
+booktitle={2013 IEEE 14th International Conference on Mobile Data Management}, 
+title={A Probabilistic Encryption Based MIN/MAX Computation in Wireless Sensor Networks}, 
+year={2013}, 
+volume={1}, 
+pages={77-86}, 
+keywords={cryptography;data privacy;minimax techniques;probability;protocols;wireless sensor networks;SDA techniques;WSN;base station;minmax computation;privacy homomorphic encryption schemes;privacy issues;probabilistic encryption scheme;protocols;quadratic residuosity assumption;secure data aggregation;sensor readings;wireless sensor networks;Base stations;Encryption;Probabilistic logic;Protocols;Vectors;Wireless sensor networks;Wireless sensor networks;secure data aggregation}, 
+doi={10.1109/MDM.2013.18}, 
+ISSN={1551-6245}, 
+month={June},}
+
+8.
+
+@INPROCEEDINGS{6914083, 
+author={G. Cebrat}, 
+booktitle={2014 2nd International Conference on Information and Communication Technology (ICoICT)}, 
+title={Secure web based home automation: Application layer based security using embedded programmable logic controller}, 
+year={2014}, 
+pages={302-307}, 
+keywords={HVAC;IP networks;Internet;control engineering computing;cryptography;data integrity;home automation;intranets;programmable controllers;HVAC-control;IP enabled universal industrial controller;Internet enabled embedded programmable logic controller;REST;Web based home automation;Web servers;application layer based security;bandwidth;communication channel option;embedded controller;energy supply;integrity;intelligent networked heating ventilation & air conditioning control;intranet;primary protection process;process capability;real time requirement;representational state transfer;resource definition framework;rolling code encryption;security method;sequence diagram;transmitted data;Encryption;Home appliances;Home automation;Internet;Sensors;Servers;HVAC;IoT;embedded controller;home automation;security}, 
+doi={10.1109/ICoICT.2014.6914083}, 
+month={May},}
+
+9.
+
+@INPROCEEDINGS{7219926, 
+author={B. Vinayaga Sundaram and Ramnath M. and Prasanth M. and Varsha Sundaram J.}, 
+booktitle={2015 3rd International Conference on Signal Processing, Communication and Networking (ICSCN)}, 
+title={Encryption and hash based security in Internet of Things}, 
+year={2015}, 
+pages={1-6}, 
+keywords={Internet;Internet of Things;Web sites;computer network security;cryptography;data integrity;home automation;telecommunication power management;wireless sensor networks;Internet;Internet of Things;World Wide Web;animal tracking;encryption;hash based security;health surveillance;loT;nuclear plant radiation level monitoring;power management;smart city;smart home system security enhancement;wireless sensor network;Cryptography;Monitoring;Prediction algorithms;Internet of Things;Security;Smart Homes;Wireless Sensor Networks}, 
+doi={10.1109/ICSCN.2015.7219926}, 
+month={March},}
+
+10.
+
+@INPROCEEDINGS{7494140, 
+author={H. N. Dalal and N. V. Soni and A. Razaque}, 
+booktitle={2016 IEEE Long Island Systems, Applications and Technology Conference (LISAT)}, 
+title={Header encryption of IEEE802.15.4}, 
+year={2016}, 
+pages={1-6}, 
+keywords={Zigbee;cryptography;message authentication;wireless sensor networks;802.15.4 MAC;ACK attack;Advance Encryption Standard algorithm;CTS replay;IEEE802.15.4;MAC data payload;MAC header authentication;MAC header frame;Media Access Control;RTS replay;Zigbee technology;auxiliary security header;data integrity;denial of service attack;destination address;frame control;header encryption;home automation;industrial automation;medical automation;message authentication code;message integrity code;personal area networks;replay protection attack;sequence number;snooping attack;source address;word length 128 bit;word length 192 bit;word length 256 bit;Encryption;IEEE 802.15 Standard;Payloads;Receivers;AES;Attacks;Encryption;Header;Security;WSN}, 
+doi={10.1109/LISAT.2016.7494140}, 
+month={April},}
+
+11.
+
+@INPROCEEDINGS{5461744, 
+author={H. M. Abdual-Kader and D. S. A. Minaam and M. M. Hadhoud}, 
+booktitle={2010 The 7th International Conference on Informatics and Systems (INFOS)}, 
+title={Wireless network security has no clothes}, 
+year={2010}, 
+pages={1-8}, 
+keywords={cryptographic protocols;power consumption;radio networks;telecommunication security;battery power consumption;information systems security;key size;secure protocol;symmetric encryption algorithm;varying signal;wireless network security;Batteries;Communication system security;Cryptography;Energy consumption;Information security;Information systems;Power system protection;Power system security;Wireless application protocol;Wireless networks;Basic Service Set (BSS);Computer security;Encryption techniques;ad hoc wireless LANs;wireless network}, 
+month={March},}
+
+12.
+
+@ARTICLE{1463102, 
+author={K. J. Hole and E. Dyrnes and P. Thorsheim}, 
+journal={Computer}, 
+title={Securing Wi-Fi networks}, 
+year={2005}, 
+volume={38}, 
+number={7}, 
+pages={28-34}, 
+keywords={IEEE standards;computer crime;cryptography;telecommunication links;telecommunication security;telecommunication standards;wireless LAN;IEEE 802.11 b/g standards;Wi-Fi access points;Wi-Fi network security;built-in WEP encryption;network hacking;wireless link;Cities and towns;Communication system security;Computer crime;Computer hacking;Computer networks;Cryptography;Data security;Hardware;Home automation;Protection;Wi-Fi networks;virtual private networks;wireless hacking;wireless security}, 
+doi={10.1109/MC.2005.241}, 
+ISSN={0018-9162}, 
+month={July},}
+
+13.
+
+@INPROCEEDINGS{4498172, 
+author={H. Scholten and H. v. Dijk}, 
+booktitle={Seventh International Conference on Networking (icn 2008)}, 
+title={Home Network Security}, 
+year={2008}, 
+pages={249-255}, 
+keywords={cryptography;home computing;local area networks;message authentication;telecommunication security;home network security;key-certificate exchange;service discovery;services message authentication;services message encryption;Access protocols;Cryptography;Data security;Footwear;Home automation;Information security;Mobile handsets;Privacy;Switches;Temperature measurement;home networking;security;service discovery}, 
+doi={10.1109/ICN.2008.80}, 
+month={April},}
+
+14.
+
+@INPROCEEDINGS{4637817, 
+author={T. I. Manish}, 
+booktitle={2008 10th IEEE International Conference on High Performance Computing and Communications}, 
+title={A #x0A0;Location #x0A0;Based #x0A0;Security #x0A0;Implementation #x0A0;in #x0A0;Smart #x0A0;Home}, 
+year={2008}, 
+pages={1007-1011}, 
+keywords={authorisation;cryptography;home automation;home computing;message authentication;programming languages;ubiquitous computing;authentication;computerized house;encryption;home appliances interconnection;home networks;location based security implementation;pervasive computing research;programming language level;remote control;safety hazard;smart home hardware implementations;unauthorized user;Authentication;Computer languages;Computer security;Cryptography;Hazards;Home appliances;Home automation;Pervasive computing;Safety devices;Smart homes}, 
+doi={10.1109/HPCC.2008.174}, 
+month={Sept},}
+
+15.
+
+@article{Lee20102967,
+title = "The price of security in wireless sensor networks ",
+journal = "Computer Networks ",
+volume = "54",
+number = "17",
+pages = "2967 - 2978",
+year = "2010",
+note = "",
+issn = "1389-1286",
+doi = "http://dx.doi.org/10.1016/j.comnet.2010.05.011",
+url = "http://www.sciencedirect.com/science/article/pii/S138912861000157X",
+author = "Jongdeog Lee and Krasimira Kapitanova and Sang H. Son",
+keywords = "Energy consumption analysis",
+keywords = "Symmetric-key encryption algorithm",
+keywords = "Block cipher operation modes",
+keywords = "Message authentication code algorithm",
+keywords = "Wireless sensor network "
+}
+
+16.
+
+@article{ESPEJEL2012,
+title = {{Comparaci\~A\textthreesuperiorn entre Varios Esquemas de Criptograf\~A\-a Visual Extendida}},
+journal = {{Informaci\~A\textthreesuperiorn tecnol\~A\textthreesuperiorgica}},
+author={Espejel, Angelina AND Nakano, Mariko AND P\~A\copyrightrez, H\~A\copyrightctor},
+ISSN = {0718-0764},
+language = {es},
+URL = {http://www.scielo.cl/scielo.php?script=sci_arttext&pid=S0718-07642012000400013&nrm=iso},
+volume = {23},
+year = {2012},
+month = {00},
+pages = {105 - 124},
+publisher = {scielocl},
+crossref = {10.4067/S0718-07642012000400013},
+}
+
+17.
+
+@INPROCEEDINGS{7861097, 
+author={K. Celİk and E. Kurt}, 
+booktitle={2016 8th International Conference on Electronics, Computers and Artificial Intelligence (ECAI)}, 
+title={A new image encryption algorithm based on lorenz system}, 
+year={2016}, 
+pages={1-6}, 
+keywords={Algorithm design and analysis;Correlation;Encryption;Histograms;Image color analysis;Mathematical model;chaos;image encryption;lorenz chaotic system;security analysis}, 
+doi={10.1109/ECAI.2016.7861097}, 
+month={June},}
+
+18.
+
+@ARTICLE{2008arXiv0805.4355A,
+author = {{Arroyo}, D. and {Alvarez}, G. and {Fernandez}, V.},
+title = "{On the inadequacy of the logistic map for cryptographic applications}",
+journal = {ArXiv e-prints},
+archivePrefix = "arXiv",
+eprint = {0805.4355},
+primaryClass = "nlin.CD",
+keywords = {Nonlinear Sciences - Chaotic Dynamics},
+year = 2008,
+month = may,
+adsurl = {http://adsabs.harvard.edu/abs/2008arXiv0805.4355A},
+adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+19.
+
+@article{VASQUEZ2013,
+title = {{Un sistema de discusi\~A\textthreesuperiorn seguro con participaci\~A\textthreesuperiorn an\~A\textthreesuperiornima a trav\~A\copyrights de servicios Web}},
+journal = {{Ingeniare. Revista chilena de ingenier\~A\-a}},
+author={V\~A!`squez, Daniel AND Cerpa, Narciso AND Angles, Renzo},
+ISSN = {0718-3305},
+language = {es},
+URL = {http://www.scielo.cl/scielo.php?script=sci_arttext&pid=S0718-33052013000100008&nrm=iso},
+volume = {21},
+year = {2013},
+month = {04},
+pages = {82 - 98},
+publisher = {scielocl},
+crossref = {10.4067/S0718-33052013000100008},
+}
+
+20.
+
+@article{Zhang20176,
+title = "Multiple-image encryption algorithm based on mixed image element and permutation ",
+journal = "Optics and Lasers in Engineering ",
+volume = "92",
+number = "",
+pages = "6 - 16",
+year = "2017",
+note = "",
+issn = "0143-8166",
+doi = "http://dx.doi.org/10.1016/j.optlaseng.2016.12.005",
+url = "http://www.sciencedirect.com/science/article/pii/S0143816616305358",
+author = "Xiaoqiang Zhang and Xuesong Wang",
+keywords = "Multiple-image encryption (MIE)",
+keywords = "Single-image encryption (SIE)",
+keywords = "Chaotic system",
+keywords = "Permutation",
+keywords = "Encryption efficiency ",
+abstract = "Abstract To improve encryption efficiency and facilitate the secure transmission of multiple digital images, by defining the pure image element and mixed image element, this paper presents a new multiple-image encryption (MIE) algorithm based on the mixed image element and permutation, which can simultaneously encrypt any number of images. Firstly, segment the original images into pure image elements; secondly, scramble all the pure image elements with the permutation generated by the piecewise linear chaotic map (PWLCM) system; thirdly, combine mixed image elements into scrambled images; finally, diffuse the content of mixed image elements by performing the exclusive \{OR\} (XOR) operation among scrambled images and the chaotic image generated by another \{PWLCM\} system. The comparison with two similar algorithms is made. Experimental results and algorithm analyses show that the proposed \{MIE\} algorithm is very simple and efficient, which is suitable for practical image encryption. "
+}
+
+21.
+
+@article{D'AMATO2014,
+title = {{Encrypting video and image streams using OpenCL code on-demand}},
+journal = {{CLEI Electronic Journal}},
+author={D\^AAmato, Juan P. AND V\~A\copyrightnere, Marcelo J.},
+ISSN = {0717-5000},
+language = {en},
+URL = {http://www.scielo.edu.uy/scielo.php?script=sci_arttext&pid=S0717-50002014000100006&nrm=iso},
+volume = {17},
+year = {2014},
+month = {04},
+pages = {6 - 6},
+publisher = {scielouy},
+}

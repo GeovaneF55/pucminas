@@ -1,0 +1,277 @@
+1º POSTAGEM
+	Título: Do que se trata o blog
+	Conteúdo:
+		Esse blog tem como objetivo falar um pouco sobre o trabalho de Alan Turing, famoso
+		por quebrar os códigos secretos da máquina Enigma na Segunda Guerra Mundial, e ainda
+		explicar alguns conceitos relacionados à criptografia. 
+
+
+2º POSTAGEM
+	Título: Quem foi Alan Turing
+	Conteúdo:
+		Alan Mathison Turing (23 de junho de 1912 — 7 de junho de 1954) foi um matemático,
+		lógico, criptoanalista e cientista da computação britânico. Foi influente no desenvolvimento
+		da ciência da computação e na formalização do conceito de algoritmo e computação com a máquina
+		de Turing, desempenhando um papel importante na criação do computador moderno. Ele
+		também é pioneiro na inteligência artificial e na ciência da computação.
+		
+		Durante a Segunda Guerra Mundial, Turing trabalhou para a inteligência britânica em Bletchley
+		Park, num centro especializado em quebra de códigos. Por um tempo ele foi chefe do Hut 8, a
+		seção responsável pela criptoanálise da frota naval alemã. Planejou uma série de técnicas para
+		quebrar os códigos alemães, incluindo o método da bomba eletromecânica, uma máquina eletromecânica
+		que poderia encontrar definições para a máquina Enigma.
+		
+		Após a guerra, trabalhou no Laboratório Nacional de Física do Reino Unido, onde criou um dos
+		primeiros projetos para um computador com um programa armazenado, o ACE. Posteriormente,
+		Turing se interessou pela química. Escreveu um artigo sobre a base química da morfogênese
+		e previu reações químicas oscilantes como a Reação de Belousov-Zhabotinsky, que foram observadas
+		pela primeira vez na década de 1960.
+		
+		A homossexualidade de Turing resultou em um processo criminal em 1952, pois atos homossexuais
+		eram ilegais no Reino Unido na época, e ele aceitou o tratamento com hormônios femininos e
+		castração química, como alternativa à prisão. Morreu em 1954, algumas semanas antes de seu
+		aniversário de 42 anos, devido a um aparente autoadministrado envenenamento por cianeto, apesar
+		de sua mãe (e alguns outros) terem considerado sua morte acidental. Em 10 de setembro de 2009,
+		após uma campanha de internet, o primeiro-ministro britânico Gordon Brown fez um pedido oficial
+		de desculpas público, em nome do governo britânico, devido à maneira pela qual Turing foi tratado
+		após a guerra. Em 24 de dezembro de 2013, Alan Turing recebeu o perdão real da rainha Elizabeth II,
+		da condenação por homossexualidade.
+
+
+3º POSTAGEM
+	Título: Suas descobertas
+	Conteúdo:
+	
+		1. A Máquina de Turing:
+		Em 1936, com apenas 24 anos, Turing propôs um modelo teórico usado para
+		simular qualquer forma de computação algorítmica, que ficou conhecido como "Máquina de Turing".
+		O sistema seria alimentado por uma grande fita, na qual eram escritas instruções de apenas um
+		caractere. O sistema poderia ler uma instrução de cada vez, processando-as de acordo com um algoritmo
+		de códigos predeterminados, movendo a fita para frente ou para trás. A ideia era revolucionária por ser
+		a primeira proposta para uma máquina com múltiplas funções determinada por um programa armazenado
+		dentro de um cartucho de memória (um software), ao invés de ter uma pessoa alterando fisicamente a
+		estrutura da máquina. As máquinas de Turing ainda são usadas na ciência da computação como uma ferramenta
+		de pesquisa e ensino, por serem uma forma simples para demonstrar o que acontece em uma CPU.
+		
+		2. A solução da Enigma:
+		No começos dos anos 1940, os submarinos alemães estavam dizimando os cargueiros Aliados no Atlântico Norte.
+		O jogo virou apenas 1943, quando Alan Turing desenvolveu a "Bomba", um aparelho capaz de desvendar os
+		segredos da criptografia nazista chamada de "Enigma" A complexidade da Enigma - uma máquina eletromagnética
+		que substituía letras com palavras aleatórias escolhidas de acordo com uma série de rotores - estava no fato
+		que seus elementos internos eram configurados em bilhões de combinações diferentes, sendo impossível
+		decodificar o texto sem saber as configurações originais. Após espiões poloneses roubarem uma cópia da
+		máquina, Turing e o campeão de xadrez Gordon Welchman construíram uma réplica da Enigma na base militar de
+		Bletchey Park. A máquina replicava os rotores do sistema alemão e tentava reproduzir diferentes combinações
+		de posições dos rotores para testar possíveis soluções. Após quatro anos de trabalho, Turing conseguiu quebrar
+		a Enigma ao perceber que as mensagens criptografadas alemãs continham palavras previsíveis, como nomes e
+		títulos dos militares. Turing usava esses termos como ponto de partida, procurando outras mensagens onde a
+		mesma letra aparecia no mesmo espaço em seu equivalente criptografado. O primeiro-ministro britânico Winston
+		Churchill afirmaria que Turing realizou a principal contribuição individual para a vitória dos Aliados.
+		
+		3. O Computador ACE:
+		Ao final da guerra, Turing foi trabalhar em outro órgão de espionagem da Inglaterra, o MI6, onde construiu
+		um "cérebro eletrônico". Chamado de Sistema de Computação Automática (ACE), o sistema era tão avançado
+		que poderia calcular cenários matemáticos completos, e não apenas equações individuais. Turing abandonou
+		o projeto após o governo inglês considera-lo complexo e caro demais. Nessa época, Turing já havia deixado
+		o laboratório e estava trabalhando em outro computador na universidade de Manchester, o Mark 1. Mas uma
+		equipe do Laboratório Nacional de Física da Inglaterra resolveu construir uma versão menor da série de
+		circuitos propostos por Turing, que ficaria pronta em maio de 1950. O primeiro ACE seria o primeiro
+		computador eletrônico e um dos primeiros computadores com software construídos na Inglaterra. Ele era o
+		computador mais rápido do mundo na época, com 1 MHz. Sua memória funcionava por meio de linhas de retardo
+		de mercúrio, capazes de armazenar até 32 bit. Trinta modelos da ACE foram vendidos. Ele foi a base do
+		Bendix G-15, considerado o primeiro computador pessoal, vendido até 1970.
+		
+		4. Criptografia de voz:
+		Desvendar a enigma não foi a única descoberta tecnológica de Turing durante a Segunda Guerra. Em 1944,
+		ele desenvolveu um método para criptografar conversas telefônicas, baseado em um trabalho que ele viu
+		nos laboratórios da Bell nos Estados Unidos, em 1942. Chamado de Deliah, o sistema nunca foi usado pelo
+		governo inglês. Mas Turing levou parte do trabalho de volta para a Bell quando a empresa desenvolveu o
+		SIGSALY, um dos primeiros aparelhos usados para proteger registros de voz, usado para as comunicações
+		mais confidenciais entre os Aliados.
+		
+		5. O Teste de Turing:
+		Turing pesquisava o conceito de "inteligência mecânica" desde 1941 e uma das primeiras menções do termo
+		"inteligência computacional" foi feita por ele, em 1947. Em 1950, Turing publicou um estudo que se focava
+		exclusivamente em inteligência artificial. Para ele, não era correto especular se as máquinas poderiam
+		pensar, mas sim se elas poderiam se comportar como humanos. Para provar isso, ele criou um teste baseado
+		em uma brincadeira comum em festas, chamada de "Jogo da Imitação", onde uma pessoa fingia ser a outra.
+		Turing sugere uma alternativa de perguntas envolvendo um computador e um homem. Quanto mais perguntas o
+		computador respondesse sem que a outra pessoa suspeitasse se tratar de uma máquina, mais parecido com um
+		humano ela seria. Desde então, o teste ainda é usado para demonstrar a capacidade de inteligência artificial
+		de máquinas e programas.
+
+
+4º POSTAGEM
+	Título: Criptografia
+	Conteúdo:
+		Criptografia (em grego: kryptós, "escondido", e gráphein, "escrita") é o estudo dos princípios e técnicas
+		pelas quais a informação pode ser transformada da sua forma original para outra ilegível, de forma que possa
+		ser conhecida apenas por seu destinatário (detentor da "chave secreta"), o que a torna difícil de ser lida por
+		alguém não autorizado. Assim sendo, só o receptor da mensagem pode ler a informação com facilidade. É um ramo
+		da Matemática, parte da Criptologia. Há dois tipos de chaves criptográficas: chaves simétricas (criptografia
+		de chave única) e chaves assimétricas (criptografia de chave pública).
+		
+		Uma informação não-cifrada que é enviada de uma pessoa (ou organização) para outra é chamada de "texto claro"
+		(plaintext). Cifragem é o processo de conversão de um texto claro para um código cifrado e decifragem é o
+		processo contrário, de recuperar o texto original a partir de um texto cifrado. De fato, o estudo da criptografia
+		cobre bem mais do que apenas cifragem e decifragem. É um ramo especializado da teoria da informação com muitas
+		contribuições de outros campos da matemática e do conhecimento, incluindo autores como Maquiavel, Sun Tzu e Karl
+		von Clausewitz. A criptografia moderna é basicamente formada pelo estudo dos algoritmos criptográficos que podem
+		ser implementados em computadores.
+
+
+5º POSTAGEM
+	Título: Criptoanalista/Crackers
+	Conteúdo:
+		A criptoanálise é a arte de tentar descobrir o texto cifrado e/ou a lógica utilizada em sua encriptação (chave).
+		As pessoas que participam desse esforço são denominadas criptoanalistas. Da fusão da criptografia com a criptoanálise,
+		forma-se a criptologia.
+		
+		A criptoanálise representa o esforço de decodificar ou decifrar mensagens sem que se tenha o conhecimento prévio da
+		chave secreta que as gerou. As diversas técnicas de criptoanálise são os caminhos que os analistas podem seguir para
+		conseguir descobrir ou quebrar a codificação das mensagens que estiverem cifradas, e não apenas a simples decifração
+		de uma mensagem.
+
+		Atualmente, a criptoanálise é utilizada a fim de se consultar as tentativas de quebra de segurança de outros tipos
+		de algoritmos e de protocolos criptográficos. Em geral, a quebra ou então, a publicação de uma criptografia é um ato
+		ilegal, previsto em lei. Entretanto, a criptoanálise exclui geralmente os ataques que não alvejam primeiramente
+		fraquezas na criptografia real. Os métodos, tais como o suborno, coerção física, furto de dados, keylogger, embora
+		esses tipos de ataque advém pela necessidade da segurança computacional, estão gradativamente tornando-se menos
+		eficazes em relação a criptoanálise tradicional.
+		
+		Já o termo Cracker é usado para designar o indivíduo que pratica a quebra (ou cracking) de um sistema de segurança
+		de forma ilegal ou sem ética. Este termo foi criado em 1985 por hackers em defesa contra o uso jornalístico pejorativo
+		do termo "hacker". A criação do termo pelos hackers reflete a forte revolta destes contra o roubo e o vandalismo
+		praticados pelos crackers.
+		
+
+6º POSTAGEM
+	Título: Cifra de César 
+	Conteúdo:
+		Em criptografia, a Cifra de César, também conhecida como cifra de troca, código de César ou troca de César, é uma
+		das mais simples e conhecidas técnicas de criptografia. É um tipo de cifra de substituição na qual cada letra do
+		texto é substituída por outra, que se apresenta no alfabeto abaixo dela um número fixo de vezes. Por exemplo, com
+		uma troca de três posições, A seria substituído por D, B se tornaria E, e assim por diante. O nome do método é em
+		homenagem a Júlio César, que o usou para se comunicar com os seus generais.
+
+		O processo de criptografia de uma cifra de César é frequentemente incorporado como parte de esquemas mais complexos,
+		como a cifra de Vigenère, e continua tendo aplicações modernas, como no sistema ROT13. Como todas as cifras de
+		substituição monoalfabéticas, a cifra de César é facilmente decifrada e na prática não oferece essencialmente nenhuma
+		segurança na comunicação.
+		
+		Exemplo:
+		A transformação pode ser representada alinhando-se dois alfabetos; o alfabeto cifrado é o alfabeto normal rotacionado
+		à direita ou esquerda por um número de posições. Por exemplo, aqui está uma cifra de César usando uma rotação à
+		esquerda de três posições (o parâmetro de troca, três neste caso, é usado como chave).
+		
+		Normal:  ABCDEFGHIJKLMNOPQRSTUVWXYZ
+		Cifrado: DEFGHIJKLMNOPQRSTUVWXYZABC
+		
+		Para criptografar uma mensagem, deve-se simplesmente observar cada letra da mensagem na linha "Normal" e escrever a
+		letra correspondente na linha "Cifrado". Para descriptografar, deve-se fazer o contrário.
+		
+		Normal:  a ligeira raposa marrom saltou sobre o cachorro cansado
+		Cifrado: D OLJHLUD UDSRVD PDUURP VDOWRX VREUH R FDFKRUUR FDQVDGR
+		
+		O substituto permanece o mesmo por toda a mensagem, então a cifra é classificada como um tipo de substituição
+		monoalfabética, ao invés de substituição polialfabética.
+
+
+7º POSTAGEM
+	Título: Chaves Simétricas
+	Conteúdo:
+		Os algoritmos de chave simétrica (também chamados de Sistemas de Chave Simétrica, criptografia de chave única, ou
+		criptografia de chave secreta chave privada.) O uso desse último termo pode às vezes se confundir com o componente
+		chave privada da criptografia de chave pública. A criptografia de chave simétrica é para ser separada de criptografia
+		de chave assimétrica.
+
+		Os algoritmos de chave simétrica são uma classe de algoritmos para a criptografia, que usam chaves criptográficas
+		relacionadas para as operações de cifragem e decifragem. A operação de chave simétrica é mais simples, pois pode existir
+		uma única chave entre as operações. A chave, na prática, representa um segredo, partilhado entre duas ou mais partes,
+		que podem ser usadas para manter um canal confidencial de informação. Usa-se uma única chave, partilhada por ambos os
+		interlocutores, na premissa de que esta é conhecida apenas por eles.
+		
+		- Os algoritmos de chave simétrica podem ser divididos em cifras de fluxo (ou contínuas) e em cifras por bloco.
+		- As cifras de fluxo cifram os bits da mensagem um a um, enquanto as cifras por bloco pegam um número de bits e cifram
+		como uma única unidade.
+		- Os blocos cifrados aceitam um número de bits e cifram em unidades. Um bloco de 64 bits é comum. O algoritmo AES aprovado
+		pelo NIST em dezembro de 2001 usa blocos de 128 bits.
+		
+		Exemplos:
+		- AES
+		- Twofish
+		- Serpent
+		- Blowfish
+		- CAST5
+		- RC4
+		- 3DES (baseado no DES)
+		- IDEA
+
+
+8º POSTAGEM
+	Título: Chaves Assimétricas
+	Conteúdo:
+		Criptografia de chave pública, também conhecida como criptografia assimétrica, é uma classe de protocolos de criptografia
+		baseados em algoritmos que requerem duas chaves, uma delas sendo secreta (ou privada) e a outra delas sendo pública. Apesar
+		de diferentes, as duas partes desse par de chaves são matematicamente ligadas. A chave pública é usada, por exemplo, para
+		encriptar purotexto ou para verificar uma assinatura digital; já a chave privada é usada para a operação oposta, nesses
+		exemplos para decriptar cifrotexto ou para criar uma assinatura digital. O termo assimétrica vem do uso de diferentes chaves
+		para realizar essas funções opostas, cada uma a inversa da outra – como contrapartida da criptografia ("simétrica") convencional,
+		a qual depende da mesma chave para realizar ambos.
+
+		Algoritmos de chave pública são baseados em problemas matemáticos que atualmente não admitem solução eficiente e são inerentes em
+		determinados relacionamentos de fatoração inteira, logaritmo discreto, e curva elíptica. É computacionalmente fácil para um usuário
+		gerar um par de chaves, uma pública e uma privada, e usá-lo para encriptação e decriptação. A força está na "impossibilidade"
+		(computacionalmente impraticável) para uma chave privada gerada apropriadamente ser determinada pela sua chave pública correspondente.
+		Assim, a chave pública pode ser publicada sem comprometer a segurança. Segurança depende apenas de manter a chave privada secreta, isto
+		é, a chave privada não deve ser descoberta por ninguém. Algoritmos de chave pública, diferente de algoritmos de chave simétrica, não
+		exigem um canal seguro para a troca inicial de uma (ou mais) chave secreta entre as partes.
+
+		Por causa da complexidade computacional da encriptação assimétrica, ela é tipicamente usada apenas para transferir uma chave de encriptação
+		simétrica pela qual a mensagem (e normalmente a conversa inteira) é encriptada. A encriptação/decriptação simétrica é baseada em algoritmos
+		mais simples e muito mais rápidos.
+
+		Autenticação de mensagens envolve aplicar hash à mensagem para produzir um "resumo", e encriptar o resumo com a chave privada para produzir
+		uma assinatura digital. Dessa forma qualquer um pode verificar essa assinatura computando o hash da mensagem, decriptando a assinatura com a
+		chave pública do signatário, e (3) comparando o resumo computado com o resumo decriptado. Igualidade entre os resumos confirma que a mensagem
+		não foi modificada já que ela foi assinada, e que o assinante, e ninguém mais, intencionalmente realizou a operação de assinatura — presumindo
+		que a chave privada do assinante se manteve secreta para o assinante.
+
+		A descrição acima depende de um algoritmo de hash de tamanha qualidade tal que ele seja computacionalmente impossível de alterar ou encontrar
+		uma mensagem substituta que produza o mesmo resumo. Porém estudos mostram que até com os algoritmos MD5 e SHA-1, produzir uma mensagem alterada
+		ou substituta não é impossível. O padrão atual de hash para encriptação é SHA-2. A própria mensagem pode ser usada no lugar do resumo.
+
+		Algoritmos de chave pública são ingredientes de segurança fundamentais em criptossistemas, aplicações e protocolos. Eles dão sustentação a
+		vários padrões da Internet, tais quais Segurança da Camada de Transporte (SCT), S/MIME, PBB, e GPG. Alguns algoritmos de chave pública fornecem
+		distribuição de chave e sigilo (e.g., Troca de chaves de Diffie–Hellman), outros fornecem assinaturas digitais (e.g., Algoritmo de Assinatura Digital),
+		e alguns fornecem ambos (e.g., RSA).
+
+		Criptografia de chave pública encontra aplicações na disciplina de segurança de TI segurança da informação, entre outras. Segurança da informação
+		(SI) lida com todos os aspectos de proteção da informação eletrônica ativa contra ameaças de segurança. Criptografia de chave pública é usada
+		como um método de garantir a confidencialidade, autenticidade e não-repudiabilidade de comunicações eletrônicas e de armazenamento de dados.
+
+	Exemplos:
+	- S/MIME
+	- GPG, uma implementação de OpenPGP
+	- PGP
+	- ZRTP, um protocolo seguro VoIP
+	- Secure Socket Layer, agora codificado como o padrão IETF
+	- Segurança de camada de transporte (TLS)
+	- SILC
+	- SSH
+	- Bitcoin
+	- Off-the-Record Messaging
+
+9º POSTAGEM
+	Título: Cartilha de Segurança - Criptografia
+	Conteúdo:
+		A criptografia está em todo lugar e é algo que querendo ou não convivemos diariamente. Por isso o Centro e Estudos, Resposta
+		e Tratamento de Incidentes de Segurança no Brasil, oferece uma cartilha explicando os benefícios e como usar esse artifício
+		na internet. O link é o seguinte:
+		Link: http://cartilha.cert.br/criptografia/
+
+
+10º POSTAGEM
+	Título: Por que você deve se importar com a criptografia
+	Conteúdo:
+		Vídeo de link: https://www.youtube.com/watch?v=PsmMzKcaOYc

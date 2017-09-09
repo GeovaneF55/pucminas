@@ -1,0 +1,28 @@
+PERFIL FEMININO DE COMPUTAÇÃO: Análise Inicial Alyne Oliveira, Mirella Moro, Raquel Prates
+- Motivação para desenvolvimento do trabalho:
+	
+	Poucas mulheres ganharam o prêmio Nobel em ciências em relação aos homens
+	A importância das mulheres na computação tem sido apagada através dos anos
+	O número de mulheres nos cursos relacionados à computação têm diminuido consideravelmente através dos anos
+
+- Objetivo do trabalho:
+	
+	Levantamento do perfil das mulheres que estudam e trabalham na área de Computação e Tecnologia da Informação npoo Brasil
+	Definir estratégias para trabalhar com meninas para atraí-las para a área de Computação 
+	Trabalhar também com meninas do Ensino Superior para que as mesmas concluam seus cursos
+	
+- Metodologia utilizada:
+	
+	Questionário que analisa os perfis das mulheres que escolheram os cursos da área da computação
+
+- Principais resultados encontrados:
+	
+	Poucas participantes do questionário disseram ter preconceito com a área antes de conhecê-la melhor
+	As disciplinas das áreas exatas como atividades matemáticas e de raciocínio são as preferidas das meninas da computação
+	Na área profissional em relação a área acadêmica, as participantes relataram em maior número sofrer algum tipo de preconceito por serem mulheres
+	As profissionais com mais de 40 anos, ou seja, com mais experiência sofreram menos preconceito do que as mais jovens
+
+- Conclusões do trabalho:
+	A discussões apresentadas no trabalho apontam para a necessidade de investigar mais detalhadamente a presença feminina na área da Computação
+	Definir ações para atrair mais talentos para a área
+	Manter esses talentos na área

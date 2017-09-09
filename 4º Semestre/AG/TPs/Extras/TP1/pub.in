@@ -1,0 +1,11 @@
+AEDs I;
+AEDs II;AEDs I
+MD;
+AC I;IC
+AC II;AC I
+SO;AC II
+Grafos;AEDs II
+IPCC;AC I,AEDs II
+IC;
+Compiladores;AEDs II,TL
+TL;MD

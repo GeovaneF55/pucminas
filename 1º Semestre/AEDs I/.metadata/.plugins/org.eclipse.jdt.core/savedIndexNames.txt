@@ -1,0 +1,1 @@
+INDEX VERSION 1.127+/Users/geovanefss/Documents/PUC Minas/Material Didático/AEDs I/.metadata/.plugins/org.eclipse.jdt.core
