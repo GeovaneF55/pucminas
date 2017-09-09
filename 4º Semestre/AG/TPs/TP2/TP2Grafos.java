@@ -14,16 +14,7 @@ class TP1Grafos{
 
 	public static void main(String[] args) throws IOException{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-
-		String aresta_existencia;
-		int vertice_grau;
-
-		Grafo grafo = leGrafo(in);
-
-		vertice_grau = Integer.parseInt(in.readLine());
-		aresta_existencia = in.readLine();
-
-		saida(vertice_grau, aresta_existencia, grafo);
+        
 	}
 
 	/**
