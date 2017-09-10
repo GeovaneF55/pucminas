@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.PrintStream;
 
-class TP1Grafos{
+class TP2Grafos{
 
 	public static void main(String[] args) throws IOException{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -133,25 +133,33 @@ class TP1Grafos{
 	 * @param destino Vertice.
      */
 	public static void imprimeAresta(Vertice origem, Vertice destino){
-		MyIO.println("v" + origem.getNome() + " -> v" + destino.getNome());
+		MyIO.println(origem.getNome() + " --> " + destino.getNome());
 	}
 }
 
 class Fila<T> {
+	private ArrayList<T> objetos = new ArrayList<T>();
 
-  private ArrayList<T> objetos = new ArrayList<T>();
+	/**
+	 * @param t T.
+     */
+	public void insere(T t) {
+		this.objetos.add(t);
+	}
 
-  public void insere(T t) {
-    this.objetos.add(t);
-  }
+	/**
+	 * @return t T.
+     */
+	public T remove() {
+		return this.objetos.remove(0);
+	}
 
-  public T remove() {
-    return this.objetos.remove(0);
-  }
-
-  public boolean vazia() {
-    return this.objetos.size() == 0;
-  }
+	/**
+	 * @return t T.
+     */
+	public boolean vazia() {
+		return this.objetos.size() == 0;
+	}
 }
 
 class Grafo {
@@ -327,6 +335,9 @@ class Grafo {
 				aresta = this.getAresta(i);
 				if(vertice.getNome().equals(aresta.getV1().getNome())){
 					adjacente = aresta.getV2();
+					adjacentes.add(adjacente);
+				} else if(vertice.getNome().equals(aresta.getV2().getNome())){
+					adjacente = aresta.getV1();
 					adjacentes.add(adjacente);
 				}
 			}
