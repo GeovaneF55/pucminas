@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:columnCount="9"
+    android:orientation="horizontal"
+    android:rowCount="8" >
+
+    <com.jjoe64.graphview.GraphView
+        android:layout_gravity="fill_horizontal"
+        android:id="@+id/graph"/>
+
+</GridLayout>
+
