@@ -1,95 +1,68 @@
 /**
- * TP01 - Extra
+ * TP02 - Grafos
  * @author Geovane Fonseca de Sousa Santos
- * @version 1 08/2017
+ * @version 1 09/2017
  */
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.PrintStream;
 
-class TP1Extra{
-
-	public static final int MAT = 0;
-	public static final int DEP = 1;
+class TP2Grafos{
 
 	public static void main(String[] args) throws IOException{
-		String nomeArquivo = "materias.in";
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
-		Grafo grafo = leGrafo(nomeArquivo);
+		Grafo grafo = leGrafo(in);
 
-		menu(grafo);
+		Vertice origem = grafo.getVertice(0);
+		inicializaLabirinto(grafo, origem);
+		buscaLabirinto(grafo, origem);
+
+		Vertice destino = grafo.getVertice(grafo.tamanhoVertices()-1);
+		imprimeCaminho(destino);
 	}
 
 	/**
-         * @param grafo Grafo
-         */
-	public static void menu(Grafo grafo){
-		Scanner scanner = new Scanner(System.in);
-		System.out.print("\n--MENU--" +
-			   "\n1 - Consultar matéria" +
-			   "\n2 - Disciplinas com dependência" +
-			   "\n3 - Sair" +
-			   "\nOpção: ");
-		int op = scanner.nextInt();
-		switch(op){
-			case 1:
-				System.out.print("Matéria desejada: ");
-				String materia = scanner.next();
-				System.out.println(dependencias(grafo, materia));
-				menu(grafo);
-			break;
-			case 2:
-				System.out.println(disciplinasComDependencia(grafo));
-				menu(grafo);
-			break;
-			case 3:
-				System.out.println("fim");
-			break;
-			default:
-				menu(grafo);
-			break;
-		}
-	}
-
-	/**
-         * @param nomeArquivo String
-         * @return grafo Grafo.
-         */
-	public static Grafo leGrafo(String nomeArquivo) throws IOException{
-
-		RandomAccessFile arquivo = new RandomAccessFile(nomeArquivo, "r");
-		ArrayList<String> dependencias = new ArrayList<String>();
+     * @param nomeArquivo String.
+     * @return grafo Grafo.
+     */
+	public static Grafo leGrafo(BufferedReader in) throws IOException{
 		Grafo grafo = new Grafo();
+		String[] arestaArray;
 		Vertice origem,
 		        destino;
-		String[] materias,
-		         array_dep;
+		int digrafo,
+		    qtde_vertices,
+		    peso;
 
 		/*LER DADOS DO ARQUIVO*/
-		for(String frase = arquivo.readLine(); frase != null; frase = arquivo.readLine()){
-			materias = frase.split(";");
-			grafo.adicionaVertice(materias[MAT]);
-			try{
-				dependencias.add(materias[DEP]);
-			} catch(ArrayIndexOutOfBoundsException ex){
-				dependencias.add("");
-			}
+
+		// Seta digrafo ou grafo
+		digrafo = Integer.parseInt(in.readLine());
+		if(digrafo != 1){
+			grafo.setDigrafo(false);
+		} else{
+			grafo.setDigrafo(true);
 		}
 
-		arquivo.close();
+		// Adiciona vertices
+		qtde_vertices = Integer.parseInt(in.readLine());
 
-		for(int i=0; i < dependencias.size(); i++){
-			origem = grafo.getVertice(i);
+		for(int i=0; i<qtde_vertices; i++){
+			grafo.adicionaVertice();
+		}
 
-			array_dep = dependencias.get(i).split(",");
-			for(int j=0; j < array_dep.length; j++){
-				destino = grafo.getVertice(array_dep[j]);
-				if(destino != null){
-					grafo.adicionaAresta(origem, destino);
-				}
-			}
+		// Adiciona arestas
+		for(String aresta = in.readLine(); aresta.equals("FIM") == false; aresta = in.readLine()){
+			arestaArray = aresta.split(",");
+			origem = grafo.getVertice(Integer.parseInt(arestaArray[0]));
+			destino = grafo.getVertice(Integer.parseInt(arestaArray[1]));
+			peso = Integer.parseInt(arestaArray[2]);
+
+			grafo.adicionaAresta(origem, destino, peso);
 		}
 
 		return grafo;
@@ -97,73 +70,95 @@ class TP1Extra{
 
 	/**
 	 * @param grafo Grafo.
-	 * @param nome String.
-	 * @return resposta String.
-     */
-	public static String dependencias(Grafo grafo, String nome){
-		String resposta = "";
-
-		Aresta aresta;
-		Vertice vertice = grafo.getVertice(nome);
-		if(vertice != null){
-			resposta += vertice.getNome() + ";";
-			for(int i=0; i < grafo.tamanhoArestas(); i++){
-				aresta = grafo.getAresta(i);
-				if(vertice.getNome().equals(aresta.getV1().getNome())){
-					Vertice v2 = aresta.getV2();
-					resposta += v2.getNome()+",";
-					resposta += subDependencias(grafo, v2.getNome());
-				}
-			}
-			resposta = resposta.substring(0, resposta.length()-1);
-		}
-		return resposta;
-	}
-
-	/**
-	 * @param grafo Grafo.
-	 * @param nome String.
-	 * @return resposta String.
-         */
-	public static String subDependencias(Grafo grafo, String nome){
-		String resposta = "";
-
-		Aresta aresta;
-		Vertice vertice = grafo.getVertice(nome);
-		if(vertice != null){
-			for(int i=0; i < grafo.tamanhoArestas(); i++){
-				aresta = grafo.getAresta(i);
-				if(vertice.getNome().equals(aresta.getV1().getNome())){
-					Vertice v2 = aresta.getV2();
-					resposta += v2.getNome()+",";
-					subDependencias(grafo, v2.getNome());
-				}
-			}
-		}
-		return resposta;
-	}
-
-	/**
-	 * @param grafo Grafo.
-	 * @return resposta String.
-         */
-	public static String disciplinasComDependencia(Grafo grafo){
-		String resposta = "";
-		boolean dep;
-		Vertice v;
-
+	 * @param origem Vertice.
+	 */
+	public static void inicializaLabirinto(Grafo grafo, Vertice origem){
 		for(int i=0; i < grafo.tamanhoVertices(); i++){
-			v = grafo.getVertice(i);
-			dep = false;
-			for(int j=0; !dep && j < grafo.tamanhoArestas(); j++){
-				if(v == grafo.getAresta(j).getV1() || v == grafo.getAresta(j).getV2()){
-					resposta += v.getNome() + "\n";
-					dep = true;
-				}
+			Vertice atual = grafo.getVertice(i);
+			if(atual.getNome() != origem.getNome()){
+				atual.setCor('B');
+				atual.setDistancia(Integer.MAX_VALUE);
+				atual.setPai(null);
 			}
 		}
-		resposta = resposta.substring(0, resposta.length()-1);
-		return resposta;
+		origem.setCor('C');
+		origem.setDistancia(0);
+		origem.setPai(null);
+
+		grafo.fila = new Fila<Vertice>();
+	}
+
+	/**
+	 * @param grafo Grafo.
+	 * @param origem Vertice.
+	 */
+	public static void buscaLabirinto(Grafo grafo, Vertice origem){
+		grafo.fila.insere(origem);
+		while(!grafo.fila.vazia()){
+			Vertice u = grafo.fila.remove();
+			ArrayList<Vertice> adjacentes = grafo.adjacencia(u);
+			for(int i=0; i< adjacentes.size(); i++){
+				Vertice v = adjacentes.get(i);
+				if(v.getCor() == 'B'){
+					v.setCor('C');
+					v.setDistancia(u.getDistancia()+1);
+					v.setPai(u);
+					grafo.fila.insere(v);
+				}
+			}
+			u.setCor('P');
+		}
+	}
+
+	/**
+	 * @param grafo Grafo.
+     */
+	public static void saida(Grafo grafo){
+		PrintStream out = new PrintStream(System.out, true);
+	}
+
+	/**
+	 * @param origem Vertice.
+	 * @param destino Vertice.
+     */
+	public static void imprimeCaminho(Vertice destino){
+		if(destino.getPai() != null){
+			imprimeCaminho(destino.getPai());
+			imprimeAresta(destino.getPai(), destino);
+		}
+	}
+
+	/**
+	 * @param origem Vertice.
+	 * @param destino Vertice.
+     */
+	public static void imprimeAresta(Vertice origem, Vertice destino){
+		MyIO.println(origem.getNome() + " --> " + destino.getNome());
+	}
+}
+
+class Fila<T> {
+	private ArrayList<T> objetos = new ArrayList<T>();
+
+	/**
+	 * @param t T.
+     */
+	public void insere(T t) {
+		this.objetos.add(t);
+	}
+
+	/**
+	 * @return t T.
+     */
+	public T remove() {
+		return this.objetos.remove(0);
+	}
+
+	/**
+	 * @return t T.
+     */
+	public boolean vazia() {
+		return this.objetos.size() == 0;
 	}
 }
 
@@ -171,6 +166,8 @@ class Grafo {
 	private ArrayList<Aresta> arestas;
 	private ArrayList<Vertice> vertices;
 	private boolean digrafo;
+
+	public Fila<Vertice> fila;
 
 	/**
 	 * Construtor da classe.
@@ -186,6 +183,8 @@ class Grafo {
 		setDigrafo(digrafo);
 		this.vertices = new ArrayList<Vertice>();
 		this.arestas = new ArrayList<Aresta>();
+
+		this.fila = new Fila<Vertice>();
 	}
 
 	/**
@@ -208,22 +207,6 @@ class Grafo {
 	 */
 	public Vertice getVertice(int i){
 		return ((Vertice)vertices.get(i));
-	}
-
-	/**
-	 * @param nome String (nome no ArrayList).
-	 * @return v Vertice.
-	 */
-	public Vertice getVertice(String nome){
-		Vertice vertice = null,
-			auxiliar;
-		for(int i=0; i < tamanhoVertices(); i++){
-			auxiliar = ((Vertice)vertices.get(i));
-			if(auxiliar.getNome().equals(nome)){
-				vertice = auxiliar;
-			}
-		}
-		return vertice;
 	}
 
 	/**
@@ -287,9 +270,23 @@ class Grafo {
 	}
 
 	/**
+ 	 * @return qtde int (Quantidade de arestas).
+	 */
+	public int qtdArestas(){
+		return arestas.size();
+	}
+
+	/**
+ 	 * @return qtde int (Quantidade de vertices).
+	 */
+	public int qtdVertices(){
+		return vertices.size();
+	}
+
+	/**
 	 * @param v1 Vertice.
 	 * @param v2 Vertice.
- 	 * @return existe boolean.
+	 * @return existe boolean.
 	 */
 	public boolean existeAresta(Vertice v1, Vertice v2){
 		boolean existe = false;
@@ -304,20 +301,6 @@ class Grafo {
 			i++;
 		}
 		return existe;
-	}
-
-	/**
- 	 * @return qtde int (Quantidade de arestas).
-	 */
-	public int qtdArestas(){
-		return arestas.size();
-	}
-
-	/**
- 	 * @return qtde int (Quantidade de vertices).
-	 */
-	public int qtdVertices(){
-		return vertices.size();
 	}
 
 	/**
@@ -337,6 +320,32 @@ class Grafo {
 	}
 
 	/**
+	 * @param vertice Vertice.
+	 * @return adjacentes ArrayList<Vertice>.
+     */
+	public ArrayList<Vertice> adjacencia(Vertice vertice){
+		ArrayList<Vertice> adjacentes;
+		Vertice adjacente;
+		Aresta aresta;
+
+		adjacentes = new ArrayList<Vertice>();
+
+		if(vertice != null){
+			for(int i=0; i < this.tamanhoArestas(); i++){
+				aresta = this.getAresta(i);
+				if(vertice.getNome().equals(aresta.getV1().getNome())){
+					adjacente = aresta.getV2();
+					adjacentes.add(adjacente);
+				} else if(vertice.getNome().equals(aresta.getV2().getNome())){
+					adjacente = aresta.getV1();
+					adjacentes.add(adjacente);
+				}
+			}
+		}
+		return adjacentes;
+	}
+
+	/**
  	 * @return qtde int (Quantidade de vertices).
 	 */
 	public Grafo criaComplementar(){
@@ -344,16 +353,16 @@ class Grafo {
 		Vertice v1, v2;
 
 		for(int i=0; i<vertices.size(); i++){
-                        for(int j=(i+1); j<vertices.size(); j++){
+            for(int j=(i+1); j<vertices.size(); j++){
 				v1 = getVertice(i);
 				v2 = getVertice(j);
-                                if(!existeAresta(v1, v2)){
+                if(!existeAresta(v1, v2)){
 					complementar.adicionaVertice(v1.getNome());
 					complementar.adicionaVertice(v2.getNome());
 					complementar.adicionaAresta(v1.clone(), v2.clone());
-                                }
-                        }
-                }
+				}
+			}
+		}
 		return complementar;
 	}
 
@@ -493,6 +502,10 @@ class Vertice {
 	private String nome;
 	private int grau;
 
+	private int distancia;
+	private Vertice pai;
+	private char cor;
+
 	/**
 	 * Construtor da classe.
 	 * @param nome String.
@@ -500,6 +513,10 @@ class Vertice {
 	public Vertice(String nome) {
 		setNome(nome);
 		setGrau(0);
+
+		setDistancia(Integer.MAX_VALUE);
+		setPai(null);
+		setCor('B');
 	}
 
 	/**
@@ -531,11 +548,55 @@ class Vertice {
 	}
 
 	/**
+	 * @return distancia int.
+	 */
+	public int getDistancia() {
+		return this.distancia;
+	}
+
+	/**
+	 * @param distancia String
+	 */
+	public void setDistancia(int distancia) {
+		this.distancia = distancia;
+	}
+
+	/**
+	 * @return pai Vertice.
+	 */
+	public Vertice getPai() {
+		return this.pai;
+	}
+
+	/**
+	 * @param pai Vertice
+	 */
+	public void setPai(Vertice pai) {
+		this.pai = pai;
+	}
+
+	/**
+	 * @return cor char.
+	 */
+	public char getCor() {
+		return this.cor;
+	}
+
+	/**
+	 * @param cor char
+	 */
+	public void setCor(char cor) {
+		this.cor = cor;
+	}
+
+	/**
 	 * @param novo Vertice
 	 */
 	public Vertice clone() {
 		Vertice novo = new Vertice(this.getNome());
 		novo.setGrau(this.getGrau());
+		novo.setDistancia(this.getDistancia());
+		novo.setPai(this.getPai());
 		return novo;
 	}
 }
