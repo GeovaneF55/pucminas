@@ -1,4 +1,4 @@
-package com.example.geova.agenda;
+package com.example.geova.agenda.Controls;
 
 import android.app.Activity;
 import android.app.TimePickerDialog;
@@ -14,7 +14,7 @@ import java.util.TimeZone;
  */
 
 public class MyEditTextTimePicker implements View.OnClickListener, TimePickerDialog.OnTimeSetListener{
-    EditText _editText;
+    private EditText _editText;
     private int _hour;
     private int _minute;
     private Context _context;
