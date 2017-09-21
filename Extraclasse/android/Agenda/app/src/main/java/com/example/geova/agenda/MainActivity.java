@@ -1,17 +1,22 @@
 package com.example.geova.agenda;
 
+import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.telephony.PhoneNumberFormattingTextWatcher;
 
 import com.example.geova.agenda.Controls.MyEditTextDatePicker;
+import com.example.geova.agenda.Controls.MyEditTextTimePicker;
+import com.example.geova.agenda.Controls.MyDialogFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
+
+    final Context self = this;
 
     // IDs
     private int id_nomeEvento = R.id.edt_nomeEvento;
@@ -45,21 +50,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
+
         // Listeners
-        new MyEditTextDatePicker(this , id_dataInicio);
-        new MyEditTextDatePicker(this , id_dataFim);
+        new MyEditTextDatePicker(self , id_dataInicio);
+        new MyEditTextDatePicker(self , id_dataFim);
 
         btn_add_Organizador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                MyDialogFragment dialog = MyDialogFragment.newInstance(R.layout.activity_organizador);
+                //dialog.show(getSupportFragmentManager(), "missiles");
             }
         });
 
         btn_criarEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //TODO
             }
         });
     }
