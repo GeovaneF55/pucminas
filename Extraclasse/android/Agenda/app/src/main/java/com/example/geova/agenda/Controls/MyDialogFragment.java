@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.geova.agenda.R;
 
@@ -16,7 +18,7 @@ import com.example.geova.agenda.R;
  * Created by geovane on 19/09/17.
  */
 
-public class MyDialogFragment extends DialogFragment {
+public class MyDialogFragment extends DialogFragment{
 
     private int layout;
 
@@ -32,24 +34,22 @@ public class MyDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        // Build the dialog and set up the button click handlers
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
-
-        // Inflate and set the layout for the dialog
-        // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(this.layout, null));
-        builder.setPositiveButton(R.string.signin, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                // sign in the user ...
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                MyDialogFragment.this.getDialog().cancel();
-            }
-        });
+        builder.setView(inflater.inflate(layout, null))
+                .setPositiveButton(R.string.signin, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Send the positive button event back to the host activity
+                        mListener.onDialogPositiveClick(MyDialogFragment.this);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Send the negative button event back to the host activity
+                        mListener.onDialogNegativeClick(MyDialogFragment.this);
+                    }
+                });
         return builder.create();
     }
 
@@ -70,12 +70,12 @@ public class MyDialogFragment extends DialogFragment {
         super.onAttach(context);
 
         // Verify that the host activity implements the callback interface
-        /*try {
+        try {
             // Instantiate the NoticeDialogListener so we can send events to the host
             mListener = (NoticeDialogListener) context;
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception
             throw new ClassCastException(context.toString() + " must implement NoticeDialogListener");
-        }*/
+        }
     }
 }

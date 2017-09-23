@@ -1,0 +1,39 @@
+Create table Pais
+	(CodPai number(2) not null,
+	 NomPai char(30) not null,
+	 constraint Pk_Pais primary
+		key (CodPai));
+Insert into Pais
+	values (1, 'Brasil');
+Insert into Pais
+	values (2, 'Argentina');
+Insert into Pais
+	values (3, 'Chile');
+Insert into Pais
+	values (4, 'Portugal');
+Insert into Pais
+	values (5, 'Canadá');
+Insert into Pais
+	values (6, 'EUA');
+Insert into Pais
+	values (7, 'Cuba');
+Insert into Pais
+	values (8, 'Japão');
+Insert into Pais
+	values (9, 'Coréia');
+Insert into Pais
+	values (10, 'Uganda');
+Create table Autor
+	(CodAut number(2) not null,
+	 NomAut char(35) not null,
+	 CodPai number(2) not null,
+	 constraint Pk_Autor primary
+		key (CodAut),
+	 constraint Fk_Autor_Pais foreign
+		key (CodPai) references
+	  Pais);
+Insert into Autor
+	values (1, 'José Luis do Rego', 1);
+Insert into Autor
+	values (2, 'Leandro Duprê', 1);
+commit;

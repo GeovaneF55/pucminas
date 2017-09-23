@@ -3,11 +3,11 @@ Prof. Palhares
 2º semestre de 2017
 
 
-No script abaixo você irá criar o modelo de biblioteca de uma universidade. 
+No script abaixo você irá criar o modelo de biblioteca de uma universidade.
 Fique atento aos comandos DDL (create, alter, etc). Qualquer dúvida, pergunte ao professor.
-Ao final faça os exercícios solicitados. 
+Ao final faça os exercícios solicitados.
 
-Você deverá copiar o comando com CTRL C. 
+Você deverá copiar o comando com CTRL C.
 No Oracle, no aplicativo SQL Plus, clique na barra cinza na parte superior como botão esquerdo do mouse. Escolha Editar e a seguir colar.
 Copie um comando de cada vez. Atenção ao que está fazendo.
 
@@ -18,12 +18,12 @@ Copie um comando de cada vez. Atenção ao que está fazendo.
 
 desc Pais;
 
-É através do catálogo que se cumpre a propriedade Auto Descritiva de uma SGBD. 
+É através do catálogo que se cumpre a propriedade Auto Descritiva de uma SGBD.
 
 
 3) Inserindo valores na tabela
 
-É necessário que sua tabela tenha os seguintes paíises: 
+É necessário que sua tabela tenha os seguintes países:
 Brasil
 Argentina
 Portugal
@@ -31,7 +31,7 @@ Cuba
 EUA
 Canadá
 Venezuela
- 
+
 4) Testando Primary key
 em sala de aula com o professor
 
@@ -41,11 +41,11 @@ em sala de aula com o professor
 6) Aprendendo a modificar valores de dados
 em sala de aula com o professor
 
-7) Select CodPai, NomPai from Pais order by NomPai; 
+7) Select CodPai, NomPai from Pais order by NomPai;
 
 8) Select CodPai, NomPai from Pais order by NomPai desc;
 
-9) Select CodPai, NomPai from Pais where NomPai like '%nadá%';  
+9) Select CodPai, NomPai from Pais where NomPai like '%nadá%';
 
 10) Select CodPai, NomPai from Pais where CodPai in (1, 3, 5);
 
@@ -54,52 +54,52 @@ em sala de aula com o professor
 12) Criando e populando a tabela Autor. Observe a foreign key (constraint)
 em sala de aula com o professor
 
-Verifique abaixo os Autores que sua tabela não possui. Inclua os mesmos seguindo a numeração de Codigo Autor. 
+Verifique abaixo os Autores que sua tabela não possui. Inclua os mesmos seguindo a numeração de Codigo Autor.
 
 insert into Autor values ( xxx,'José Lins do Rego',1);
-insert into Autor values ( xxx,'José Antônio', 19); 
+insert into Autor values ( xxx,'José Antônio', 19);
 (Este comando gerará erro pois não existe o país 19 - teste de Foreign key)
 
 insert into Autor values (xxx,'José Mauro de Vasconcelos',1);
 insert into Autor values (xxx,'Shamkant B. Navathe',6);
 insert into Autor values (xxx,'Ramez Elmasri',6);
 insert into Autor values (xxx,'Pablo Neruda',3);
-insert into Autor values (xxx, 'Machado de Assis', 1); 
-insert into Autor values (xxx, 'Guimarães Rosa', 1); 
-insert into Autor values (xxx, 'Maria José Duprê', 1); 
+insert into Autor values (xxx, 'Machado de Assis', 1);
+insert into Autor values (xxx, 'Guimarães Rosa', 1);
+insert into Autor values (xxx, 'Maria José Duprê', 1);
 insert into Autor values (xxx, 'José de Alencar', 1);
 insert into Autor values (xxx, 'Jô Soares', 1);
 commit;
 
-select * from autor; 
+select * from autor;
 
-select * from autor order by NomAut; 
+select * from autor order by NomAut;
 
-select * from autor 
+select * from autor
 order by CodPai, NomAut; 11a) Criando e populando a tabela Tipo_Usuario
 
-create table TipoUsuario 
-(TipUsu char (1) not null, 
- DesTipUsu char (15) not null, 
+create table TipoUsuario
+(TipUsu char (1) not null,
+ DesTipUsu char (15) not null,
  constraint PK_Tipo_usuario primary Key (TipUsu));
 
-desc tipoUsuario; 
+desc tipoUsuario;
 
 insert into Tipousuario values ('A', 'Aluno');
 insert into Tipousuario values ('F', 'Funcionario');
 insert into Tipousuario values ('P', 'Professor');
 insert into Tipousuario values ('V', 'Visitante');
 
-commit; 
+commit;
 
-Select * from tipousuario; 
+Select * from tipousuario;
 
 
 13) Criando e populando a tabela Tipo_Obra
 
-create table TipoObra 
-(tipObr number not null, 
- DesTipObr char(25) not null, 
+create table TipoObra
+(tipObr number not null,
+ DesTipObr char(25) not null,
  constraint PK_Tipo_Obra primary Key (TipObr));
 
 insert into TipoObra values (1, 'Periodico Cientifico');
@@ -107,40 +107,40 @@ insert into TipoObra values (2, 'Ficção');
 insert into TipoObra values (3, 'Literatura');
 insert into TipoObra values (4, 'Obra Cientifica');
 
-commit; 
+commit;
 
-select * from tipoobra; 
+select * from tipoobra;
 
 14) Inclua agora dois autores de cada páis incluído por você.
 
-Commit;  
+Commit;
 
-select NomPai, NomAut 
- from Pais natural join Autor 
+select NomPai, NomAut
+ from Pais natural join Autor
  order by NomPai, NomAut;
 
-select Pais.CodPai, NomPai, NomAut 
- from Pais join Autor 
- on Pais.codPai = Autor.CodPai 
+select Pais.CodPai, NomPai, NomAut
+ from Pais join Autor
+ on Pais.codPai = Autor.CodPai
  order by NomPai, NomAut;
 
-15) Criando e populando a tabelas Tabelas Undiade e Curso
- 
+15) Criando e populando a tabelas Tabelas Unidade e Curso
+
 Create table Unidade
-(CodUni number (2) not null, 
+(CodUni number (2) not null,
  NomUni char (30) not null,
  constraint PK_Unidade primary key (CodUni));
 
-insert into Unidade values (1, 'Coração Eucarístico'); 
-insert into Unidade values (2, 'Betim');  
-insert into Unidade values (3, 'São Gabriel');  
-insert into Unidade values (4, 'Barreiro');  
-insert into Unidade values (5, 'Poços de Caldas');   
+insert into Unidade values (1, 'Coração Eucarístico');
+insert into Unidade values (2, 'Betim');
+insert into Unidade values (3, 'São Gabriel');
+insert into Unidade values (4, 'Barreiro');
+insert into Unidade values (5, 'Poços de Caldas');
 
-Select * from Unidade; 
-Select CodUni, NomUni 
+Select * from Unidade;
+Select CodUni, NomUni
 from Unidade
-order by NomUni; 
+order by NomUni;
 
 
 // Repare que quando criamos um a FK do tipo Restrict não informamos isto no create table.
@@ -149,12 +149,12 @@ order by NomUni;
 Create table Curso
 (CodCur number (2) not null,
  NomCur char (25) not null,
- CodUni number (2) not null, 
+ CodUni number (2) not null,
  constraint PK_Curso primary key (CodCur),
  constraint FK_Curso_Unidade foreign key (CodUni) references Unidade);
 
 
-desc curso; 
+desc curso;
 
 insert into Curso values (1,'Sistemas de Informação', 4);
 insert into Curso values (2,'Psicologia',1);
@@ -167,11 +167,11 @@ insert into Curso values (8,'Física', 1);
 insert into Curso values (9,'Administração de Empresa', 4);
 insert into Curso values (10,'Direito', 2);
 
-commit; 
- 
-Select * from curso; 
+commit;
 
-Agora construa o comando para incluir mais 5 cursos à sua escolha, por exemplo: 
+Select * from curso;
+
+Agora construa o comando para incluir mais 5 cursos à sua escolha, por exemplo:
 11. Ciência da Informação
 12, Engenharia de Alimentos
 13, Jogos Digitais
@@ -187,8 +187,8 @@ create table Usuario
  CodCur number (2) not null,
  TipUsu char (1) not null,
  constraint PK_Usuario primary key (CodUsu),
- constraint FK_Usuario_Curso foreign key (CodCur) references Curso, 
- constraint FK_Usuario_tipo foreign key (TipUsu) references TIpoUsuario, 
+ constraint FK_Usuario_Curso foreign key (CodCur) references Curso,
+ constraint FK_Usuario_tipo foreign key (TipUsu) references TipoUsuario,
  constraint CK_SexUsu check (SexUsu in ('F', 'M')));
 
 insert into Usuario values (1,'Maria Luiza Pereira','F',1,'P');
@@ -211,23 +211,23 @@ insert into Usuario values (17,'Renata Gonzalez Albuquerque e Silva','F',7,'P');
 insert into Usuario values (18,'Cassia Abrantes Juarez','F',3,'A');
 insert into Usuario values (19,'Luiz Gustavo Pontes','M',1,'P');
 insert into Usuario values (20,'Lauro Samuel Andrade','M',1,'F');
-commit; 
+commit;
 
 
 17) Inserir um usuario (matricula 21) com seus dados
 
-commit; 
+commit;
 
-select * from usuario; 
+select * from usuario;
 
 
-17.1) Inclua mais 10 usuarios, dos dois sexos, de tipos diversos e de diversos cursos. 
-Dentre eles, faça pelo menos dois ser da mesma família. 
+17.1) Inclua mais 10 usuarios, dos dois sexos, de tipos diversos e de diversos cursos.
+Dentre eles, faça pelo menos dois ser da mesma família.
 
 
 select codusu, nomUsu, Sexusu
 from usuario
-order by NomUsu; 
+order by NomUsu;
 
 
 select codusu, nomUsu, Sexusu
@@ -236,14 +236,14 @@ order by SexUsu, NomUsu;
 
 
 18) Tente inserir um usuario com SexUsu diferente de M e F. Observe no comando create tabel usuario o que seja Check.
-Em seguida, tente incluir um usuário de um curso inexistente. 
+Em seguida, tente incluir um usuário de um curso inexistente.
 Veja se compreende as retrições de Integridade Regferencial e de Domínio. Em caso de dúvida, converse com o professor.
 
- 
-Insira mais 5 usuaios, sendo dois de uma mesma família. 
-Em seguida emita os comandos: 
-Commit; 
-Select CodUsu, NomUsu, SexUsu from usuario; 
+
+Insira mais 5 usuaios, sendo dois de uma mesma família.
+Em seguida emita os comandos:
+Commit;
+Select CodUsu, NomUsu, SexUsu from usuario;
 
 
 
@@ -257,7 +257,7 @@ create table Obra
  constraint PK_Obra primary key (CodObr),
  constraint FK_Obra_TipoObra foreign key (TipObr) references TipoObra);
 
-desc obra; 
+desc obra;
 
 insert into Obra values (1,'Estado de Minas',1);
 insert into Obra values (2,'IEEC',3);
@@ -287,23 +287,23 @@ insert into Obra values (25,'Tentativa del hombre infinito',3);
 insert into Obra values (26,'Crepuscularioo',3);
 insert into Obra values (26,'Grande sertão Vereda' ,3);
 
-commit; 
+commit;
 
-Select COdObr, NomObr from Obra order by NomObr;
+Select CodObr, NomObr from Obra order by NomObr;
 
 
 
-20) Insira agora pelo menos mais 5 obras dos autores de sua base de dados. 
-Dê preferência aos autores incluídos por você.  
-Em seguida emita os comandos: 
+20) Insira agora pelo menos mais 5 obras dos autores de sua base de dados.
+Dê preferência aos autores incluídos por você.
+Em seguida emita os comandos:
 
-COmmit; 
-Select * from obra; 
+Commit;
+Select * from obra;
 
 
 21) Criando e populando a tabela Autoria
 
-Observe como criamos relacionamentos: - como uma tabela, normalmente. 
+Observe como criamos relacionamentos: - como uma tabela, normalmente.
 
 Create table Autoria
 (CodObr number(2) not null,
@@ -312,31 +312,31 @@ Create table Autoria
  constraint  FK_Autoria_Autor foreign key (CodAut) references Autor,
  constraint FK_Autor_Obra foreign key (CodObr) references Obra on delete cascade);
 
-Verifique autor com obra e inclua autoria para todas as obras cadastradas. 
-Exemplo: 
-insert into Autoria values (12, 1); 
- 
-commit; 
+Verifique autor com obra e inclua autoria para todas as obras cadastradas.
+Exemplo:
+insert into Autoria values (12, 1);
 
-22) insert into Autoria values (3,49); 
+commit;
+
+22) insert into Autoria values (3,49);
 // explicação do erro: violção de integridade, não possui Autor 49
 
-insert into Autoria values (89,4); 
+insert into Autoria values (89,4);
 // explicação do erro: violção de integridade, não existe a obra 89
 
 
-select NomObr, NomAut 
-from Autor natural join 
+select NomObr, NomAut
+from Autor natural join
 Autoria natural join Obra
-Order by NomObr;          
+Order by NomObr;
 
 
 // explicação: seleciona nome do autor e nome da obra que ele fez que esteja inserido em autoria e obra
 
 
 
-23) Insira aogra mais linhas em autoria tendo em vista suas obras e autores.
-Depois disto, execute os comandos commit e o comando select da linha anterior. 
+23) Insira agora mais linhas em autoria tendo em vista suas obras e autores.
+Depois disto, execute os comandos commit e o comando select da linha anterior.
 
 
 
@@ -344,7 +344,7 @@ Depois disto, execute os comandos commit e o comando select da linha anterior.
 
 delete from Autor where CodAut = 3;
 
-COmo reagiu o sgbd?
+Como reagiu o sgbd?
 
 
 
@@ -355,7 +355,7 @@ create table Editora
  NomEdi char(35) not null,
  constraint PK_Editora primary key (CodEdi));
 
-desc editora; 
+desc editora;
 insert into Editora values (1, 'Editora Atlas');
 insert into Editora values (2, 'Editora FTC');
 insert into Editora values (3, 'Editora LTC');
@@ -368,33 +368,33 @@ insert into Editora values (9, 'Editora Ateliê');
 insert into Editora values (10, 'Editora Ática');
 
 
-commit; 
+commit;
 
-select * from editora; 
+select * from editora;
 
 select Nomedi, CodEdi from editora
-order by nomedi; 
+order by nomedi;
 
 
 
 26) Insira você mais três editoras. Não se esqueça do comando commit ao final.
 
 
-27) criando e populando a tabela exemplar 
+27) criando e populando a tabela exemplar
 
 create table Exemplar
 (NumExe number(2) not null,
  CodObr number(2) not null,
  AnoEdi number(4) not null,
- CodEdi number(2) not null, 
- CodUni number(2) not null, 
+ CodEdi number(2) not null,
+ CodUni number(2) not null,
  ValExe number(6,2) not null,
  constraint PK_Exemplar primary key (NumExe),
- constraint FK_Exemplar_Editora foreign key (CodEdi) references Editora, 
+ constraint FK_Exemplar_Editora foreign key (CodEdi) references Editora,
  constraint FK_Exemplar_Obra foreign key (CodObr) references Obra,
  constraint FK_Exemplar_Unidade foreign key (CodUni) references Unidade;
 
-desc exemplar; 
+desc exemplar;
 
 insert into Exemplar values(1, 1, 2009, 1, 1, 120.50);
 insert into Exemplar values(2, 1, 2010, 1, 1, 110);
@@ -407,18 +407,18 @@ insert into Exemplar values(7, 3, 2011, 3, 1, 50);
 insert into Exemplar values(8, 3, 2012, 5, 2, 70.90);
 insert into Exemplar values(9, 3, 2009, 3, 4, 50);
 
-commit; 
+commit;
 
 
-28) Insira agora mais 30 exemplares para as obras de sua base de dados. 
-    Deixe pelo menos três obra sem nenhum exemplar. 
-    Deixe também pelo menos duas Editoras sem exemplares. 
-    Não se esqueça do comando commit ao final. 
+28) Insira agora mais 30 exemplares para as obras de sua base de dados.
+    Deixe pelo menos três obra sem nenhum exemplar.
+    Deixe também pelo menos duas Editoras sem exemplares.
+    Não se esqueça do comando commit ao final.
 
 
 
 29) Criando e populando a tabela emprestimo. Veja como se trabalha com datas e como  inserimos
-checks em tabelas (regras de negócio): 
+checks em tabelas (regras de negócio):
 
 create table Emprestimo
 (codUsu number(2) not null,
@@ -430,8 +430,8 @@ create table Emprestimo
  constraint FK_Emprestimo_Exemplar foreign key (NumExe) references Exemplar,
  constraint FK_Emprestimo_Usuario foreign key (codUsu) references Usuario,
  constraint CK_DatDev check (DatDev is null or DatDev >= DatEmp));
- 
-desc emprestimo; 
+
+desc emprestimo;
 
 
 alter session set nls_date_format='ddmmyyyy';
@@ -451,18 +451,18 @@ insert into Emprestimo values (1, 8, '01102011', '11102011', '08102011');
 
 select * from Emprestimo;
 
-30) Experimente o comando abaixo, veja e explique o erro: 
+30) Experimente o comando abaixo, veja e explique o erro:
 
 insert into Emprestimo
 values (4, 2, '10092009', default, '08092009');
 
 
 
-31) Insira agora emprestimos (pelo menos 15) para os usuários de sua base de dados. 
+31) Insira agora emprestimos (pelo menos 15) para os usuários de sua base de dados.
     Insira empréstimos já devolvidos e ainda não devolvidos.
     Deixe usuários sem empréstimos.
 
-Obrigado. 
+Obrigado.
 Sua aula terminou aqui. Envie o relatório, conforme explicado pelo professor, para palharesccsexto@gamil.br com o título:
 (Manhã ou Tarde) Aula 1 - 'seu nome'
-Muito obrigado. 
+Muito obrigado.

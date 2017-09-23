@@ -1,16 +1,25 @@
 <resources>
     <!--Janela-->
     <string name="app_name">Agenda</string>
+
     <string name="evento">Evento</string>
-    <string name="nome_evento">Nome</string>
-    <string name="data_inicio">Data Inicio</string>
+    <string name="data_inicio">Data Início</string>
+    <string name="hora_inicio">Hora Início</string>
     <string name="data_fim">Data Fim</string>
+    <string name="hora_fim">Hora Fim</string>
+
+    <string name="convidados">Convidados</string>
+
     <string name="organizador">Organizador</string>
-    <string name="nome_organizador">Nome</string>
-    <string name="email_organizador">Email</string>
-    <string name="telefone_organizador">Telefone</string>
+    <string name="convidado">Convidado</string>
+    <string name="nome">Nome</string>
+    <string name="email">Email</string>
+    <string name="telefone">Telefone</string>
+
     <string name="criar_evento">Criar Evento</string>
     <!--Controle-->
+    <string name="country_code">BR</string>
+    <string name="dialog_fire_missiles">Tela</string>
     <string name="signin">OK</string>
     <string name="cancel">Cancel</string>
 </resources>

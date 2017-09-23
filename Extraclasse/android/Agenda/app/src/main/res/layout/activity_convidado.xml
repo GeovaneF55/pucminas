@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp">
+    <TextView
+        android:id="@+id/txt_Convidado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/convidado"
+        android:textStyle="bold"
+        android:textSize="30sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txt_nomeConvidado"
+                android:labelFor="@+id/edt_nomeConvidado"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_element_height"
+                android:gravity="start|center"
+                android:text="@string/nome"/>
+
+            <TextView
+                android:id="@+id/txt_emailConvidado"
+                android:labelFor="@+id/edt_emailConvidado"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_element_height"
+                android:gravity="start|center"
+                android:text="@string/email"/>
+
+            <TextView
+                android:id="@+id/txt_telefoneConvidado"
+                android:labelFor="@+id/edt_telefoneConvidado"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_element_height"
+                android:gravity="start|center"
+                android:text="@string/telefone"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/edt_nomeConvidado"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_element_height"
+                android:inputType="text"/>
+
+            <EditText
+                android:id="@+id/edt_emailConvidado"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_element_height"
+                android:inputType="textEmailAddress"/>
+
+            <EditText
+                android:id="@+id/edt_telefoneConvidado"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_element_height"
+                android:inputType="phone"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

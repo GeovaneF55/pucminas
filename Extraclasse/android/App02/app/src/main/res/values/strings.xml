@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Trabalho Prático 2</string>
+    <string name="bomDia">Bom Dia!</string>
+    <string name="boaNoite">Boa Noite!</string>
+</resources>
