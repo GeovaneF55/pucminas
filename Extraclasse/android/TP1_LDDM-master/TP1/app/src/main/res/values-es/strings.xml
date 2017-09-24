@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Nombre de la Aplicación -->
+    <string name="app_name">Trabajo Práctico 1</string>
+
+    <!-- Nombre del Campo TextView -->
+    <string name="texto">Indroduzca sus dados:</string>
+
+    <!-- Nombre de los Campos EditText -->
+    <string name="hint_nome">Nombre</string>
+    <string name="hint_nascimento">Fecha de Nacimiento (DD/MM/AAAA)</string>
+    <string name="hint_telefone">Teléfono</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_endereco">Dirección</string>
+
+    <!-- Nombre de los Botones -->
+    <string name="btn_add_contato">Añadir Contacto</string>
+    <string name="btn_pesq_endereco">Dirección de Búsqueda</string>
+    <string name="btn_salvar_aniversario">Guardar Cumpleaños en el Calendario</string>
+    <string name="btn_enviar_whatsapp">Enviar Whatsapp</string>
+
+    <!-- Segunda Pantalla - Contactos -->
+    <string name="title_activity_segunda">Sus Contactos</string>
+    <string name="botao_carregar_contatos">Cargar los Contactos</string>
+
+    <!-- Errores -->
+    <string name="erro_EditText_Nome">Introduzca su nome</string>
+    <string name="erro_EditText_Nasc">Introduzca su fecha de nacimiento</string>
+    <string name="erro_EditText_Tel">Introduzca su teléfono</string>
+    <string name="erro_EditText_Email">Introduzca su email</string>
+    <string name="erro_EditText_Endereco">Introduzca su endereço</string>
+    <string name="segunda_tela">Veer los Contactos</string>
+</resources>

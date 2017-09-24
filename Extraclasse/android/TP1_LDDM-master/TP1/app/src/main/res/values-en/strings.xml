@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Name of the Application -->
+    <string name="app_name">Practical Work 1</string>
+
+    <!-- Name of TextView Field -->
+    <string name="texto">Enter your data:</string>
+
+    <!-- Name of the EditText fields -->
+    <string name="hint_nome">Name</string>
+    <string name="hint_nascimento">Date of Birth (DD/MM/YYYY)</string>
+    <string name="hint_telefone">Phone</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_endereco">Address</string>
+
+    <!-- Name of the Buttons -->
+    <string name="btn_add_contato">Add Contact</string>
+    <string name="btn_pesq_endereco">Search Address</string>
+    <string name="btn_salvar_aniversario">Save Birth on Calendar</string>
+    <string name="btn_enviar_whatsapp">Send Whatsapp</string>
+
+    <!-- Second screen - Contacts -->
+    <string name="title_activity_segunda">Your Contacts</string>
+    <string name="botao_carregar_contatos">Load Contacts</string>
+
+    <!-- Error -->
+    <string name="erro_EditText_Nome">Type your name</string>
+    <string name="erro_EditText_Nasc">Type you date of birth</string>
+    <string name="erro_EditText_Tel">Type you phone</string>
+    <string name="erro_EditText_Email">Type your email</string>
+    <string name="erro_EditText_Endereco">Type your address</string>
+    <string name="segunda_tela">See Contacts</string>
+</resources>

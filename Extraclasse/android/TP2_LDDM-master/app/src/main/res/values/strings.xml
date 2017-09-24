@@ -1,0 +1,25 @@
+<resources>
+    <!-- Nome do Aplicativo -->
+    <string name="app_name">Trabalho Prático 2</string>
+
+    <!-- Facebook App ID -->
+    <string name="facebook_app_id">1403061519758991</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Textos -->
+    <string name="bomDia">Bom Dia!</string>
+    <string name="boaNoite">Boa Noite!</string>
+    <string name="meuNome">Feito por: Luiz Gustavo</string>
+
+    <!-- Label das Telas -->
+    <string name="foto">Foto</string>
+    <string name="ajuda">Ajuda</string>
+    <string name="title_activity_maps">Mapa</string>
+    <string name="lat_long">Latitude/Longitude</string>
+    <string name="db">DataBase</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

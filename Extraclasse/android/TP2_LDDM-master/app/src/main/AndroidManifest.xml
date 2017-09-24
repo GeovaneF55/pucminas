@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="br.com.gustavo.luiz.trabalhopratico2_lddm">
+
+    <!-- Permissoes -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <!-- Acelerometro -->
+    <uses-feature
+        android:name="android.hardware.sensor.acelerometer"
+        android:required="true" />
+
+    <!-- Camera -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <!-- GPS -->
+    <uses-feature android:name="android.hardware.location.gps" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Tela que usa o sensor de luminosidade -->
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Facebook -->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <!-- Tela que mostra o mapa -->
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait" />
+
+        <!-- Tela que tira foto -->
+        <activity
+            android:name=".CameraActivity"
+            android:label="@string/foto"
+            android:screenOrientation="portrait" />
+
+        <!-- Tela que mostra como usar o aplicativo -->
+        <activity
+            android:name=".Sobre"
+            android:label="@string/ajuda"
+            android:screenOrientation="portrait" />
+
+        <!-- Tela que mostra a latitude e longitude -->
+        <activity
+            android:name=".Latitude_Longitude"
+            android:label="@string/lat_long"
+            android:screenOrientation="portrait" />
+
+        <service android:name=".GPS_Service" />
+
+        <activity
+            android:name=".BancoDeDados"
+            android:label="@string/db"
+            android:screenOrientation="portrait"/>
+    </application>
+
+</manifest>

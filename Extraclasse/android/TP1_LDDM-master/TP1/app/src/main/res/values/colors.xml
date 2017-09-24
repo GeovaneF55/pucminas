@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#fc981d</color>     <!-- onPause -->
+    <color name="colorPrimaryDark">#cc7000</color> <!-- Barra acima, onde tem as notificações -->
+    <color name="colorAccent">#FF8C00</color>      <!-- Toobar -->
+    <color name="verde">#00960c</color>            <!-- floating button -->
+</resources>
