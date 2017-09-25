@@ -2,11 +2,12 @@ package com.example.geova.agenda;
 
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,16 @@ import android.widget.EditText;
 import com.example.geova.agenda.Controls.MyEditTextDatePicker;
 import com.example.geova.agenda.Controls.MyEditTextTimePicker;
 import com.example.geova.agenda.Controls.MyDialogFragment;
+import com.example.geova.agenda.Models.Convidado;
+import com.example.geova.agenda.Models.Evento;
+import com.example.geova.agenda.Models.Organizador;
+
+import java.io.Serializable;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends FragmentActivity implements MyDialogFragment.NoticeDialogListener{
 
@@ -41,6 +52,10 @@ public class MainActivity extends FragmentActivity implements MyDialogFragment.N
     FloatingActionButton btn_add_Organizador;
     FloatingActionButton btn_add_Convidado;
     Button btn_criarEvento;
+
+    private Evento event;
+    private Organizador organizador;
+    private ArrayList<Convidado> convidados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,13 +98,6 @@ public class MainActivity extends FragmentActivity implements MyDialogFragment.N
 
             }
         });
-
-        btn_criarEvento.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO
-            }
-        });
     }
 
     @Override
@@ -100,5 +108,81 @@ public class MainActivity extends FragmentActivity implements MyDialogFragment.N
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
 
+    }
+
+    public final static String EXTRA_MESSAGE = "com.example.geova.MESSAGE";
+
+    public void sendMessage(View view) {
+        if(validaCampos()){
+            event = new Evento();
+            try {
+                preencheEvento(event);
+
+                Intent intent = new Intent(this, EventActivity.class);
+                intent.putExtra("Evento", event);
+                startActivity(intent);
+            } catch (ParseException e) {
+                Intent intent = new Intent(this, EventActivity.class);
+                String message = getResources().getString(R.string.erro);
+                intent.putExtra(EXTRA_MESSAGE, e.toString());
+                startActivity(intent);
+            }
+        }
+    }
+
+    public void preencheEvento(Evento event) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatador = new SimpleDateFormat("HH:mm");
+
+        Date horaInicial = formatador.parse(toText(edt_horaInicio));
+        Date horaFinal = formatador.parse(toText(edt_horaFim));
+
+        event.setNome(toText(edt_nomeEvento));
+        event.setDataInicial(dateFormat.parse(toText(edt_dataInicio)));
+        event.setHoraInicial(new Time(horaInicial.getTime()));
+        event.setDataFinal(dateFormat.parse(toText(edt_dataFim)));
+        event.setHoraFinal(new Time(horaFinal.getTime()));
+        event.setOrganizador(this.organizador);
+        /*for() {
+            event.pushConvidados();
+        }*/
+    }
+
+    public boolean validaCampos() {
+        boolean valid = false;
+
+        boolean emptyNome = TextUtils.isEmpty(toText(edt_nomeEvento));
+        boolean emptyDataInicio =  TextUtils.isEmpty(toText(edt_dataInicio));
+        boolean emptyHoraInicio =  TextUtils.isEmpty(toText(edt_horaInicio));
+        boolean emptyDataFim =  TextUtils.isEmpty(toText(edt_dataFim));
+        boolean emptyHoraFim =  TextUtils.isEmpty(toText(edt_horaFim));
+
+        if(emptyNome) {
+            edt_nomeEvento.setError(getResources().getString(R.string.erro_Nome));
+        }
+
+        if(emptyDataInicio) {
+            edt_dataInicio.setError(getResources().getString(R.string.erro_DataInicio));
+        }
+
+        if(emptyHoraInicio) {
+            edt_horaInicio.setError(getResources().getString(R.string.erro_HoraInicio));
+        }
+
+        if(emptyDataFim) {
+            edt_dataFim.setError(getResources().getString(R.string.erro_DataFim));
+        }
+
+        if(emptyHoraFim)
+            edt_horaFim.setError(getResources().getString(R.string.erro_HoraFim));
+
+        if(!emptyNome && !emptyDataInicio && !emptyHoraInicio && !emptyDataFim && !emptyHoraFim) {
+            valid = true;
+        }
+        return valid;
+    }
+
+    private String toText(EditText editText){
+        return editText.getText().toString();
     }
 }

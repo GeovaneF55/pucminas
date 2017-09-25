@@ -1,17 +1,23 @@
 package com.example.geova.agenda.Models;
 
-import java.text.DateFormat;
+import java.io.Serializable;
+
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
+
 
 /**
  * Created by geovane on 17/09/17.
  */
 
-public class Evento {
+public class Evento implements Serializable{
 
     private String nome;
-    private DateFormat dataInicial;
-    private DateFormat dataFinal;
+    private Date dataInicial;
+    private Date dataFinal;
+    private Time horaInicial;
+    private Time horaFinal;
 
     private Organizador organizador;
     private ArrayList<Convidado> convidados;
@@ -20,6 +26,8 @@ public class Evento {
         setNome("");
         setDataInicial(null);
         setDataFinal(null);
+        setHoraInicial(null);
+        setHoraFinal(null);
         setOrganizador(null);
         this.convidados = new ArrayList<Convidado>();
     }
@@ -28,16 +36,28 @@ public class Evento {
         this.nome = nome;
     }
 
-    public void setDataInicial(DateFormat dataInicial){
+    public void setDataInicial(Date dataInicial){
         this.dataInicial = dataInicial;
     }
 
-    public void setDataFinal(DateFormat dataFinal){
+    public void setDataFinal(Date dataFinal){
         this.dataFinal = dataFinal;
     }
 
+    public void setHoraInicial(Time horaInicial){
+        this.horaInicial = horaInicial;
+    }
+
+    public void setHoraFinal(Time horaFinal){
+        this.horaFinal = horaFinal;
+    }
+
     public void setOrganizador(Organizador organizador){
-        this.organizador = organizador.clone();
+        if(organizador != null){
+            this.organizador = organizador.clone();
+        } else{
+            this.organizador = null;
+        }
     }
 
     public void pushConvidados(Convidado convidado){
@@ -48,12 +68,20 @@ public class Evento {
         return this.nome;
     }
 
-    public DateFormat getDataInicial(){
+    public Date getDataInicial(){
         return this.dataInicial;
     }
 
-    public DateFormat getDataFinal(){
+    public Date getDataFinal(){
         return this.dataFinal;
+    }
+
+    public Time getHoraInicial(){
+        return this.horaInicial;
+    }
+
+    public Time getHoraFinal(){
+        return this.horaFinal;
     }
 
     public Organizador getOrganizador(){

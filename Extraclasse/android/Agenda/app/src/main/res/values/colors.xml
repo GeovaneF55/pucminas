@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <!-- Icons -->
+    <color name="red">#dd4b39</color>
+    <color name="green">#4dc247</color>
+    <color name="blue">#3b5998</color>
 </resources>

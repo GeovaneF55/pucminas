@@ -52,5 +52,6 @@ public class MyEditTextDatePicker implements View.OnClickListener, DatePickerDia
         this._editText.setText(new StringBuilder()
                 // Month is 0 based so add 1
                 .append(_day).append("/").append(_month + 1).append("/").append(_year).append(" "));
+        this._editText.setError(null);
     }
 }

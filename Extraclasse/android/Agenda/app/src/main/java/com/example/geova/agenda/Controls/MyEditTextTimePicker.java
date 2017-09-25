@@ -46,5 +46,6 @@ public class MyEditTextTimePicker implements View.OnClickListener, TimePickerDia
         this._editText.setText(new StringBuilder()
                 // Month is 0 based so add 1
                 .append(_hour).append(":").append(_minute).append(" "));
+        this._editText.setError(null);
     }
 }

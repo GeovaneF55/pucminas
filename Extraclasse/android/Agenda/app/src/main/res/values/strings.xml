@@ -2,6 +2,7 @@
     <!--Janela-->
     <string name="app_name">Agenda</string>
 
+    <!-- layouts -->
     <string name="evento">Evento</string>
     <string name="data_inicio">Data Início</string>
     <string name="hora_inicio">Hora Início</string>
@@ -17,6 +18,15 @@
     <string name="telefone">Telefone</string>
 
     <string name="criar_evento">Criar Evento</string>
+
+    <!-- Erros -->
+    <string name="erro">Erro</string>
+    <string name="erro_Nome">Erro</string>
+    <string name="erro_DataInicio">Erro</string>
+    <string name="erro_HoraInicio">Erro</string>
+    <string name="erro_DataFim">Erro</string>
+    <string name="erro_HoraFim">Erro</string>
+
     <!--Controle-->
     <string name="country_code">BR</string>
     <string name="dialog_fire_missiles">Tela</string>
