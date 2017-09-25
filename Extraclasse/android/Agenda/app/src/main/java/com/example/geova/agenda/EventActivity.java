@@ -1,6 +1,9 @@
 package com.example.geova.agenda;
 
+import com.facebook.FacebookSdk;
+
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.design.widget.FloatingActionButton;
@@ -9,9 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.geova.agenda.Models.Evento;
+import com.facebook.share.model.ShareLinkContent;
 import com.liuguangqiang.swipeback.SwipeBackActivity;
 import com.liuguangqiang.swipeback.SwipeBackLayout;
 
+import java.net.URI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -182,7 +187,31 @@ public class EventActivity extends SwipeBackActivity {
     }
 
     public void createEventFacebook(View view, String message){
+        ShareLinkContent content = new ShareLinkContent.Builder()
+                .setContentTitle("Game Result Highscore")
+                .setContentDescription("My new highscore is !!")
+                .setContentUrl(Uri.parse("https://developers.facebook.com"))
+                .build();
+        String urlToShare;
 
+        try {
+            urlToShare = content.getContentUrl().toString();
+        }catch(NullPointerException e){
+            urlToShare = "https://9gag.com/";
+        }
+
+        try {
+            Intent intent1 = new Intent();
+            intent1.setClassName("com.facebook.katana", "com.facebook.katana.activity.composer.ImplicitShareIntentHandler");
+            intent1.setAction("android.intent.action.SEND");
+            intent1.setType("text/plain");
+            intent1.putExtra("android.intent.extra.TEXT", urlToShare);
+            startActivity(intent1);
+        } catch (Exception e) {
+            String sharerUrl = "https://www.facebook.com/sharer/sharer.php?u=" + urlToShare;
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sharerUrl));
+            startActivity(intent);
+        }
     }
 
     public void setEventoTexts(Evento evento){
