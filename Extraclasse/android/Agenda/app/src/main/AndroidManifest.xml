@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".EventActivity" />
         <activity android:name=".convidadoActivity" />
-        <activity android:name=".organizadorActivity"></activity>
+        <activity android:name=".organizadorActivity" />
     </application>
 
 </manifest>

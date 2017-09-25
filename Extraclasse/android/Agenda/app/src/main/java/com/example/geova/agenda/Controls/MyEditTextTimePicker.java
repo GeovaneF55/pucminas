@@ -6,7 +6,13 @@ import android.content.Context;
 import android.widget.TimePicker;
 import android.widget.EditText;
 import android.view.View;
+
+import com.example.geova.agenda.MainActivity;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.TimeZone;
 
 /**
@@ -31,7 +37,12 @@ public class MyEditTextTimePicker implements View.OnClickListener, TimePickerDia
     public void onTimeSet(TimePicker view, int hour, int minute) {
         _hour = hour;
         _minute = minute;
-        updateDisplay();
+
+        try {
+            updateDisplay();
+        } catch (ParseException e) {
+            this._editText.setError(null);
+        }
     }
 
     @Override
@@ -42,10 +53,12 @@ public class MyEditTextTimePicker implements View.OnClickListener, TimePickerDia
     }
 
     // updates the date in the birth date EditText
-    private void updateDisplay() {
-        this._editText.setText(new StringBuilder()
-                // Month is 0 based so add 1
-                .append(_hour).append(":").append(_minute).append(" "));
+    private void updateDisplay() throws ParseException {
+        SimpleDateFormat formatador = new SimpleDateFormat("HH:mm");
+        StringBuilder stringBuilder = new StringBuilder().append(_hour).append(":").append(_minute).append(" ");
+        Date hora = formatador.parse(stringBuilder.toString());
+
+        this._editText.setText(formatador.format(hora));
         this._editText.setError(null);
     }
 }

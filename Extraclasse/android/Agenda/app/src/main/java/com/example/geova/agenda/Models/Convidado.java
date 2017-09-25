@@ -1,10 +1,12 @@
 package com.example.geova.agenda.Models;
 
+import java.io.Serializable;
+
 /**
  * Created by geovane on 17/09/17.
  */
 
-public class Convidado {
+public class Convidado  implements Serializable {
     private String nome;
     private String email;
     private String telefone;

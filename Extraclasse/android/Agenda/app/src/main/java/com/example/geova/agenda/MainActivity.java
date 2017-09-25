@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.geova.agenda.Controls.MyEditTextDatePicker;
 import com.example.geova.agenda.Controls.MyEditTextTimePicker;
@@ -19,12 +20,8 @@ import com.example.geova.agenda.Models.Convidado;
 import com.example.geova.agenda.Models.Evento;
 import com.example.geova.agenda.Models.Organizador;
 
-import java.io.Serializable;
-import java.sql.Time;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class MainActivity extends FragmentActivity implements MyDialogFragment.NoticeDialogListener{
 
@@ -76,6 +73,9 @@ public class MainActivity extends FragmentActivity implements MyDialogFragment.N
     protected void onStart(){
         super.onStart();
 
+        this.organizador = null;
+        this.convidados = new ArrayList<Convidado>();
+
         // Listeners
         new MyEditTextDatePicker(self , id_dataInicio);
         new MyEditTextDatePicker(self , id_dataFim);
@@ -98,11 +98,36 @@ public class MainActivity extends FragmentActivity implements MyDialogFragment.N
 
             }
         });
+
+        btn_criarEvento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendMessage(view);
+            }
+        });
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
+    protected void onPause(){
+        super.onPause();
+        this.organizador = null;
+        this.convidados = new ArrayList<Convidado>();
 
+        edt_nomeEvento.setText("");
+        edt_dataInicio.setText("");
+        edt_horaInicio.setText("");
+        edt_dataFim.setText("");
+        edt_horaFim.setText("");
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog, Object object) {
+        if (object instanceof Organizador) {
+            this.organizador = (Organizador) object;
+        }
+        if (object instanceof Convidado) {
+            this.convidados.add((Convidado) object);
+        }
     }
 
     @Override
@@ -110,9 +135,12 @@ public class MainActivity extends FragmentActivity implements MyDialogFragment.N
 
     }
 
-    public final static String EXTRA_MESSAGE = "com.example.geova.MESSAGE";
-
     public void sendMessage(View view) {
+        Context context = getApplicationContext();
+        CharSequence text = getResources().getString(R.string.erro);
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+
         if(validaCampos()){
             event = new Evento();
             try {
@@ -122,30 +150,24 @@ public class MainActivity extends FragmentActivity implements MyDialogFragment.N
                 intent.putExtra("Evento", event);
                 startActivity(intent);
             } catch (ParseException e) {
-                Intent intent = new Intent(this, EventActivity.class);
-                String message = getResources().getString(R.string.erro);
-                intent.putExtra(EXTRA_MESSAGE, e.toString());
-                startActivity(intent);
+                toast.show();
             }
+        } else{
+            toast.show();
         }
     }
 
     public void preencheEvento(Evento event) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat formatador = new SimpleDateFormat("HH:mm");
-
-        Date horaInicial = formatador.parse(toText(edt_horaInicio));
-        Date horaFinal = formatador.parse(toText(edt_horaFim));
 
         event.setNome(toText(edt_nomeEvento));
-        event.setDataInicial(dateFormat.parse(toText(edt_dataInicio)));
-        event.setHoraInicial(new Time(horaInicial.getTime()));
-        event.setDataFinal(dateFormat.parse(toText(edt_dataFim)));
-        event.setHoraFinal(new Time(horaFinal.getTime()));
+        event.setDataInicial(toText(edt_dataInicio));
+        event.setHoraInicial(toText(edt_horaInicio));
+        event.setDataFinal(toText(edt_dataFim));
+        event.setHoraFinal(toText(edt_horaFim));
         event.setOrganizador(this.organizador);
-        /*for() {
-            event.pushConvidados();
-        }*/
+        for(int i=0; i<this.convidados.size(); i++) {
+            event.pushConvidados(this.convidados.get(i));
+        }
     }
 
     public boolean validaCampos() {
@@ -173,10 +195,12 @@ public class MainActivity extends FragmentActivity implements MyDialogFragment.N
             edt_dataFim.setError(getResources().getString(R.string.erro_DataFim));
         }
 
-        if(emptyHoraFim)
+        if(emptyHoraFim) {
             edt_horaFim.setError(getResources().getString(R.string.erro_HoraFim));
+        }
 
-        if(!emptyNome && !emptyDataInicio && !emptyHoraInicio && !emptyDataFim && !emptyHoraFim) {
+        if(!emptyNome && !emptyDataInicio && !emptyHoraInicio && !emptyDataFim && !emptyHoraFim &&
+                this.organizador != null && this.convidados.size() > 0) {
             valid = true;
         }
         return valid;

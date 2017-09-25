@@ -2,9 +2,7 @@ package com.example.geova.agenda.Models;
 
 import java.io.Serializable;
 
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
 
 
 /**
@@ -14,10 +12,10 @@ import java.util.Date;
 public class Evento implements Serializable{
 
     private String nome;
-    private Date dataInicial;
-    private Date dataFinal;
-    private Time horaInicial;
-    private Time horaFinal;
+    private String dataInicial;
+    private String dataFinal;
+    private String horaInicial;
+    private String horaFinal;
 
     private Organizador organizador;
     private ArrayList<Convidado> convidados;
@@ -36,19 +34,19 @@ public class Evento implements Serializable{
         this.nome = nome;
     }
 
-    public void setDataInicial(Date dataInicial){
+    public void setDataInicial(String dataInicial){
         this.dataInicial = dataInicial;
     }
 
-    public void setDataFinal(Date dataFinal){
+    public void setDataFinal(String dataFinal){
         this.dataFinal = dataFinal;
     }
 
-    public void setHoraInicial(Time horaInicial){
+    public void setHoraInicial(String horaInicial){
         this.horaInicial = horaInicial;
     }
 
-    public void setHoraFinal(Time horaFinal){
+    public void setHoraFinal(String horaFinal){
         this.horaFinal = horaFinal;
     }
 
@@ -68,19 +66,19 @@ public class Evento implements Serializable{
         return this.nome;
     }
 
-    public Date getDataInicial(){
+    public String getDataInicial(){
         return this.dataInicial;
     }
 
-    public Date getDataFinal(){
+    public String getDataFinal(){
         return this.dataFinal;
     }
 
-    public Time getHoraInicial(){
+    public String getHoraInicial(){
         return this.horaInicial;
     }
 
-    public Time getHoraFinal(){
+    public String getHoraFinal(){
         return this.horaFinal;
     }
 

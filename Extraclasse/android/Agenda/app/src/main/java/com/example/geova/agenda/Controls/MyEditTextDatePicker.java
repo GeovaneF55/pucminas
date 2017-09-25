@@ -6,7 +6,13 @@ import android.content.Context;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.view.View;
+
+import com.example.geova.agenda.MainActivity;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.TimeZone;
 
 /**
@@ -33,7 +39,11 @@ public class MyEditTextDatePicker implements View.OnClickListener, DatePickerDia
         _year = year;
         _month = monthOfYear;
         _day = dayOfMonth;
-        updateDisplay();
+        try {
+            updateDisplay();
+        } catch (ParseException e) {
+            this._editText.setError(null);
+        }
     }
 
     @Override
@@ -48,7 +58,13 @@ public class MyEditTextDatePicker implements View.OnClickListener, DatePickerDia
     }
 
     // updates the date in the birth date EditText
-    private void updateDisplay() {
+    private void updateDisplay() throws ParseException {
+
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        StringBuilder stringBuilder = new StringBuilder().append(_day).append("/").append(_month + 1).append("/").append(_year).append(" ");
+        Date data = formatador.parse(stringBuilder.toString());
+
+        this._editText.setText(formatador.format(data));
         this._editText.setText(new StringBuilder()
                 // Month is 0 based so add 1
                 .append(_day).append("/").append(_month + 1).append("/").append(_year).append(" "));

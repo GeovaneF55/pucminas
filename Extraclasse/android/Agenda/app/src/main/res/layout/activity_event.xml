@@ -1,17 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_display_message"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.geova.agenda.EventActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txt_evento_act"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="start|center"/>
+
+            <TextView
+                android:id="@+id/txt_infoEvento_act"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:gravity="start|center"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp"/>
+
+            <TextView
+                android:id="@+id/txt_organizador_act"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="start|center"/>
+
+            <TextView
+                android:id="@+id/txt_organizadorInfo_act"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:gravity="start|center"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp"/>
+
+            <TextView
+                android:id="@+id/txt_convidados_act"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="start|center"/>
+
+            <TextView
+                android:id="@+id/txt_convidadosInfo_act"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:gravity="start|center"/>
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:gravity="end">
+        android:gravity="center">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btn_agenda"
@@ -34,7 +95,7 @@
             android:src="@drawable/whatsapp"/>
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btn_add_facebook"
+            android:id="@+id/btn_facebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:backgroundTint="@color/blue"
@@ -44,4 +105,4 @@
             android:src="@drawable/facebook"/>
 
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
