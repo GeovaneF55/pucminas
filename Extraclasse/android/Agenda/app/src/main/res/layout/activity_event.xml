@@ -78,8 +78,8 @@
             android:id="@+id/btn_agenda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabSize="normal"
-            app:backgroundTint="@color/red"
+            app:fabSize="mini"
+            app:backgroundTint="@color/google"
             android:layout_gravity="bottom|start"
             android:layout_margin="16dp"
             android:src="@drawable/event"/>
@@ -88,8 +88,8 @@
             android:id="@+id/btn_whatsapp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabSize="normal"
-            app:backgroundTint="@color/green"
+            app:fabSize="mini"
+            app:backgroundTint="@color/whatsapp"
             android:layout_gravity="bottom|start"
             android:layout_margin="16dp"
             android:src="@drawable/whatsapp"/>
@@ -98,11 +98,21 @@
             android:id="@+id/btn_facebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:backgroundTint="@color/blue"
-            app:fabSize="normal"
+            app:backgroundTint="@color/facebook"
+            app:fabSize="mini"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:src="@drawable/facebook"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_linkedin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/linkedin"
+            app:fabSize="mini"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:src="@drawable/linkedin"/>
 
     </LinearLayout>
 </LinearLayout>

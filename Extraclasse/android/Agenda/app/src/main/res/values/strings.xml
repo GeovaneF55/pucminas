@@ -36,6 +36,7 @@
     <string name="agenda_success">Salvo na Agenda</string>
     <string name="whatsapp_success">Salvo no WhatsApp</string>
     <string name="facebook_success">Salvo no Facebook</string>
+    <string name="linkedin_success">Salvo no Linkedin</string>
 
     <!-- Mensagens -->
     <string name="invited">Você foi convidado</string>

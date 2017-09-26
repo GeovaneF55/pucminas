@@ -1,12 +1,11 @@
 package com.example.geova.agenda;
 
-import com.facebook.FacebookSdk;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ShareCompat;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +15,6 @@ import com.facebook.share.model.ShareLinkContent;
 import com.liuguangqiang.swipeback.SwipeBackActivity;
 import com.liuguangqiang.swipeback.SwipeBackLayout;
 
-import java.net.URI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -35,6 +33,7 @@ public class EventActivity extends SwipeBackActivity {
     private int id_agenda = R.id.btn_agenda;
     private int id_whatsapp = R.id.btn_whatsapp;
     private int id_facebook = R.id.btn_facebook;
+    private int id_linkedin = R.id.btn_linkedin;
 
     // TextViews
     TextView txt_evento_act;
@@ -48,10 +47,12 @@ public class EventActivity extends SwipeBackActivity {
     FloatingActionButton btn_agenda;
     FloatingActionButton btn_whatsapp;
     FloatingActionButton btn_facebook;
+    FloatingActionButton btn_linkedin;
 
     private static final int AGENDA = 1;
     private static final int WHATSAPP = 2;
     private static final int FACEBOOK = 3;
+    private static final int LINKEDIN = 4;
 
     Evento evento;
 
@@ -65,6 +66,7 @@ public class EventActivity extends SwipeBackActivity {
         btn_agenda = (FloatingActionButton) findViewById(id_agenda);
         btn_whatsapp = (FloatingActionButton) findViewById(id_whatsapp);
         btn_facebook = (FloatingActionButton) findViewById(id_facebook);
+        btn_linkedin = (FloatingActionButton) findViewById(id_linkedin);
 
         Intent intent = getIntent();
         evento = (Evento)intent.getSerializableExtra("Evento");
@@ -103,7 +105,24 @@ public class EventActivity extends SwipeBackActivity {
         btn_facebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createEventFacebook(view, "FB");
+                String title = txt_evento_act.getText().toString();
+
+                String message = txt_infoEvento_act.getText().toString() + "\n"
+                        + txt_organizador_act.getText().toString() + "\n"
+                        + txt_organizadorInfo_act.getText().toString() + "\n"
+                        + getResources().getString(R.string.invited);
+                createEventFacebook(view, title, message);
+            }
+        });
+        btn_linkedin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = txt_evento_act.getText().toString() + "\n"
+                        + txt_infoEvento_act.getText().toString() + "\n"
+                        + txt_organizador_act.getText().toString() + "\n"
+                        + txt_organizadorInfo_act.getText().toString() + "\n"
+                        + getResources().getString(R.string.invited);
+                createEventLinkedin(view, message);
             }
         });
     }
@@ -113,22 +132,24 @@ public class EventActivity extends SwipeBackActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         Toast toast;
+        String message = "";
 
         if (requestCode == EventActivity.AGENDA) {
-            toast = Toast.makeText(getApplicationContext(), getString(R.string.agenda_success),
-                    Toast.LENGTH_SHORT);
-            toast.show();
+            message = getString(R.string.agenda_success);
         }
         if (requestCode == EventActivity.WHATSAPP) {
-            toast = Toast.makeText(getApplicationContext(), getString(R.string.whatsapp_success),
-                    Toast.LENGTH_SHORT);
-            toast.show();
+            message = getString(R.string.whatsapp_success);
         }
         if (requestCode == EventActivity.FACEBOOK) {
-            toast = Toast.makeText(getApplicationContext(), getString(R.string.facebook_success),
-                    Toast.LENGTH_SHORT);
-            toast.show();
+            message = getString(R.string.facebook_success);
         }
+        if (requestCode == EventActivity.LINKEDIN) {
+            message = getString(R.string.linkedin_success);
+        }
+
+        toast = Toast.makeText(getApplicationContext(), message,
+                Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     public void createEventAgenda(View view, Evento evento, String message) throws ParseException {
@@ -186,10 +207,10 @@ public class EventActivity extends SwipeBackActivity {
         startActivityForResult(wppIntent, EventActivity.WHATSAPP);
     }
 
-    public void createEventFacebook(View view, String message){
+    public void createEventFacebook(View view, String title, String message){
         ShareLinkContent content = new ShareLinkContent.Builder()
-                .setContentTitle("Game Result Highscore")
-                .setContentDescription("My new highscore is !!")
+                .setContentTitle(title)
+                .setContentDescription(message)
                 .setContentUrl(Uri.parse("https://developers.facebook.com"))
                 .build();
         String urlToShare;
@@ -210,6 +231,18 @@ public class EventActivity extends SwipeBackActivity {
         } catch (Exception e) {
             String sharerUrl = "https://www.facebook.com/sharer/sharer.php?u=" + urlToShare;
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sharerUrl));
+            startActivity(intent);
+        }
+    }
+
+    public void createEventLinkedin(View view, String message){
+        Intent intent = ShareCompat.IntentBuilder.from(EventActivity.this)
+                .setType("text/plain")
+                .setText(message)
+                .getIntent();
+        intent.setPackage("com.linkedin.android");
+        intent.setAction(Intent.ACTION_SEND);
+        if(intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);
         }
     }

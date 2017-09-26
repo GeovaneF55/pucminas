@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             app:fabSize="mini"
-            app:backgroundTint="@color/green"
+            app:backgroundTint="@color/whatsapp"
             android:layout_margin="16dp"
             android:src="@drawable/ic_add"/>
 
@@ -201,7 +201,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:fabSize="mini"
-                app:backgroundTint="@color/green"
+                app:backgroundTint="@color/whatsapp"
                 android:layout_gravity="bottom|end"
                 android:layout_margin="16dp"
                 android:src="@drawable/ic_add"/>
@@ -220,7 +220,7 @@
             android:id="@+id/btn_criarEvento"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:background="@color/blue"
+            android:background="@color/facebook"
             style="@style/Widget.AppCompat.Button.Colored"
             android:text="@string/criar_evento"/>
 
