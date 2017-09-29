@@ -1,0 +1,19 @@
+<resources>
+    <string name="navigation_drawer_open">Abrir navigation drawer</string>
+    <string name="navigation_drawer_close">Fechar navigation drawer</string>
+    <string name="action_settings">Configurações</string>
+
+    <!-- Navigation Bar-->
+    <string name="app_name">Divulgar</string>
+    <string name="email">geovanefss@gmail.com</string>
+
+    <string name="menu_camera">Importar</string>
+    <string name="menu_gallery">Galeria</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_manage">Ferramentas</string>
+    <string name="comunicate">Comunicação</string>
+    <string name="menu_share">Compartilhar</string>
+    <string name="menu_send">Enviar</string>
+
+
+</resources>
