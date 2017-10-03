@@ -1,0 +1,191 @@
+Manhã - Relatório 2 - Geovane Fonseca de Sousa Santos
+Nome: Geovane Fonseca de Sousa Santos
+Email do Professor: palharessexto@gmail.com
+
+1)
+Create table Autor2
+ (CodAut number(2) not null,
+  NomAut char(35) not null);
+
+2)
+Insert into Autor2 
+values (1, 'José Lins do Rego');
+
+3)
+Insert into Autor2
+values (1, 'Autor em duplicata');
+
+4)
+Commit;
+
+I - Criando PK em tabela existente
+5)
+Alter table Autor2
+ add constraint PK_Autor2
+ primary key(CodAut);
+
+6) Para eliminar os dados em duplicate
+Delete from Autor2
+ where NomAut < 'B';
+
+7)
+Commit;
+
+8)
+Alter table Autor2
+ add constraint PK_Autor2
+ primary key(CodAut);
+
+
+II - Aumentando o tamanho de uma coluna
+
+9) Inserir em Autor 
+
+2 Leandro Duprê
+3 Elmasri
+4 Navathe
+5 José Mauro de Vasconcelos
+
+Insert into Autor2
+values (2, 'Leandro Duprê');
+
+Insert into Autor2
+values (3, 'Elmasri');
+
+Insert into Autor2
+values (4, 'Navathe');
+
+Insert into Autor2
+values (5, 'José Mauro de Vasconcelos');
+
+commit;
+
+10)
+desc Autor2;
+
+Alter table Autor2
+modify NomAut char(50);
+
+desc Autor2;
+
+
+III- Criando uma nova coluna 
+
+12) 
+Select *
+  from Autor2;
+
+13)
+Alter table Autor2
+  add CodPai number(2)
+  not null;
+
+  //erro
+
+14)
+Alter table Autor2
+  add CodPai number(2);
+
+  desc Autor2;
+
+15)
+Update Autor2
+ set CodPai = 1
+ where CodAut in (1, 2, 5);
+
+16)
+Update Autor2
+ set CodPai = 6
+ where CodAut in (3, 4);
+
+17)
+Select *
+ from Autor2;
+
+Commit;
+
+
+18) 
+desc Autor2;
+
+Alter table Autor2
+ modify CodPai not null;
+  
+desc Autor2;
+
+
+IV - Criando nova FK
+
+19) 
+Alter table Autor2
+ add constraint FK_Pais_Autor2
+ foreign Key (CodPai) references 
+ Pais;
+
+
+20) 
+Insert into Autor2
+ values(10, 'Margarida Schimit' 35);
+
+
+V - Diminuindo o tamanho de uma coluna
+
+21) 
+Alter table Autor2
+ modify NomAut 
+ char(35);
+
+22)
+Alter table Autor2
+ add NomAut2 char(35);
+
+desc Autor2;
+
+23)
+Update Autor2
+ set NomAut2 = substr(NomAut, 1, 35);
+
+Commit;
+
+Select *
+ from Autor2;
+
+24)
+Alter table Autor2
+ modify NomAut2 not null;
+
+desc Autor2;
+
+
+VI - Eliminando uma coluna
+desc Autor2;
+
+Alter table Autor2
+ drop column NomAut;
+
+desc Autor2;
+
+VII - Renomeando uma coluna
+desc Autor2;
+
+Alter table Autor2
+ rename column NomAut2
+  to NomAut;
+
+desc Autor;
+
+########################################################
+Select A.CodAut, A.nomAut
+ from Autor A
+ where not exists
+ (Select *
+   from Autoria Au
+   inner join Exemplar Ex
+    on Au.CodObr = Ex.CodObr
+   inner join Emprestimo Em
+    on Ex.NumExe = Em.NumExe
+   inner join Usuario U
+    on U.NomUsu like '%Andrade%'
+    and U.CodUsu = Em.CodUsu
+   where Au.CodAut = A.CodAut)
+Order by A.NomAut;
