@@ -21,8 +21,7 @@ class TP3Grafos{
 	public static final int DEP = 1;
 
 	public static void main(String[] args) throws IOException{
-
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in, "ISO-8859-1"));
 		grafo = leGrafo(in);
 
 		List<Vertice> ordenado = kahn();
@@ -43,23 +42,16 @@ class TP3Grafos{
 
 		/*LER DADOS DO ARQUIVO*/
 		String frase = in.readLine();
-		if(frase != null){
-			frase = new String(frase.getBytes(), "ISO-8859-1");
-			while(frase != null){
-
-				materias = frase.split(";");
-				grafo.adicionaVertice(materias[MAT]);
-				try{
-					dependencias.add(materias[DEP]);
-				} catch(ArrayIndexOutOfBoundsException ex){
-					dependencias.add("");
-				}
-
-				frase = in.readLine();
-				if(frase != null){
-					frase = new String(frase.getBytes(), "ISO-8859-1");
-				}
+		while(frase != null){
+			materias = frase.split(";");
+			grafo.adicionaVertice(materias[MAT]);
+			try{
+				dependencias.add(materias[DEP]);
+			} catch(ArrayIndexOutOfBoundsException ex){
+				dependencias.add("");
 			}
+
+			frase = in.readLine();
 		}
 
 		for(int i=0; i < dependencias.size(); i++){
