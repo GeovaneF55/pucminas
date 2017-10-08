@@ -77,7 +77,7 @@ class TP3Grafos{
 		List<Vertice> L = new ArrayList<Vertice>();
 		List<Vertice> S = verticesSemEntrada(clone);
 
-		Collections.sort(S, new OrdenaPorNome());
+		//Collections.sort(S, new OrdenaPorNome());
 		while(!S.isEmpty()){
 			Vertice v = S.remove(0);
 			L.add(v);
