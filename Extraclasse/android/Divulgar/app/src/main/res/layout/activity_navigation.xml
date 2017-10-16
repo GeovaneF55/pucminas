@@ -13,13 +13,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <android.support.design.widget.NavigationView
+    <ExpandableListView
         android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/nav_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_navigation"
-        app:menu="@menu/activity_navigation_drawer" />
+        android:background="@android:color/background_light"
+        android:divider="@color/group_divider_color"
+        android:dividerHeight="@dimen/divider_height"
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"/>
 
 </android.support.v4.widget.DrawerLayout>

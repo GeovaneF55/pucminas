@@ -7,13 +7,15 @@
     <string name="app_name">Divulgar</string>
     <string name="email">geovanefss@gmail.com</string>
 
-    <string name="menu_camera">Importar</string>
-    <string name="menu_gallery">Galeria</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_manage">Ferramentas</string>
-    <string name="comunicate">Comunicação</string>
-    <string name="menu_share">Compartilhar</string>
-    <string name="menu_send">Enviar</string>
+    <string name="movies">Vídeos</string>
+    <string name="pdf">PDFs</string>
+    <string name="links">Links</string>
+
+    <string name="menu_preference_file_key">com.example.geovane.divulgar.MENU_PREFERENCE_FILE_KEY</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_remove">Remover</string>
 
 
 </resources>
