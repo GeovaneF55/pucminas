@@ -7,8 +7,8 @@
     <string name="app_name">Divulgar</string>
     <string name="email">geovanefss@gmail.com</string>
 
-    <string name="movies">Vídeos</string>
-    <string name="pdf">PDFs</string>
+    <string name="videos">Vídeos</string>
+    <string name="pdfs">PDFs</string>
     <string name="links">Links</string>
 
     <string name="menu_preference_file_key">com.example.geovane.divulgar.MENU_PREFERENCE_FILE_KEY</string>
