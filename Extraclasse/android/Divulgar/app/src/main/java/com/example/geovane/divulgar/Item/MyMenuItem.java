@@ -3,7 +3,11 @@ package com.example.geovane.divulgar.Item;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
+import android.util.SparseArray;
 
+import com.example.geovane.divulgar.Model.Curso;
+import com.example.geovane.divulgar.Model.Materia;
+import com.example.geovane.divulgar.Model.Periodo;
 import com.example.geovane.divulgar.R;
 
 import java.util.ArrayList;
@@ -16,7 +20,8 @@ import java.util.TreeMap;
  */
 
 public class MyMenuItem {
-    public static Map<String, List<Object[]>> getMenuItem(Context context) {
+
+    public static Map<String, List<Object[]>> getMenuItem(Curso curso, Context context) {
         Map<String, List<Object[]>> expandableListData = new TreeMap<>();
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(context
@@ -26,40 +31,26 @@ public class MyMenuItem {
         // Default menus
         if (itemsMenu.size() == 0) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            for (int i = 1; i <= 8; i++) {
-                String key = "item_" + i + "_period";
-                String value = i + "º período";
+
+            for (Periodo periodo:curso.getPeriodos()) {
+                String key = "item_" + periodo.getPeriodo() + "_period";
+                String value = periodo.getPeriodo() + "º período";
                 editor.putString(key, value);
                 editor.apply();
-
-                itemsMenu = sharedPreferences.getAll();
             }
         }
 
-        List<Object> titles = new ArrayList<>(itemsMenu.values());
+        for (Periodo periodo:curso.getPeriodos()) {
+            List<Object[]> items = new ArrayList<>();
 
-        List<Object[]> items = new ArrayList<>();
+            for(Materia materia:periodo.getMaterias()){
+                Object[] itemMateria = new Object[2];
+                itemMateria[0] = ContextCompat.getDrawable(context, R.drawable.ic_action_book);
+                itemMateria[1] = materia.getNomeMateria();
 
-        Object[] itemMovie = new Object[2];
-        itemMovie[0] = ContextCompat.getDrawable(context, R.drawable.ic_action_video);
-        itemMovie[1] = context.getResources().getString(R.string.movies);
-
-        items.add(itemMovie);
-
-        Object[] itemPdf = new Object[2];
-        itemPdf[0] = ContextCompat.getDrawable(context, R.drawable.ic_action_pdf);
-        itemPdf[1] = context.getResources().getString(R.string.pdf);
-
-        items.add(itemPdf);
-
-        Object[] itemLink = new Object[2];
-        itemLink[0] = ContextCompat.getDrawable(context, R.drawable.ic_action_link);
-        itemLink[1] = context.getResources().getString(R.string.links);
-
-        items.add(itemLink);
-
-        for (Object title : titles) {
-            expandableListData.put((String) title, items);
+                items.add(itemMateria);
+            }
+            expandableListData.put((periodo.getPeriodo() + "º período"), items);
         }
 
         return expandableListData;

@@ -17,13 +17,14 @@
         android:layout_width="@dimen/icon_width"
         android:layout_height="@dimen/icon_height"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/divulgar" />
+        app:srcCompat="@drawable/divulgar"
+        android:contentDescription="@string/logo" />
 
     <TextView
+        android:id="@+id/curso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
