@@ -1,0 +1,299 @@
+Trabalho de Banco de Dados
+
+QUERIES:
+
+32)
+
+Select Editora.codEdi, nomEdi
+  From Editora
+  Where Editora.codEdi in
+  (Select distinct Exemplar.codEdi
+     From Exemplar
+     Where Exemplar.numExe in
+     (Select distinct Emprestimo.numExe
+        From Emprestimo
+        Where Emprestimo.codUsu in
+        (Select Usuario.codUsu
+           From Usuario
+           Where Usuario.nomUsu like '%Vilarinho%'
+        )
+     )
+  )
+Order by nomEdi;
+
+34)
+
+Select Pais.codPai, nomPai
+  From Pais
+  Where Pais.codPai in
+  (Select distinct Autor.codPai
+     From Autor
+     Where Autor.codAut in
+     (Select distinct Autoria.codAut
+        From Autoria
+        Where Autoria.codObr in
+        (Select Obra.codObr
+           From Obra
+           Where Obra.nomObr = 'Web 2.0'
+        )
+     )
+  )
+Order by nomPai;
+
+36)
+Select Pais.codPai, nomPai
+  From Pais
+  Where exists
+  (Select *
+     From Autor)
+Order by Pais.nomPai;
+
+38)
+Select Usuario.codUsu, nomUsu
+  From Usuario
+  Where Usuario.codUsu not in
+  (Select Emprestimo.codUsu
+     From Emprestimo
+  )
+Order by nomUsu;
+
+59)
+<<Fazer>>
+
+61)
+<<Fazer>>
+
+68)
+<<Fazer>>
+
+77)
+Select distinct Obra.codObr, nomObr, Editora.codEdi, nomEdi
+  From Pais inner join Autor
+    on nomPai = 'Chile'
+    and Pais.codPai = Autor.codPai
+  inner join Autoria
+    on Autor.codAut = Autoria.codAut
+  inner join Obra
+    on Autoria.codObr = Obra.codObr
+  inner join Exemplar
+    on Obra.codObr = Exemplar.codObr
+  inner join Editora
+    on Exemplar.codEdi = Editora.codEdi
+Order by Obra.nomObr, Editora.nomEdi;
+
+81)
+Select distinct o1.codObr, o1.nomObr
+  From Pais p1 inner join Autor a1
+    on p1.nomPai = 'Brasil'
+    and p1.codPai = a1.codPai
+  inner join Autoria au1
+    on a1.codAut = au1.codAut
+  inner join Obra o1
+    on au1.codObr = o1.codObr
+    and Exists
+    (Select distinct *
+       From Pais p2 inner join Autor a2
+         on p2.nomPai = 'Portugal'
+         and p2.codPai = a2.codPai
+       inner join Autoria au2
+         on a2.codAut = au2.codAut
+       inner join Obra o2
+         on au2.codObr = o2.codObr
+         and o1.codObr = o2.codObr
+    )
+Order by o1.nomobr;
+
+83)
+Select Usuario.codUsu, nomUsu
+  From Usuario inner join TipoUsuario
+    on desTipUsu = 'Aluno'
+    and Usuario.tipUsu = TipoUsuario.tipUsu
+    and not exists
+    (Select *
+       From Emprestimo
+       Where Emprestimo.codUsu = Usuario.codUsu
+    )
+Order by nomUsu;
+
+85)
+Select distinct Autor.codAut, nomAut
+  From Editora inner join Exemplar
+    on nomEdi = 'ACAIACA'
+    and Editora.codEdi = Exemplar.codEdi
+  inner join Autoria
+    on Exemplar.codObr = Autoria.codObr
+  inner join Autor
+    on Autoria.codAut = Autor.codAut
+Order by nomAut;
+
+91)
+Select distinct codObr, nomObr
+  From Obra natural join Autoria
+  natural join Autor
+  natural join Pais
+  Where nomPai in('Brasil', 'Espanha')
+Order by nomObr;
+
+93)
+Select codPai, nomPai, cosAut, nomAut
+  From Autor natural join Pais
+  Where nomPai = 'Portugal'
+    and nomAut like '%Maria%'
+Order by nomPai, nomAut;
+
+95)
+Select distinct codUsu, nomUsu
+  From Usuario natural join Emprestimo
+  Where datDev = null
+    and datPreDev < sysdate
+Order by nomUsu;
+
+111)
+Select count(codUsu)
+  From Usuario
+  Where sexUsu = 'F';
+
+115)
+Select avg(valExe)
+  From Exemplar;
+
+117)
+Select codObr, nomObr
+  From Obra natural join Exemplar
+  Where valExe >
+  (Select avg(numExe)
+     From Exemplar
+  )
+Order by nomObr;
+
+121)
+Select distinct count(codObr)
+  From Obra natural join Autoria
+  natural join Autor
+  Where nomAut = 'José de Alencar';
+
+125)
+Select distinct codUsu, nomUsu
+  From Usuario natural join Emprestimo
+  natural join Exemplar
+  Where sexUsu = 'F'
+    and valExe = 
+  (Select max(valExe)
+     From Exemplar
+  )
+Order by nomUsu;
+
+129)
+Select codObr, nomObr, max(valExe), min(valExe), avg(valExe)
+  From Obra natural join Exemplar
+  natural join Autoria
+  natural join Autor
+  natual join Pais
+  Where nomPai = 'Brasil'
+  Group by codObr, nomObr
+Order by nomObr;
+
+141)
+Select to_char(datEmp, 'MM')
+  From Emprestimo
+  Where datEmp beetwen '01012006' and '31122006'
+  Group by to_char(datEmp, 'MM')
+  Having count(numExe) > 10000
+Order by to_char(datEmp, 'MM');
+
+142)
+Select to_char(datEmp, 'MM'), count(numExe)
+  From Emprestimo
+  Where datEmp beetwen '01012006' and '31122006'
+  Group by to_char(datEmp, 'MM')
+Order by to_char(datEmp, 'MM');
+
+143)
+Select codUsu, nomUsu
+  From Usuario natural join Emprestimo
+  Where datEmp beetwen '01012016' and '31122016'
+  Group by codUsu, nomUsu
+  Having count(numExe) > 20
+Order by nomUsu;
+
+144)
+Select codObr, nomObr
+  From Obra inner join Exemplar
+    on Obra.codObr = Exemplar.codObr
+  Group by codObr, nomObr
+  Having count(numExe) = 1
+Order by nomUsu;
+
+145)
+Select codObr, nomObr
+  From Obra natural join Exemplar
+  Group by codObr, nomObr
+  Having count(numExe) < 6
+Order by nomObr;
+
+147)
+Select codObra, nomObr
+  From Obra natural join Exemplar
+  Group by codObr, nomObr
+  Having avg(valExe) <
+  (Select avg(valExe)
+     From Pais natural join Autor
+     natural join Autoria
+     natural join Exemplar
+     Where nomPai = 'Chile'
+     Group by codObr 
+  )
+Order by nomObr;
+
+149)
+Select codUsu, nomUsu
+  From TipoUsuario natural join Usuario
+  natural join Emprestimo
+  Where desTipUsu = 'Aluno'
+  Group by codUsu, nomUsu
+  Having count(numExe) > 20
+Order by nomUsu;
+
+155)
+Select Usuario.codusu, nomUsu, Obra.codObr, nomObr
+  From Usuario left outer join
+  (Select Emprestimo.codUsu, Obra.codObr, nomObr
+     From Emprestimo inner join Exemplar
+       on Emprestimo.codExe = Exemplar.codExe
+     inner join Obra
+       on Obra.codObr = Exemplar.codObr
+  )
+    on Usuario.codUsu = Emprestimo.codUsu
+Order by nomUsu, nomObr;
+
+157)
+Select Autor.codAut, nomAut, Usuario.codUsu, nomUsu
+  From
+  (Usuario inner join Emprestimo
+     on Usuario.codusu = Emprestimo.codUsu
+   inner join Exemplar
+     on Emprestimo.codusu = Exemplar.codUsu
+   inner join Autoria
+     on Exemplar.codAut = Autor.codObr
+  ) right outer join Autor
+    on Autoria.codAut = Autor.codAut
+Order by nomAut, nomUsu;
+
+161)
+Select plaVei
+  From Veiculo natural join HistEmplacamento
+  Group by plaVei
+  Having count(codPro) = 1
+Order by plaVei;
+
+PERGUNTAS:
+
+a) Quantos modelos possui cada Marca?
+
+b) Quantas marcas existem em Belo Horizonte?
+
+c) Qual a média de valor de emplacamento por Marca/Modelo?
+
+d) Quantos proprietários não possuem Veículo?
+
+e) Quantos veículos foram emplacados em 2017?

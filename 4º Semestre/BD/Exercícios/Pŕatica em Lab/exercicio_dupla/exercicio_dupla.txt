@@ -1,0 +1,11 @@
+Exercício SGBDROO
+
+1) Ler os textos
+
+2) Em dupla, criar um txt ou doc para responder às questões
+   a) Compare as vantagens e desvantagens de um Sistema Relacional e um Sistema Orientado a Objetos (OO)
+   b) Cite e explique características de um SGBDPOO
+   c) Cite e explique características de um BDOR
+   d) Explique as regras para mapeamento de objeto no modelo relacional
+
+3) Criar um txt com comandos e respostas das implementações SGBDROO. Lembre-se de retirar os erros dos comandos
