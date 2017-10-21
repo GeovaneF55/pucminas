@@ -58,13 +58,39 @@ Select Usuario.codUsu, nomUsu
 Order by nomUsu;
 
 59)
-<<Fazer>>
+Select Editora.codEdi, nomEdi
+  From Obra,
+    Exemplar,
+    Editora
+  Where nomObra like '%Sistema%'
+    and Obra.codObr = Exemplar.codObr
+    and Exemplar.codEdi = Editora.codEdi
+Order by nomEdi;
 
 61)
-<<Fazer>>
+Select Obra.codObr, nomObr, Autor.codAut
+  From Pais,
+    Autor,
+    Autoria,
+    Obra
+  Where Pais.nomPai in ('Brasil', 'Espanha')
+    and Pais.codPai = Autor.codPai
+    and Autor.codAut = Autoria.codAut
+    and Autoria.codObr = Obra.codObr
+Order by nomObr, nomAut;
 
 68)
-<<Fazer>>
+Select Usuario.codUsu, nomUsu
+  From TipoUsuario,
+    Usuario
+  Where desTipUsu = 'Aluno'
+    and TipoUsuario.tipUsu = Usuario.tipUsu
+    and not exists
+  (Select *
+     From Emprestimo
+     Where Emprestimo.codUsu = Usuario.codUsu
+  )
+Order by nomUsu;
 
 77)
 Select distinct Obra.codObr, nomObr, Editora.codEdi, nomEdi
@@ -289,11 +315,44 @@ Order by plaVei;
 PERGUNTAS:
 
 a) Quantos modelos possui cada Marca?
+Select codMar, nomMar count(codMod)
+  From Marca natural join Modelo
+  Group by codMar, nomMar
+Order by nomMar;
 
 b) Quantas marcas existem em Belo Horizonte?
+Select distinct count(codMar)
+  From Marca natural join Modelo
+  natural join Veiculo
+  natural join HistEmplacamento
+  natural join Localidade
+  Where nomLoc = 'Belo Horizonte'
+  Group by codLoc;
 
 c) Qual a média de valor de emplacamento por Marca/Modelo?
+Select codMar, nomMar, avg(valVei)
+  From HistEmplacamento natural join Veiculo
+  natural join Modelo
+  natural join Marca
+  Group by codMar, nomMar
+Order by nomMod;
+
+Select codMod, nomMod, avg(valVei)
+  From HistEmplacamento natural join Veiculo
+  natural join Modelo
+  Group by codMod, nomMod
+Order by nomMod;
 
 d) Quantos proprietários não possuem Veículo?
+Select count(codPro)
+  From Proprietario
+  Where not exists
+  (Select *
+     From HistEmplacamento
+     Where Proprietario.codPro = HistEmplacamento.codPro
+  );
 
 e) Quantos veículos foram emplacados em 2017?
+Select count(plaVei)
+  From HistEmplacametno
+  Where datIni between '01012017' and '31122017';
