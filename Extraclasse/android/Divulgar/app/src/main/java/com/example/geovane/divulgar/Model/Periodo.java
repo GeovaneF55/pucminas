@@ -7,12 +7,44 @@ import java.util.ArrayList;
  */
 
 public class Periodo {
+    private int id;
     private int periodo;
+    private int id_curso;
     private ArrayList<Materia> materias;
 
     public Periodo(int periodo) {
-        this.materias = new ArrayList<Materia>();
+        this(1, periodo, 1);
+    }
+
+    public Periodo(int id, int periodo, int id_curso) {
+        this.id = id;
         this.periodo = periodo;
+        this.id_curso = id_curso;
+        this.materias = new ArrayList<Materia>();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(int periodo) {
+        this.periodo = periodo;
+    }
+
+    public int getId_curso() {
+        return id_curso;
+    }
+
+    public void setId_curso(int id_curso) {
+        this.id_curso = id_curso;
     }
 
     public ArrayList<Materia> getMaterias() {
@@ -29,13 +61,5 @@ public class Periodo {
 
     public Materia removeMateria(Materia materia) {
         return this.materias.remove(this.materias.indexOf(materia));
-    }
-
-    public int getPeriodo() {
-        return periodo;
-    }
-
-    public void setPeriodo(int periodo) {
-        this.periodo = periodo;
     }
 }

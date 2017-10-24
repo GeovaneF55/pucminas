@@ -7,11 +7,33 @@ import java.util.ArrayList;
  */
 
 public class Curso {
+    private int id;
     private String nomeCurso;
     private ArrayList<Periodo> periodos;
 
     public Curso(String nomeCurso) {
+        this(1, nomeCurso);
+    }
+
+    public Curso(int id, String nomeCurso) {
+        this.id = id;
+        this.nomeCurso = nomeCurso;
         this.periodos = new ArrayList<Periodo>();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNomeCurso() {
+        return nomeCurso;
+    }
+
+    public void setNomeCurso(String nomeCurso) {
         this.nomeCurso = nomeCurso;
     }
 
@@ -29,13 +51,5 @@ public class Curso {
 
     public Periodo removePeriodo(Periodo periodo) {
         return this.periodos.remove(this.periodos.indexOf(periodo));
-    }
-
-    public String getNomeCurso() {
-        return nomeCurso;
-    }
-
-    public void setNomeCurso(String nomeCurso) {
-        this.nomeCurso = nomeCurso;
     }
 }

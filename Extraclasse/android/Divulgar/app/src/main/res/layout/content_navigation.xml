@@ -8,6 +8,13 @@
     tools:context="com.example.geovane.divulgar.NavigationActivity"
     tools:showIn="@layout/app_bar_navigation">
 
+    <ListView
+        android:id="@+id/lista"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
