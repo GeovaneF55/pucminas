@@ -8,6 +8,8 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,6 +19,7 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import com.example.geovane.divulgar.Adapter.LinklistAdapter;
 import com.example.geovane.divulgar.Adapter.MyExpandableListAdapter;
 import com.example.geovane.divulgar.Item.MyMenuItem;
 import com.example.geovane.divulgar.Model.Curso;
@@ -44,6 +47,7 @@ public class NavigationActivity extends AppCompatActivity {
 
     private Menu mOptionsMenu;
     private SQLiteDatabase myDb;
+    private LinklistAdapter mAdapter;
 
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
@@ -79,6 +83,13 @@ public class NavigationActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        /*RecyclerView linkListRecyclerView;
+        linkListRecyclerView = (RecyclerView) this.findViewById(R.id.lista);
+        linkListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mAdapter = new LinklistAdapter(this);
+
+        linkListRecyclerView.setAdapter(mAdapter);*/
     }
 
     @Override

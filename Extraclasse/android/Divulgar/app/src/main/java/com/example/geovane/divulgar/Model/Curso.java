@@ -1,12 +1,13 @@
 package com.example.geovane.divulgar.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by geovane on 15/10/17.
  */
 
-public class Curso {
+public class Curso implements Serializable {
     private int id;
     private String nomeCurso;
     private ArrayList<Periodo> periodos;

@@ -11,6 +11,10 @@
     <string name="pdfs">PDFs</string>
     <string name="links">Links</string>
 
+    <string name="link_hint">Link</string>
+    <string name="add_button_text">Adicionar</string>
+    <string name="url">URL</string>
+
     <string name="menu_preference_file_key">com.example.geovane.divulgar.MENU_PREFERENCE_FILE_KEY</string>
 
     <!-- TODO: Remove or change this placeholder text -->
