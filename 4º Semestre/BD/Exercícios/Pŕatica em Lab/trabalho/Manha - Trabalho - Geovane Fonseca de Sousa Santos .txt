@@ -1,0 +1,1275 @@
+Manhã - Trabalho - Geovane Fonseca de Sousa Santos
+Nome: Geovane Fonseca de Sousa Santos
+Email do Professor: palharessexto@gmail.com
+
+QUERIES:
+
+32)
+
+Select distinct Editora.codEdi, nomEdi
+  From Editora
+  Where Editora.codEdi in
+  (Select Exemplar.codEdi
+     From Exemplar
+     Where Exemplar.numExe in
+     (Select Emprestimo.numExe
+        From Emprestimo
+        Where Emprestimo.codUsu in
+        (Select Usuario.codUsu
+           From Usuario
+           Where Usuario.nomUsu like '%Vilarinho%'
+        )
+     )
+  )
+Order by nomEdi;
+
+nÒo hß linhas selecionadas
+
+34)
+
+Select distinct Pais.codPai, nomPai
+  From Pais
+  Where Pais.codPai in
+  (Select Autor.codPai
+     From Autor
+     Where Autor.codAut in
+     (Select distinct Autoria.codAut
+        From Autoria
+        Where Autoria.codObr in
+        (Select Obra.codObr
+           From Obra
+	   Where Obra.nomObr = 'Web 2.0'
+        )
+     )
+  )
+Order by nomPai;
+
+nÒo hß linhas selecionadas
+
+36)
+Select Pais.codPai, nomPai
+  From Pais
+  Where exists
+  (Select *
+     From Autor)
+Order by Pais.nomPai;
+
+    CODPAI NOMPAI
+---------- ------------------------------
+         2 Argentina
+         1 Brasil
+         5 Canadá
+         3 Chile
+         9 China
+         7 Cuba
+         6 EUA
+        10 França
+         4 Portugal
+         8 Rússia
+
+10 linhas selecionadas.
+
+38)
+Select Usuario.codUsu, nomUsu
+  From Usuario
+  Where Usuario.codUsu not in
+  (Select Emprestimo.codUsu
+     From Emprestimo
+  )
+Order by nomUsu;
+
+    CODUSU NOMUSU
+---------- -----------------------------------
+        27 Carla Cunha Lima
+        36 Carlos Martins Cardoso
+        18 Cassia Abrantes Juarez
+        38 Clara Silva Castro
+         8 Cíntia Maria Silva
+        25 Gabrielle Barbosa Pereira
+        21 Geovane Fonseca de Sousa Santos
+        35 Isabelle Azevedo Lima
+         5 Juarez Perez
+        26 Kai Azevedo Cunha
+        20 Lauro Samuel Andrade
+
+    CODUSU NOMUSU
+---------- -----------------------------------
+        15 Leandro Paula Braga
+        16 Lucas Faria
+        37 Lucas Melo Goncalves
+         7 Lucas Rodrigo Arantes
+        14 Luz Maria Pellegrini
+        39 Mateus Costa Ribeiro
+        11 Rafael Andrade
+        29 Ryan Dias Rocha
+         6 Saulo Castro Silva
+        24 Thaís Cunha Goncalves
+        32 Tiago Martins Lima
+
+    CODUSU NOMUSU
+---------- -----------------------------------
+        30 Vinicius Martins Melo
+        22 Vitoria Pereira Ferreira
+
+24 linhas selecionadas.
+
+59)
+Select distinct Editora.codEdi, nomEdi
+  From Obra,
+    Exemplar,
+    Editora
+  Where nomObr like '%Sistema%'
+    and Obra.codObr = Exemplar.codObr
+    and Exemplar.codEdi = Editora.codEdi
+Order by nomEdi;
+
+    CODEDI NOMEDI
+---------- -----------------------------------
+         5 Editora Cascais
+         3 Editora LTC
+
+2 linhas selecionadas.
+
+61)
+Select Obra.codObr, nomObr, Autor.codAut
+  From Pais,
+    Autor,
+    Autoria,
+    Obra
+  Where Pais.nomPai in ('Brasil', 'Espanha')
+    and Pais.codPai = Autor.codPai
+    and Autor.codAut = Autoria.codAut
+    and Autoria.codObr = Obra.codObr
+Order by nomObr, nomAut;
+
+    CODOBR NOMOBR                                  CODAUT
+---------- ----------------------------------- ----------
+        23 A Folha de São Paulo                         3
+        17 A pata da Gazela                            10
+         7 Canção General                               3
+        21 D. Lola                                      9
+        10 Doidão                                       1
+        12 Doidinho                                     1
+        18 Encarnação                                  10
+         1 Estado de Minas                              3
+         2 IEEC                                         3
+        13 Iracema                                     10
+        16 Lucíola                                     10
+
+    CODOBR NOMOBR                                  CODAUT
+---------- ----------------------------------- ----------
+         4 Luna Brava                                   3
+        19 Luz e Sombra                                 9
+        11 Menino do Engenho                            1
+         9 Meu pé de Laranja Lima                       3
+        22 O Estado de São Paulo                        3
+        14 O Guarani                                   10
+        20 Os Rodrigues                                 9
+        27 Remember Me                                  8
+        15 Senhora                                     10
+
+20 linhas selecionadas.
+
+68)
+Select Usuario.codUsu, nomUsu
+  From TipoUsuario,
+    Usuario
+  Where desTipUsu = 'Aluno'
+    and TipoUsuario.tipUsu = Usuario.tipUsu
+    and not exists
+  (Select *
+     From Emprestimo
+     Where Emprestimo.codUsu = Usuario.codUsu
+  )
+Order by nomUsu;
+
+    CODUSU NOMUSU
+---------- -----------------------------------
+        36 Carlos Martins Cardoso
+        18 Cassia Abrantes Juarez
+        38 Clara Silva Castro
+         8 Cíntia Maria Silva
+        21 Geovane Fonseca de Sousa Santos
+        26 Kai Azevedo Cunha
+        16 Lucas Faria
+        11 Rafael Andrade
+        29 Ryan Dias Rocha
+
+9 linhas selecionadas.
+
+77)
+Select Obra.codObr, nomObr, Editora.codEdi, nomEdi
+  From Pais inner join Autor
+    on nomPai = 'Chile'
+    and Pais.codPai = Autor.codPai
+  inner join Autoria
+    on Autor.codAut = Autoria.codAut
+  inner join Obra
+    on Autoria.codObr = Obra.codObr
+  inner join Exemplar
+    on Obra.codObr = Exemplar.codObr
+  inner join Editora
+    on Exemplar.codEdi = Editora.codEdi
+Order by Obra.nomObr, Editora.nomEdi;
+
+    CODOBR NOMOBR                                  CODEDI
+---------- ----------------------------------- ----------
+NOMEDI
+-----------------------------------
+         8 Cem sonetos de Amor                          8
+Brasiliense
+
+        24 Jardín de invierno                           5
+Editora Cascais
+
+        25 Tentativa del hombre infinito                7
+Editora Cortez
+
+
+    CODOBR NOMOBR                                  CODEDI
+---------- ----------------------------------- ----------
+NOMEDI
+-----------------------------------
+         6 Vinte poemas de Amor                         5
+Editora Cascais
+
+         6 Vinte poemas de Amor                         4
+Editora Vozes
+
+5 linhas selecionadas.
+
+81)
+Select distinct O.codObr, O.nomObr
+  From Pais P1 inner join Autor A1
+    on P1.nomPai = 'Brasil'
+    and P1.codPai = A1.codPai
+  inner join Pais P2
+    on P2.nomPai = 'Portugal'
+  inner join Autor A2
+    on P2.codPai = A2.codPai
+  inner Join Autoria Aut1
+    on A1.codAut = Aut1.codAut
+  inner join Autoria Aut2
+    on A2.codAut = Aut2.codAut
+    and AUt1.codObr = Aut2.codObr
+  inner join Obra O
+    on Aut1.codObr = O.codObr
+Order By O.nomObr;
+
+nÒo hß linhas selecionadas
+
+83)
+Select Usuario.codUsu, nomUsu
+  From Usuario inner join TipoUsuario
+    on desTipUsu = 'Aluno'
+    and Usuario.tipUsu = TipoUsuario.tipUsu
+    and not exists
+    (Select *
+       From Emprestimo
+       Where Emprestimo.codUsu = Usuario.codUsu
+    )
+Order by nomUsu;
+
+    CODUSU NOMUSU
+---------- -----------------------------------
+        36 Carlos Martins Cardoso
+        18 Cassia Abrantes Juarez
+        38 Clara Silva Castro
+         8 Cíntia Maria Silva
+        21 Geovane Fonseca de Sousa Santos
+        26 Kai Azevedo Cunha
+        16 Lucas Faria
+        11 Rafael Andrade
+        29 Ryan Dias Rocha
+
+9 linhas selecionadas.
+
+85)
+Select distinct Autor.codAut, nomAut
+  From Editora inner join Exemplar
+    on nomEdi = 'ACAIACA'
+    and Editora.codEdi = Exemplar.codEdi
+  inner join Autoria
+    on Exemplar.codObr = Autoria.codObr
+  inner join Autor
+    on Autoria.codAut = Autor.codAut
+Order by nomAut;
+
+nÒo hß linhas selecionadas
+
+91)
+Select distinct codObr, nomObr
+  From Obra natural join Autoria
+  natural join Autor
+  natural join Pais
+  Where nomPai in('Brasil', 'Espanha')
+Order by nomObr;
+
+    CODOBR NOMOBR
+---------- -----------------------------------
+        23 A Folha de São Paulo
+        17 A pata da Gazela
+         7 Canção General
+        21 D. Lola
+        10 Doidão
+        12 Doidinho
+        18 Encarnação
+         1 Estado de Minas
+         2 IEEC
+        13 Iracema
+        16 Lucíola
+
+    CODOBR NOMOBR
+---------- -----------------------------------
+         4 Luna Brava
+        19 Luz e Sombra
+        11 Menino do Engenho
+         9 Meu pé de Laranja Lima
+        22 O Estado de São Paulo
+        14 O Guarani
+        20 Os Rodrigues
+        27 Remember Me
+        15 Senhora
+
+20 linhas selecionadas.
+
+93)
+Select codPai, nomPai, codAut, nomAut
+  From Autor natural join Pais
+  Where nomPai = 'Portugal'
+    and nomAut like '%Maria%'
+Order by nomPai, nomAut;
+
+nÒo hß linhas selecionadas
+
+95)
+Select distinct codUsu, nomUsu
+  From Usuario natural join Emprestimo
+  Where datDev is null
+    and datPreDev < sysdate
+Order by nomUsu;
+
+    CODUSU NOMUSU
+---------- -----------------------------------
+         3 Dalmo Lucas jardim
+         4 Helena Albuquerque
+
+111)
+Select count(codUsu)
+  From Usuario
+  Where sexUsu = 'F';
+
+COUNT(CODUSU)
+-------------
+           15
+
+115)
+Select avg(valExe)
+  From Exemplar;
+
+AVG(VALEXE)
+-----------
+    55,0745
+
+117)
+Select distinct codObr, nomObr
+  From Obra natural join Exemplar
+  Where valExe >
+  (Select avg(numExe)
+     From Exemplar
+  )
+Order by nomObr;
+
+    CODOBR NOMOBR
+---------- -----------------------------------
+        23 A Folha de São Paulo
+        17 A pata da Gazela
+         7 Canção General
+         8 Cem sonetos de Amor
+        21 D. Lola
+        10 Doidão
+        12 Doidinho
+        18 Encarnação
+         5 Entidade e Relacionamentos
+         1 Estado de Minas
+         2 IEEC
+
+    CODOBR NOMOBR
+---------- -----------------------------------
+        24 Jardín de invierno
+        19 Luz e Sombra
+         9 Meu pé de Laranja Lima
+        22 O Estado de São Paulo
+        14 O Guarani
+         3 Sistemas de Banco de Dados
+        25 Tentativa del hombre infinito
+         6 Vinte poemas de Amor
+
+19 linhas selecionadas.
+
+121)
+Select distinct count(codObr)
+  From Obra natural join Autoria
+  natural join Autor
+  Where nomAut = 'José de Alencar';
+
+COUNT(CODOBR)
+-------------
+            6
+
+125)
+Select distinct codUsu, nomUsu
+  From Usuario natural join Emprestimo
+  natural join Exemplar
+  Where sexUsu = 'F'
+    and valExe = 
+  (Select max(valExe)
+     From Exemplar
+  )
+Order by nomUsu;
+
+    CODUSU NOMUSU
+---------- -----------------------------------
+         1 Maria Luiza Pereira
+
+129)
+Select codObr, nomObr, max(valExe), min(valExe), avg(valExe)
+  From Obra natural join Exemplar
+  natural join Autoria
+  natural join Autor
+  natural join Pais
+  Where nomPai = 'Brasil'
+  Group by codObr, nomObr
+Order by nomObr;
+
+    CODOBR NOMOBR                              MAX(VALEXE) MIN(VALEXE)
+---------- ----------------------------------- ----------- -----------
+AVG(VALEXE)
+-----------
+        23 A Folha de São Paulo                      45,45          23
+     34,225
+
+        17 A pata da Gazela                          34,13        20,4
+     27,265
+
+         7 Canção General                            67,45       67,45
+      67,45
+
+
+    CODOBR NOMOBR                              MAX(VALEXE) MIN(VALEXE)
+---------- ----------------------------------- ----------- -----------
+AVG(VALEXE)
+-----------
+        21 D. Lola                                    23,4        23,4
+       23,4
+
+        10 Doidão                                     90,2        90,2
+       90,2
+
+        12 Doidinho                                     98        20,8
+       59,4
+
+
+    CODOBR NOMOBR                              MAX(VALEXE) MIN(VALEXE)
+---------- ----------------------------------- ----------- -----------
+AVG(VALEXE)
+-----------
+        18 Encarnação                                   90          23
+      45,41
+
+         1 Estado de Minas                             130        80,8
+     110,32
+
+         2 IEEC                                         90        80,8
+       85,4
+
+
+    CODOBR NOMOBR                              MAX(VALEXE) MIN(VALEXE)
+---------- ----------------------------------- ----------- -----------
+AVG(VALEXE)
+-----------
+        19 Luz e Sombra                              89,34       34,12
+      61,73
+
+        11 Menino do Engenho                         12,12       12,12
+      12,12
+
+         9 Meu pé de Laranja Lima                    23,94       12,98
+      18,46
+
+
+    CODOBR NOMOBR                              MAX(VALEXE) MIN(VALEXE)
+---------- ----------------------------------- ----------- -----------
+AVG(VALEXE)
+-----------
+        22 O Estado de São Paulo                      90,8       34,56
+      62,68
+
+        14 O Guarani                                  33,2        33,2
+       33,2
+
+        20 Os Rodrigues                               20,1        20,1
+       20,1
+
+
+    CODOBR NOMOBR                              MAX(VALEXE) MIN(VALEXE)
+---------- ----------------------------------- ----------- -----------
+AVG(VALEXE)
+-----------
+        15 Senhora                                   12,34       12,34
+      12,34
+
+
+16 linhas selecionadas.
+
+141)
+Select to_char(datEmp, 'MM')
+  From Emprestimo
+  Where datEmp between '01/01/06' and '31/12/06'
+  Group by to_char(datEmp, 'MM')
+  Having count(numExe) > 10000
+Order by to_char(datEmp, 'MM');
+
+nÒo hß linhas selecionadas
+
+142)
+Select to_char(datEmp, 'MM'), count(numExe)
+  From Emprestimo
+  Where datEmp between '01/01/06' and '31/12/06'
+  Group by to_char(datEmp, 'MM')
+Order by to_char(datEmp, 'MM');
+
+nÒo hß linhas selecionadas
+
+143)
+Select codUsu, nomUsu
+  From Usuario natural join Emprestimo
+  Where datEmp between '01/01/16' and '31/12/16'
+  Group by codUsu, nomUsu
+  Having count(numExe) > 20
+Order by nomUsu;
+
+nÒo hß linhas selecionadas
+
+144)
+Select Obra.codObr, nomObr
+  From Obra inner join Exemplar
+    on Obra.codObr = Exemplar.codObr
+  Group by Obra.codObr, nomObr
+  Having count(numExe) = 1
+Order by nomObr;
+
+    CODOBR NOMOBR
+---------- -----------------------------------
+         7 Canção General
+         8 Cem sonetos de Amor
+        21 D. Lola
+        10 Doidão
+        24 Jardín de invierno
+        11 Menino do Engenho
+        14 O Guarani
+        20 Os Rodrigues
+        15 Senhora
+        25 Tentativa del hombre infinito
+
+10 linhas selecionadas.
+
+145)
+Select codObr, nomObr
+  From Obra natural join Exemplar
+  Group by codObr, nomObr
+  Having count(numExe) < 6
+Order by nomObr;
+
+    CODOBR NOMOBR
+---------- -----------------------------------
+        23 A Folha de São Paulo
+        17 A pata da Gazela
+         7 Canção General
+         8 Cem sonetos de Amor
+        21 D. Lola
+        10 Doidão
+        12 Doidinho
+        18 Encarnação
+         5 Entidade e Relacionamentos
+         1 Estado de Minas
+         2 IEEC
+
+    CODOBR NOMOBR
+---------- -----------------------------------
+        24 Jardín de invierno
+        19 Luz e Sombra
+        11 Menino do Engenho
+         9 Meu pé de Laranja Lima
+        22 O Estado de São Paulo
+        14 O Guarani
+        20 Os Rodrigues
+        15 Senhora
+         3 Sistemas de Banco de Dados
+        25 Tentativa del hombre infinito
+         6 Vinte poemas de Amor
+
+22 linhas selecionadas.
+
+147)
+Select codObr, nomObr
+  From Obra natural join Exemplar
+  Group by codObr, nomObr
+  Having avg(valExe) <
+  (Select avg(valExe)
+     From Pais natural join Autor
+     natural join Autoria
+     natural join Exemplar
+     Where nomPai = 'Chile'
+     Group by codPai
+  )
+Order by nomObr;
+
+    CODOBR NOMOBR
+---------- -----------------------------------
+        23 A Folha de São Paulo
+        17 A pata da Gazela
+        21 D. Lola
+        12 Doidinho
+        18 Encarnação
+         5 Entidade e Relacionamentos
+        24 Jardín de invierno
+        11 Menino do Engenho
+         9 Meu pé de Laranja Lima
+        14 O Guarani
+        20 Os Rodrigues
+
+    CODOBR NOMOBR
+---------- -----------------------------------
+        15 Senhora
+         3 Sistemas de Banco de Dados
+        25 Tentativa del hombre infinito
+
+14 linhas selecionadas.
+
+149)
+Select codUsu, nomUsu
+  From TipoUsuario natural join Usuario
+  natural join Emprestimo
+  Where desTipUsu = 'Aluno'
+  Group by codUsu, nomUsu
+  Having count(numExe) > 20
+Order by nomUsu;
+
+nÒo hß linhas selecionadas
+
+155)
+Select Usuario.codUsu, nomUsu, Obra.codObr, nomObr
+  From Usuario left outer join
+  (Emprestimo inner join Exemplar
+       on Emprestimo.numExe = Exemplar.numExe
+     inner join Obra
+       on Obra.codObr = Exemplar.codObr
+  )
+  on Usuario.codUsu = Emprestimo.codUsu
+Order by nomUsu, nomObr;
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+        27 Carla Cunha Lima
+
+
+        36 Carlos Martins Cardoso
+
+
+        18 Cassia Abrantes Juarez
+
+
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+         9 Cecília Andrade Albuquerque                 18
+Encarnação
+
+        38 Clara Silva Castro
+
+
+         8 Cíntia Maria Silva
+
+
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+         3 Dalmo Lucas jardim                           7
+Canção General
+
+         3 Dalmo Lucas jardim                           1
+Estado de Minas
+
+         3 Dalmo Lucas jardim                           1
+Estado de Minas
+
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+         3 Dalmo Lucas jardim                           1
+Estado de Minas
+
+        23 Diogo Alves Pinto                            3
+Sistemas de Banco de Dados
+
+        25 Gabrielle Barbosa Pereira
+
+
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+        21 Geovane Fonseca de Sousa Santos
+
+
+         4 Helena Albuquerque                           1
+Estado de Minas
+
+         4 Helena Albuquerque                           1
+Estado de Minas
+
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+         4 Helena Albuquerque                           9
+Meu pé de Laranja Lima
+
+        35 Isabelle Azevedo Lima
+
+
+        12 José Marcos Silva                            5
+Entidade e Relacionamentos
+
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+         5 Juarez Perez
+
+
+        31 Julieta Dias Rocha                           2
+IEEC
+
+        26 Kai Azevedo Cunha
+
+
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+        20 Lauro Samuel Andrade
+
+
+        15 Leandro Paula Braga
+
+
+        16 Lucas Faria
+
+
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+        37 Lucas Melo Goncalves
+
+
+         7 Lucas Rodrigo Arantes
+
+
+        19 Luiz Gustavo Pontes                         25
+Tentativa del hombre infinito
+
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+        14 Luz Maria Pellegrini
+
+
+        13 Maria Eduarda de Silva Santos               22
+O Estado de São Paulo
+
+         1 Maria Luiza Pereira                          1
+Estado de Minas
+
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+         1 Maria Luiza Pereira                          1
+Estado de Minas
+
+         1 Maria Luiza Pereira                          1
+Estado de Minas
+
+         1 Maria Luiza Pereira                          3
+Sistemas de Banco de Dados
+
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+        39 Mateus Costa Ribeiro
+
+
+        28 Mateus Souza Sousa                          22
+O Estado de São Paulo
+
+         2 Mário José Silveira                          5
+Entidade e Relacionamentos
+
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+         2 Mário José Silveira                          1
+Estado de Minas
+
+         2 Mário José Silveira                          1
+Estado de Minas
+
+         2 Mário José Silveira                          2
+IEEC
+
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+        11 Rafael Andrade
+
+
+        17 Renata Gonzalez Albuquerque e Silva          7
+Canção General
+
+        10 Renato Paula Braga                          15
+Senhora
+
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+        29 Ryan Dias Rocha
+
+
+         6 Saulo Castro Silva
+
+
+        24 Thaís Cunha Goncalves
+
+
+
+    CODUSU NOMUSU                                  CODOBR
+---------- ----------------------------------- ----------
+NOMOBR
+-----------------------------------
+        32 Tiago Martins Lima
+
+
+        30 Vinicius Martins Melo
+
+
+        22 Vitoria Pereira Ferreira
+
+
+
+48 linhas selecionadas.
+
+157)
+Select Autor.codAut, nomAut, Usuario.codUsu, nomUsu
+  From
+  (Usuario inner join Emprestimo
+     on Usuario.codUsu = Emprestimo.codUsu
+   inner join Exemplar
+     on Emprestimo.numExe = Exemplar.numExe
+   inner join Autoria
+     on Exemplar.codObr = Autoria.codObr
+  ) right outer join Autor
+    on Autoria.codAut = Autor.codAut
+Order by nomAut, nomUsu;
+
+    CODAUT NOMAUT                                  CODUSU
+---------- ----------------------------------- ----------
+NOMUSU
+-----------------------------------
+        15 Cai Lung
+
+
+         8 Guimarães Rosa
+
+
+        13 Inessa Kulikova
+
+
+
+    CODAUT NOMAUT                                  CODUSU
+---------- ----------------------------------- ----------
+NOMUSU
+-----------------------------------
+        11 Jô Soares
+
+
+        10 José de Alencar                              9
+Cecília Andrade Albuquerque
+
+        10 José de Alencar                             10
+Renato Paula Braga
+
+
+    CODAUT NOMAUT                                  CODUSU
+---------- ----------------------------------- ----------
+NOMUSU
+-----------------------------------
+         1 José Luis do Rego
+
+
+         3 José Mauro de Vasconcelos                    3
+Dalmo Lucas jardim
+
+         3 José Mauro de Vasconcelos                    3
+Dalmo Lucas jardim
+
+
+    CODAUT NOMAUT                                  CODUSU
+---------- ----------------------------------- ----------
+NOMUSU
+-----------------------------------
+         3 José Mauro de Vasconcelos                    3
+Dalmo Lucas jardim
+
+         3 José Mauro de Vasconcelos                    3
+Dalmo Lucas jardim
+
+         3 José Mauro de Vasconcelos                    4
+Helena Albuquerque
+
+
+    CODAUT NOMAUT                                  CODUSU
+---------- ----------------------------------- ----------
+NOMUSU
+-----------------------------------
+         3 José Mauro de Vasconcelos                    4
+Helena Albuquerque
+
+         3 José Mauro de Vasconcelos                    4
+Helena Albuquerque
+
+         3 José Mauro de Vasconcelos                   31
+Julieta Dias Rocha
+
+
+    CODAUT NOMAUT                                  CODUSU
+---------- ----------------------------------- ----------
+NOMUSU
+-----------------------------------
+         3 José Mauro de Vasconcelos                   13
+Maria Eduarda de Silva Santos
+
+         3 José Mauro de Vasconcelos                    1
+Maria Luiza Pereira
+
+         3 José Mauro de Vasconcelos                    1
+Maria Luiza Pereira
+
+
+    CODAUT NOMAUT                                  CODUSU
+---------- ----------------------------------- ----------
+NOMUSU
+-----------------------------------
+         3 José Mauro de Vasconcelos                    1
+Maria Luiza Pereira
+
+         3 José Mauro de Vasconcelos                   28
+Mateus Souza Sousa
+
+         3 José Mauro de Vasconcelos                    2
+Mário José Silveira
+
+
+    CODAUT NOMAUT                                  CODUSU
+---------- ----------------------------------- ----------
+NOMUSU
+-----------------------------------
+         3 José Mauro de Vasconcelos                    2
+Mário José Silveira
+
+         3 José Mauro de Vasconcelos                    2
+Mário José Silveira
+
+         3 José Mauro de Vasconcelos                   17
+Renata Gonzalez Albuquerque e Silva
+
+
+    CODAUT NOMAUT                                  CODUSU
+---------- ----------------------------------- ----------
+NOMUSU
+-----------------------------------
+         2 Leandro Duprê
+
+
+         7 Machado de Assis
+
+
+         9 Maria José Duprê
+
+
+
+    CODAUT NOMAUT                                  CODUSU
+---------- ----------------------------------- ----------
+NOMUSU
+-----------------------------------
+        16 Marjolaine Bazin
+
+
+        17 Oliver Caouette
+
+
+         6 Pablo Neruda                                19
+Luiz Gustavo Pontes
+
+
+    CODAUT NOMAUT                                  CODUSU
+---------- ----------------------------------- ----------
+NOMUSU
+-----------------------------------
+         5 Ramez Elmasri                               23
+Diogo Alves Pinto
+
+         5 Ramez Elmasri                                1
+Maria Luiza Pereira
+
+        12 Rashid Yevdokimov
+
+
+
+    CODAUT NOMAUT                                  CODUSU
+---------- ----------------------------------- ----------
+NOMUSU
+-----------------------------------
+         4 Shamkant B. Navathe                         23
+Diogo Alves Pinto
+
+         4 Shamkant B. Navathe                         12
+José Marcos Silva
+
+         4 Shamkant B. Navathe                          1
+Maria Luiza Pereira
+
+
+    CODAUT NOMAUT                                  CODUSU
+---------- ----------------------------------- ----------
+NOMUSU
+-----------------------------------
+         4 Shamkant B. Navathe                          2
+Mário José Silveira
+
+        14 Wen Fang
+
+
+
+38 linhas selecionadas.
+
+161)
+Select plaVei
+  From Veiculo natural join HistEmplacamento
+  Group by plaVei
+  Having count(codPro) = 1
+Order by plaVei;
+
+PLAVEI
+--------
+AAA-1111
+AAA-1112
+AAA-1113
+AAA-1114
+AAA-1115
+AAA-1116
+AAA-1117
+AAA-1118
+AAA-1119
+AAB-1111
+AAB-1112
+
+PLAVEI
+--------
+AAB-1113
+AAB-1114
+AAB-1115
+AAB-1116
+AAB-1117
+AAB-1118
+AAB-1119
+ABB-1111
+ABB-1122
+ABB-1133
+ABB-1144
+
+PLAVEI
+--------
+ABB-1155
+ABB-1166
+ABB-1177
+ABB-1188
+ABB-1199
+BBB-1111
+BBB-1222
+BBB-1333
+BBB-1444
+BBB-1555
+BBB-1666
+
+PLAVEI
+--------
+BBB-1777
+BBB-1888
+BBB-1999
+CCC-1111
+CCC-2222
+CCC-3333
+CCC-4444
+CCC-5555
+CCC-6666
+CCC-7777
+CCC-8888
+
+PLAVEI
+--------
+CCC-9999
+DDD-1212
+DDD-2323
+DDD-3434
+DDD-4545
+DDD-5656
+
+50 linhas selecionadas.
+
+PERGUNTAS:
+
+a) Quantos modelos possui cada Marca?
+Select codMar, nomMar, count(codMod)
+  From Marca natural join Modelo
+  Group by codMar, nomMar
+Order by nomMar;
+
+    CODMAR NOMMAR                              COUNT(CODMOD)
+---------- ----------------------------------- -------------
+         4 Alfa Romeo                                      2
+         5 Aston Martin                                    2
+         6 Audi                                            3
+         1 Ferrari                                         3
+         2 Lamborghini                                     3
+         8 Opel                                            1
+         3 Porsche                                         3
+         7 Skoda                                           3
+
+8 linhas selecionadas.
+
+b) Quantas marcas existem em Belo Horizonte?
+Select distinct count(codMar)
+  From Marca natural join Modelo
+  natural join Veiculo
+  natural join HistEmplacamento
+  natural join Localidade
+  Where nomLoc = 'Belo Horizonte'
+  Group by codLoc;
+
+COUNT(CODMAR)
+-------------
+            8
+
+c) Qual a média de valor de emplacamento por Marca/Modelo?
+Select codMar, nomMar, avg(valVei)
+  From HistEmplacamento natural join Veiculo
+  natural join Modelo
+  natural join Marca
+  Group by codMar, nomMar
+Order by nomMar;
+
+    CODMAR NOMMAR                              AVG(VALVEI)
+---------- ----------------------------------- -----------
+         4 Alfa Romeo                                 5600
+         5 Aston Martin                               5000
+         6 Audi                                       5000
+         1 Ferrari                              4666,66667
+         2 Lamborghini                          5555,55556
+         8 Opel                                       5000
+         3 Porsche                              5333,33333
+         7 Skoda                                3666,66667
+
+8 linhas selecionadas.
+
+Select codMod, nomMod, avg(valVei)
+  From HistEmplacamento natural join Veiculo
+  natural join Modelo
+  Group by codMod, nomMod
+Order by nomMod;
+
+    CODMOD NOMMOD                              AVG(VALVEI)
+---------- ----------------------------------- -----------
+         6 Aventador                                  4000
+         1 California                                 4000
+         7 Carrera                              4666,66667
+         9 Cayenne                                    6000
+         8 Cayman                               5333,33333
+        20 crossland X                                5000
+         4 Diablo                                     6000
+        17 Fabia                                      3000
+         2 FF                                   4666,66667
+         3 F50                                  5333,33333
+         5 Gallardo                             6666,66667
+
+    CODMOD NOMMOD                              AVG(VALVEI)
+---------- ----------------------------------- -----------
+        10 Giulia                               6666,66667
+        19 karogs                                 4333,335
+        18 Octavia                                3666,665
+        16 RS                                     2333,335
+        15 R8                                     6666,665
+        13 Stelvio                                5333,335
+        14 TT                                         6000
+        11 4c                                         4000
+        12 8c                                     4666,665
+
+20 linhas selecionadas.
+
+d) Quantos proprietários não possuem Veículo?
+Select count(codPro)
+  From Proprietario
+  Where not exists
+  (Select *
+     From HistEmplacamento
+     Where Proprietario.codPro = HistEmplacamento.codPro
+  );
+
+COUNT(CODPRO)
+-------------
+            0
+
+e) Quantos veículos foram emplacados em 2017?
+Select count(plaVei)
+  From HistEmplacamento
+  Where datIni between '01/01/17' and '31/12/17';
+
+COUNT(PLAVEI)
+-------------
+            6
