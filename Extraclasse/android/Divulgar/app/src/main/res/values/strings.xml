@@ -11,9 +11,14 @@
     <string name="pdfs">PDFs</string>
     <string name="links">Links</string>
 
-    <string name="link_hint">Link</string>
-    <string name="add_button_text">Adicionar</string>
     <string name="url">URL</string>
+    <string name="url_item">[url_item]</string>
+
+    <string name="link">Adicionar</string>
+    <string name="link_name">Nome</string>
+    <string name="link_url">url</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 
     <string name="menu_preference_file_key">com.example.geovane.divulgar.MENU_PREFERENCE_FILE_KEY</string>
 
@@ -22,5 +27,6 @@
     <string name="action_remove">Remover</string>
     <string name="logo">logo</string>
 
-
+    <string name="erro_nome">Erro</string>
+    <string name="erro_url">Erro</string>
 </resources>

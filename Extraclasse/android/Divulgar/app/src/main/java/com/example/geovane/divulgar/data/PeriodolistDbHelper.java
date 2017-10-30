@@ -13,7 +13,7 @@ public class PeriodolistDbHelper extends SQLiteOpenHelper {
     // TODO (2) Create a static final String called DATABASE_NAME and set it to "waitlist.db"
     private static final String DATABASE_NAME = "periodo.db";
     // TODO (3) Create a static final int called DATABASE_VERSION and set it to 1
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     // TODO (4) Create a Constructor that takes a context and calls the parent constructor
     public PeriodolistDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

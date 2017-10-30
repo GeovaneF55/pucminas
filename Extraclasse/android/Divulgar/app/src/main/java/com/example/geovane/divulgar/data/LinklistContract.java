@@ -10,6 +10,8 @@ public class LinklistContract {
     public static final class LinklistEntry implements BaseColumns {
         public static final String TABLE_NAME = "link";
         //ID Link
+        //NOME Link
+        public static final String COLUMN_LINK_NOME = "nome";
         //URL Link
         public static final String COLUMN_LINK_URL = "url";
         //ID materia

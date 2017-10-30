@@ -13,7 +13,7 @@ public class LinklistDbHelper extends SQLiteOpenHelper {
     // TODO (2) Create a static final String called DATABASE_NAME and set it to "waitlist.db"
     private static final String DATABASE_NAME = "link.db";
     // TODO (3) Create a static final int called DATABASE_VERSION and set it to 1
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     // TODO (4) Create a Constructor that takes a context and calls the parent constructor
     public LinklistDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -26,7 +26,8 @@ public class LinklistDbHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_LINK_TABLE = "CREATE TABLE " +
                 LinklistContract.LinklistEntry.TABLE_NAME + "(" +
                 LinklistContract.LinklistEntry._ID + "  INTEGER PRIMARY KEY AUTOINCREMENT," +
-                LinklistContract.LinklistEntry.COLUMN_LINK_URL + " TEXT NOT NULL" +
+                LinklistContract.LinklistEntry.COLUMN_LINK_NOME + " TEXT NOT NULL," +
+                LinklistContract.LinklistEntry.COLUMN_LINK_URL + " TEXT NOT NULL," +
                 LinklistContract.LinklistEntry.COLUMN_FK_MATERIA + " INTEGER NOT NULL," +
                 LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK + " INTEGER NOT NULL," +
                 "FOREIGN KEY(" + LinklistContract.LinklistEntry.COLUMN_FK_MATERIA + ") REFERENCES " +

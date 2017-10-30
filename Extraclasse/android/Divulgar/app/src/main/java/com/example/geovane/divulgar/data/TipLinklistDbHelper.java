@@ -12,7 +12,7 @@ public class TipLinklistDbHelper extends SQLiteOpenHelper {
     // TODO (2) Create a static final String called DATABASE_NAME and set it to "waitlist.db"
     private static final String DATABASE_NAME = "tipo_link.db";
     // TODO (3) Create a static final int called DATABASE_VERSION and set it to 1
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     // TODO (4) Create a Constructor that takes a context and calls the parent constructor
     public TipLinklistDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -25,7 +25,8 @@ public class TipLinklistDbHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_TIPO_LINK_TABLE = "CREATE TABLE " +
                 TipLinklistContract.TipLinklistEntry.TABLE_NAME + "(" +
                 TipLinklistContract.TipLinklistEntry._ID + "  INTEGER PRIMARY KEY AUTOINCREMENT," +
-                TipLinklistContract.TipLinklistEntry.COLUMN_TIPO_LINK_NAME + " TEXT NOT NULL" +
+                TipLinklistContract.TipLinklistEntry.COLUMN_TIPO_LINK_NAME + " TEXT NOT NULL," +
+                TipLinklistContract.TipLinklistEntry.COLUMN_TIPO_LINK_ALIAS + " TEXT NOT NULL" +
                 ");";
 
         sqLiteDatabase.execSQL(SQL_CREATE_TIPO_LINK_TABLE);

@@ -12,5 +12,7 @@ public class TipLinklistContract {
         //ID Tipo Link
         //NOME Tipo Link
         public static final String COLUMN_TIPO_LINK_NAME = "nome_tipo_link";
+        //ALIAS Tipo Link
+        public static final String COLUMN_TIPO_LINK_ALIAS = "alias_tipo_link";
     }
 }

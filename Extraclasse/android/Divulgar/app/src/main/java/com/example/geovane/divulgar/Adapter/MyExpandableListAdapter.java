@@ -35,7 +35,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public Object getChild(int listPosition, int expandedListPosition) {
         return mExpandableListDetail.get(mExpandableListTitle.get(listPosition))
-                .get(expandedListPosition)[1];
+                .get(expandedListPosition);
     }
 
     private Object[] getChildArray(int listPosition, int expandedListPosition) {
@@ -52,15 +52,21 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
     public View getChildView(int listPosition, final int expandedListPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
         Object[] item = getChildArray(listPosition, expandedListPosition);
+        final String expandedListTextID = (String) item[2];
         final String expandedListText = (String) item[1];
+
 
         if (convertView == null) {
             convertView = mLayoutInflater.inflate(R.layout.nav_item, null);
         }
 
+        TextView expandableListTextViewID = convertView
+                .findViewById(R.id.expandedListItemID);
+
         TextView expandableListTextView = convertView
                 .findViewById(R.id.expandedListItem);
 
+        expandableListTextViewID.setText(expandedListTextID);
         expandableListTextView.setText(expandedListText);
         expandableListTextView.setCompoundDrawablesWithIntrinsicBounds((Drawable) item[0],
                 null, null, null);
@@ -113,6 +119,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public boolean isChildSelectable(int listPosition, int expandedListPosition) {
+
         return true;
     }
 }

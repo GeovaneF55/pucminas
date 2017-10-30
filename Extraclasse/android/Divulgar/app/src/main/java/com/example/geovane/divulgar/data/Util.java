@@ -1,6 +1,7 @@
 package com.example.geovane.divulgar.data;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -12,10 +13,22 @@ import java.util.List;
  */
 
 public class Util {
+
+    private static boolean keepDb = false;
+
     public static void insertCurso(SQLiteDatabase db){
         if(db == null){
             return;
         }
+
+        String count = "SELECT count(*) FROM " + CursolistCotract.CursolistEntry.TABLE_NAME;
+        Cursor mcursor = db.rawQuery(count, null);
+        mcursor.moveToFirst();
+        int icount = mcursor.getInt(0);
+        mcursor.close();
+        if(keepDb && icount>0)
+            return;
+
         //create a list of fake guests
         List<ContentValues> list = new ArrayList<ContentValues>();
 
@@ -48,6 +61,15 @@ public class Util {
         if(db == null){
             return;
         }
+
+        String count = "SELECT count(*) FROM " + PeriodolistContract.PeriodolistEntry.TABLE_NAME;
+        Cursor mcursor = db.rawQuery(count, null);
+        mcursor.moveToFirst();
+        int icount = mcursor.getInt(0);
+        mcursor.close();
+        if(keepDb && icount>0)
+            return;
+
         List<ContentValues> list = new ArrayList<ContentValues>();
 
         ContentValues cv = new ContentValues();
@@ -115,6 +137,15 @@ public class Util {
         if(db == null){
             return;
         }
+
+        String count = "SELECT count(*) FROM " + MaterialistContract.MaterialistEntry.TABLE_NAME;
+        Cursor mcursor = db.rawQuery(count, null);
+        mcursor.moveToFirst();
+        int icount = mcursor.getInt(0);
+        mcursor.close();
+        if(keepDb && icount>0)
+            return;
+
         List<ContentValues> list = new ArrayList<ContentValues>();
 
         /*1 Período*/
@@ -420,18 +451,30 @@ public class Util {
         if(db == null){
             return;
         }
+
+        String count = "SELECT count(*) FROM " + TipLinklistContract.TipLinklistEntry.TABLE_NAME;
+        Cursor mcursor = db.rawQuery(count, null);
+        mcursor.moveToFirst();
+        int icount = mcursor.getInt(0);
+        mcursor.close();
+        if(keepDb && icount>0)
+            return;
+
         List<ContentValues> list = new ArrayList<ContentValues>();
 
         ContentValues cv = new ContentValues();
         cv.put(TipLinklistContract.TipLinklistEntry.COLUMN_TIPO_LINK_NAME, "Vídeo");
+        cv.put(TipLinklistContract.TipLinklistEntry.COLUMN_TIPO_LINK_ALIAS, "V");
         list.add(cv);
 
         cv = new ContentValues();
         cv.put(TipLinklistContract.TipLinklistEntry.COLUMN_TIPO_LINK_NAME, "PDF");
+        cv.put(TipLinklistContract.TipLinklistEntry.COLUMN_TIPO_LINK_ALIAS, "P");
         list.add(cv);
 
         cv = new ContentValues();
         cv.put(TipLinklistContract.TipLinklistEntry.COLUMN_TIPO_LINK_NAME, "Link");
+        cv.put(TipLinklistContract.TipLinklistEntry.COLUMN_TIPO_LINK_ALIAS, "L");
         list.add(cv);
 
         //insert all guests in one transaction
@@ -443,6 +486,340 @@ public class Util {
             //go through the list and add one by one
             for(ContentValues c:list){
                 db.insert(TipLinklistContract.TipLinklistEntry.TABLE_NAME, null, c);
+            }
+            db.setTransactionSuccessful();
+        }
+        catch (SQLException e) {
+            //too bad :(
+        }
+        finally
+        {
+            db.endTransaction();
+        }
+    }
+
+    public static void insertLink(SQLiteDatabase db, int[] materia_id, int[] tiplink_id){
+        if(db == null){
+            return;
+        }
+
+        String count = "SELECT count(*) FROM " + LinklistContract.LinklistEntry.TABLE_NAME;
+        Cursor mcursor = db.rawQuery(count, null);
+        mcursor.moveToFirst();
+        int icount = mcursor.getInt(0);
+        if(keepDb && icount>0)
+            return;
+
+        List<ContentValues> list = new ArrayList<ContentValues>();
+
+        // Matéria Teste 1
+        ContentValues cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Vídeo_01");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://www.youtube.com/watch?v=twZggnNbFqo");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[0]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[0]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Vídeo_02");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://www.youtube.com/watch?v=twZggnNbFqo");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[0]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[0]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Vídeo_03");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://www.youtube.com/watch?v=twZggnNbFqo");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[0]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[0]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "PDF_01");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "http://www.scielo.br/pdf/rbef/v27n4/a04v27n4.pdf");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[0]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[1]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "PDF_02");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "http://www.scielo.br/pdf/rbef/v27n4/a04v27n4.pdf");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[0]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[1]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "PDF_03");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "http://www.scielo.br/pdf/rbef/v27n4/a04v27n4.pdf");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[0]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[1]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "PDF_04");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "http://www.scielo.br/pdf/rbef/v27n4/a04v27n4.pdf");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[0]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[1]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_01");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[0]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_02");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[0]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        // Matéria Teste 2
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Vídeo_01");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://www.youtube.com/watch?v=twZggnNbFqo");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[1]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[0]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Vídeo_02");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://www.youtube.com/watch?v=twZggnNbFqo");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[1]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[0]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "PDF_01");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "http://www.scielo.br/pdf/rbef/v27n4/a04v27n4.pdf");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[1]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[1]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_01");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[1]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_02");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[1]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_03");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[1]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_04");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[1]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        // Matéria Teste 3
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Vídeo_01");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://www.youtube.com/watch?v=twZggnNbFqo");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[2]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[0]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "PDF_01");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "http://www.scielo.br/pdf/rbef/v27n4/a04v27n4.pdf");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[2]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[1]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "PDF_02");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "http://www.scielo.br/pdf/rbef/v27n4/a04v27n4.pdf");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[2]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[1]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_01");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[2]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_02");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[2]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_03");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[2]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_04");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[2]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_05");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[2]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        // Matéria Teste 4
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Vídeo_01");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://www.youtube.com/watch?v=twZggnNbFqo");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[3]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[0]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Vídeo_02");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://www.youtube.com/watch?v=twZggnNbFqo");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[3]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[0]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Vídeo_03");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://www.youtube.com/watch?v=twZggnNbFqo");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[3]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[0]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Vídeo_04");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://www.youtube.com/watch?v=twZggnNbFqo");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[3]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[0]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Vídeo_05");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://www.youtube.com/watch?v=twZggnNbFqo");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[3]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[0]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Vídeo_06");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://www.youtube.com/watch?v=twZggnNbFqo");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[3]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[0]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "PDF_01");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "http://www.scielo.br/pdf/rbef/v27n4/a04v27n4.pdf");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[3]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[1]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_01");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[3]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_02");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[3]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_03");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[3]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        // Matéria Teste 5
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Vídeo_01");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://www.youtube.com/watch?v=twZggnNbFqo");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[4]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[0]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Vídeo_02");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://www.youtube.com/watch?v=twZggnNbFqo");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[4]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[0]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "PDF_01");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "http://www.scielo.br/pdf/rbef/v27n4/a04v27n4.pdf");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[4]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[1]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "PDF_02");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "http://www.scielo.br/pdf/rbef/v27n4/a04v27n4.pdf");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[4]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[1]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "PDF_03");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "http://www.scielo.br/pdf/rbef/v27n4/a04v27n4.pdf");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[4]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[1]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_01");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[4]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_02");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[4]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, "Link_03");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, "https://pt.wikipedia.org/wiki/Android");
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, materia_id[4]);
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, tiplink_id[2]);
+        list.add(cv);
+
+        //insert all guests in one transaction
+        try
+        {
+            db.beginTransaction();
+            //clear the table first
+            db.delete(LinklistContract.LinklistEntry.TABLE_NAME,null,null);
+            //go through the list and add one by one
+            for(ContentValues c:list){
+                db.insert(LinklistContract.LinklistEntry.TABLE_NAME, null, c);
             }
             db.setTransactionSuccessful();
         }

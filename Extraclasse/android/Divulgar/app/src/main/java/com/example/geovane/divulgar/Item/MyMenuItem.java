@@ -44,9 +44,10 @@ public class MyMenuItem {
             List<Object[]> items = new ArrayList<>();
 
             for(Materia materia:periodo.getMaterias()){
-                Object[] itemMateria = new Object[2];
+                Object[] itemMateria = new Object[3];
                 itemMateria[0] = ContextCompat.getDrawable(context, R.drawable.ic_action_book);
                 itemMateria[1] = materia.getNomeMateria();
+                itemMateria[2] = String.valueOf(materia.getId());
 
                 items.add(itemMateria);
             }

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/action_search"
+    <item android:id="@+id/btn_action_videos"
         android:title="@string/videos"
+        android:alphabeticShortcut="V"
         android:icon="@drawable/ic_action_video" />
-    <item android:id="@+id/action_settings"
+    <item android:id="@+id/btn_action_pdfs"
         android:title="@string/pdfs"
+        android:alphabeticShortcut="P"
         android:icon="@drawable/ic_action_pdf" />
-    <item android:id="@+id/action_navigation"
+    <item android:id="@+id/btn_action_links"
         android:title="@string/links"
+        android:alphabeticShortcut="L"
         android:icon="@drawable/ic_action_link" />
 </menu>

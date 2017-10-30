@@ -1,9 +1,14 @@
 package com.example.geovane.divulgar;
 
+import android.app.DialogFragment;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,13 +23,17 @@ import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.geovane.divulgar.Adapter.LinklistAdapter;
 import com.example.geovane.divulgar.Adapter.MyExpandableListAdapter;
+import com.example.geovane.divulgar.Fragment.MyDialogFragment;
 import com.example.geovane.divulgar.Item.MyMenuItem;
 import com.example.geovane.divulgar.Model.Curso;
+import com.example.geovane.divulgar.Model.Link;
 import com.example.geovane.divulgar.Model.Materia;
 import com.example.geovane.divulgar.Model.Periodo;
+import com.example.geovane.divulgar.Model.TipoLink;
 import com.example.geovane.divulgar.data.CursolistCotract;
 import com.example.geovane.divulgar.data.CursolistDbHelper;
 import com.example.geovane.divulgar.data.LinklistContract;
@@ -41,12 +50,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class NavigationActivity extends AppCompatActivity {
+public class NavigationActivity extends AppCompatActivity implements MyDialogFragment.NoticeDialogListener{
 
     public Curso curso;
+    public ArrayList<TipoLink> tipoLinks;
+    public int idMateria;
+    public int idTipoLink;
 
     private Menu mOptionsMenu;
-    private SQLiteDatabase myDb;
     private LinklistAdapter mAdapter;
 
     private ActionBarDrawerToggle mDrawerToggle;
@@ -55,10 +66,45 @@ public class NavigationActivity extends AppCompatActivity {
     private List<String> mExpandableListTitle;
     private Map<String, List<Object[]>> mExpandableListData;
 
+    private int id_add_link = R.id.btn_add_link;
+    private FloatingActionButton btn_add_link;
+
+    private int id_bottom_navigation = R.id.bottom_navigation;
+    private BottomNavigationView view_bottom_navigation;
+
+    private SQLiteDatabase cursoDb;
+    private SQLiteDatabase periodoDb;
+    private SQLiteDatabase materiaDb;
+    private SQLiteDatabase tipLinkDb;
+    private SQLiteDatabase linkDb;
+
+    private CursolistDbHelper cursoHelper;
+    private PeriodolistDbHelper periodoHelper;
+    private MaterialistDbHelper materiaHelper;
+    private TipLinklistDbHelper tipLinkHelper;
+    private LinklistDbHelper linkHelper;
+
+    private Context context = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+
+        btn_add_link = (FloatingActionButton) findViewById(id_add_link);
+        view_bottom_navigation = (BottomNavigationView) findViewById(id_bottom_navigation);
+
+        cursoHelper = new CursolistDbHelper(this);
+        periodoHelper = new PeriodolistDbHelper(this);
+        materiaHelper = new MaterialistDbHelper(this);
+        tipLinkHelper = new TipLinklistDbHelper(this);
+        linkHelper = new LinklistDbHelper(this);
+
+        cursoDb = cursoHelper.getWritableDatabase();
+        periodoDb = periodoHelper.getWritableDatabase();
+        materiaDb = materiaHelper.getWritableDatabase();
+        tipLinkDb = tipLinkHelper.getWritableDatabase();
+        linkDb = linkHelper.getWritableDatabase();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -72,7 +118,51 @@ public class NavigationActivity extends AppCompatActivity {
 
         curso = populateCurso();
 
+        Materia materia = curso.getPeriodos().get(0).getMaterias().get(0);
+
+        idMateria = materia.getId();
+        idTipoLink = tipoLinks.get(0).getId();
+
+        getSupportActionBar().setTitle(materia.getNomeMateria());
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
         setTextCurso(curso);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        btn_add_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyDialogFragment dialog = MyDialogFragment.newInstance(R.layout.activity_link);
+                dialog.show(getFragmentManager(), "Link");
+            }
+        });
+
+        view_bottom_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                String alias = String.valueOf(item.getAlphabeticShortcut());
+                Cursor tipLink = getTipLinkByAlias(alias);
+                try {
+                    tipLink.moveToFirst();
+                    idTipoLink = tipLink.getInt(tipLink.getColumnIndex(TipLinklistContract.TipLinklistEntry._ID));
+                    updateData();
+                } finally {
+                    tipLink.close();
+                }
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         mExpandableListData = MyMenuItem.getMenuItem(curso, this);
         mExpandableListTitle = new ArrayList<>(mExpandableListData.keySet());
@@ -80,16 +170,33 @@ public class NavigationActivity extends AppCompatActivity {
         addDrawerItems();
         setupDrawer();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
-        /*RecyclerView linkListRecyclerView;
+        RecyclerView linkListRecyclerView;
         linkListRecyclerView = (RecyclerView) this.findViewById(R.id.lista);
         linkListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mAdapter = new LinklistAdapter(this);
+        Cursor links = getAllLinksOfMateriaAndTipo(idMateria, idTipoLink);
+        String alias = "V";
+        for(TipoLink tipoLink:tipoLinks){
+            if(tipoLink.getId() == idTipoLink){
+                alias = tipoLink.getAliasTipo();
+            }
+        }
 
-        linkListRecyclerView.setAdapter(mAdapter);*/
+        mAdapter = new LinklistAdapter(this, links, alias);
+
+        linkListRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog, Object object) {
+        if (object instanceof Link) {
+            // TODO
+        }
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        // DO NOTHING
     }
 
     @Override
@@ -103,8 +210,8 @@ public class NavigationActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
+    protected void onPostResume() {
+        super.onPostResume();
         // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
     }
@@ -139,7 +246,6 @@ public class NavigationActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     private void addDrawerItems() {
         ExpandableListAdapter mExpandableListAdapter = new MyExpandableListAdapter(this,
                 mExpandableListTitle, mExpandableListData);
@@ -149,6 +255,16 @@ public class NavigationActivity extends AppCompatActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
+                Object[] objects = (Object[])parent.getExpandableListAdapter().getChild(groupPosition, childPosition);
+                idMateria = Integer.parseInt(objects[2].toString());
+
+                updateData();
+                /*Cursor links = getAllLinksOfMateriaAndTipo(idMateria, idTipoLink);
+                mAdapter.setItems(links);
+                mAdapter.notifyDataSetChanged();
+
+                getSupportActionBar().setTitle(objects[1].toString());*/
+
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 return false;
             }
@@ -176,34 +292,50 @@ public class NavigationActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mDrawerToggle);
     }
 
+    public void updateData(){
+        Cursor materia = getMateria(idMateria);
+        Cursor links = getAllLinksOfMateriaAndTipo(idMateria, idTipoLink);
+        String alias = "?";
+        for(TipoLink tipoLink:tipoLinks){
+            if(tipoLink.getId() == idTipoLink){
+                alias = tipoLink.getAliasTipo();
+            }
+        }
+
+        mAdapter.setItems(links, alias);
+        mAdapter.notifyDataSetChanged();
+        String nomeMateria;
+        try {
+            materia.moveToFirst();
+            nomeMateria = materia.getString(materia.getColumnIndex(MaterialistContract.MaterialistEntry.COLUMN_MATERIA_NAME));
+            getSupportActionBar().setTitle(nomeMateria);
+        } finally {
+            materia.close();
+        }
+    }
+
     public Curso populateCurso(){
-        CursolistDbHelper cursoHelper = new CursolistDbHelper(this);
-        PeriodolistDbHelper periodoHelper = new PeriodolistDbHelper(this);
-        MaterialistDbHelper materiaHelper = new MaterialistDbHelper(this);
-        TipLinklistDbHelper tipLinkHelper = new TipLinklistDbHelper(this);
-        LinklistDbHelper linkHelper = new LinklistDbHelper(this);
-
         /****Curso****/
-        myDb = cursoHelper.getWritableDatabase();
-        Util.insertCurso(myDb);
-        Cursor c_curso = getCurso();
+        Util.insertCurso(cursoDb);
+        Cursor c_curso = getAllCursos();
 
-        Curso curso;
+        ArrayList<Curso> cursos = new ArrayList<Curso>();
         try {
             c_curso.moveToFirst();
-            curso = new Curso(
+            Curso curso = new Curso(
                     c_curso.getInt(c_curso.getColumnIndex(CursolistCotract.CursolistEntry._ID)),
                     c_curso.getString(c_curso.getColumnIndex(CursolistCotract.CursolistEntry.COLUMN_CURSO_NAME))
             );
+
+            cursos.add(curso);
 
         } finally {
             c_curso.close();
         }
 
         /****Períodos****/
-        myDb = periodoHelper.getWritableDatabase();
-        Util.insertPeriodo(myDb, curso.getId());
-        Cursor c_periodos = getPeriodosOfCurso(curso.getId());
+        Util.insertPeriodo(periodoDb, cursos.get(0).getId());
+        Cursor c_periodos = getAllPeriodosOfCurso(cursos.get(0).getId());
 
         try {
             for(c_periodos.moveToFirst(); !c_periodos.isAfterLast(); c_periodos.moveToNext()) {
@@ -212,27 +344,26 @@ public class NavigationActivity extends AppCompatActivity {
                         c_periodos.getInt(c_periodos.getColumnIndex(PeriodolistContract.PeriodolistEntry.COLUMN_PERIODO_NUM)),
                         c_periodos.getInt(c_periodos.getColumnIndex(PeriodolistContract.PeriodolistEntry.COLUMN_FK_CURSO))
                 );
-                curso.addPeriodo(periodo);
+                cursos.get(0).addPeriodo(periodo);
             }
         } finally {
             c_periodos.close();
         }
 
         /****Matérias****/
-        myDb = materiaHelper.getWritableDatabase();
-        Util.insertMateria(myDb, new int[]{
-                curso.getPeriodos().get(0).getId(),
-                curso.getPeriodos().get(1).getId(),
-                curso.getPeriodos().get(2).getId(),
-                curso.getPeriodos().get(3).getId(),
-                curso.getPeriodos().get(4).getId(),
-                curso.getPeriodos().get(5).getId(),
-                curso.getPeriodos().get(6).getId(),
-                curso.getPeriodos().get(7).getId()
+        Util.insertMateria(materiaDb, new int[]{
+                cursos.get(0).getPeriodos().get(0).getId(),
+                cursos.get(0).getPeriodos().get(1).getId(),
+                cursos.get(0).getPeriodos().get(2).getId(),
+                cursos.get(0).getPeriodos().get(3).getId(),
+                cursos.get(0).getPeriodos().get(4).getId(),
+                cursos.get(0).getPeriodos().get(5).getId(),
+                cursos.get(0).getPeriodos().get(6).getId(),
+                cursos.get(0).getPeriodos().get(7).getId()
         });
         Cursor c_materias;
 
-        for(Periodo periodo: curso.getPeriodos()){
+        for(Periodo periodo: cursos.get(0).getPeriodos()){
             c_materias = getAllMateriasOfPeriodo(periodo.getId());
             try {
                 for(c_materias.moveToFirst(); !c_materias.isAfterLast(); c_materias.moveToNext()) {
@@ -244,20 +375,75 @@ public class NavigationActivity extends AppCompatActivity {
 
                     periodo.addMateria(materia);
                 }
-            }catch(Exception e){
+            } finally {
                 c_materias.close();
             }
         }
 
         /****Tipo Links****/
-        myDb = tipLinkHelper.getWritableDatabase();
-        Util.insertTipLink(myDb);
+        Util.insertTipLink(tipLinkDb);
+        Cursor c_tipLink;
+        ArrayList<TipoLink> tipoLinks = new ArrayList<TipoLink>();
 
-        return curso;
+        c_tipLink = getAllTipLinks();
+        try {
+            for(c_tipLink.moveToFirst(); !c_tipLink.isAfterLast(); c_tipLink.moveToNext()) {
+                TipoLink tipoLink = new TipoLink(
+                        c_tipLink.getInt(c_tipLink.getColumnIndex(TipLinklistContract.TipLinklistEntry._ID)),
+                        c_tipLink.getString(c_tipLink.getColumnIndex(TipLinklistContract.TipLinklistEntry.COLUMN_TIPO_LINK_NAME)),
+                        c_tipLink.getString(c_tipLink.getColumnIndex(TipLinklistContract.TipLinklistEntry.COLUMN_TIPO_LINK_ALIAS))
+                );
+
+                tipoLinks.add(tipoLink);
+            }
+        } finally {
+            c_tipLink.close();
+        }
+
+        this.tipoLinks = tipoLinks;
+
+        Util.insertLink(linkDb, new int[]{
+                cursos.get(0).getPeriodos().get(0).getMaterias().get(0).getId(),
+                cursos.get(0).getPeriodos().get(0).getMaterias().get(1).getId(),
+                cursos.get(0).getPeriodos().get(0).getMaterias().get(2).getId(),
+                cursos.get(0).getPeriodos().get(0).getMaterias().get(3).getId(),
+                cursos.get(0).getPeriodos().get(0).getMaterias().get(4).getId()
+        }, new int[]{
+                tipoLinks.get(0).getId(),
+                tipoLinks.get(1).getId(),
+                tipoLinks.get(2).getId()
+        });
+        Cursor c_link;
+
+        for(Periodo periodo: cursos.get(0).getPeriodos()){
+            for(Materia materia: periodo.getMaterias()){
+                for(TipoLink tipoLink: tipoLinks){
+                    c_link = getAllLinksOfMateriaAndTipo(materia.getId(), tipoLink.getId());
+                    try {
+                        for(c_link.moveToFirst(); !c_link.isAfterLast(); c_link.moveToNext()) {
+
+                            Link link = new Link(
+                                    c_link.getInt(c_link.getColumnIndex(LinklistContract.LinklistEntry._ID)),
+                                    c_link.getString(c_link.getColumnIndex(LinklistContract.LinklistEntry.COLUMN_LINK_NOME)),
+                                    c_link.getString(c_link.getColumnIndex(LinklistContract.LinklistEntry.COLUMN_LINK_URL)),
+                                    c_link.getInt(c_link.getColumnIndex(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA)),
+                                    c_link.getInt(c_link.getColumnIndex(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK))
+                            );
+
+                            materia.getLinks().add(link);
+                        }
+                    } finally {
+                        c_link.close();
+                    }
+                }
+            }
+        }
+
+        return cursos.get(0);
     }
 
-    private Cursor getCurso(){
-        return myDb.query(
+    private Cursor getAllCursos(){
+        return cursoDb.query(
                 CursolistCotract.CursolistEntry.TABLE_NAME,
                 null,
                 null,
@@ -268,8 +454,8 @@ public class NavigationActivity extends AppCompatActivity {
         );
     }
 
-    private Cursor getPeriodosOfCurso(int curso_id){
-        return myDb.query(
+    private Cursor getAllPeriodosOfCurso(int curso_id){
+        return periodoDb.query(
                 PeriodolistContract.PeriodolistEntry.TABLE_NAME,
                 new String[]{
                         PeriodolistContract.PeriodolistEntry._ID,
@@ -284,8 +470,20 @@ public class NavigationActivity extends AppCompatActivity {
         );
     }
 
+    private Cursor getMateria(int id){
+        return materiaDb.query(
+                MaterialistContract.MaterialistEntry.TABLE_NAME,
+                new String[]{MaterialistContract.MaterialistEntry.COLUMN_MATERIA_NAME},
+                MaterialistContract.MaterialistEntry._ID + "=?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                MaterialistContract.MaterialistEntry.COLUMN_MATERIA_NAME
+        );
+    }
+
     private Cursor getAllMateriasOfPeriodo(int id_periodo){
-        return myDb.query(
+        return materiaDb.query(
                 MaterialistContract.MaterialistEntry.TABLE_NAME,
                 new String[]{
                         MaterialistContract.MaterialistEntry._ID,
@@ -300,8 +498,23 @@ public class NavigationActivity extends AppCompatActivity {
         );
     }
 
+    private Cursor getTipLinkByAlias(String alias){
+        return tipLinkDb.query(
+                TipLinklistContract.TipLinklistEntry.TABLE_NAME,
+                new String[]{
+                        TipLinklistContract.TipLinklistEntry._ID,
+                        TipLinklistContract.TipLinklistEntry.COLUMN_TIPO_LINK_NAME
+                },
+                TipLinklistContract.TipLinklistEntry.COLUMN_TIPO_LINK_ALIAS + "=?",
+                new String[]{alias.toUpperCase()},
+                null,
+                null,
+                TipLinklistContract.TipLinklistEntry._ID
+        );
+    }
+
     private Cursor getAllTipLinks(){
-        return myDb.query(
+        return tipLinkDb.query(
                 TipLinklistContract.TipLinklistEntry.TABLE_NAME,
                 null,
                 null,
@@ -312,12 +525,19 @@ public class NavigationActivity extends AppCompatActivity {
         );
     }
 
-    private Cursor getAllLinks(){
-        return myDb.query(
+    private Cursor getAllLinksOfMateriaAndTipo(int id_materia, int id_tipoLink){
+        return linkDb.query(
                 LinklistContract.LinklistEntry.TABLE_NAME,
-                null,
-                null,
-                null,
+                new String[]{
+                        LinklistContract.LinklistEntry._ID,
+                        LinklistContract.LinklistEntry.COLUMN_LINK_NOME,
+                        LinklistContract.LinklistEntry.COLUMN_LINK_URL,
+                        LinklistContract.LinklistEntry.COLUMN_FK_MATERIA,
+                        LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK
+                },
+                LinklistContract.LinklistEntry.COLUMN_FK_MATERIA + "=? AND " +
+                        LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK + "=?",
+                new String[]{String.valueOf(id_materia), String.valueOf(id_tipoLink)},
                 null,
                 null,
                 LinklistContract.LinklistEntry._ID
