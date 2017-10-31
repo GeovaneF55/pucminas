@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.geovane.divulgar.Model.TipoLink;
 import com.example.geovane.divulgar.R;
@@ -18,8 +19,9 @@ import java.util.List;
  * Created by geovane on 24/10/17.
  */
 
-public class LinklistAdapter extends RecyclerView.Adapter<LinklistAdapter.LinkViewHolder> {
+public class LinklistAdapter extends RecyclerView.Adapter<LinklistAdapter.LinkViewHolder>{
 
+    private final View.OnClickListener mOnClickListener = new MyOnClickListener();
     private Context mContext;
 // TODO (8) Add a new local variable mCount to store the count of items to be displayed in the recycler view
     private Cursor mCursor;
@@ -43,6 +45,7 @@ public class LinklistAdapter extends RecyclerView.Adapter<LinklistAdapter.LinkVi
         // Get the RecyclerView item layout
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.link_list_item, parent, false);
+        view.setOnClickListener(mOnClickListener);
         return new LinkViewHolder(view);
     }
 
@@ -55,10 +58,14 @@ public class LinklistAdapter extends RecyclerView.Adapter<LinklistAdapter.LinkVi
         String nome = mCursor.getString(mCursor.getColumnIndex(LinklistContract.LinklistEntry.COLUMN_LINK_NOME));
         String url = mCursor.getString(mCursor.getColumnIndex(LinklistContract.LinklistEntry.COLUMN_LINK_URL));
 
-        holder.urlImgView.setText(tipoLink);
-        holder.nomeTextView.setText(nome);
-        holder.urlTextView.setText(url);
         holder.itemView.setTag(id);
+        holder.itemView.setTag(R.id.img_url, tipoLink);
+        holder.itemView.setTag(R.id.txt_nome, nome);
+        holder.itemView.setTag(R.id.txt_url, url);
+
+        holder.urlImgView.setText(holder.itemView.getTag(R.id.img_url).toString());
+        holder.nomeTextView.setText(holder.itemView.getTag(R.id.txt_nome).toString());
+        holder.urlTextView.setText(holder.itemView.getTag(R.id.txt_url).toString());
     }
 
     // TODO (11) Modify the getItemCount to return the mCount value rather than 0
@@ -71,7 +78,6 @@ public class LinklistAdapter extends RecyclerView.Adapter<LinklistAdapter.LinkVi
         this.mCursor = cursor;
         this.tipoLink = tipoLink;
     }
-
 
     /**
      * Inner class to hold the views needed to display a single item in the recycler-view
