@@ -51,10 +51,14 @@ public class LinklistAdapter extends RecyclerView.Adapter<LinklistAdapter.LinkVi
         if(!mCursor.moveToPosition(position)){
             return;
         }
-        String url = mCursor.getString(mCursor.getColumnIndex(LinklistContract.LinklistEntry.COLUMN_LINK_NOME));
+        long id = mCursor.getLong(mCursor.getColumnIndex(LinklistContract.LinklistEntry._ID));
+        String nome = mCursor.getString(mCursor.getColumnIndex(LinklistContract.LinklistEntry.COLUMN_LINK_NOME));
+        String url = mCursor.getString(mCursor.getColumnIndex(LinklistContract.LinklistEntry.COLUMN_LINK_URL));
 
         holder.urlImgView.setText(tipoLink);
+        holder.nomeTextView.setText(nome);
         holder.urlTextView.setText(url);
+        holder.itemView.setTag(id);
     }
 
     // TODO (11) Modify the getItemCount to return the mCount value rather than 0
@@ -76,6 +80,7 @@ public class LinklistAdapter extends RecyclerView.Adapter<LinklistAdapter.LinkVi
 
         // Will display the url
         TextView urlImgView;
+        TextView nomeTextView;
         TextView urlTextView;
 
         /**
@@ -88,6 +93,7 @@ public class LinklistAdapter extends RecyclerView.Adapter<LinklistAdapter.LinkVi
         public LinkViewHolder(View itemView) {
             super(itemView);
             urlImgView = (TextView) itemView.findViewById(R.id.img_url);
+            nomeTextView = (TextView) itemView.findViewById(R.id.txt_nome);
             urlTextView = (TextView) itemView.findViewById(R.id.txt_url);
         }
     }

@@ -8,27 +8,27 @@ import java.util.ArrayList;
  */
 
 public class Periodo implements Serializable {
-    private int id;
+    private long id;
     private int periodo;
-    private int id_curso;
+    private long id_curso;
     private ArrayList<Materia> materias;
 
     public Periodo(int periodo) {
         this(1, periodo, 1);
     }
 
-    public Periodo(int id, int periodo, int id_curso) {
+    public Periodo(long id, int periodo, long id_curso) {
         this.id = id;
         this.periodo = periodo;
         this.id_curso = id_curso;
         this.materias = new ArrayList<Materia>();
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -40,11 +40,11 @@ public class Periodo implements Serializable {
         this.periodo = periodo;
     }
 
-    public int getId_curso() {
+    public long getId_curso() {
         return id_curso;
     }
 
-    public void setId_curso(int id_curso) {
+    public void setId_curso(long id_curso) {
         this.id_curso = id_curso;
     }
 

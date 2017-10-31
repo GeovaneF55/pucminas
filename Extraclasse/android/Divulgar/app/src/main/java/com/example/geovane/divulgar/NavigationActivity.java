@@ -1,6 +1,7 @@
 package com.example.geovane.divulgar;
 
 import android.app.DialogFragment;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -16,6 +17,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,8 +57,13 @@ public class NavigationActivity extends AppCompatActivity implements MyDialogFra
 
     public Curso curso;
     public ArrayList<TipoLink> tipoLinks;
-    public int idMateria;
-    public int idTipoLink;
+    public long idMateria;
+    public long idTipoLink;
+
+    public int indexCurso;
+    public int indexPeriodo;
+    public int indexMateria;
+    public int indexTipoLinks;
 
     private Menu mOptionsMenu;
     private LinklistAdapter mAdapter;
@@ -118,12 +126,48 @@ public class NavigationActivity extends AppCompatActivity implements MyDialogFra
 
         curso = populateCurso();
 
-        Materia materia = curso.getPeriodos().get(0).getMaterias().get(0);
+        indexCurso = 0;
+        indexPeriodo = 0;
+        indexMateria = 0;
+        indexTipoLinks = 0;
+
+        Materia materia = curso.getPeriodos().get(indexPeriodo).getMaterias().get(indexMateria);
 
         idMateria = materia.getId();
-        idTipoLink = tipoLinks.get(0).getId();
+        idTipoLink = tipoLinks.get(indexTipoLinks).getId();
 
         getSupportActionBar().setTitle(materia.getNomeMateria());
+
+        RecyclerView linkListRecyclerView;
+        linkListRecyclerView = (RecyclerView) this.findViewById(R.id.lista);
+        linkListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        Cursor links = getAllLinksOfMateriaAndTipo(idMateria, idTipoLink);
+        String alias = "V";
+        for(TipoLink tipoLink:tipoLinks){
+            if(tipoLink.getId() == idTipoLink){
+                alias = tipoLink.getAliasTipo();
+            }
+        }
+
+        mAdapter = new LinklistAdapter(this, links, alias);
+
+        linkListRecyclerView.setAdapter(mAdapter);
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                long id = (long) viewHolder.itemView.getTag();
+                removeLink(id);
+                curso.getPeriodos().get(indexPeriodo).getMaterias().get(indexMateria).removeLinks(findLink(id));
+                updateData();
+            }
+        }).attachToRecyclerView(linkListRecyclerView);
     }
 
     @Override
@@ -151,6 +195,13 @@ public class NavigationActivity extends AppCompatActivity implements MyDialogFra
                 try {
                     tipLink.moveToFirst();
                     idTipoLink = tipLink.getInt(tipLink.getColumnIndex(TipLinklistContract.TipLinklistEntry._ID));
+                    if(alias == "V"){
+                        indexTipoLinks = 0;
+                    } else if(alias == "P"){
+                        indexTipoLinks = 1;
+                    } else if(alias == "L"){
+                        indexTipoLinks = 2;
+                    }
                     updateData();
                 } finally {
                     tipLink.close();
@@ -169,28 +220,16 @@ public class NavigationActivity extends AppCompatActivity implements MyDialogFra
 
         addDrawerItems();
         setupDrawer();
-
-        RecyclerView linkListRecyclerView;
-        linkListRecyclerView = (RecyclerView) this.findViewById(R.id.lista);
-        linkListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        Cursor links = getAllLinksOfMateriaAndTipo(idMateria, idTipoLink);
-        String alias = "V";
-        for(TipoLink tipoLink:tipoLinks){
-            if(tipoLink.getId() == idTipoLink){
-                alias = tipoLink.getAliasTipo();
-            }
-        }
-
-        mAdapter = new LinklistAdapter(this, links, alias);
-
-        linkListRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog, Object object) {
         if (object instanceof Link) {
-            // TODO
+            long id = addLink((Link)object);
+            ((Link) object).setId(id);
+            curso.getPeriodos().get(indexPeriodo).getMaterias().get(indexMateria).addLinks((Link)object);
+
+            updateData();
         }
     }
 
@@ -256,14 +295,13 @@ public class NavigationActivity extends AppCompatActivity implements MyDialogFra
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 Object[] objects = (Object[])parent.getExpandableListAdapter().getChild(groupPosition, childPosition);
+
                 idMateria = Integer.parseInt(objects[2].toString());
 
-                updateData();
-                /*Cursor links = getAllLinksOfMateriaAndTipo(idMateria, idTipoLink);
-                mAdapter.setItems(links);
-                mAdapter.notifyDataSetChanged();
+                indexPeriodo = groupPosition;
+                indexMateria = findMateria();
 
-                getSupportActionBar().setTitle(objects[1].toString());*/
+                updateData();
 
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 return false;
@@ -290,6 +328,24 @@ public class NavigationActivity extends AppCompatActivity implements MyDialogFra
 
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.addDrawerListener(mDrawerToggle);
+    }
+
+    public int findMateria() {
+        for(Materia materia : curso.getPeriodos().get(indexPeriodo).getMaterias()) {
+            if(materia.getId() == idMateria) {
+                return curso.getPeriodos().get(indexPeriodo).getMaterias().indexOf(materia);
+            }
+        }
+        return 0;
+    }
+
+    public Link findLink(long id) {
+        for(Link link : curso.getPeriodos().get(indexPeriodo).getMaterias().get(indexMateria).getLinks()) {
+            if(link.getId() == id) {
+                return link;
+            }
+        }
+        return null;
     }
 
     public void updateData(){
@@ -334,8 +390,8 @@ public class NavigationActivity extends AppCompatActivity implements MyDialogFra
         }
 
         /****Períodos****/
-        Util.insertPeriodo(periodoDb, cursos.get(0).getId());
-        Cursor c_periodos = getAllPeriodosOfCurso(cursos.get(0).getId());
+        Util.insertPeriodo(periodoDb, cursos.get(indexCurso).getId());
+        Cursor c_periodos = getAllPeriodosOfCurso(cursos.get(indexCurso).getId());
 
         try {
             for(c_periodos.moveToFirst(); !c_periodos.isAfterLast(); c_periodos.moveToNext()) {
@@ -344,26 +400,26 @@ public class NavigationActivity extends AppCompatActivity implements MyDialogFra
                         c_periodos.getInt(c_periodos.getColumnIndex(PeriodolistContract.PeriodolistEntry.COLUMN_PERIODO_NUM)),
                         c_periodos.getInt(c_periodos.getColumnIndex(PeriodolistContract.PeriodolistEntry.COLUMN_FK_CURSO))
                 );
-                cursos.get(0).addPeriodo(periodo);
+                cursos.get(indexCurso).addPeriodo(periodo);
             }
         } finally {
             c_periodos.close();
         }
 
         /****Matérias****/
-        Util.insertMateria(materiaDb, new int[]{
-                cursos.get(0).getPeriodos().get(0).getId(),
-                cursos.get(0).getPeriodos().get(1).getId(),
-                cursos.get(0).getPeriodos().get(2).getId(),
-                cursos.get(0).getPeriodos().get(3).getId(),
-                cursos.get(0).getPeriodos().get(4).getId(),
-                cursos.get(0).getPeriodos().get(5).getId(),
-                cursos.get(0).getPeriodos().get(6).getId(),
-                cursos.get(0).getPeriodos().get(7).getId()
+        Util.insertMateria(materiaDb, new long[]{
+                cursos.get(indexCurso).getPeriodos().get(0).getId(),
+                cursos.get(indexCurso).getPeriodos().get(1).getId(),
+                cursos.get(indexCurso).getPeriodos().get(2).getId(),
+                cursos.get(indexCurso).getPeriodos().get(3).getId(),
+                cursos.get(indexCurso).getPeriodos().get(4).getId(),
+                cursos.get(indexCurso).getPeriodos().get(5).getId(),
+                cursos.get(indexCurso).getPeriodos().get(6).getId(),
+                cursos.get(indexCurso).getPeriodos().get(7).getId()
         });
         Cursor c_materias;
 
-        for(Periodo periodo: cursos.get(0).getPeriodos()){
+        for(Periodo periodo: cursos.get(indexCurso).getPeriodos()){
             c_materias = getAllMateriasOfPeriodo(periodo.getId());
             try {
                 for(c_materias.moveToFirst(); !c_materias.isAfterLast(); c_materias.moveToNext()) {
@@ -402,20 +458,20 @@ public class NavigationActivity extends AppCompatActivity implements MyDialogFra
 
         this.tipoLinks = tipoLinks;
 
-        Util.insertLink(linkDb, new int[]{
-                cursos.get(0).getPeriodos().get(0).getMaterias().get(0).getId(),
-                cursos.get(0).getPeriodos().get(0).getMaterias().get(1).getId(),
-                cursos.get(0).getPeriodos().get(0).getMaterias().get(2).getId(),
-                cursos.get(0).getPeriodos().get(0).getMaterias().get(3).getId(),
-                cursos.get(0).getPeriodos().get(0).getMaterias().get(4).getId()
-        }, new int[]{
+        Util.insertLink(linkDb, new long[]{
+                cursos.get(indexCurso).getPeriodos().get(0).getMaterias().get(0).getId(),
+                cursos.get(indexCurso).getPeriodos().get(0).getMaterias().get(1).getId(),
+                cursos.get(indexCurso).getPeriodos().get(0).getMaterias().get(2).getId(),
+                cursos.get(indexCurso).getPeriodos().get(0).getMaterias().get(3).getId(),
+                cursos.get(indexCurso).getPeriodos().get(0).getMaterias().get(4).getId()
+        }, new long[]{
                 tipoLinks.get(0).getId(),
                 tipoLinks.get(1).getId(),
                 tipoLinks.get(2).getId()
         });
         Cursor c_link;
 
-        for(Periodo periodo: cursos.get(0).getPeriodos()){
+        for(Periodo periodo: cursos.get(indexCurso).getPeriodos()){
             for(Materia materia: periodo.getMaterias()){
                 for(TipoLink tipoLink: tipoLinks){
                     c_link = getAllLinksOfMateriaAndTipo(materia.getId(), tipoLink.getId());
@@ -439,7 +495,7 @@ public class NavigationActivity extends AppCompatActivity implements MyDialogFra
             }
         }
 
-        return cursos.get(0);
+        return cursos.get(indexCurso);
     }
 
     private Cursor getAllCursos(){
@@ -454,7 +510,7 @@ public class NavigationActivity extends AppCompatActivity implements MyDialogFra
         );
     }
 
-    private Cursor getAllPeriodosOfCurso(int curso_id){
+    private Cursor getAllPeriodosOfCurso(long curso_id){
         return periodoDb.query(
                 PeriodolistContract.PeriodolistEntry.TABLE_NAME,
                 new String[]{
@@ -470,7 +526,7 @@ public class NavigationActivity extends AppCompatActivity implements MyDialogFra
         );
     }
 
-    private Cursor getMateria(int id){
+    private Cursor getMateria(long id){
         return materiaDb.query(
                 MaterialistContract.MaterialistEntry.TABLE_NAME,
                 new String[]{MaterialistContract.MaterialistEntry.COLUMN_MATERIA_NAME},
@@ -482,7 +538,7 @@ public class NavigationActivity extends AppCompatActivity implements MyDialogFra
         );
     }
 
-    private Cursor getAllMateriasOfPeriodo(int id_periodo){
+    private Cursor getAllMateriasOfPeriodo(long id_periodo){
         return materiaDb.query(
                 MaterialistContract.MaterialistEntry.TABLE_NAME,
                 new String[]{
@@ -525,7 +581,7 @@ public class NavigationActivity extends AppCompatActivity implements MyDialogFra
         );
     }
 
-    private Cursor getAllLinksOfMateriaAndTipo(int id_materia, int id_tipoLink){
+    private Cursor getAllLinksOfMateriaAndTipo(long id_materia, long id_tipoLink){
         return linkDb.query(
                 LinklistContract.LinklistEntry.TABLE_NAME,
                 new String[]{
@@ -542,6 +598,24 @@ public class NavigationActivity extends AppCompatActivity implements MyDialogFra
                 null,
                 LinklistContract.LinklistEntry._ID
         );
+    }
+
+    private long addLink(Link link){
+        link.setId_Materia(idMateria);
+        link.setId_TipLink(idTipoLink);
+
+        ContentValues cv = new ContentValues();
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_NOME, link.getNome());
+        cv.put(LinklistContract.LinklistEntry.COLUMN_LINK_URL, link.getUrl());
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_MATERIA, link.getId_Materia());
+        cv.put(LinklistContract.LinklistEntry.COLUMN_FK_TIP_LINK, link.getId_TipLink());
+        return linkDb.insert(LinklistContract.LinklistEntry.TABLE_NAME,null, cv);
+    }
+
+    private boolean removeLink(long id){
+        return linkDb.delete(LinklistContract.LinklistEntry.TABLE_NAME,
+                LinklistContract.LinklistEntry._ID + "=" + id,
+                null) > 0;
     }
 
     public void setTextCurso(Curso curso) {

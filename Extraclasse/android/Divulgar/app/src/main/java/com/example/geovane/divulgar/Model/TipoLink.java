@@ -5,7 +5,7 @@ package com.example.geovane.divulgar.Model;
  */
 
 public class TipoLink {
-    private int id;
+    private long id;
     private String tipo;
     private String aliasTipo;
 
@@ -13,18 +13,18 @@ public class TipoLink {
         this(1, tipo, aliasTipo);
     }
 
-    public TipoLink(int id, String tipo, String aliasTipo) {
+    public TipoLink(long id, String tipo, String aliasTipo) {
         this.id = id;
         this.tipo = tipo;
         this.aliasTipo = aliasTipo;
     }
 
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

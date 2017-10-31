@@ -8,17 +8,17 @@ import java.net.URISyntaxException;
  */
 
 public class Link {
-    private int id;
+    private long id;
     private String nome;
     private URI url;
-    private int id_Materia;
-    private int id_TipLink;
+    private long id_Materia;
+    private long id_TipLink;
 
     public Link(String nome, String url) {
         this(1, nome, url, 1, 1);
     }
 
-    public Link(int id, String nome, String url, int id_Materia, int id_TipLink) {
+    public Link(long id, String nome, String url, long id_Materia, long id_TipLink) {
         this.id = id;
         this.nome = nome;
         try {
@@ -30,11 +30,11 @@ public class Link {
         this.id_TipLink = id_TipLink;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -46,8 +46,8 @@ public class Link {
         this.nome = nome;
     }
 
-    public URI getUrl() {
-        return url;
+    public String getUrl() {
+        return url.toString();
     }
 
     public void setUrl(String url) {
@@ -58,19 +58,19 @@ public class Link {
         }
     }
 
-    public int getId_Materia() {
+    public long getId_Materia() {
         return id_Materia;
     }
 
-    public void setId_Materia(int id_Materia) {
+    public void setId_Materia(long id_Materia) {
         this.id_Materia = id_Materia;
     }
 
-    public int getId_TipLink() {
+    public long getId_TipLink() {
         return id_TipLink;
     }
 
-    public void setId_TipLink(int id_TipLink) {
+    public void setId_TipLink(long id_TipLink) {
         this.id_TipLink = id_TipLink;
     }
 }

@@ -14,19 +14,19 @@ import java.util.List;
 
 public class Util {
 
-    private static boolean keepDb = false;
+    private static boolean keepDb = true;
 
     public static void insertCurso(SQLiteDatabase db){
         if(db == null){
             return;
         }
 
-        String count = "SELECT count(*) FROM " + CursolistCotract.CursolistEntry.TABLE_NAME;
-        Cursor mcursor = db.rawQuery(count, null);
-        mcursor.moveToFirst();
-        int icount = mcursor.getInt(0);
-        mcursor.close();
-        if(keepDb && icount>0)
+//        String count = "SELECT count(*) FROM " + CursolistCotract.CursolistEntry.TABLE_NAME;
+//        Cursor mcursor = db.rawQuery(count, null);
+//        mcursor.moveToFirst();
+//        int icount = mcursor.getInt(0);
+//        mcursor.close();
+        if(keepDb)
             return;
 
         //create a list of fake guests
@@ -57,17 +57,17 @@ public class Util {
         }
     }
 
-    public static void insertPeriodo(SQLiteDatabase db, int curso_id){
+    public static void insertPeriodo(SQLiteDatabase db, long curso_id){
         if(db == null){
             return;
         }
 
-        String count = "SELECT count(*) FROM " + PeriodolistContract.PeriodolistEntry.TABLE_NAME;
-        Cursor mcursor = db.rawQuery(count, null);
-        mcursor.moveToFirst();
-        int icount = mcursor.getInt(0);
-        mcursor.close();
-        if(keepDb && icount>0)
+//        String count = "SELECT count(*) FROM " + PeriodolistContract.PeriodolistEntry.TABLE_NAME;
+//        Cursor mcursor = db.rawQuery(count, null);
+//        mcursor.moveToFirst();
+//        int icount = mcursor.getInt(0);
+//        mcursor.close();
+        if(keepDb)
             return;
 
         List<ContentValues> list = new ArrayList<ContentValues>();
@@ -133,17 +133,17 @@ public class Util {
         }
     }
 
-    public static void insertMateria(SQLiteDatabase db, int[] periodo_id){
+    public static void insertMateria(SQLiteDatabase db, long[] periodo_id){
         if(db == null){
             return;
         }
 
-        String count = "SELECT count(*) FROM " + MaterialistContract.MaterialistEntry.TABLE_NAME;
-        Cursor mcursor = db.rawQuery(count, null);
-        mcursor.moveToFirst();
-        int icount = mcursor.getInt(0);
-        mcursor.close();
-        if(keepDb && icount>0)
+//        String count = "SELECT count(*) FROM " + MaterialistContract.MaterialistEntry.TABLE_NAME;
+//        Cursor mcursor = db.rawQuery(count, null);
+//        mcursor.moveToFirst();
+//        int icount = mcursor.getInt(0);
+//        mcursor.close();
+        if(keepDb)
             return;
 
         List<ContentValues> list = new ArrayList<ContentValues>();
@@ -452,12 +452,12 @@ public class Util {
             return;
         }
 
-        String count = "SELECT count(*) FROM " + TipLinklistContract.TipLinklistEntry.TABLE_NAME;
-        Cursor mcursor = db.rawQuery(count, null);
-        mcursor.moveToFirst();
-        int icount = mcursor.getInt(0);
-        mcursor.close();
-        if(keepDb && icount>0)
+//        String count = "SELECT count(*) FROM " + TipLinklistContract.TipLinklistEntry.TABLE_NAME;
+//        Cursor mcursor = db.rawQuery(count, null);
+//        mcursor.moveToFirst();
+//        int icount = mcursor.getInt(0);
+//        mcursor.close();
+        if(keepDb)
             return;
 
         List<ContentValues> list = new ArrayList<ContentValues>();
@@ -498,16 +498,16 @@ public class Util {
         }
     }
 
-    public static void insertLink(SQLiteDatabase db, int[] materia_id, int[] tiplink_id){
+    public static void insertLink(SQLiteDatabase db, long[] materia_id, long[] tiplink_id){
         if(db == null){
             return;
         }
 
-        String count = "SELECT count(*) FROM " + LinklistContract.LinklistEntry.TABLE_NAME;
-        Cursor mcursor = db.rawQuery(count, null);
-        mcursor.moveToFirst();
-        int icount = mcursor.getInt(0);
-        if(keepDb && icount>0)
+//        String count = "SELECT count(*) FROM " + LinklistContract.LinklistEntry.TABLE_NAME;
+//        Cursor mcursor = db.rawQuery(count, null);
+//        mcursor.moveToFirst();
+//        int icount = mcursor.getInt(0);
+        if(keepDb)
             return;
 
         List<ContentValues> list = new ArrayList<ContentValues>();

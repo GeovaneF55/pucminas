@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 
 public class Curso implements Serializable {
-    private int id;
+    private long id;
     private String nomeCurso;
     private ArrayList<Periodo> periodos;
 
@@ -16,17 +16,17 @@ public class Curso implements Serializable {
         this(1, nomeCurso);
     }
 
-    public Curso(int id, String nomeCurso) {
+    public Curso(long id, String nomeCurso) {
         this.id = id;
         this.nomeCurso = nomeCurso;
         this.periodos = new ArrayList<Periodo>();
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

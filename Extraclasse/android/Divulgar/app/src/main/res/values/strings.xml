@@ -12,6 +12,7 @@
     <string name="links">Links</string>
 
     <string name="url">URL</string>
+    <string name="nome_item">URL_xx</string>
     <string name="url_item">[url_item]</string>
 
     <string name="link">Adicionar</string>
