@@ -1,0 +1,27 @@
+01 Visualizar Agenda (Aluno) - Fluxo Principal			- OK
+02 Visualizar Agenda (Instrutor) - Fluxo Principal		- OK
+03 Gerenciar Aula Em Grupo - Fluxo Principal			- OK
+04 Gerenciar Aula Em Grupo - Editar Aula			- OK
+05 Gerenciar Aula Em Grupo - Cadastrar Nova Aula		- OK
+06 Gerenciar Cliente - Fluxo Principal				- (Augusto pediu para não fazer poi iria alterar)
+07 Gerenciar Cliente - Editar Cliente				- (Augusto pediu para não fazer poi iria alterar)
+08 Gerenciar Cliente - Cadastrar Novo Cliente			- (Augusto pediu para não fazer poi iria alterar)
+09 Gerenciar Cliente - Registrar Pagamento			- (Augusto pediu para não fazer poi iria alterar)
+10 Gerenciar Instrutor - Fluxo Principal			- OK
+11 Gerenciar Instrutor - Editar Instrutor			- OK
+12 Gerenciar Instrutor - Cadastrar Novo Instrutor		- OK
+13 Gerenciar Recepcionista - Fluxo Principal			- OK
+14 Gerenciar Recepcionista - Editar Recepcionista 		- OK
+15 Gerenciar Recepcionista - Cadastrar Nova Recepcionista 	- OK
+16 Gerenciar Férias - Fluxo Principal				- OK
+17 Gerenciar Férias - Editar Férias				- (Falta a interface)
+18 Gerenciar Férias - Cadastrar Novas Férias			- (Falta a interface)
+19 Registrar Avaliação Física - Fluxo Principal			- OK
+19 Registrar Avaliação Física - Editar Avaliação Física		- OK
+19 Registrar Avaliação Física - Cadastrar Nova Avaliação Física	- OK
+20 Relatório Aluno - Fluxo Principal				- OK
+21 Relatório Aluno - Vizualizar					- OK
+22 Relatório Instrutor - Fluxo Principal			- OK
+23 Relatório Instrutor - Vizualizar				- OK
+24 Registrar Presença - Fluxo Principal				- OK
+25 Logar - Fluxo Principal					- OK
