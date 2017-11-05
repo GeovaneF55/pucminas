@@ -1,0 +1,127 @@
+Manhã - Trabalho Extra - Geovane Fonseca de Sousa Santos
+Nome: Geovane Fonseca de Sousa Santos
+Email do Professor: palharessexto@gmail.com
+
+Funções Numéricas
+1)
+Select ABS(valVei)
+  From HistEmplacamento;
+
+2)
+Select SIN(codPro * 3.14159265359/180)
+  From Proprietario;
+
+3)
+Select COS(codPro * 3.14159265359/180)
+  From Proprietario;
+
+4)
+Select TAN(codPro * 3.14159265359/180)
+  From Proprietario;
+
+5)
+Select SQRT(valVei)
+  From HistEmplacamento;
+
+6)
+Select MOD(valVei, 4)
+  From HistEmplacamento;
+
+7)
+Select POWER(valVei, 3)
+  From HistEmplacamento;
+
+8)
+Select LOG(10, valVei)
+  From HistEmplacamento;
+
+9)
+Select CEIL(valVei)
+  From HistEmplacamento;
+
+10)
+Select FLOOR(valVei)
+  From HistEmplacamento;
+
+11)
+Select ROUND(valVei, 1)
+  From HistEmplacamento;
+
+12)
+Select TRUNC(valVei, 1)
+  From HistEmplacamento;
+
+13)
+Select EXP(codPro)
+  From Proprietario;
+
+14)
+Select LN(codPro)
+  From Proprietario;
+
+Funções de caracteres retornando valores de caracteres
+15)
+Select CONCAT(nomMar, nomMod)
+  From Marca natural join Modelo;
+
+16)
+Select LOWER(nomMar)
+  From Marca;
+
+17)
+Select UPPER(nomMod)
+  From Modelo;
+
+18)
+Select REPLACE(nomMar,'a','aaa')
+  From Marca;
+
+19)
+Select SUBSTR(nomMar,'2','4')
+  From Marca;
+
+Funções de data e hora
+20)
+Select ADD_MONTHS(datIni, 1)
+  From HistEmplacamento;
+
+21)
+Select LAST_DAY(datIni)
+  From HistEmplacamento;
+
+22)
+Select NEXT_DAY(datIni, 'TUESDAY)
+  From HistEmplacamento;
+
+23)
+Select TO_CHAR(datIni, 'YYYY')
+  From HistEmplacamento;
+
+24)
+Select MONTHS_BETWEEN(datIni, datFim)
+  From HistEmplacamento;
+
+Funções Agregadas
+25)
+Select AVG(valVei)
+  From HistEmplacamento;
+
+26)
+Select MAX(valVei)
+  From HistEmplacamento;
+
+27)
+Select MIN(valVei)
+  From HistEmplacamento;
+
+28)
+Select SUM(valVei)
+  From HistEmplacamento;
+
+29)
+Select COUNT(codPro)
+  From HistEmplacamento;
+
+30)
+Select LAST(codPro)
+  From Proprietario;
