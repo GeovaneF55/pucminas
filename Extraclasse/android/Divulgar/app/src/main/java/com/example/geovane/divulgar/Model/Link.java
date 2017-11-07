@@ -26,7 +26,7 @@ public class Link {
         try {
             this.url = getVideoId(new java.net.URI(url).toString());
         } catch (URISyntaxException e) {
-            this.url = null;
+            this.url = url;
         }
         this.id_Materia = id_Materia;
         this.id_TipLink = id_TipLink;
@@ -56,7 +56,7 @@ public class Link {
         try {
             this.url = getVideoId(new java.net.URI(url).toString());
         } catch (URISyntaxException e) {
-            this.url =null;
+            this.url = url;
         }
     }
 
@@ -85,6 +85,6 @@ public class Link {
         if(matcher.find()){
             return matcher.group();
         }
-        return "";
+        return url;
     }
 }

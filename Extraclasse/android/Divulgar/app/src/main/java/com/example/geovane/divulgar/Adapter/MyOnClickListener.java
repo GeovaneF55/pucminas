@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.FileUriExposedException;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -49,10 +50,9 @@ public class MyOnClickListener implements View.OnClickListener {
         }
     }
 
-    public static void openPDF(Context context, String filename){
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/"+ filename);
+    public static void openPDF(Context context, String path){
         Intent target = new Intent(Intent.ACTION_VIEW);
-        target.setDataAndType(Uri.fromFile(file),"application/pdf");
+        target.setDataAndType(Uri.parse(path),"application/pdf");
         target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
         Intent intent = Intent.createChooser(target, "Open File");
@@ -60,8 +60,6 @@ public class MyOnClickListener implements View.OnClickListener {
             context.startActivity(intent);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(context, "Sem Activity", Toast.LENGTH_SHORT).show();
-        } catch (FileUriExposedException e){
-            Toast.makeText(context, "PDF não Funcionou", Toast.LENGTH_SHORT).show();
         }
     }
 
