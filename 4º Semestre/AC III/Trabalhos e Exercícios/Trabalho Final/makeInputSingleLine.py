@@ -62,9 +62,6 @@ for line in data:
 
     try:
         sort(listX, listY)
-
-        # print(listX)
-        # print(listY)
-        graph.makeGraph(listX, listY, param, tag)
+        graph.makeGraphSingleLine(listX, listY, param, tag)
     except ValueError:
         pass

@@ -3,8 +3,8 @@ import plotly.graph_objs as go
 
 import numpy as np
 
-# Gráfico
-def makeGraph(x, y, name, tag):
+# Gráfico de Uma linha
+def makeGraphSingleLine(x, y, name, tag):
 
     trace = go.Scatter(
         x = x,
@@ -21,6 +21,27 @@ def makeGraph(x, y, name, tag):
     py.offline.plot(fig, filename=name + ".html")
     input()
 
+# Gráfico de múltiplas linhas
+def makeGraphMultipleLines(listX, listY, name, tag, listDescr):
+    traces = []
+    for i in range(len(listX)):
+        trace = go.Scatter(
+            x = listX[i],
+            y = listY[i],
+            mode = "lines+markers",
+            name = listDescr[i]
+        )
+        traces.append(trace)
+
+    data = traces
+    layout = go.Layout(
+        title=tag,
+        showlegend=True
+    )
+    fig = go.Figure(data=data, layout=layout)
+    py.offline.plot(fig, filename=name + ".html")
+    input()
+
 if __name__ == "__main__":
     listX = []
     listY = []
@@ -32,4 +53,4 @@ if __name__ == "__main__":
         listX.append(int(x))
         listY.append(int(y))
 
-    makeGraph(listX, listY, name)
+    makeGraphSingleLine(listX, listY, name)
