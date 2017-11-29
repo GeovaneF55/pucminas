@@ -1,6 +1,20 @@
+import math
 import graficos as graph
 
-f = open('/home/geovane/Downloads/canneal_cacheline_stats.txt', 'r')
+from optparse import OptionParser
+
+parser = OptionParser()
+parser.add_option('-c', '--canneal', action='store_true',
+                  help='Use canneal program stats')
+(options, args) = parser.parse_args()
+
+f = None
+
+if options and options.canneal:
+    f = open('/home/geovane/Downloads/stats_to_use_canneal.txt', 'r')
+else:
+    f = open('/home/geovane/Downloads/stats_to_use_blackscholes.txt', 'r')
+
 data = f.read().split('Tag: ')
 
 def sort(listX, listY):
@@ -42,6 +56,7 @@ for line in data:
 
         leg = leg.strip()
 
+        x = math.log(float(x), 2)
         listX.append(x)
         listY.append(y)
 

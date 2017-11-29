@@ -1,0 +1,48 @@
+Tag: system.l2.tags.replacements
+	Diferenca: 0.33697469369059885
+	Parametros: sim=blackscholes, thread=1, l1d_size=16kB, l2_size=1024kB, l1d_assoc=32, l2_assoc=None, num_cpus=4_cacheline, cacheline_size=128
+		l2_assoc 32: 5111.0
+		l2_assoc 128: 5121.0
+		l2_assoc 512: 5290.0
+		l2_assoc 8: 6231.0
+		l2_assoc 2: 9265.0
+		l2_assoc 1: 12647.0
+Tag: system.l2.writebacks::total
+	Diferenca: 0.7319987867758568
+	Parametros: sim=blackscholes, thread=1, l1d_size=32kB, l2_size=1024kB, l1d_assoc=32, l2_assoc=None, num_cpus=4_cacheline, cacheline_size=32
+		l2_assoc 512: 1596.0
+		l2_assoc 32: 1804.0
+		l2_assoc 128: 1836.0
+		l2_assoc 8: 4677.0
+		l2_assoc 2: 8515.0
+		l2_assoc 1: 14542.0
+Tag: system.l2.writebacks::total
+	Diferenca: 0.7883528900478053
+	Parametros: sim=blackscholes, thread=1, l1d_size=64kB, l2_size=1024kB, l1d_assoc=1, l2_assoc=None, num_cpus=4_cacheline, cacheline_size=16
+		l2_assoc 128: 2370.0
+		l2_assoc 512: 2472.0
+		l2_assoc 32: 3829.0
+		l2_assoc 8: 6377.0
+		l2_assoc 2: 15945.0
+		l2_assoc 1: 24231.00
+Tag: system.l2.overall_hits::total
+	Diferenca: 0.4254498832364119
+	Parametros: sim=blackscholes, thread=1, l1d_size=16kB, l2_size=None, l1d_assoc=1, l2_assoc=32, num_cpus=4_cacheline, cacheline_size=32
+		l2_size 16kB: 32340.0
+		l2_size 64kB: 61767.0
+		l2_size 256kB: 97935.0
+		l2_size 1024kB: 135543.0
+Tag: system.cpu.dcache.tags.replacements
+	Diferenca: 0.37742326503971313
+	Parametros: sim=blackscholes, thread=1, l1d_size=16kB, l2_size=256kB, l1d_assoc=8, l2_assoc=2, num_cpus=4_cacheline, cacheline_size=None
+		cacheline_size 128: 32977.0
+		cacheline_size 64: 40469.0
+		cacheline_size 32: 61145.0
+		cacheline_size 16: 101351.0
+Tag: system.cpu.dcache.ReadReq_miss_rate::total
+	Diferenca: 0.3758685403030164
+	Parametros: sim=blackscholes, thread=1, l1d_size=64kB, l2_size=64kB, l1d_assoc=8, l2_assoc=2, num_cpus=4_cacheline, cacheline_size=None
+		cacheline_size 128: 0.029613
+		cacheline_size 64: 0.038564
+		cacheline_size 32: 0.058402
+		cacheline_size 16: 0.091891
