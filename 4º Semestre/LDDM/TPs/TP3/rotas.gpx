@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="MapSource 6.16.1" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-
+
+instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+
+<trk>
+<name>emulate</name>
+<trkseg>
+<trkpt lat="-33.91015" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:01Z</time></trkpt>
+<trkpt lat="-33.90998" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:02Z</time></trkpt>
+<trkpt lat="-33.90940" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:03Z</time></trkpt>
+<trkpt lat="-33.90910" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:04Z</time></trkpt>
+<trkpt lat="-33.90870" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:05Z</time></trkpt>
+<trkpt lat="-33.90830" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:06Z</time></trkpt>
+<trkpt lat="-33.90800" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:07Z</time></trkpt>
+<trkpt lat="-33.90760" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:08Z</time></trkpt>
+<trkpt lat="-33.90720" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:09Z</time></trkpt>
+<trkpt lat="-33.90690" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:10Z</time></trkpt>
+<trkpt lat="-33.90620" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:11Z</time></trkpt>
+<trkpt lat="-33.90560" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:12Z</time></trkpt>
+<trkpt lat="-33.90520" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:12Z</time></trkpt>
+<trkpt lat="-33.90480" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:12Z</time></trkpt>
+<trkpt lat="-33.90450" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:12Z</time></trkpt>
+<trkpt lat="-33.90410" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:12Z</time></trkpt>
+<trkpt lat="-33.90370" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:12Z</time></trkpt>
+<trkpt lat="-33.90340" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:12Z</time></trkpt>
+<trkpt lat="-33.90300" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:12Z</time></trkpt>
+<trkpt lat="-33.90280" lon="151.16772"><ele>800.000000</ele><time>2017-12-02T20:00:12Z</time></trkpt>
+</trkseg>
+</trk>
+</gpx>

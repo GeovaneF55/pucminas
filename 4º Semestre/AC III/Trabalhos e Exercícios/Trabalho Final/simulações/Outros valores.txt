@@ -1,0 +1,81 @@
+system.l2.tags.replacements
+    sim=blackscholes,
+        thread=1,
+        l1d_size=16kB,
+        l2_size=64kB,
+        l1d_assoc=32,
+        l2_assoc=None,
+        num_cpus=4_cacheline,
+        cacheline_size=128
+    sim=blackscholes,
+        thread=1,
+        l1d_size=16kB,
+        l2_size=1024kB,
+        l1d_assoc=32,
+        l2_assoc=None,
+        num_cpus=4_cacheline,
+        cacheline_size=128
+    sim=blackscholes,
+        thread=1,
+        l1d_size=16kB,
+        l2_size=256kB,
+        l1d_assoc=32,
+        l2_assoc=None,
+        num_cpus=4_cacheline,
+        cacheline_size=128
+
+system.l2.writebacks::total
+    sim=blackscholes,
+        thread=1,
+        l1d_size=32kB,
+        l2_size=1024kB,
+        l1d_assoc=32,
+        l2_assoc=None,
+        num_cpus=4_cacheline,
+        cacheline_size=32
+    sim=blackscholes,
+        thread=1,
+        l1d_size=32kB,
+        l2_size=512kB,
+        l1d_assoc=32,
+        l2_assoc=None,
+        num_cpus=4_cacheline,
+        cacheline_size=32
+    sim=blackscholes,
+        thread=1,
+        l1d_size=32kB,
+        l2_size=256kB,
+        l1d_assoc=32,
+        l2_assoc=None,
+        num_cpus=4_cacheline,
+        cacheline_size=32
+
+system.cpu.dcache.ReadReq_misses::total
+    sim=canneal,
+    thread=1,
+    l1d_size=128kB,
+    l2_size=1024kB,
+    l1d_assoc=128,
+    l2_assoc=2,
+    num_cpus=4_cacheline,
+    cacheline_size=None
+
+system.l2.overall_miss_rate::total
+    sim=canneal,
+    thread=1,
+    l1d_size=16kB,
+    l2_size=None,
+    l1d_assoc=1,
+    l2_assoc=32,
+    num_cpus=4_cacheline,
+    cacheline_size=128
+
+system.l2.tags.data_accesses
+    sim=canneal,
+    thread=1,
+    l1d_size=128kB,
+    l2_size=1024kB,
+    l1d_assoc=1,
+    l2_assoc=None,
+    num_cpus=4_cacheline,
+    cacheline_size=32

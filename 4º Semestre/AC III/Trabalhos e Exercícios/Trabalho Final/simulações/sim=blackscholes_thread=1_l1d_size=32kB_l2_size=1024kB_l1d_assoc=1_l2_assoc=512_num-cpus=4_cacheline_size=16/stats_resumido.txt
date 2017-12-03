@@ -1,0 +1,27 @@
+---------- Begin Simulation Statistics ----------
+sim_seconds                                  0.007192                       # Number of seconds simulated
+sim_ticks                                  7191692000                       # Number of ticks simulated
+system.cpu.dcache.tags.replacements            100635                       # number of replacements
+system.cpu.dcache.tags.total_refs              497397                       # Total number of references to valid blocks.
+system.cpu.dcache.tags.avg_refs              4.844005                       # Average number of references to valid blocks.
+system.cpu.dcache.tags.occ_percent::total            1                       # Average percentage of cache occupancy
+system.cpu.dcache.tags.data_accesses           694247                       # Number of data accesses
+system.cpu.dcache.ReadReq_hits::total          284311                       # number of ReadReq hits
+system.cpu.dcache.WriteReq_hits::total         197465                       # number of WriteReq hits
+system.cpu.dcache.overall_hits::total          481776                       # number of overall hits
+system.cpu.dcache.ReadReq_misses::total         43365                       # number of ReadReq misses
+system.cpu.dcache.overall_misses::total         99382                       # number of overall misses
+system.cpu.dcache.ReadReq_miss_rate::total     0.132341                       # miss rate for ReadReq accesses
+system.cpu.dcache.WriteReq_miss_rate::total     0.220990                       # miss rate for WriteReq accesses
+system.cpu.dcache.overall_miss_rate::total     0.171007                       # miss rate for overall accesses
+system.cpu.dcache.writebacks::total             83200                       # number of writebacks
+system.l2.tags.replacements                      8087                       # number of replacements
+system.l2.tags.total_refs                     4637911                       # Total number of references to valid blocks.
+system.l2.tags.avg_refs                     62.995409                       # Average number of references to valid blocks.
+system.l2.tags.occ_percent::total            0.882827                       # Average percentage of cache occupancy
+system.l2.tags.data_accesses                203757975                       # Number of data accesses
+system.l2.overall_hits::total                  170929                       # number of overall hits
+system.l2.overall_misses::total                 28067                       # number of overall misses
+system.l2.overall_miss_rate::total           0.141043                       # miss rate for overall accesses
+system.l2.writebacks::total                      2363                       # number of writebacks
+---------- End Simulation Statistics   ----------

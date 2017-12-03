@@ -4,16 +4,17 @@ import graficos as graph
 from optparse import OptionParser
 
 parser = OptionParser()
-parser.add_option('-c', '--canneal', action='store_true',
-                  help='Use canneal program stats')
+#parser.add_option('-c', '--canneal', action='store_true',
+#                  help='Use canneal program stats')
+parser.add_option('-f', '--file', help='Stats file')
 (options, args) = parser.parse_args()
 
-f = None
+f = open(options.file, 'r')
 
-if options and options.canneal:
-    f = open('/home/geovane/Downloads/stats_to_use_canneal.txt', 'r')
-else:
-    f = open('/home/geovane/Downloads/stats_to_use_blackscholes.txt', 'r')
+#if options and options.canneal:
+#    f = open('/home/geovane/Downloads/stats_to_use_canneal.txt', 'r')
+#else:
+    #f = open('/home/geovane/Downloads/stats_to_use_blackscholes.txt', 'r')
 
 data = f.read().split('Tag: ')
 

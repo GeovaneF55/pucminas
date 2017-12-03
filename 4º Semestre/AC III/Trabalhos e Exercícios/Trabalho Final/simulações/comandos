@@ -1,0 +1,35 @@
+./build/ALPHA/gem5.opt --outdir="./simulations/BONS/sim=blackscholes_thread=1_l1d_size=16kB_l2_size=64kB_l1d_assoc=32_l2_assoc=4_num_cpus=4_cacheline_size=128" ./configs/example/fs.py --script=runscript_blackscholes_1.rcS  --cpu-type=TimingSimpleCPU --caches --l2cache --l1i_size=8kB --l1d_size=16kB --l2_size=64kB --l1d_assoc=32 --l2_assoc=4 --num-cpus=1 --cacheline_size=128
+
+./build/ALPHA/gem5.opt --outdir="./simulations/BONS/sim=blackscholes_thread=1_l1d_size=16kB_l2_size=64kB_l1d_assoc=32_l2_assoc=16_num_cpus=4_cacheline_size=128" ./configs/example/fs.py --script=runscript_blackscholes_1.rcS  --cpu-type=TimingSimpleCPU --caches --l2cache --l1i_size=8kB --l1d_size=16kB --l2_size=64kB --l1d_assoc=32 --l2_assoc=16 --num-cpus=1 --cacheline_size=128
+
+./build/ALPHA/gem5.opt --outdir="./simulations/BONS/sim=blackscholes_thread=1_l1d_size=16kB_l2_size=64kB_l1d_assoc=32_l2_assoc=64_num_cpus=4_cacheline_size=128" ./configs/example/fs.py --script=runscript_blackscholes_1.rcS  --cpu-type=TimingSimpleCPU --caches --l2cache --l1i_size=8kB --l1d_size=16kB --l2_size=64kB --l1d_assoc=32 --l2_assoc=64 --num-cpus=1 --cacheline_size=128
+
+./build/ALPHA/gem5.opt --outdir="./simulations/BONS/sim=blackscholes_thread=1_l1d_size=16kB_l2_size=64kB_l1d_assoc=32_l2_assoc=256_num_cpus=4_cacheline_size=128" ./configs/example/fs.py --script=runscript_blackscholes_1.rcS  --cpu-type=TimingSimpleCPU --caches --l2cache --l1i_size=8kB --l1d_size=16kB --l2_size=64kB --l1d_assoc=32 --l2_assoc=264 --num-cpus=1 --cacheline_size=128
+
+./build/ALPHA/gem5.opt --outdir="./simulations/BONS/sim=blackscholes_thread=1_l1d_size=16kB_l2_size=64kB_l1d_assoc=32_l2_assoc=1024_num_cpus=4_cacheline_size=128" ./configs/example/fs.py --script=runscript_blackscholes_1.rcS  --cpu-type=TimingSimpleCPU --caches --l2cache --l1i_size=8kB --l1d_size=16kB --l2_size=64kB --l1d_assoc=32 --l2_assoc=1024 --num-cpus=1 --cacheline_size=128
+
+
+
+
+./build/ALPHA/gem5.opt --outdir="./simulations/BONS/sim=blackscholes_thread=1_l1d_size=32kB_l2_size=1024kB_l1d_assoc=1_l2_assoc=4_num_cpus=4_cacheline_size=128" ./configs/example/fs.py --script=runscript_blackscholes_1.rcS  --cpu-type=TimingSimpleCPU --caches --l2cache --l1i_size=8kB --l1d_size=32kB --l2_size=1024kB --l1d_assoc=1 --l2_assoc=4 --num-cpus=4 --cacheline_size=16
+
+./build/ALPHA/gem5.opt --outdir="./simulations/BONS/sim=blackscholes_thread=1_l1d_size=32kB_l2_size=1024kB_l1d_assoc=1_l2_assoc=16_num_cpus=4_cacheline_size=128" ./configs/example/fs.py --script=runscript_blackscholes_1.rcS  --cpu-type=TimingSimpleCPU --caches --l2cache --l1i_size=8kB --l1d_size=32kB --l2_size=1024kB --l1d_assoc=1 --l2_assoc=16 --num-cpus=4 --cacheline_size=16
+
+./build/ALPHA/gem5.opt --outdir="./simulations/BONS/sim=blackscholes_thread=1_l1d_size=32kB_l2_size=1024kB_l1d_assoc=1_l2_assoc=64_num_cpus=4_cacheline_size=128" ./configs/example/fs.py --script=runscript_blackscholes_1.rcS  --cpu-type=TimingSimpleCPU --caches --l2cache --l1i_size=8kB --l1d_size=32kB --l2_size=1024kB --l1d_assoc=1 --l2_assoc=64 --num-cpus=4 --cacheline_size=16
+
+./build/ALPHA/gem5.opt --outdir="./simulations/BONS/sim=blackscholes_thread=1_l1d_size=32kB_l2_size=1024kB_l1d_assoc=1_l2_assoc=256_num_cpus=4_cacheline_size=128" ./configs/example/fs.py --script=runscript_blackscholes_1.rcS  --cpu-type=TimingSimpleCPU --caches --l2cache --l1i_size=8kB --l1d_size=32kB --l2_size=1024kB --l1d_assoc=1 --l2_assoc=256 --num-cpus=4 --cacheline_size=16
+
+./build/ALPHA/gem5.opt --outdir="./simulations/BONS/sim=blackscholes_thread=1_l1d_size=32kB_l2_size=1024kB_l1d_assoc=1_l2_assoc=1024_num_cpus=4_cacheline_size=128" ./configs/example/fs.py --script=runscript_blackscholes_1.rcS  --cpu-type=TimingSimpleCPU --caches --l2cache --l1i_size=8kB --l1d_size=32kB --l2_size=1024kB --l1d_assoc=1 --l2_assoc=1024 --num-cpus=4 --cacheline_size=16
+
+
+
+
+./build/ALPHA/gem5.opt --outdir="./simulations/BONS/sim=blackscholes_thread=1_l1d_size=32kB_l2_size=1024kB_l1d_assoc=32_l2_assoc=4_num_cpus=4_cacheline_size=32" ./configs/example/fs.py --script=runscript_blackscholes_1.rcS  --cpu-type=TimingSimpleCPU --caches --l2cache --l1i_size=8kB --l1d_size=32kB --l2_size=1024kB --l1d_assoc=32 --l2_assoc=4 --num-cpus=4 --cacheline_size=32
+
+./build/ALPHA/gem5.opt --outdir="./simulations/BONS/sim=blackscholes_thread=1_l1d_size=32kB_l2_size=1024kB_l1d_assoc=32_l2_assoc=16_num_cpus=4_cacheline_size=32" ./configs/example/fs.py --script=runscript_blackscholes_1.rcS  --cpu-type=TimingSimpleCPU --caches --l2cache --l1i_size=8kB --l1d_size=32kB --l2_size=1024kB --l1d_assoc=32 --l2_assoc=16 --num-cpus=4 --cacheline_size=32
+
+./build/ALPHA/gem5.opt --outdir="./simulations/BONS/sim=blackscholes_thread=1_l1d_size=32kB_l2_size=1024kB_l1d_assoc=32_l2_assoc=64_num_cpus=4_cacheline_size=32" ./configs/example/fs.py --script=runscript_blackscholes_1.rcS  --cpu-type=TimingSimpleCPU --caches --l2cache --l1i_size=8kB --l1d_size=32kB --l2_size=1024kB --l1d_assoc=32 --l2_assoc=64 --num-cpus=4 --cacheline_size=32
+
+./build/ALPHA/gem5.opt --outdir="./simulations/BONS/sim=blackscholes_thread=1_l1d_size=32kB_l2_size=1024kB_l1d_assoc=32_l2_assoc=256_num_cpus=4_cacheline_size=32" ./configs/example/fs.py --script=runscript_blackscholes_1.rcS  --cpu-type=TimingSimpleCPU --caches --l2cache --l1i_size=8kB --l1d_size=32kB --l2_size=1024kB --l1d_assoc=32 --l2_assoc=256 --num-cpus=4 --cacheline_size=32
+
+./build/ALPHA/gem5.opt --outdir="./simulations/BONS/sim=blackscholes_thread=1_l1d_size=32kB_l2_size=1024kB_l1d_assoc=32_l2_assoc=1024_num_cpus=4_cacheline_size=32" ./configs/example/fs.py --script=runscript_blackscholes_1.rcS  --cpu-type=TimingSimpleCPU --caches --l2cache --l1i_size=8kB --l1d_size=32kB --l2_size=1024kB --l1d_assoc=32 --l2_assoc=1024 --num-cpus=4 --cacheline_size=32
