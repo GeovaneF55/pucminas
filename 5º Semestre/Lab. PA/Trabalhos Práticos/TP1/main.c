@@ -90,7 +90,7 @@ int main () {
 
     allocMatriz = (int *)malloc(matriz.tamanho * matriz.tamanho * sizeof(int));
     matriz.elementos = preenche_matriz(matriz.tamanho, allocMatriz);
-    imprime_matriz(matriz.tamanho, matriz.elementos);
+    //imprime_matriz(matriz.tamanho, matriz.elementos);
 
     // Saída
     printf("%d\n", soma_maxima_fb(matriz.tamanho, matriz.elementos));
