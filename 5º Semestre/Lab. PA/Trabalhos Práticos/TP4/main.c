@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 /*
  * Author: Geovane Fonseca de Sousa Santos
@@ -19,6 +20,15 @@ const int mov_x[8]={ 1, 2, 2, 1,-1,-2,-2,-1},
           mov_y[8]={-2,-1, 1, 2, 2, 1,-1,-2};
 
 int passo;
+
+void printaMatriz(){
+    for(int i=0;i<5; i++){
+        for(int j=0;j<5; j++){
+            printf("[%c] ", matriz_entrada[i][j]);
+        }
+        printf("\n");
+    }
+}
 
 /*
  * Function: Verifica se a posição que o cavalo irá é válida
@@ -84,7 +94,7 @@ void buscaProfundidadeDFS (int qt_trocas, int x, int y) {
         if(ehValido(novo_x, novo_y)){
             trocaPosicao(x, y, novo_x, novo_y);
             buscaProfundidadeDFS(qt_trocas+1, novo_x, novo_y);
-            trocaPosicao(novo_x, novo_y, x, y);
+            trocaPosicao(x, y, novo_x, novo_y);
         }
     }
 }
@@ -117,6 +127,8 @@ void arrumaTabuleiro() {
 int main ()
 {
     int qt_conjuntos;
+    char *linha = malloc(5);
+
     // Entrada
     scanf("%d", &qt_conjuntos);
     for(int c=0; c<qt_conjuntos; c++){
