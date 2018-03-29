@@ -24,11 +24,14 @@ typedef struct
 
     vector <int> cidades;
     vector <int> pais;
+    vector <int> alcance;
     vector <Estrada> estradas;
 
 } Mapa;
 
 Mapa mapa;
+vector <int> fixo;
+vector <int> custo;
 
 /*
  * Function: Inicializa variáveis
@@ -52,6 +55,7 @@ void clear()
 
     mapa.cidades.clear();
     mapa.pais.clear();
+    mapa.alcance.clear();
     mapa.estradas.clear();
 }
 
@@ -104,6 +108,32 @@ int encontraPai(int cidade)
 }
 
 /*
+ * Function: Une os alcances das estradas que possuem origem e destino semelhantes pelo menor valor entre as duas
+ * Parameters: (int) cidade, (int) destino
+ * Return: (int) ehUniao
+ */
+int une_estradas(int origem, int destino) {
+    origem = encontraPai(origem);
+    destino = encontraPai(destino);
+
+    if(origem != destino)
+    {
+        if(mapa.alcance[origem] > mapa.alcance[destino])
+        {
+            mapa.alcance[origem] += mapa.alcance[destino];
+            mapa.pais[destino] = origem;
+        }
+        else
+        {
+            mapa.alcance[destino] += mapa.alcance[origem];
+            mapa.pais[origem] = destino;
+        }
+        return 1;
+    }
+    return 0;
+}
+
+/*
  * Function: Encontra o alcance mínimo de um carro para que percorra todas as cidades
  * Parameters: (void)
  * Return: (void)
@@ -111,24 +141,20 @@ int encontraPai(int cidade)
 void resolucao()
 {
     sort(mapa.estradas.begin(), mapa.estradas.end(), compara);
-    int maior_distancia = mapa.estradas[mapa.qt_estradas-1].distancia,
-            cidades_a_verificar = mapa.qt_cidades-1,
-            paiinicio,
-            paifin;
+    int resposta = 0,
+        selecionados = 0;
 
-    for(int i=0; i<mapa.qt_estradas; i++)
+    for(int i = 0; i < mapa.qt_estradas; i++)
     {
-        paiinicio = encontraPai(mapa.estradas[i].origem);
-        paifin = encontraPai(mapa.estradas[i].destino);
-        if(paiinicio != paifin)
+        if(une_estradas(mapa.estradas[i].origem, mapa.estradas[i].destino))
         {
-            if(maior_distancia < mapa.estradas[i].distancia) maior_distancia = mapa.estradas[i].distancia;
-            mapa.pais[paiinicio] = paifin;
-            cidades_a_verificar--;
+            resposta = mapa.estradas[i].distancia;
+            selecionados++;
         }
     }
-    if(cidades_a_verificar) cout << "IMPOSSIBLE\n";
-    else  cout << maior_distancia << "\n";
+
+    if(selecionados == mapa.qt_cidades-1) cout << resposta << "\n";
+    else cout << "IMPOSSIBLE\n";
 }
 
 /*
@@ -149,6 +175,7 @@ int main()
         {
             mapa.cidades.push_back(i);
             mapa.pais.push_back(i);
+            mapa.alcance.push_back(1);
         }
 
         // estradas
