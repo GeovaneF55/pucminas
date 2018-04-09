@@ -1,0 +1,36 @@
+Paradigma Scheme
+
+  Scheme é uma linguagem de programação multiparadigma, ou seja, é baseada em mais de um paradigma ao mesmo tempo. Podemos observar o suporte  programação imperativa, funcional e orientação à objetos.
+
+* IMPERATIVO:
+
+  Quanto ao seu paradigma imperativo, podemos pensar que há contradição em relação a também ser funcional, porém, a linguagem implementa as duas abordagens em seu conceito de forma a coexistirem em seu modelo computacional. Como Scheme é usado em aplicações reais, como o ambiente WEB, não há como fugir de recursos imperativos por causa da demanda da funcionalidade no domínio.
+
+  Os principais comandos que definem o paradigma, são:
+
+  - Construtores Imperativos:
+	-> O mais importante construtor imperativo em Scheme é a atribuição <negrito>set!</negrito>;
+	-> construtor <negrito>(begin e1 ... en)</negrito>;
+	-> A estrutura de controle <negrito>do</negrito>;
+	-> Procedimentos de Entrada e Saída;
+	-> Procedimentos de mutadores de lista, string e vetor.
+
+  - Procedimentos de mutadores de Lista:
+	-> O comando <negrito>(set-car! x y)</negrito> modifica o valor da posição do primeiro elemento de um par ou de uma lista referenciada por x;
+	-> O comando <negrito>(set-cdr! x y)</negrito> modifica o valor da cauda da lista ou do segundo elemento de um par referenciados por x;
+	-> Usar mutadores de lista é possível fazer estruturas circulares.
+
+  - Procedimentos de mutadores de String:
+	-> O comando <negrito>(string-set! str k chr)</negrito> modifica o caractere na posição em <negrito>str</negrito> para <negrito>chr</negrito>;
+	-> O comando <negrito>(string-fill! str chr)</nagrito> modifica todos os caracteres em <negrito>str</negrito> para <negrito>chr</negrito>.
+
+* FUNCIONAL:
+  Em relação ao paradigma funcional, a principal característica de Scheme a implementar esse padrão é a técnica de Currying, onde uma função com n parâmetros é transformada em n funções com um único parâmetro que são equivalentes a original. Outras características são as funções que são consideradas como variáveis de primeira classe e dessa forma podem ser passadas como parâmetros para outras funções.
+
+
+* ORIENTAÇÃO À OBJETOS:
+
+  A orientação à objetos em Scheme tem como base as funções-objeto, que são retornadas quando as expressões lambda são avaliadas. Para obter umas função-objeto é usado o conceito de fechamento de funções (closure), onde ocorre a captura e o encapsulamento em torno de nomes livres.
+
+
+links: http://people.cs.aau.dk/~normark/prog3-03/html/notes/theme-index.html
