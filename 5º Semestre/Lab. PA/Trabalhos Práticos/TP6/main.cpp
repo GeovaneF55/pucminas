@@ -1,7 +1,7 @@
 /*
  * Author: Geovane Fonseca de Sousa Santos
  * Purpose: Light Up - Acender todos os comodos da tabuleiro (matriz)
- * Language:  C
+ * Language:  C++
  */
 #include <iostream>
 #include <climits>
