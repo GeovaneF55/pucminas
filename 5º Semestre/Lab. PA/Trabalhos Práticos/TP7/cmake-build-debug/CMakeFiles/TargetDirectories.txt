@@ -1,0 +1,3 @@
+/home/geovane/CLionProjects/LPA/TP7/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/geovane/CLionProjects/LPA/TP7/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/geovane/CLionProjects/LPA/TP7/cmake-build-debug/CMakeFiles/TP7.dir
