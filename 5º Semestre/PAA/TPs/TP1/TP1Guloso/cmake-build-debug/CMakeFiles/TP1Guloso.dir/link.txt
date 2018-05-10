@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/TP1Guloso.dir/main.cpp.o  -o TP1Guloso 
