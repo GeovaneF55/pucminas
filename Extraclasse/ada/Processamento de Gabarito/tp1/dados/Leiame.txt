@@ -1,0 +1,5 @@
+Exemplos de entrada e saída para sua implementação
+----
+- Arquivos pattern_0001.png e pattern_0002.png aprensentam dois cartões sem preenchimento (sinta-se à vontade para imprimi-los, preenchê-los, digitalizá-los e utilizá-los como entrada do seu método)
+- Arquivos pattern_0001_scan.png e pattern_0002_scan.png apresentam dois cartões preenchidos e digitalizados, que devem ser usados como entrada para o seu método (lembre-se que outros cartões serão usados para a correção do trabalho (incluindo cartões rotacionados, escalados e transladados), então não crie um método que seja específico para esses dois exemplos de entrada).
+- Arquivos pattern_0001_scan_saida.txt e pattern_0002_scan_saida.txt contêm a saída esperada para os dois cartões digitalizados providos.
