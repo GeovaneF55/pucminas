@@ -1,0 +1,26 @@
+The problem says that if you cook the same dish two times consecutively, you get 1.5v benefit. Repeating it for the third time or more times results in 0 benefit. So you don't really to count the exact number of days the dish has been repeated. You only need to track if the dish is being repeated three or more times. So your N variable can be reduced to three states:
+
+1 - the dish was not repeated on the previous day
+2 - the dish was created for the 1st time (in a row) on the previous day
+3 - the dish was repeated 2 or more times on the previous day.
+
+Now your dp matrix has the following parameters:
+
+L - the day you are calculating for
+A - the dish being prepared on the day L.
+N - number of times dish is being repeated today (only has values 1,2 and 3 so this variable is a constant factor in the complexity of the problem)
+B - budget for days 1-L
+
+When calculating for 
+
+N = 1 for a day L and dish A, you only check dishes that are not A and of course repeated 1, 2 or 3 times with budget B - cost[A]
+N = 2 for a day L and dish A is even more simple as you only need to check state dp[L-1][A][1][B-cost[A]]
+N = 3 here you are not sure if the dish is being repeated for the 3rd time (in which case the state of dish would be 2 on day L-1) or if the dish is being repeated for more than 3 times (in which case the state of dish is 3 on day L-1 as well)
+
+Complexity would be O(k*n*b*n) (number of repetitions as explained above is a constant factor of 3) where 
+
+k - number of days
+n - total number of dishes
+b - total budget
+
+To keep track of previous state, you can simply create another array like your dp array.
