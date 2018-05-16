@@ -123,7 +123,7 @@ void maximizaLucro() {
     int j = 0, k = 0;
     for (int i  = 0 ; i < cozinha.dias; i ++ ) {
         Prato prato = cozinha.list_pratos[j];
-        while (j < cozinha.list_pratos.size() && ! cabeOrcamento(prato, orcamento)) {
+        while (j < cozinha.list_pratos.size() && !cabeOrcamento(prato, orcamento)) {
             j++;
             k++;
 

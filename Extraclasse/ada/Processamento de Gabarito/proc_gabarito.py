@@ -10,7 +10,7 @@ print("OpenCV Version : {}".format(cv2.__version__))
 class Card_Reader:
     def __init__(self):
         self.images = {}
-    
+
     def print_images(self, images, x=10, y=10):
         for image in images:
             plt.figure(figsize=(x,y))
@@ -26,7 +26,7 @@ class Contours_Manager:
         peri = cv2.arcLength(contour, True)
         approx = cv2.approxPolyDP(contour, factor * peri, True)
         return approx
-    
+
     @staticmethod
     def apply_transformation(contours, t_matrix):
         rot_contours = []
@@ -39,18 +39,18 @@ class Contours_Manager:
             rot_contour = np.asarray(rot_contour, dtype=np.int32)
             rot_contours.append(rot_contour)
         return rot_contours
-    
+
     @staticmethod
     def get_center_point(contour):
         M = cv2.moments(contour)
         cx = int(M['m10']/M['m00'])
         cy = int(M['m01']/M['m00'])
         return (cx, cy)
-    
+
     @staticmethod
     def get_bound_box_points(center_point, width, height):
         x, y = center_point[0], center_point[1]
-        dw, dh = width/2, height/2 
+        dw, dh = width/2, height/2
         return np.asarray([np.asarray([[x+dw, y+dh]], dtype=np.int32),
                 np.asarray([[x+dw, y-dh]], dtype=np.int32),
                 np.asarray([[x-dw, y+dh]], dtype=np.int32),
@@ -62,17 +62,7 @@ class Contours_Manager:
 
 reader1 = Card_Reader()
 
-#image_path = 'input/pattern_0001_scan.png'
-#image_path = 'input/pattern_0001.png'
-image_path = 'input/pattern_0002_scan.png'
-#image_path = 'input/pattern_0002.png'
-#image_path = 'input/image1.png'
-#image_path = 'input/image2.png'
-#image_path = 'input/image3.png'
-#image_path = 'input/image4.png'
-#image_path = 'input/image5.png'
-#image_path = 'input/image6.png'
-#image_path = 'input/image7.png'
+image_path = input() #'input/pattern_0002_scan.png'
 
 # Reading Image
 reader1.images['original'] = cv2.imread(image_path)
@@ -80,7 +70,7 @@ reader1.images['original'] = cv2.imread(image_path)
 # Reading Image Grayscale
 reader1.images['grayscale'] = cv2.imread(image_path,cv2.IMREAD_GRAYSCALE)
 
-reader1.print_images([reader1.images['grayscale']])
+#reader1.print_images([reader1.images['grayscale']])
 
 #####################################################################################################################
 
@@ -89,7 +79,7 @@ reader1.print_images([reader1.images['grayscale']])
 # Removing Noyse
 reader1.images['bilateral_blur'] = cv2.bilateralFilter(reader1.images['grayscale'].copy(),9,75,75)
 
-reader1.print_images([reader1.images['bilateral_blur']])
+#reader1.print_images([reader1.images['bilateral_blur']])
 
 #####################################################################################################################
 
@@ -98,7 +88,7 @@ reader1.print_images([reader1.images['bilateral_blur']])
 # Binarizing Image
 ret, reader1.images['binary'] = cv2.threshold(reader1.images['bilateral_blur'].copy(),127,255,cv2.THRESH_BINARY_INV)
 
-reader1.print_images([reader1.images['binary']])
+#reader1.print_images([reader1.images['binary']])
 
 #####################################################################################################################
 
@@ -108,7 +98,7 @@ reader1.print_images([reader1.images['binary']])
 kernel = np.ones((3,3),np.uint8)
 reader1.images['opening'] = cv2.morphologyEx(reader1.images['binary'].copy(), cv2.MORPH_OPEN, kernel)
 
-reader1.print_images([reader1.images['opening']])
+#reader1.print_images([reader1.images['opening']])
 
 #####################################################################################################################
 
@@ -121,7 +111,7 @@ reader1.images['contours'], contours, hierarchy = cv2.findContours(reader1.image
 reader1.images['original+contours'] = reader1.images['original'].copy()
 cv2.drawContours(reader1.images['original+contours'], contours, -1, (255,0,0), 3) # Contonos Detectados (vermelho)
 
-reader1.print_images([reader1.images['contours'], reader1.images['original+contours']])
+#reader1.print_images([reader1.images['contours'], reader1.images['original+contours']])
 
 #####################################################################################################################
 
@@ -140,14 +130,14 @@ reader1.images['original+contours2'] = reader1.images['original'].copy()
 cv2.drawContours(reader1.images['original+contours2'], contours, -1, (255,0,0), 3) # Contonos Detectados (vermelho)
 cv2.drawContours(reader1.images['original+contours2'], rectangle_contours_aprox, -1, (0,0,255), 3) # Aproximação dos Contonos Filtrados (azul)
 
-reader1.print_images([reader1.images['original+contours2']])
+#reader1.print_images([reader1.images['original+contours2']])
 
 #####################################################################################################################
 
 #1.3.2 Filtragem de Contornos [Parte 2]: Por Área
 
 # Computa métricas (max, média, std) das áreas dos contornos aproximados
-areas = [cv2.contourArea(ca) for ca in rectangle_contours_aprox] 
+areas = [cv2.contourArea(ca) for ca in rectangle_contours_aprox]
 mean_area, std_area, max_area = np.mean(areas), np.std(areas), np.max(areas)
 print('Mean Contour Area: %.3f\nStd Deviation: %.3f\nMax Contour Area: %.3f\n' % (mean_area, std_area, max_area))
 
@@ -164,12 +154,12 @@ reader1.images['original+contours'] = reader1.images['original'].copy()
 cv2.drawContours(reader1.images['original+contours'], rectangle_contours_aprox, -1, (0,0,255), 3)
 cv2.drawContours(reader1.images['original+contours'], final_marks, -1, (0,255,0), 3)
 
-reader1.print_images([reader1.images['original+contours']])
+#reader1.print_images([reader1.images['original+contours']])
 
 #####################################################################################################################
 
 #1.4 Alinhamento da Imagem
-# Obtém-se a angulação dos contornos selecionados 
+# Obtém-se a angulação dos contornos selecionados
 
 # Computa Angulo Mediano de rotação dos contornos das marcações
 angles = []
@@ -177,7 +167,7 @@ for cont in final_contours:
     if(len(cont) >= 5):
         (x,y),(MA,ma),angle = cv2.fitEllipse(cont)
         angles.append(angle)
-        #print((x, y), (MA,ma), angle)   
+        #print((x, y), (MA,ma), angle)
 #print(angles)
 avg_angle = np.median(angles)
 print('Meadian Rotation Angle: %f' % avg_angle)
@@ -195,7 +185,7 @@ rot_marks = Contours_Manager.apply_transformation(final_marks, rotation_matrix)
 # Imprime imagem + contornos
 reader1.images['rotated+contour'] = reader1.images['rotated'].copy()
 cv2.drawContours(reader1.images['rotated+contour'], rot_marks, -1, (0,255,0), 3)
-reader1.print_images([reader1.images['rotated+contour']])
+#reader1.print_images([reader1.images['rotated+contour']])
 
 #####################################################################################################################
 
@@ -208,7 +198,7 @@ def get_marker_countour_sets(marker_contours):
         center_p = Contours_Manager.get_center_point(marker_contours[i])
         center_points.append((center_p[0],center_p[1], i))
     center_points = sorted(center_points, key=operator.itemgetter(0))
-    
+
     vertical_markers = [marker_contours[center_points[i][2]] for i in range(0, 15)]
     horizontal_markers = [marker_contours[center_points[i][2]] for i in range(15, 27)]
     return vertical_markers, horizontal_markers
@@ -230,7 +220,7 @@ vertical_markers, horizontal_markers = get_marker_countour_sets(rot_marks)
 # Print image
 cv2.drawContours(reader1.images['markers_classification'], vertical_markers, -1, (255,0,0), 3) # red
 cv2.drawContours(reader1.images['markers_classification'], horizontal_markers, -1, (0,0,255), 3) # blue
-reader1.print_images([reader1.images['markers_classification']])
+#reader1.print_images([reader1.images['markers_classification']])
 
 #####################################################################################################################
 
@@ -269,7 +259,7 @@ for line in fill_markers:
         x,y,w,h = cv2.boundingRect(markers[i])
         cv2.rectangle(reader1.images['fill_markers'],(x,y),(x+w,y+h),(0,255,0),3)
 
-reader1.print_images([reader1.images['fill_markers']])
+#reader1.print_images([reader1.images['fill_markers']])
 
 #####################################################################################################################
 
@@ -287,7 +277,7 @@ reader1.images['rotated+bin'] = cv2.blur(reader1.images['rotated+bin'], (5,5))
 # Apply Dilatation
 reader1.images['rotated+bin'] = cv2.dilate(reader1.images['rotated+bin'],kernel,iterations = 2)
 # Print Result Image of Morphological Operations
-reader1.print_images([reader1.images['rotated+bin']])
+#reader1.print_images([reader1.images['rotated+bin']])
 
 # Ploting Filling Cell contours
 reader1.images['rotated+bin+contour'] = reader1.images['rotated+bin'].copy()
@@ -297,7 +287,7 @@ for line in fill_markers:
         x,y,w,h = cv2.boundingRect(markers[i])
         cv2.rectangle(reader1.images['rotated+bin+contour'],(x,y),(x+w,y+h),(0,255,0),3)
 # Print Image with Detected Cells
-reader1.print_images([reader1.images['rotated+bin+contour']])
+#reader1.print_images([reader1.images['rotated+bin+contour']])
 
 #####################################################################################################################
 
@@ -326,7 +316,7 @@ for line in fill_markers:
         is_marked, w_ratio = verify_cell((x,y), (x+w, y+h), reader1.images['rotated+bin'])
         if(is_marked): marked.append(k)
     marked_list[line+1] = marked
-    
+
     marked = []
     for k in range(5, 10):
         x,y,w,h = cv2.boundingRect(fill_markers[line][k])
@@ -343,10 +333,10 @@ for i in range(1, len(marked_list)+1):
     if(n == 0): out = 'Branco'
     elif(n > 1): out = 'Nulo'
     else: out = mapping[marked_list[i][0]]
-        
+
     print('Questão %d:' % i)
     print('Checked Cells: ', marked_list[i])
     print('Computed Answer: ', out)
-    
+
     file.write('%d: %s\n' % (i, out))
 file.close()
