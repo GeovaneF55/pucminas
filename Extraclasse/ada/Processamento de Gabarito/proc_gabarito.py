@@ -62,7 +62,7 @@ class Contours_Manager:
 
 reader1 = Card_Reader()
 
-image_path = input() #'input/pattern_0002_scan.png'
+image_path = input()
 
 # Reading Image
 reader1.images['original'] = cv2.imread(image_path)
