@@ -111,7 +111,7 @@ reader1.images['contours'], contours, hierarchy = cv2.findContours(reader1.image
 reader1.images['original+contours'] = reader1.images['original'].copy()
 cv2.drawContours(reader1.images['original+contours'], contours, -1, (255,0,0), 3) # Contonos Detectados (vermelho)
 
-#reader1.print_images([reader1.images['contours'], reader1.images['original+contours']])
+reader1.print_images([reader1.images['contours'], reader1.images['original+contours']])
 
 #####################################################################################################################
 
@@ -287,6 +287,11 @@ for line in fill_markers:
         x,y,w,h = cv2.boundingRect(markers[i])
         cv2.rectangle(reader1.images['rotated+bin+contour'],(x,y),(x+w,y+h),(0,255,0),3)
 # Print Image with Detected Cells
+#reader1.print_images([reader1.images['rotated+bin+contour']])
+
+#####################################################################################################################
+# Get QrCode from image
+
 #reader1.print_images([reader1.images['rotated+bin+contour']])
 
 #####################################################################################################################
