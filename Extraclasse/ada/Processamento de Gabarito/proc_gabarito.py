@@ -70,7 +70,7 @@ reader1.images['original'] = cv2.imread(image_path)
 # Reading Image Grayscale
 reader1.images['grayscale'] = cv2.imread(image_path,cv2.IMREAD_GRAYSCALE)
 
-#reader1.print_images([reader1.images['grayscale']])
+reader1.print_images([reader1.images['grayscale']])
 
 #####################################################################################################################
 
@@ -79,7 +79,7 @@ reader1.images['grayscale'] = cv2.imread(image_path,cv2.IMREAD_GRAYSCALE)
 # Removing Noyse
 reader1.images['bilateral_blur'] = cv2.bilateralFilter(reader1.images['grayscale'].copy(),9,75,75)
 
-#reader1.print_images([reader1.images['bilateral_blur']])
+reader1.print_images([reader1.images['bilateral_blur']])
 
 #####################################################################################################################
 
@@ -88,7 +88,7 @@ reader1.images['bilateral_blur'] = cv2.bilateralFilter(reader1.images['grayscale
 # Binarizing Image
 ret, reader1.images['binary'] = cv2.threshold(reader1.images['bilateral_blur'].copy(),127,255,cv2.THRESH_BINARY_INV)
 
-#reader1.print_images([reader1.images['binary']])
+reader1.print_images([reader1.images['binary']])
 
 #####################################################################################################################
 
@@ -98,7 +98,7 @@ ret, reader1.images['binary'] = cv2.threshold(reader1.images['bilateral_blur'].c
 kernel = np.ones((3,3),np.uint8)
 reader1.images['opening'] = cv2.morphologyEx(reader1.images['binary'].copy(), cv2.MORPH_OPEN, kernel)
 
-#reader1.print_images([reader1.images['opening']])
+reader1.print_images([reader1.images['opening']])
 
 #####################################################################################################################
 
@@ -130,7 +130,7 @@ reader1.images['original+contours2'] = reader1.images['original'].copy()
 cv2.drawContours(reader1.images['original+contours2'], contours, -1, (255,0,0), 3) # Contonos Detectados (vermelho)
 cv2.drawContours(reader1.images['original+contours2'], rectangle_contours_aprox, -1, (0,0,255), 3) # Aproximação dos Contonos Filtrados (azul)
 
-#reader1.print_images([reader1.images['original+contours2']])
+reader1.print_images([reader1.images['original+contours2']])
 
 #####################################################################################################################
 
@@ -154,7 +154,7 @@ reader1.images['original+contours'] = reader1.images['original'].copy()
 cv2.drawContours(reader1.images['original+contours'], rectangle_contours_aprox, -1, (0,0,255), 3)
 cv2.drawContours(reader1.images['original+contours'], final_marks, -1, (0,255,0), 3)
 
-#reader1.print_images([reader1.images['original+contours']])
+reader1.print_images([reader1.images['original+contours']])
 
 #####################################################################################################################
 
@@ -185,7 +185,7 @@ rot_marks = Contours_Manager.apply_transformation(final_marks, rotation_matrix)
 # Imprime imagem + contornos
 reader1.images['rotated+contour'] = reader1.images['rotated'].copy()
 cv2.drawContours(reader1.images['rotated+contour'], rot_marks, -1, (0,255,0), 3)
-#reader1.print_images([reader1.images['rotated+contour']])
+reader1.print_images([reader1.images['rotated+contour']])
 
 #####################################################################################################################
 
@@ -220,7 +220,7 @@ vertical_markers, horizontal_markers = get_marker_countour_sets(rot_marks)
 # Print image
 cv2.drawContours(reader1.images['markers_classification'], vertical_markers, -1, (255,0,0), 3) # red
 cv2.drawContours(reader1.images['markers_classification'], horizontal_markers, -1, (0,0,255), 3) # blue
-#reader1.print_images([reader1.images['markers_classification']])
+reader1.print_images([reader1.images['markers_classification']])
 
 #####################################################################################################################
 
@@ -259,7 +259,7 @@ for line in fill_markers:
         x,y,w,h = cv2.boundingRect(markers[i])
         cv2.rectangle(reader1.images['fill_markers'],(x,y),(x+w,y+h),(0,255,0),3)
 
-#reader1.print_images([reader1.images['fill_markers']])
+reader1.print_images([reader1.images['fill_markers']])
 
 #####################################################################################################################
 
@@ -277,7 +277,7 @@ reader1.images['rotated+bin'] = cv2.blur(reader1.images['rotated+bin'], (5,5))
 # Apply Dilatation
 reader1.images['rotated+bin'] = cv2.dilate(reader1.images['rotated+bin'],kernel,iterations = 2)
 # Print Result Image of Morphological Operations
-#reader1.print_images([reader1.images['rotated+bin']])
+reader1.print_images([reader1.images['rotated+bin']])
 
 # Ploting Filling Cell contours
 reader1.images['rotated+bin+contour'] = reader1.images['rotated+bin'].copy()
@@ -287,7 +287,7 @@ for line in fill_markers:
         x,y,w,h = cv2.boundingRect(markers[i])
         cv2.rectangle(reader1.images['rotated+bin+contour'],(x,y),(x+w,y+h),(0,255,0),3)
 # Print Image with Detected Cells
-#reader1.print_images([reader1.images['rotated+bin+contour']])
+reader1.print_images([reader1.images['rotated+bin+contour']])
 
 #####################################################################################################################
 # Get QrCode from image
