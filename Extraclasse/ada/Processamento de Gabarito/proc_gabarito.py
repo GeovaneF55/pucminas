@@ -62,6 +62,8 @@ class Contours_Manager:
 
 reader1 = Card_Reader()
 
+qt_questions = input()
+qt_answers = input()
 image_path = input()
 
 # Reading Image
@@ -199,8 +201,8 @@ def get_marker_countour_sets(marker_contours):
         center_points.append((center_p[0],center_p[1], i))
     center_points = sorted(center_points, key=operator.itemgetter(0))
 
-    vertical_markers = [marker_contours[center_points[i][2]] for i in range(0, 15)]
-    horizontal_markers = [marker_contours[center_points[i][2]] for i in range(15, 27)]
+    vertical_markers = [marker_contours[center_points[i][2]] for i in range(0, int(int(qt_questions)/2))]
+    horizontal_markers = [marker_contours[center_points[i][2]] for i in range(int(int(qt_questions)/2), len(marker_contours))]
     return vertical_markers, horizontal_markers
 
 # Compute median mark contour
@@ -327,7 +329,7 @@ for line in fill_markers:
         x,y,w,h = cv2.boundingRect(fill_markers[line][k])
         is_marked, w_ratio = verify_cell((x,y), (x+w, y+h), reader1.images['rotated+bin'])
         if(is_marked): marked.append(k)
-    marked_list[line+15+1] = marked
+    marked_list[line+(int(int(qt_questions)/2))+1] = marked
 
 # Computing Answers
 file = open('output/answers.txt', 'w')

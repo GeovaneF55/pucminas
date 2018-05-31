@@ -1,0 +1,99 @@
+pub17.in
+
+GULOSO
+
+* 5 pratos com orçamento de 20
+
+- 1 dia
+	time: 0.07900
+	Uso Memória: 13296.00000 - Porção de memória Ocupada: 388
+
+- 3 dias
+	time: 0.08400
+	Uso Memória: 13296.00000 - Porção de memória Ocupada: 381
+
+- 7 dias
+	time: 0.11900
+	Uso Memória: 13296.00000 - Porção de memória Ocupada: 412
+
+- 12 dias
+	time: 0.20500
+	Uso Memória: 13296.00000 - Porção de memória Ocupada: 386
+	
+
+- 21 dias
+	time: 0.20000
+	Uso Memória: 13296.00000 - Porção de memória Ocupada: 410
+
+
+
+* 50 pratos com orçamento de 100
+- 1 dia
+	time: 0.16700
+	Uso Memória: 13296.00000 - Porção de memória Ocupada: 445
+
+
+- 3 dias
+	time: 0.17500
+	Uso Memória: 13296.00000 - Porção de memória Ocupada: 409
+
+
+- 7 dias
+	time: 0.19000
+	Uso Memória: 13296.00000 - Porção de memória Ocupada: 410
+
+- 12 dias
+	time: 0.24200
+	Uso Memória: 13296.00000 - Porção de memória Ocupada: 409
+
+- 21 dias
+	time: 0.34600
+	Uso Memória: 13296.00000 - Porção de memória Ocupada: 395
+
+
+DINÂMICO
+
+* 5 pratos com orçamento de 20
+
+- 1 dia
+	time: 0.21300
+	Uso Memória: 13316.00000 - Porção de memória Ocupada: 392
+
+- 3 dias
+	time: 0.37500
+	Uso Memória: 13316.00000 - Porção de memória Ocupada: 395
+
+- 7 dias
+	time: 0.75400
+	Uso Memória: 13316.00000 - Porção de memória Ocupada: 395
+
+- 12 dias
+	time: 2.31100
+	Uso Memória: 13316.00000 - Porção de memória Ocupada: 395
+
+- 21 dias
+	time: 3.04700
+	Uso Memória: 13316.00000 - Porção de memória Ocupada: 414
+
+
+* 50 pratos com orçamento de 100
+- 1 dia
+	time: 16.21800
+	Uso Memória: 13448.00000 - Porção de memória Ocupada: 779
+
+- 3 dias
+	time: 60.04900
+	Uso Memória: 13712.00000 - Porção de memória Ocupada: 846
+
+- 7 dias
+	time: 126.92600
+	Uso Memória: 14108.00000 - Porção de memória Ocupada: 897
+
+- 12 dias
+	time: 244.88900
+	Uso Memória: 14636.00000 - Porção de memória Ocupada: 1064
+
+- 21 dias
+	time: 442.06900
+	Uso Memória: 15692.00000 - Porção de memória Ocupada: 1319
+
