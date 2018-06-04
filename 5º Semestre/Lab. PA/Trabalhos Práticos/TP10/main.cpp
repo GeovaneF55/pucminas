@@ -77,15 +77,12 @@ int diferencaDivisao(){
  */
 int main () {
 
-    cin >> semestre.qt_trabalhos;
-
-    while(semestre.qt_trabalhos != 0) {
+    while(cin >> semestre.qt_trabalhos) {
         preencheSemestre();
 
         cout << diferencaDivisao() << endl;
 
         semestre.trabalhos.clear();
-        cin >> semestre.qt_trabalhos;
     }
 
     return(0);
