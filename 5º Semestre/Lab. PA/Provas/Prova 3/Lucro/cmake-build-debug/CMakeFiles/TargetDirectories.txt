@@ -1,0 +1,3 @@
+/home/geovane/CLionProjects/LPA/Prova3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/geovane/CLionProjects/LPA/Prova3/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/geovane/CLionProjects/LPA/Prova3/cmake-build-debug/CMakeFiles/Prova3.dir
