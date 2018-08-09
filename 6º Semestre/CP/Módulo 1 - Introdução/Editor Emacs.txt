@@ -1,0 +1,27 @@
+Programando com o Editor Emacs
+O editor Emacs é um dos vários editores disponíveis no terminal do Linux. Ele exige uma bom tempo para você aprender todos os atalhos e comandos disponíveis, mas existe um modo de execução dele que o deixa muito parecido com os comandos do Notepad, chamado modo CUA.
+
+Para habilitar o modo CUA na sua máquina, insira as seguintes linhas de código no arquivo .emacs (crie o arquivo se ele já não existir) no seu diretório home:
+
+(cua-mode t)
+     (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
+     (transient-mark-mode 1) ;; No region when it is not highlighted
+     (setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
+
+
+Na próxima vez em que você abri o Emacs, ele já estará neste novo modo que permite os seguintes atalhos:
+
+Ctrl-c -> copiar
+Ctrl-v -> colar
+Shift-pagedown ou pageup -> marcar o texto
+Ctrl-s -> procurar texto 
+Tab -> indenta código (uma linha ou bloco selecionado)
+Ctrl-z -> desfazer
+Ctrl-x Ctrl-s -> salvar arquivo
+Ctrl-x Ctrl-c -> sair do Emacs
+Ctrl-k -> recorta linha
+
+Para outros comandos, no Emacs nativo você pode usar Alt-X e então digitar o comando procurado, por exemplo:
+
+Alt-X comment-region -> comenta uma região de código
+Alt-X uncomment-region -> descomenta uma região de código

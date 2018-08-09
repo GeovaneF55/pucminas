@@ -1,0 +1,20 @@
+Acesso ao Servidor PARCODE
+A disciplina conta com um servidor Linux, com processador Intel de 4 núcleos e GPU Nvidia GT 1030 com 384 núcleos. Este servidor possui suporte as seguintes ferramentas:
+
+gcc8 - compilador de C que suporta OpenMP 4.5 com offloading para placas Nvidia
+icc - compilador da Intel
+advixe, inspxe e amplxe - ferramentas Intel Advisor, Inspector e Vtune para depuração e otimização de aplicações paralelas
+cuda - linguagem de programação para GPUs
+perf - ferramenta para avaliação de desempenho por meio de contadores de HW
+Para acesso ao servidor por meio de ssh, execute o seguinte comando (substituindo 12345 pelo seu número da biblioteca - atrás do seu cartão de aluno):
+
+ssh 12345@parcode.icei.pucminas.br
+
+(digite "yes" e depois a sua senha)
+Você terá acesso ao diretório /home/12345, onde você poderá editar, compilar e executar os seus códigos.
+
+Para copiar arquivos para o servidor, utilize o comando scp conforme o exemplo abaixo (copia o arquivo "nome_arquivo.c" local para o servidor):
+
+scp nome_arquivo.c 12345@parcode.icei.pucminas.br:/home/12345/
+
+Para testar o servidor, execute o comando "top" (é equivalente ao gerenciador de tarefas do Windows).
