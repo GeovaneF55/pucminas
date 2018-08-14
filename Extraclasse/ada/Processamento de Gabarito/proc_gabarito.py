@@ -143,6 +143,10 @@ areas = [cv2.contourArea(ca) for ca in rectangle_contours_aprox]
 mean_area, std_area, max_area = np.mean(areas), np.std(areas), np.max(areas)
 print('Mean Contour Area: %.3f\nStd Deviation: %.3f\nMax Contour Area: %.3f\n' % (mean_area, std_area, max_area))
 
+perimeters = [cv2.arcLength(ca,True) for ca in contours]
+max_perimeter = np.max(perimeters)
+print('\nMax Contour Perimeter: %.3f\n' % (max_perimeter))
+
 # Seleciona apenas os de maiores áreas
 final_marks, final_contours = [], []
 for i in range(len(rectangle_contours_aprox)):
@@ -151,10 +155,19 @@ for i in range(len(rectangle_contours_aprox)):
         final_contours.append(rectangle_contours[i])
 print('Number of selected marks: %d' % len(final_marks))
 
+# Seleciona apenas o de maior perímetro
+qrcode_contour = []
+for i in range(len(contours)):
+    if(perimeters[i] == max_perimeter): #above (max_element_perimeter - std_deviation)
+        qrcode_contour.append(contours[i])
+print('Number qrcode: %d' % len(qrcode_contour))
+
 # Compondo imagem
 reader1.images['original+contours'] = reader1.images['original'].copy()
 cv2.drawContours(reader1.images['original+contours'], rectangle_contours_aprox, -1, (0,0,255), 3)
 cv2.drawContours(reader1.images['original+contours'], final_marks, -1, (0,255,0), 3)
+
+#cv2.drawContours(reader1.images['original+contours'], qrcode_contour, -1, (255,69,0), 3)
 
 reader1.print_images([reader1.images['original+contours']])
 
