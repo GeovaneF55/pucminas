@@ -1,0 +1,122 @@
+Dados:
+	Fonte: Dharmendra Modha
+		- Cérebro Humano: 38 petaflops ou 38*10^15 operações em pontos flutuantes por minuto;
+	
+	Fonte: NSF Science and Engineering Indicators
+		EUA:
+			Cientistas e Engenheiros:
+				- Existem 600,000 graduados;
+				- Representam 22% do total;
+			Logo:
+				- Existem 2.7 milhões de graduados;
+
+		Mundo:
+			- Os EUA representam 25% dos pesquisadores no mundo;
+			
+			Logo:
+				- Existem 10.8 mulhões de graduados no mundo;
+
+	
+	Fonte: UNESCO
+		2013:
+			- Existiam 7.8 milhões de pesquisadores no mundo;
+		2007:
+			- 21% a menos de pesquisadores em relação a 2013;
+
+	Fonte: Artificial Brains
+		SpiNNaker: Possui aproximadamente 1 milhão (1,179,648) de processadores, sendo que cada um equivale a 1000 neurônios;
+		
+			Logo:
+				- O SpiNNaker possui 1,18*10^9 neurônios;
+
+		Cérebro Humano: Possui 85 bilhões de neurônios;
+
+			Logo:
+				- É necessário 72,033898305 ou 74 SpiNNakers para simular o cérebro humano;
+
+	Fonte: RbTech
+		Em média, o consumo de um processador irrelevando sua marca (AMD ou intel) é de 55w/h;
+
+	Fonte: wikipédia
+		O melhor processador (Core i7 980-X Extreme Edition da Intel) atinge até 20 Gigaflops;
+
+	Logo:
+		Associando os dados da RbTech e da wikipédia, é possível definir que um processador que atinja 20 Gigaflops de processamento gaste 55w/h;
+
+Tarefa 6:
+
+1) Cenário atual:
+
+	De acordo com os dados coletados, houve um crescimento em relação a 2013 de 27,8%;
+
+	Logo:
+		Para simular todos os pesquisadores no mundo e levando em conta a quantidade de processamento do cérebro humano, será preciso de um supercomputador de:
+
+		processamento supercomputador = processamento por humano * quantidade de pesquisadores em 2018
+
+		ps = (38*10^15) * (1,08*10^7)
+
+		ps = 41,4*10^22
+
+		Logo o processamento do supercomputador deve ter 414 zettaflops no cenário atual;
+
+		Com 414 zettaflops, é possível definir a energia gasta pelos 74 SpiNNakers através da seguinte conta:
+
+		energia gasta pelo supercomputador em 2018 = (414*10^21 * 55) / 20*10^9
+
+		egS = 1,138*10^15 ou 1,138 petawatt/hora
+
+		Logo a energia gasta pelo supercomputador deve ser de 1,138 petawatt/hora no cenário atual;
+
+2) Cenário 2023:
+
+	De acordo com os dados coletados, e supondo um aumento de pesquisadores, levando em conta o aumento de 2013 para 2018, de 27,8% teríamos um total de 13,8 milhões de pesquisadores.
+
+	Logo:
+		Para simular todos os pesquisadores no mundo e levando em conta a quantidade de processamento do cérebro humano, será preciso de um supercomputador de:
+
+		processamento supercomputador = processamento por humano * quantidade de pesquisadores em 2023
+
+		ps = (38*10^15) * (1,38*10^7)
+
+		ps = 52,44*10^22
+
+		Logo o processamento do supercomputador deve ter 524,4 zettaflops no cenário de 2023;
+
+		Com 524,4 zettaflops, é possível definir a energia gasta pelos 74 SpiNNakers através da seguinte conta:
+
+		energia gasta pelo supercomputador em 2023 = (524,4*10^21 * 55) / 20*10^9
+
+		egS = 1,442*10^15 ou 1,442 petawatt/hora
+
+		Logo a energia gasta pelo supercomputador deve ser de 1,442 petawatt/hora no cenário de 2023;
+
+3) Arquitetura neuromórfica:
+
+	De acordo com os dados coletados, utilizando a quantidade de processamento do cérebro humano e associando sua a quantidade de neurônios, podemos estimar o poder de processamento do SpiNNaker (arquitetura neuromórfica) da seguinte forma:
+
+	processamento SpiNNaker = (38*10^15 * 1,18*10^9) / (85*10^9)
+
+	ps = 5,27*10^14
+
+	Logo o processamento do SpiNNaker deve ter 527 teraflops e se considerar os 74 SpiNNakers necessários para simular completamente o cérebro humano conseguimos os 38 petaflops.
+
+	Com 38 petaflops, é possível definir a energia gasta pelos 74 SpiNNakers através da seguinte conta:
+
+	Eenergia gasta pelo SpiNNaker = (38*10^15 * 55) / 20*10^9
+
+	egS = 1,045*10^8 ou 104,5 megawatt/hora
+
+	Logo a energia gasta pelo SpiNNaker deve ser de 104,5 megawatt/hora;
+
+Links:
+
+https://www.quora.com/Roughly-what-processing-power-does-the-human-brain-equate-to-In-terms-of-petaflops-or-gigahertz-not-words-it-can-process
+https://www.quora.com/How-many-researchers-are-there-in-the-world
+https://www.nsf.gov/statistics/seind10/
+https://www.bls.gov/oco/ocos066.htm
+http://en.unesco.org/node/252273
+http://www.artificialbrains.com/spinnaker
+http://hardware.rbtech.info/saber-consumo-energia-processador/
+https://pt.wikipedia.org/wiki/FLOPS
+http://www.maxxpi.net/pages/result-browser/top15---flops.php

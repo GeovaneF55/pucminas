@@ -62,8 +62,8 @@ class Contours_Manager:
 
 reader1 = Card_Reader()
 
-qt_questions = input()
-qt_answers = input()
+qt_questions = int(input())
+qt_answers = int(input())
 image_path = input()
 
 # Reading Image
@@ -143,10 +143,6 @@ areas = [cv2.contourArea(ca) for ca in rectangle_contours_aprox]
 mean_area, std_area, max_area = np.mean(areas), np.std(areas), np.max(areas)
 print('Mean Contour Area: %.3f\nStd Deviation: %.3f\nMax Contour Area: %.3f\n' % (mean_area, std_area, max_area))
 
-perimeters = [cv2.arcLength(ca,True) for ca in contours]
-max_perimeter = np.max(perimeters)
-print('\nMax Contour Perimeter: %.3f\n' % (max_perimeter))
-
 # Seleciona apenas os de maiores áreas
 final_marks, final_contours = [], []
 for i in range(len(rectangle_contours_aprox)):
@@ -155,19 +151,10 @@ for i in range(len(rectangle_contours_aprox)):
         final_contours.append(rectangle_contours[i])
 print('Number of selected marks: %d' % len(final_marks))
 
-# Seleciona apenas o de maior perímetro
-qrcode_contour = []
-for i in range(len(contours)):
-    if(perimeters[i] == max_perimeter): #above (max_element_perimeter - std_deviation)
-        qrcode_contour.append(contours[i])
-print('Number qrcode: %d' % len(qrcode_contour))
-
 # Compondo imagem
 reader1.images['original+contours'] = reader1.images['original'].copy()
 cv2.drawContours(reader1.images['original+contours'], rectangle_contours_aprox, -1, (0,0,255), 3)
 cv2.drawContours(reader1.images['original+contours'], final_marks, -1, (0,255,0), 3)
-
-#cv2.drawContours(reader1.images['original+contours'], qrcode_contour, -1, (255,69,0), 3)
 
 reader1.print_images([reader1.images['original+contours']])
 
@@ -214,8 +201,8 @@ def get_marker_countour_sets(marker_contours):
         center_points.append((center_p[0],center_p[1], i))
     center_points = sorted(center_points, key=operator.itemgetter(0))
 
-    vertical_markers = [marker_contours[center_points[i][2]] for i in range(0, int(int(qt_questions)/2))]
-    horizontal_markers = [marker_contours[center_points[i][2]] for i in range(int(int(qt_questions)/2), len(marker_contours))]
+    vertical_markers = [marker_contours[center_points[i][2]] for i in range(0, qt_questions//2)]
+    horizontal_markers = [marker_contours[center_points[i][2]] for i in range(qt_questions//2, len(marker_contours))]
     return vertical_markers, horizontal_markers
 
 # Compute median mark contour
@@ -331,22 +318,28 @@ def verify_cell(p1, p2, image):
 marked_list = {}
 for line in fill_markers:
     marked = []
-    for k in range(0, 5):
+    for k in range(0, qt_answers):
         x,y,w,h = cv2.boundingRect(fill_markers[line][k])
         is_marked, w_ratio = verify_cell((x,y), (x+w, y+h), reader1.images['rotated+bin'])
         if(is_marked): marked.append(k)
     marked_list[line+1] = marked
 
     marked = []
-    for k in range(5, 10):
+    for k in range(qt_answers, (2*qt_answers)):
         x,y,w,h = cv2.boundingRect(fill_markers[line][k])
-        is_marked, w_ratio = verify_cell((x,y), (x+w, y+h), reader1.images['rotated+bin'])
+        is_marked, w_raio = verify_cell((x,y), (x+w, y+h), reader1.images['rotated+bin'])
         if(is_marked): marked.append(k)
-    marked_list[line+(int(int(qt_questions)/2))+1] = marked
+    marked_list[line+(qt_questions//2)+1] = marked
 
 # Computing Answers
 file = open('output/answers.txt', 'w')
-mapping = {0:'A', 1:'B', 2:'C', 3:'D', 4:'E', 5:'A', 6:'B', 7:'C', 8:'D', 9:'E'}
+
+mapping = {}
+for i in range(2 * qt_answers):
+	letter = chr((i % qt_answers) + ord('A'))
+	mapping[i] = letter
+
+print(mapping)
 
 for i in range(1, len(marked_list)+1):
     n = len(marked_list[i])
