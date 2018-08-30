@@ -1,0 +1,30 @@
+Local: 
+	- Sequencial:
+		2.34		user
+		0.03		system
+		0:02.38		elapsed
+		99%		CPU
+
+	- Paralelo:
+		5.89		user
+		0.02		system
+		0:01.52		elapsed
+		387%		CPU
+
+	- Speedup: (2.38/1.52) = 1,565789474
+
+PUC:
+	- Sequencial:
+		real	0m4.035s
+		user	0m3.957s
+		sys	0m0.072s
+
+	- Paralelo:
+		real	0m2.486s
+		user	0m9.544s
+		sys	0m0.084s
+
+	- Speedup: (4,035/2,486) = 1,6230893
+
+		
+
