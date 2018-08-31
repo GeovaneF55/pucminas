@@ -17,7 +17,6 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QMenu, QVBoxLayout, QTextEdit, QAction, QLabel
 from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QSize
 from PyQt5.QtGui import QIcon, QPainter, QPainterPath, QPen
-from math import hypot
 
 class Coordinate:
 	coord_x = None
@@ -57,10 +56,6 @@ class Drawer(QWidget):
 			for point in line:
 				painter.drawPoint(point['x'], point['y'])
 
-		for circ in circs:
-			for point in circ:
-				painter.drawPoint(point['x'], point['y'])
-
 	def mousePressEvent(self, event):
 		global coord1
 		coord1 = Coordinate()
@@ -76,7 +71,7 @@ class Drawer(QWidget):
 		self.newPoint.emit(event.pos())
 
 	def mouseReleaseEvent(self, event):
-		self.selected(pickedTool)
+		self.selected('Algoritmo DDA')
 		clearCoordinates()
 
 		self.newPoint.emit(event.pos())
@@ -87,11 +82,9 @@ class Drawer(QWidget):
 
 	# Opções de Seleção
 	def selected(self, select):
-		#print(select)
 		switcher = {
 			'Algoritmo DDA': self.makeDDA,
-			'Algoritmo de Bresenham': self.makeBresenham,
-			'Circunferências': self.makeCircunferencia,
+			'Bresenham': self.makeBresenham,
 		}
 		# Get the function from switcher dictionary
 		func = switcher.get(select, lambda: "Erro")
@@ -100,7 +93,7 @@ class Drawer(QWidget):
 
 	# Opção Algoritmo DDA 
 	def makeDDA(self):
-		global lines
+		global lines, circs
 
 		reta = Reta()
 		reta.p1 = coord1
@@ -109,21 +102,12 @@ class Drawer(QWidget):
 
 	# Opção Algoritmo Bresenham
 	def makeBresenham(self):
-		global lines
+		global lines, circs
 
 		reta = Reta()
 		reta.p1 = coord1
 		reta.p2 = (coord1 if coord2 is None else coord2)
 		lines.append(reta.bresenham())
-
-	# Opção Circunferência
-	def makeCircunferencia(self):
-		global circs
-
-		circ = Circunferencia()
-		circ.p1 = coord1
-		circ.p2 = (coord1 if coord2 is None else coord2)
-		circs.append(circ.circunferencia())
 		
 
 class MyWidget(QWidget):
@@ -436,66 +420,6 @@ class Reta:
 				self.line.append(point)
 
 		return self.line
-
-# Implementação das Circunferências
-class Circunferencia:
-	p1 = None
-	p2 = None
-
-	c = None
-	r = None
-
-	circ = []
-
-	def center(self):
-		self.c = self.p1
-
-	def radius(self):
-		self.r = round(hypot(self.p2.x() - self.p1.x(), self.p2.y() - self.p1.y()))
-
-	# Implementação do Algoritmo da Circunferência
-	def circunferencia(self):
-		self.center()
-		self.radius()
-
-		x = 0
-		y = self.r
-		p = 3 - 2*(self.r)
-
-		self.circ = self.circ + self.plotaSimetricos(x, y)
-
-		while x < y:
-			if p < 0:
-				p += 4*x + 6
-			else:
-				p += 4*(x-y) + 10
-				y -= 1
-			x += 1
-			self.circ = self.circ + self.plotaSimetricos(x, y)
-		
-		return self.circ
-
-	def plotaSimetricos(self, a, b):
-		sim = []
-
-		point = {'x': self.c.x() + a, 'y': self.c.y() + b}
-		sim.append(point)
-		point = {'x': self.c.x() + a, 'y': self.c.y() - b}
-		sim.append(point)
-		point = {'x': self.c.x() - a, 'y': self.c.y() + b}
-		sim.append(point)
-		point = {'x': self.c.x() - a, 'y': self.c.y() - b}
-		sim.append(point)
-		point = {'x': self.c.x() + b, 'y': self.c.y() + a}
-		sim.append(point)
-		point = {'x': self.c.x() + b, 'y': self.c.y() - a}
-		sim.append(point)
-		point = {'x': self.c.x() - b, 'y': self.c.y() + a}
-		sim.append(point)
-		point = {'x': self.c.x() - b, 'y': self.c.y() - a}
-		sim.append(point)
-
-		return sim
 
 def clearCoordinates():
 	global coord1, coord2
