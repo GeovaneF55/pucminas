@@ -9,9 +9,12 @@ Trabalho: Implementações dos algoritmos dados em sala
 """
 
 import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QMenu, QVBoxLayout, QTextEdit, QAction, QLabel
-from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QSize
-from PyQt5.QtGui import QIcon, QPainter, QPainterPath, QPen
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+#from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QMenu, QVBoxLayout, QTextEdit, QAction, QLabel
+#from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QSize
+#from PyQt5.QtGui import QInputDialog, QIcon, QPainter, QPainterPath, QPen
 from math import hypot
 
 class Coordinate:
@@ -87,6 +90,8 @@ class Drawer(QWidget):
 			'Algoritmo DDA': self.makeDDA,
 			'Algoritmo de Bresenham': self.makeBresenham,
 			'Circunferências': self.makeCircunferencia,
+			#'Algoritmo de Cohen - Sutherland': self.makeCS,
+			#'Algoritmo de Liang - Barsky': self.makeLB
 		}
 		# Get the function from switcher dictionary
 		func = switcher.get(select, lambda: "Erro")
@@ -119,6 +124,14 @@ class Drawer(QWidget):
 		circ.p1 = coord1
 		circ.p2 = (coord1 if coord2 is None else coord2)
 		circs.append(circ.circunferencia())
+
+	# Opção Algoritmo de Cohen - Sutherland
+	def makeCS(self):
+		pass
+
+	# Opção Algoritmo de Liang - Barsky
+	def makeLB(self):
+		pass
 		
 
 class MyWidget(QWidget):
@@ -277,7 +290,6 @@ class MyPaint(QMainWindow):
 
 	# Altera visão da barra de status
 	def toggleMenu(self, state):
-        
 		if state:
 			self.statusbar.show()
 		else:
@@ -293,21 +305,38 @@ class MyPaint(QMainWindow):
 	def translationEvent(self):
 		clearCoordinates()
 		self.setWindowTitle('Meu Paint - Translação')
+		trans_x, trans_y, ok = TranslacaoDialog.getResults()
+
+		if ok:
+			pass
 
 	# Scale Event
 	def scaleEvent(self):
 		clearCoordinates()
-		self.setWindowTitle('Meu Paint - Escala') 
+		self.setWindowTitle('Meu Paint - Escala')
+		scale, ok = EscalaDialog.getResults()
+
+		if ok:
+			pass 
 
 	# Rotation Event
 	def rotationEvent(self):
 		clearCoordinates()
-		self.setWindowTitle('Meu Paint - Rotação') 
+		self.setWindowTitle('Meu Paint - Rotação')
+		angle, ok = RotacaoDialog.getResults()
+
+		if ok:
+			pass
 
 	# Shear Event
 	def shearEvent(self):
 		clearCoordinates()
 		self.setWindowTitle('Meu Paint - Cisalhamento')
+		axis, force, ok = CisalhamentoDialog.getResults()
+
+		if ok:
+			print(axis)
+			print(force)
 
 	# Line Events
 	# DDA Event
@@ -491,6 +520,159 @@ class Circunferencia:
 		sim.append(point)
 
 		return sim
+
+# Dialog Translação
+class TranslacaoDialog(QDialog):
+	def __init__(self, parent = None):
+		super(TranslacaoDialog, self).__init__(parent)
+
+		layout = QFormLayout(self)
+		
+		# Input Translação Eixo X
+		self.trans_x = QLineEdit()
+		self.trans_x.setValidator(QIntValidator())
+		self.trans_x.setMaxLength(4)
+		layout.addRow("Translação eixo X: ", self.trans_x)
+
+		# Input Translação Eixo Y
+		self.trans_y = QLineEdit()
+		self.trans_y.setValidator(QIntValidator())
+		self.trans_y.setMaxLength(4)
+		layout.addRow("Translação eixo Y: ", self.trans_y)
+
+		# Butões de OK e Cancel
+		buttons = QDialogButtonBox(
+			QDialogButtonBox.Ok | QDialogButtonBox.Cancel,
+			Qt.Horizontal, self)
+		buttons.accepted.connect(self.accept)
+		buttons.rejected.connect(self.reject)
+		layout.addRow(buttons)
+
+	def getX(self):
+		return self.trans_x.text()
+
+	def getY(self):
+		return self.trans_y.text()
+
+	# Método estático que cria o dialog e retorna (trans_x, trans_y, aceito)
+	@staticmethod
+	def getResults(parent = None):
+		dialog = TranslacaoDialog(parent)
+		result = dialog.exec_()
+		trans_x = dialog.getX()
+		trans_y = dialog.getY()
+		return (trans_x, trans_y, result == QDialog.Accepted)
+
+# Dialog Escala
+class EscalaDialog(QDialog):
+	def __init__(self, parent = None):
+		super(EscalaDialog, self).__init__(parent)
+
+		layout = QFormLayout(self)
+		
+		# Input Escala
+		self.scale = QLineEdit()
+		self.scale.setValidator(QIntValidator())
+		self.scale.setMaxLength(4)
+		layout.addRow("Nova Escala: ", self.scale)
+
+		# Butões de OK e Cancel
+		buttons = QDialogButtonBox(
+			QDialogButtonBox.Ok | QDialogButtonBox.Cancel,
+			Qt.Horizontal, self)
+		buttons.accepted.connect(self.accept)
+		buttons.rejected.connect(self.reject)
+		layout.addRow(buttons)
+
+	def getScale(self):
+		return self.scale.text()
+
+	# Método estático que cria o dialog e retorna (scale, aceito)
+	@staticmethod
+	def getResults(parent = None):
+		dialog = EscalaDialog(parent)
+		result = dialog.exec_()
+		scale = dialog.getScale()
+		return (scale, result == QDialog.Accepted)
+
+# Dialog Rotação
+class RotacaoDialog(QDialog):
+	def __init__(self, parent = None):
+		super(RotacaoDialog, self).__init__(parent)
+
+		layout = QFormLayout(self)
+		
+		# Input ângulo
+		self.angle = QDoubleSpinBox()
+		self.angle.setRange(0, 360)
+		layout.addRow("Ângulo de Rotação: ", self.angle)
+
+		# Butões de OK e Cancel
+		buttons = QDialogButtonBox(
+			QDialogButtonBox.Ok | QDialogButtonBox.Cancel,
+			Qt.Horizontal, self)
+		buttons.accepted.connect(self.accept)
+		buttons.rejected.connect(self.reject)
+		layout.addRow(buttons)
+
+	def getAngle(self):
+		return self.angle.text()
+
+	# Método estático que cria o dialog e retorna (angle, aceito)
+	@staticmethod
+	def getResults(parent = None):
+		dialog = RotacaoDialog(parent)
+		result = dialog.exec_()
+		angle = dialog.getAngle()
+		return (angle, result == QDialog.Accepted)
+
+# Dialog Cisalhamento
+class CisalhamentoDialog(QDialog):
+	def __init__(self, parent = None):
+		super(CisalhamentoDialog, self).__init__(parent)
+
+		layout = QFormLayout(self)
+
+		self.axis = QComboBox()
+		self.axis.addItems(["X", "Y"])
+		self.axis.currentIndexChanged.connect(self.selectionchange)
+		layout.addRow("Eixo: ", self.axis)
+		
+		# Input Força
+		self.force = QLineEdit()
+		self.force.setValidator(QIntValidator())
+		self.force.setMaxLength(4)
+		layout.addRow("Força: ", self.force)
+
+		# Butões de OK e Cancel
+		buttons = QDialogButtonBox(
+			QDialogButtonBox.Ok | QDialogButtonBox.Cancel,
+			Qt.Horizontal, self)
+		buttons.accepted.connect(self.accept)
+		buttons.rejected.connect(self.reject)
+		layout.addRow(buttons)
+
+	def selectionchange(self, i):
+		pass		
+		#print("Items in the list are :")
+		#for count in range(self.axis.count()):
+		#	print(self.axis.itemText(count))
+		#print("Current index", i, "selection changed ", self.axis.currentText())
+
+	def getAxis(self):
+		return self.axis.currentText()
+
+	def getForce(self):
+		return self.force.text()
+
+	# Método estático que cria o dialog e retorna (angle, aceito)
+	@staticmethod
+	def getResults(parent = None):
+		dialog = CisalhamentoDialog(parent)
+		result = dialog.exec_()
+		axis = dialog.getAxis()
+		force = dialog.getForce()
+		return (axis, force, result == QDialog.Accepted)
 
 def clearCoordinates():
 	global coord1, coord2

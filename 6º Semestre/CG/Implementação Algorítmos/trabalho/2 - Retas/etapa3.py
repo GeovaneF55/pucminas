@@ -2,15 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """
-ZetCode PyQt5 tutorial 
-
-This program creates a skeleton of
-a classic GUI application with a menubar,
-toolbar, statusbar, and a central widget. 
-
-Author: Jan Bodnar
-Website: zetcode.com 
-Last edited: August 2017
+Aluno: Geovane Fonseca de Sousa Santos
+Matrícula: 553237
+Matéria: Coputação Gráfica
+Trabalho: Implementações dos algoritmos dados em sala
 """
 
 import sys
