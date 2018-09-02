@@ -1,0 +1,11 @@
+1. Compilar o código:
+
+	$ gcc silly_sort.c -o silly_sort -fopenmp -lm
+
+2. Executar o código:
+
+	$ time ./silly_sort
+
+3. Utilizar o Perf:
+
+	$ perf stat -d ./silly_sort

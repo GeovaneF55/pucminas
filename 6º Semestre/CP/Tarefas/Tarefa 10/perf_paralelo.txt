@@ -1,0 +1,36 @@
+Crivo de erástones Paralelo (Local):
+
+       5188,195013      task-clock (msec)         #    3,830 CPUs utilized          
+               227      context-switches          #    0,044 K/sec                  
+                 4      cpu-migrations            #    0,001 K/sec                  
+            24.498      page-faults               #    0,005 M/sec                  
+    13.833.220.826      cycles                    #    2,666 GHz                      (49,79%)
+   <not supported>      stalled-cycles-frontend  
+   <not supported>      stalled-cycles-backend   
+     4.363.808.082      instructions              #    0,32  insns per cycle          (62,23%)
+       715.376.010      branches                  #  137,885 M/sec                    (62,34%)
+         6.050.171      branch-misses             #    0,85% of all branches          (62,41%)
+     2.614.684.281      L1-dcache-loads           #  503,968 M/sec                    (62,83%)
+       104.015.319      L1-dcache-load-misses     #    3,98% of all L1-dcache hits    (62,81%)
+         1.741.119      LLC-loads                 #    0,336 M/sec                    (50,30%)
+           333.134      LLC-load-misses           #   19,13% of all LL-cache hits     (50,16%)
+
+       1,354655200 seconds time elapsed
+
+
+Crivo de erástones Paralelo (PUC):
+
+       3921,924112      task-clock (msec)         #    0,320 CPUs utilized          
+             1.122      context-switches          #    0,286 K/sec                  
+                14      cpu-migrations            #    0,004 K/sec                  
+            24.497      page-faults               #    0,006 M/sec                  
+     9.350.065.740      cycles                    #    2,384 GHz                      (37,19%)
+     4.379.226.816      instructions              #    0,47  insn per cycle           (49,25%)
+       713.599.857      branches                  #  181,951 M/sec                    (50,18%)
+         7.150.004      branch-misses             #    1,00% of all branches          (50,25%)
+     3.128.793.312      L1-dcache-loads           #  797,770 M/sec                    (25,10%)
+         5.604.705      L1-dcache-load-misses     #    0,18% of all L1-dcache hits    (25,04%)
+         6.221.596      LLC-loads                 #    1,586 M/sec                    (24,72%)
+           406.119      LLC-load-misses           #    6,53% of all LL-cache hits     (24,71%)
+
+      12,272887967 seconds time elapsed
