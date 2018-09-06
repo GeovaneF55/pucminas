@@ -13,24 +13,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from math import *
-
-class Coordinate:
-	coord_x = None
-	coord_y = None
-
-	def setCoordinates(self, x, y):
-		self.coord_x = x
-		self.coord_y = y
-
-	def clearCoordinate(self):
-		self.coord_x = None
-		self.coord_y = None
-
-	def x(self):
-		return self.coord_x
-
-	def y(self):
-		return self.coord_y
+from locale import *
 
 class Drawer(QWidget):
 	newPoint = pyqtSignal(QPoint)
@@ -40,7 +23,7 @@ class Drawer(QWidget):
 		self.path = QPainterPath()
 
 	def paintEvent(self, event):
-		global lines, circs
+		global cs, lb, lines_dda, lines_bresenham, circs
 
 		color = Qt.black
 		pen = QPen(color, 1, Qt.SolidLine)
@@ -48,110 +31,161 @@ class Drawer(QWidget):
 		painter = QPainter(self)
 		painter.setPen(pen)
 		
-		for line in lines:
-			for point in line:
-				painter.drawPoint(point['x'], point['y'])
+		if pickedTool in ['Algoritmo de Cohen - Sutherland']:
+			for pini, pfim in lines_dda:
+				(x1, y1, x2, y2) = cohensutherland(cs["p1"], cs["p2"], pini, pfim)
 
-		for circ in circs:
-			for point in circ:
-				painter.drawPoint(point['x'], point['y'])
+				if (x1 is not None and y1 is not None and x2 is not None and y2 is not None):
+					p_1 = {'x': x1, 'y': y1}
+					p_2 = {'x': x2, 'y': y2}
+
+					for point in dda(p_1, p_2):
+						painter.drawPoint(point['x'], point['y'])
+				
+			for pini, pfim in lines_bresenham:
+				(x1, y1, x2, y2) = cohensutherland(cs["p1"], cs["p2"], pini, pfim)
+
+				if (x1 is not None and y1 is not None and x2 is not None and y2 is not None):
+					p_1 = {'x': x1, 'y': y1}
+					p_2 = {'x': x2, 'y': y2}
+
+					for point in bresenham(p_1, p_2):
+						painter.drawPoint(point['x'], point['y'])
+
+		elif pickedTool in ['Algoritmo de Liang - Barsky']:
+			for pini, pfim in lines_dda:
+				(x1, y1, x2, y2) = liangbarsky(lb["p1"], lb["p2"], pini, pfim)
+
+				if (x1 is not None and y1 is not None and x2 is not None and y2 is not None):
+					p_1 = {'x': x1, 'y': y1}
+					p_2 = {'x': x2, 'y': y2}
+
+					for point in dda(p_1, p_2):
+						painter.drawPoint(point['x'], point['y'])
+
+			for pini, pfim in lines_bresenham:
+				(x1, y1, x2, y2) = liangbarsky(lb["p1"], lb["p2"], pini, pfim)
+
+				if (x1 is not None and y1 is not None and x2 is not None and y2 is not None):
+					p_1 = {'x': x1, 'y': y1}
+					p_2 = {'x': x2, 'y': y2}
+
+					for point in bresenham(p_1, p_2):
+						painter.drawPoint(point['x'], point['y'])
+
+		else:
+			for p1, p2 in lines_dda:
+				for point in dda(p1, p2):
+					painter.drawPoint(point['x'], point['y'])
+
+			for p1, p2 in lines_bresenham:
+				for point in bresenham(p1, p2):
+					painter.drawPoint(point['x'], point['y'])
+
+			for p1, p2 in circs:
+				for point in circunferencia(p1, p2):
+					painter.drawPoint(point['x'], point['y'])
 
 	def mousePressEvent(self, event):
 		global coord1
-		coord1 = Coordinate()
-		coord1.setCoordinates(event.pos().x(), event.pos().y())
+		coord1 = {'x': event.pos().x(), 'y': event.pos().y()}
 
 		self.newPoint.emit(event.pos())
+
+		if pickedTool in ['Algoritmo DDA']:
+			lines_dda.append([coord1, coord1])
+			self.update()
+		elif pickedTool in ['Algoritmo de Bresenham']:
+			lines_bresenham.append([coord1, coord1])
+			self.update()
+		elif pickedTool in ['Circunferências']:
+			circs.append([coord1, coord1])
+			self.update()
 
 	def mouseMoveEvent(self, event):
-		global coord2
-		coord2 = Coordinate()
-		coord2.setCoordinates(event.pos().x(), event.pos().y())
+		global coord2, lines_dda, lines_bresenham, circs
+		coord2 = {'x': event.pos().x(), 'y': event.pos().y()}
 
 		self.newPoint.emit(event.pos())
+
+		if pickedTool in ['Algoritmo DDA']:
+			lines_dda[len(lines_dda) - 1][1] = coord2
+			self.update()
+		elif pickedTool in ['Algoritmo de Bresenham']:
+			lines_bresenham[len(lines_bresenham) - 1][1] = coord2
+			self.update()
+		elif pickedTool in ['Circunferências']:
+			circs[len(circs) - 1][1] = coord2
+			self.update()
 
 	def mouseReleaseEvent(self, event):
 		self.selected(pickedTool)
 		clearCoordinates()
-
 		self.newPoint.emit(event.pos())
-		self.update()
 
 	def sizeHint(self):
 		return QSize(1200, 800)
 
 	# Opções de Seleção
 	def selected(self, select):
-		#print(select)
 		switcher = {
-			'Algoritmo DDA': self.makeDDA,
-			'Algoritmo de Bresenham': self.makeBresenham,
-			'Circunferências': self.makeCircunferencia,
-			#'Algoritmo de Cohen - Sutherland': self.makeCS,
-			#'Algoritmo de Liang - Barsky': self.makeLB
+			'Algoritmo de Cohen - Sutherland': self.makeCS,
+			'Algoritmo de Liang - Barsky': self.makeLB
 		}
 		# Get the function from switcher dictionary
 		func = switcher.get(select, lambda: "Erro")
 		# Execute the function
 		func()
 
-	# Opção Algoritmo DDA 
-	def makeDDA(self):
-		global lines
-
-		reta = Reta()
-		reta.p1 = coord1
-		reta.p2 = (coord1 if coord2 is None else coord2)
-		lines.append(reta.dda())
-
-	# Opção Algoritmo Bresenham
-	def makeBresenham(self):
-		global lines
-
-		reta = Reta()
-		reta.p1 = coord1
-		reta.p2 = (coord1 if coord2 is None else coord2)
-		lines.append(reta.bresenham())
-
-	# Opção Circunferência
-	def makeCircunferencia(self):
-		global circs
-
-		circ = Circunferencia()
-		circ.p1 = coord1
-		circ.p2 = (coord1 if coord2 is None else coord2)
-		circs.append(circ.circunferencia())
-
 	# Opção Algoritmo de Cohen - Sutherland
 	def makeCS(self):
-		pass
+		global cs
+		p1 = coord1
+		p2 = (coord1 if coord2 is None else coord2)
+
+		cs = {"p1" : p1, "p2" : p2}
+
+		self.update()
 
 	# Opção Algoritmo de Liang - Barsky
 	def makeLB(self):
-		pass
+		global lb
+		p1 = coord1
+		p2 = (coord1 if coord2 is None else coord2)
+
+		lb = {"p1" : p1, "p2" : p2}
+
+		self.update()
 		
 
 class MyWidget(QWidget):
+
+	drawer = None
 
 	# Adicionando Drawer
 	def __init__(self, parent=None):
 		QWidget.__init__(self, parent)
 		self.setLayout(QVBoxLayout())
 		label = QLabel(self)
-		drawer = Drawer(self)
-		drawer.newPoint.connect(lambda p: label.setText(self.my_label(p)))
+		self.drawer = Drawer(self)
+		self.drawer.newPoint.connect(lambda p: label.setText(self.my_label(p)))
 		self.layout().addWidget(label)
-		self.layout().addWidget(drawer)
+		self.layout().addWidget(self.drawer)
 
 	def my_label(self, p):
 		if coord1 is None:
 			return ('No coordinates')
 		elif coord2 is None:
-			return ('Current coordinates: ( %d : %d ) - Init Point: ( %d : %d)' % (p.x(), p.y(), coord1.x(), coord1.y()))
+			return ('Init Point: ( %d : %d)' % (coord1['x'], coord1['y']))
 		else:
-			return ('Current coordinates: ( %d : %d ) - Init Point: ( %d : %d) - Final Point: ( %d : %d )' % (p.x(), p.y(), coord1.x(), coord1.y(), coord2.x(), coord2.y()))
+			return ('Init Point: ( %d : %d) - Final Point: ( %d : %d )' % (coord1['x'], coord1['y'], coord2['x'], coord2['y']))
+
+	def getDrawer():
+		return self.drawer
 
 class MyPaint(QMainWindow):
+
+	widget = None
     
 	def __init__(self):
 		super().__init__()
@@ -160,8 +194,8 @@ class MyPaint(QMainWindow):
         # Adicionando Menus
 	def initUI(self):		
 
-		widget = MyWidget()
-		self.setCentralWidget(widget)
+		self.widget = MyWidget()
+		self.setCentralWidget(self.widget)
         
 		# Translation Action
 		tranAct = QAction(QIcon('../Imagens/translation.png'), 'Translação', self)
@@ -181,6 +215,12 @@ class MyPaint(QMainWindow):
 		rotAct.setStatusTip('Rotacionar a imagem')
 		rotAct.triggered.connect(self.rotationEvent)
 
+		# Reflection Action
+		refAct = QAction(QIcon('../Imagens/reflection.png'), 'Reflexão', self)
+		refAct.setShortcut('Ctrl+F')
+		refAct.setStatusTip('Reflexão da imagem')
+		refAct.triggered.connect(self.reflectionEvent)
+
 		# Shear Action
 		shearAct = QAction(QIcon('../Imagens/shear.png'), 'Cisalhamento', self)
 		shearAct.setShortcut('Ctrl+S')
@@ -189,13 +229,15 @@ class MyPaint(QMainWindow):
 
 		# Line Action
 		lineMenu = QMenu('Retas', self)
+
 		# Algoritmo DDA
-		ddaAct = QAction(QIcon('../Imagens/line.png'), 'Algoritmo DDA', self)
+		ddaAct = QAction(QIcon('../Imagens/line_dda.png'), 'Algoritmo DDA', self)
 		ddaAct.setShortcut('Ctrl+D')
 		ddaAct.setStatusTip('Inserir uma reta com o algoritmo DDA')
 		ddaAct.triggered.connect(self.ddaEvent)
+
 		# Algoritmo de Bresenham
-		bresAct = QAction(QIcon('../Imagens/line.png'), 'Algoritmo de Bresenham', self)
+		bresAct = QAction(QIcon('../Imagens/line_bres.png'), 'Algoritmo de Bresenham', self)
 		bresAct.setShortcut('Ctrl+B')
 		bresAct.setStatusTip('Inserir uma reta com o algoritmo de Bresenham')
 		bresAct.triggered.connect(self.bresenhamEvent)
@@ -211,19 +253,39 @@ class MyPaint(QMainWindow):
 
 		# Cut Action
 		cutMenu = QMenu('Recortes', self)
+
 		# Algoritmo de Cohen - Sutherland
-		csAct = QAction(QIcon('../Imagens/cutting.png'), 'Algoritmo de Cohen - Sutherland', self)
+		csAct = QAction(QIcon('../Imagens/cutting_cs.png'), 'Algoritmo de Cohen - Sutherland', self)
 		csAct.setShortcut('Ctrl+X')
 		csAct.setStatusTip('Recortar uma Imagem com o algoritmo de Cohen - Sutherland')
 		csAct.triggered.connect(self.csEvent)
+
 		# Algoritmo de Liang - Barsky
-		lbAct = QAction(QIcon('../Imagens/cutting.png'), 'Algoritmo de Liang - Barsky', self)
+		lbAct = QAction(QIcon('../Imagens/cutting_lb.png'), 'Algoritmo de Liang - Barsky', self)
 		lbAct.setShortcut('Ctrl+Y')
 		lbAct.setStatusTip('Recortar uma Imagem com o algoritmo de Liang - Barsky')
 		lbAct.triggered.connect(self.lbEvent)
 
 		cutMenu.addAction(csAct)
 		cutMenu.addAction(lbAct)
+
+		# Fill Action
+		fillMenu = QMenu('Preenchimentos', self)
+
+		# Algoritmo de Boundary - Fill
+		bfAct = QAction(QIcon('../Imagens/fill_bf.png'), 'Algoritmo de Boundary - Fill', self)
+		bfAct.setShortcut('Ctrl+B')
+		bfAct.setStatusTip('Preencher uma Imagem com o algoritmo de Boundary - Fill')
+		bfAct.triggered.connect(self.bfEvent)
+
+		# Algoritmo de Flood - Fill
+		ffAct = QAction(QIcon('../Imagens/fill_ff.png'), 'Algoritmo de Flood - Fill', self)
+		ffAct.setShortcut('Ctrl+P')
+		ffAct.setStatusTip('Preencher uma Imagem com o algoritmo de Flood - Fill')
+		ffAct.triggered.connect(self.ffEvent)
+
+		fillMenu.addAction(bfAct)
+		fillMenu.addAction(ffAct)
 
 		# Clear Action
 		clearAct = QAction(QIcon('../Imagens/clear.png'), 'Limpar', self)
@@ -252,10 +314,12 @@ class MyPaint(QMainWindow):
 		fileMenu.addAction(tranAct)
 		fileMenu.addAction(scaleAct)
 		fileMenu.addAction(rotAct)
+		fileMenu.addAction(refAct)
 		fileMenu.addAction(shearAct)
 		fileMenu.addMenu(lineMenu)
 		fileMenu.addAction(circAct)
 		fileMenu.addMenu(cutMenu)
+		fileMenu.addMenu(fillMenu)
 		fileMenu.addAction(clearAct)
 		fileMenu.addAction(exitAct)
 		#Menu View
@@ -267,15 +331,17 @@ class MyPaint(QMainWindow):
 		# ToolBar
 		toolbar = self.addToolBar('File')
 		toolbar.addAction(tranAct)
-		
 		toolbar.addAction(scaleAct)
 		toolbar.addAction(rotAct)
+		toolbar.addAction(refAct)
 		toolbar.addAction(shearAct)
 		toolbar.addAction(ddaAct)
 		toolbar.addAction(bresAct)
 		toolbar.addAction(circAct)
 		toolbar.addAction(csAct)
 		toolbar.addAction(lbAct)
+		toolbar.addAction(bfAct)
+		toolbar.addAction(ffAct)
 		toolbar.addAction(clearAct)
 		toolbar.addAction(exitAct)
 
@@ -305,16 +371,46 @@ class MyPaint(QMainWindow):
 		trans_x, trans_y, ok = TranslacaoDialog.getResults()
 
 		if ok:
-			pass
+
+			for dda in lines_dda:
+				for point in dda:
+					point['x'] += trans_x
+					point['y'] += trans_y
+
+			for bresenham in lines_bresenham:
+				for point in bresenham:
+					point['x'] += trans_x
+					point['y'] += trans_y
+
+			for circ in circs:
+				for point in circ:
+					point['x'] += trans_x
+					point['y'] += trans_y
 
 	# Scale Event
 	def scaleEvent(self):
 		clearCoordinates()
 		self.setWindowTitle('Meu Paint - Escala')
-		scale, ok = EscalaDialog.getResults()
+		scale_a, scale_b, ok = EscalaDialog.getResults()
 
 		if ok:
-			pass 
+			for dda in lines_dda:
+				init_point = dda[0]
+				for point in dda:
+					point['x'] = ((point['x']-init_point['x'])*scale_a) + init_point['x']
+					point['y'] = ((point['y']-init_point['y'])*scale_b) + init_point['y']
+
+			for bresenham in lines_bresenham:
+				init_point = bresenham[0]
+				for point in bresenham:
+					point['x'] = ((point['x']-init_point['x'])*scale_a) + init_point['x']
+					point['y'] = ((point['y']-init_point['y'])*scale_b) + init_point['y']
+
+			for circ in circs:
+				init_point = circ[0]
+				for point in circ:
+					point['x'] = ((point['x']-init_point['x'])*scale_a) + init_point['x']
+					point['y'] = ((point['y']-init_point['y'])*scale_b) + init_point['y']
 
 	# Rotation Event
 	def rotationEvent(self):
@@ -322,8 +418,88 @@ class MyPaint(QMainWindow):
 		self.setWindowTitle('Meu Paint - Rotação')
 		angle, ok = RotacaoDialog.getResults()
 
+		two_decimals = '{0:.2f}'
+
+		angle_sin = float(two_decimals.format(sin(angle)))
+		angle_cos = float(two_decimals.format(cos(angle)))
+
 		if ok:
-			pass
+			for dda in lines_dda:
+				init_point = dda[0]
+
+				for point in dda:
+					x1 = ((point['x']-init_point['x']) * angle_cos)
+					y1 = ((point['y']-init_point['y']) * angle_sin)
+
+					x2 = ((point['x']-init_point['x']) * angle_sin)
+					y2 = ((point['y']-init_point['y']) * angle_cos)
+
+					point['x'] = int(x1 - y1 + init_point['x'])
+					point['y'] = int(x2 + y2 + init_point['y'])
+
+			for bresenham in lines_bresenham:
+				init_point = bresenham[0]
+				for point in bresenham:
+					x1 = ((point['x']-init_point['x']) * angle_cos)
+					y1 = ((point['y']-init_point['y']) * angle_sin)
+
+					x2 = ((point['x']-init_point['x']) * angle_sin)
+					y2 = ((point['y']-init_point['y']) * angle_cos)
+
+					point['x'] = int(x1 - y1 + init_point['x'])
+					point['y'] = int(x2 + y2 + init_point['y'])
+
+			for circ in circs:
+				init_point = circ[0]
+				for point in circ:
+					x1 = ((point['x']-init_point['x']) * angle_cos)
+					y1 = ((point['y']-init_point['y']) * angle_sin)
+
+					x2 = ((point['x']-init_point['x']) * angle_sin)
+					y2 = ((point['y']-init_point['y']) * angle_cos)
+
+					point['x'] = int(x1 - y1 + init_point['x'])
+					point['y'] = int(x2 + y2 + init_point['y'])
+
+	# Reflection Event
+	def reflectionEvent(self):
+		clearCoordinates()
+		self.setWindowTitle('Meu Paint - Reflexão')
+		axis, ok = ReflexaoDialog.getResults()
+
+		if axis == 'Origem':
+			x = -1
+			y = -1
+		elif axis == 'X':
+			x = 1
+			y = -1
+		elif axis == 'Y':
+			x = -1
+			y = 1
+		else:
+			x = 1
+			y = 1
+
+		if ok:
+			for dda in lines_dda:
+				init_point = dda[0]
+
+				for point in dda:
+					point['x'] = (x * (point['x'] - init_point['x'])) + init_point['x']
+					point['y'] = (y * (point['y'] - init_point['y'])) + init_point['y']
+
+			for bresenham in lines_bresenham:
+				init_point = bresenham[0]
+
+				for point in bresenham:
+					point['x'] = (x * (point['x'] - init_point['x'])) + init_point['x']
+					point['y'] = (y * (point['y'] - init_point['y'])) + init_point['y']
+
+			for circ in circs:
+				init_point = circ[0]
+				for point in circ:
+					point['x'] = (x * (point['x'] - init_point['x'])) + init_point['x']
+					point['y'] = (y * (point['y'] - init_point['y'])) + init_point['y']
 
 	# Shear Event
 	def shearEvent(self):
@@ -331,9 +507,55 @@ class MyPaint(QMainWindow):
 		self.setWindowTitle('Meu Paint - Cisalhamento')
 		axis, force, ok = CisalhamentoDialog.getResults()
 
+		if axis == 'X':
+			x = 0
+			y = force
+		elif axis == 'Y':
+			x = force
+			y = 0
+		else:
+			x = 1
+			y = 1
+
 		if ok:
-			print(axis)
-			print(force)
+			for dda in lines_dda:
+				init_point = dda[0]
+
+				for point in dda:
+					x1 = (point['x'] - init_point['x'])
+					y1 = (y * (point['y'] - init_point['y']))
+
+					x2 = (x * (point['x'] - init_point['x']))
+					y2 = (point['y'] - init_point['y'])
+
+					point['x'] = int(x1 + y1 + init_point['x'])
+					point['y'] = int(x2 + y2 + init_point['y'])
+
+			for bresenham in lines_bresenham:
+				init_point = bresenham[0]
+
+				for point in bresenham:
+					x1 = (point['x'] - init_point['x'])
+					y1 = (y * (point['y'] - init_point['y']))
+
+					x2 = (x * (point['x'] - init_point['x']))
+					y2 = (point['y'] - init_point['y'])
+
+					point['x'] = x1 + y1 + init_point['x']
+					point['y'] = x2 + y2 + init_point['y']
+
+			for circ in circs:
+				init_point = circ[0]
+
+				for point in circ:
+					x1 = (point['x'] - init_point['x'])
+					y1 = (y * (point['y'] - init_point['y']))
+
+					x2 = (x * (point['x'] - init_point['x']))
+					y2 = (point['y'] - init_point['y'])
+
+					point['x'] = x1 + y1 + init_point['x']
+					point['y'] = x2 + y2 + init_point['y']
 
 	# Line Events
 	# DDA Event
@@ -362,161 +584,293 @@ class MyPaint(QMainWindow):
 		clearCoordinates()
 		self.setWindowTitle('Meu Paint - Recorte (Liang - Barsky)')
 
+	# Filling Events
+	# Boundary - Fill Event
+	def bfEvent(self):
+		clearCoordinates()
+		self.setWindowTitle('Meu Paint - Preenchimento (Boundary - Fill)')
+
+	# Flood - Fill Event
+	def ffEvent(self):
+		clearCoordinates()
+		self.setWindowTitle('Meu Paint - Preenchimento (Flood - Fill)')
+
 	# Clear Event
 	def clearEvent(self):
 		clearAll()
-		newWidget = MyWidget()
-		self.setCentralWidget(newWidget)
+		self.widget = MyWidget()
+		self.setCentralWidget(self.widget)
 		self.setWindowTitle('Meu Paint')
 
 # Implementação das Retas
-class Reta:
-	p1 = None
-	p2 = None
-
+# Implementação do Algoritmo DDA
+def dda(p1, p2):
 	line = []
 
-	# Implementação do Algoritmo DDA
-	def dda(self):
-		x = self.p1.x()
-		y = self.p1.y()
-		dx = self.p2.x() - x
-		dy = self.p2.y() - y
+	x = round(p1['x'])
+	y = round(p1['y'])
+	dx = round(p2['x'] - x)
+	dy = round(p2['y'] - y)
 
-		if abs(dx) > abs(dy):
-			passos = abs(dx)
-		else:
-			passos = abs(dy)
+	if abs(dx) > abs(dy):
+		passos = abs(dx)
+	else:
+		passos = abs(dy)
 
-		xincr = dx/(1 if passos == 0 else passos)
-		yincr = dy/(1 if passos == 0 else passos)
+	xincr = dx/(1 if passos == 0 else passos)
+	yincr = dy/(1 if passos == 0 else passos)
 
-		point = {'x': x, 'y': y}
-		self.line.append(point)
+	point = {'x': x, 'y': y}
+	line.append(point)
 
-		for _ in range(passos):
-			x += xincr;
-			y += yincr;
+	for _ in range(passos):
+		x += xincr;
+		y += yincr;
 
-			point = {'x': round(x), 'y': round(y)}
-			self.line.append(point)
+		point = {'x': round(x), 'y': round(y)}
+		line.append(point)
 
-		return self.line
+	return line
 
-	# Implementação do Algoritmo de Bresenham
-	def bresenham(self):
-		x = self.p1.x()
-		y = self.p1.y()
-		dx = self.p2.x() - x
-		dy = self.p2.y() - y
+# Implementação do Algoritmo de Bresenham
+def bresenham(p1, p2):
+	line = []
 
-		point = {'x': x, 'y': y}
-		self.line.append(point)
+	x = round(p1['x'])
+	y = round(p1['y'])
+	dx = round(p2['x'] - x)
+	dy = round(p2['y'] - y)
 
-		if dx < 0:
-			dx = -dx
-			xincr = -1
-		else:
-			xincr = +1
-		if dy < 0:
-			dy = -dy
-			yincr = -1
-		else:
-			yincr = +1
-		if dx > dy:
-			p = 2*dy - dx
-			const1 = 2*dy
-			const2 = 2*(dy-dx)
+	point = {'x': x, 'y': y}
+	line.append(point)
 
-			for _ in range(dx):
-				x += xincr
-				
-				if p < 0:
-					p += const1
-				else:
-					y += yincr
-					p += const2
-				
-				point = {'x': x, 'y': y}
-				self.line.append(point)
-		else:
-			p = 2*dx - dy
-			const1 = 2*dx
-			const2 = 2*(dx-dy)
+	if dx < 0:
+		dx = -dx
+		xincr = -1
+	else:
+		xincr = +1
+	if dy < 0:
+		dy = -dy
+		yincr = -1
+	else:
+		yincr = +1
+	if dx > dy:
+		p = 2*dy - dx
+		const1 = 2*dy
+		const2 = 2*(dy-dx)
 
-			for _ in range(dy):
+		for _ in range(dx):
+			x += xincr
+			
+			if p < 0:
+				p += const1
+			else:
 				y += yincr
-				
-				if p < 0:
-					p += const1
-				else:
-					x += xincr
-					p += const2
-				
-				point = {'x': x, 'y': y}
-				self.line.append(point)
+				p += const2
+			
+			point = {'x': x, 'y': y}
+			line.append(point)
+	else:
+		p = 2*dx - dy
+		const1 = 2*dx
+		const2 = 2*(dx-dy)
 
-		return self.line
+		for _ in range(dy):
+			y += yincr
+			
+			if p < 0:
+				p += const1
+			else:
+				x += xincr
+				p += const2
+			
+			point = {'x': x, 'y': y}
+			line.append(point)
+
+	return line
 
 # Implementação das Circunferências
-class Circunferencia:
-	p1 = None
-	p2 = None
-
-	c = None
-	r = None
-
+def circunferencia(p1, p2):
 	circ = []
 
-	def center(self):
-		self.c = self.p1
+	c = p1
+	r = round(hypot(p2['x'] - p1['x'], p2['y'] - p1['y']))
 
-	def radius(self):
-		self.r = round(hypot(self.p2.x() - self.p1.x(), self.p2.y() - self.p1.y()))
+	x = 0
+	y = r
+	p = 3 - 2*(r)
 
-	# Implementação do Algoritmo da Circunferência
-	def circunferencia(self):
-		self.center()
-		self.radius()
+	circ = circ + plotaSimetricos(x, y, c)
 
-		x = 0
-		y = self.r
-		p = 3 - 2*(self.r)
+	while x < y:
+		if p < 0:
+			p += 4*x + 6
+		else:
+			p += 4*(x-y) + 10
+			y -= 1
+		x += 1
+		circ = circ + plotaSimetricos(x, y, c)
+	
+	return circ
 
-		self.circ = self.circ + self.plotaSimetricos(x, y)
+def plotaSimetricos(a, b, c):
+	sim = []
 
-		while x < y:
-			if p < 0:
-				p += 4*x + 6
+	point = {'x': c['x'] + a, 'y': c['y'] + b}
+	sim.append(point)
+	point = {'x': c['x'] + a, 'y': c['y'] - b}
+	sim.append(point)
+	point = {'x': c['x'] - a, 'y': c['y'] + b}
+	sim.append(point)
+	point = {'x': c['x'] - a, 'y': c['y'] - b}
+	sim.append(point)
+	point = {'x': c['x'] + b, 'y': c['y'] + a}
+	sim.append(point)
+	point = {'x': c['x'] + b, 'y': c['y'] - a}
+	sim.append(point)
+	point = {'x': c['x'] - b, 'y': c['y'] + a}
+	sim.append(point)
+	point = {'x': c['x'] - b, 'y': c['y'] - a}
+	sim.append(point)
+
+	return sim
+
+def cohensutherland(p1, p2, pini, pfim):
+	aceito = False
+	feito = False
+
+	(xmax, ymax, xmin, ymin) = limites(p1, p2)
+
+	(x1, y1, x2, y2) = (pini['x'], pini['y'], pfim['x'], pfim['y'])
+
+	while(not feito):
+		cod1 = obtemCodigo(p1, p2, x1, y1)
+		cod2 = obtemCodigo(p1, p2, x2, y2)
+
+		if(cod1 == 0 and cod2 == 0):
+			aceito = True
+			feito = True
+		elif(cod1 & cod2 != 0 ):
+			feito = True
+		else:
+			if(cod1 != 0):
+				cfora = cod1
 			else:
-				p += 4*(x-y) + 10
-				y -= 1
-			x += 1
-			self.circ = self.circ + self.plotaSimetricos(x, y)
-		
-		return self.circ
+				cfora = cod2
 
-	def plotaSimetricos(self, a, b):
-		sim = []
+			if(verificaBit(cfora, 0)):
+				xint = xmin
+				yint = y1 + (y2 - y1)*(xmin - x1)/(x2 - x1)
+			elif(verificaBit(cfora, 1)):
+				xint = xmax
+				yint = y1 + (y2 - y1)*(xmax - x1)/(x2 - x1)
+			elif(verificaBit(cfora, 2)):
+				yint = ymin
+				xint = x1 + (x2 - x1)*(ymin - y1)/(y2 - y1)
+			elif(verificaBit(cfora, 3)):
+				yint = ymax
+				xint = x1 + (x2 - x1)*(ymax - y1)/(y2 - y1)
 
-		point = {'x': self.c.x() + a, 'y': self.c.y() + b}
-		sim.append(point)
-		point = {'x': self.c.x() + a, 'y': self.c.y() - b}
-		sim.append(point)
-		point = {'x': self.c.x() - a, 'y': self.c.y() + b}
-		sim.append(point)
-		point = {'x': self.c.x() - a, 'y': self.c.y() - b}
-		sim.append(point)
-		point = {'x': self.c.x() + b, 'y': self.c.y() + a}
-		sim.append(point)
-		point = {'x': self.c.x() + b, 'y': self.c.y() - a}
-		sim.append(point)
-		point = {'x': self.c.x() - b, 'y': self.c.y() + a}
-		sim.append(point)
-		point = {'x': self.c.x() - b, 'y': self.c.y() - a}
-		sim.append(point)
+			if(cfora == cod1):
+				x1 = xint
+				y1 = yint
+			else:
+				x2 = xint
+				y2 = yint
+	if(aceito):
+		return (round(x1), round(y1), round(x2), round(y2))
+	else:
+		return (None, None, None, None)
 
-		return sim
+def obtemCodigo(p1, p2, x , y):
+	cod = 0
+
+	(xmax, ymax, xmin, ymin) = limites(p1, p2)
+
+	if(x < xmin):
+		cod += 1
+	if(x > xmax):
+		cod += 2
+	if(y < ymin):
+		cod += 4
+	if(y > ymax):
+		cod += 8 
+
+	return cod
+
+def limites(p1, p2):
+
+	if(p1['x'] > p2['x']):
+		xmax = p1['x']
+		xmin = p2['x']
+	else:
+		xmax = p2['x']
+		xmin = p1['x']
+
+	if(p1['y'] > p2['y']):
+		ymax = p1['y']
+		ymin = p2['y']
+	else:
+		ymax = p2['y']
+		ymin = p1['y']
+
+	return (xmax, ymax, xmin, ymin)
+
+def verificaBit(cfora, bit):
+	while(bit):
+		cfora >>= 1
+		bit-=1
+	return (cfora & 1)
+
+def liangbarsky(p1, p2, pini, pfim):
+	(xmax, ymax, xmin, ymin) = limites(p1, p2)
+	(x1, y1, x2, y2) = (pini['x'], pini['y'], pfim['x'], pfim['y'])
+
+	u1 = 0
+	u2 = 1
+	dx = x2-x1
+	dy = y2-y1
+
+	(u1, u2, esqu) = clipset(-dx, x1-xmin, u1, u2)
+	if(esqu):
+		(u1, u2, dire) = clipset(dx, xmax-x1, u1, u2)
+		if(dire):
+			(u1, u2, infe) = clipset(-dy, y1-ymin, u1, u2)
+			if(infe):
+				(u1, u2, supe) = clipset(dy, ymax-y1, u1, u2)
+				if(supe):
+					if(u2 < 1):
+						x2 = x1 + dx * u2
+						y2 = y1 + dy * u1
+					if(u1 > 0):
+						x1 = x1 + dx * u1
+						y1 = y1 + dy * u2
+					
+					return (round(x1), round(y1), round(x2), round(y2))
+
+	return (None, None, None, None)
+
+def clipset(p, q, u1, u2):
+	result = True
+
+	if(p < 0):
+		r = (q/p)
+
+		if(r > u2):
+			result = False
+		elif(r > u1):
+			u1 = r
+	elif(p > 0):
+		r = (q/p)
+
+		if(r < u1):
+			result = False
+		elif(r < u2):
+			u2 = r
+	elif(q < 0):
+		result = False
+
+	return (u1, u2, result)		
 
 # Dialog Translação
 class TranslacaoDialog(QDialog):
@@ -558,7 +912,7 @@ class TranslacaoDialog(QDialog):
 		result = dialog.exec_()
 		trans_x = dialog.getX()
 		trans_y = dialog.getY()
-		return (trans_x, trans_y, result == QDialog.Accepted)
+		return (int(0 if trans_x is '' else trans_x), -int(0 if trans_y is '' else trans_y), result == QDialog.Accepted)
 
 # Dialog Escala
 class EscalaDialog(QDialog):
@@ -568,10 +922,14 @@ class EscalaDialog(QDialog):
 		layout = QFormLayout(self)
 		
 		# Input Escala
-		self.scale = QLineEdit()
-		self.scale.setValidator(QIntValidator())
-		self.scale.setMaxLength(4)
-		layout.addRow("Nova Escala: ", self.scale)
+		self.scale_a = QDoubleSpinBox()
+		self.scale_a.setMinimum(0)
+		layout.addRow("Nova Escala (A): ", self.scale_a)
+
+		# Input Escala
+		self.scale_b = QDoubleSpinBox()
+		self.scale_b.setMinimum(0)
+		layout.addRow("Nova Escala (B): ", self.scale_b)
 
 		# Butões de OK e Cancel
 		buttons = QDialogButtonBox(
@@ -581,16 +939,20 @@ class EscalaDialog(QDialog):
 		buttons.rejected.connect(self.reject)
 		layout.addRow(buttons)
 
-	def getScale(self):
-		return self.scale.text()
+	def getScaleA(self):
+		return self.scale_a.text()
+
+	def getScaleB(self):
+		return self.scale_b.text()
 
 	# Método estático que cria o dialog e retorna (scale, aceito)
 	@staticmethod
 	def getResults(parent = None):
 		dialog = EscalaDialog(parent)
 		result = dialog.exec_()
-		scale = dialog.getScale()
-		return (scale, result == QDialog.Accepted)
+		scale_a = dialog.getScaleA()
+		scale_b = dialog.getScaleB()
+		return (atof(scale_a), atof(scale_b), result == QDialog.Accepted)
 
 # Dialog Rotação
 class RotacaoDialog(QDialog):
@@ -601,7 +963,7 @@ class RotacaoDialog(QDialog):
 		
 		# Input ângulo
 		self.angle = QDoubleSpinBox()
-		self.angle.setRange(0, 360)
+		self.angle.setRange(-360, 360)
 		layout.addRow("Ângulo de Rotação: ", self.angle)
 
 		# Butões de OK e Cancel
@@ -621,7 +983,42 @@ class RotacaoDialog(QDialog):
 		dialog = RotacaoDialog(parent)
 		result = dialog.exec_()
 		angle = dialog.getAngle()
-		return (angle, result == QDialog.Accepted)
+		return (radians(-atof(angle)), result == QDialog.Accepted)
+
+# Dialog Reflexão
+class ReflexaoDialog(QDialog):
+	def __init__(self, parent = None):
+		super(ReflexaoDialog, self).__init__(parent)
+
+		layout = QFormLayout(self)
+		
+		# Input Eixo
+		self.axis = QComboBox()
+		self.axis.addItems(["Origem", "X", "Y"])
+		self.axis.currentIndexChanged.connect(self.selectionchange)
+		layout.addRow("Eixo: ", self.axis)
+
+		# Butões de OK e Cancel
+		buttons = QDialogButtonBox(
+			QDialogButtonBox.Ok | QDialogButtonBox.Cancel,
+			Qt.Horizontal, self)
+		buttons.accepted.connect(self.accept)
+		buttons.rejected.connect(self.reject)
+		layout.addRow(buttons)
+
+	def selectionchange(self, i):
+		pass
+
+	def getAxis(self):
+		return self.axis.currentText()
+
+	# Método estático que cria o dialog e retorna (angle, aceito)
+	@staticmethod
+	def getResults(parent = None):
+		dialog = ReflexaoDialog(parent)
+		result = dialog.exec_()
+		axis = dialog.getAxis()
+		return (axis, result == QDialog.Accepted)
 
 # Dialog Cisalhamento
 class CisalhamentoDialog(QDialog):
@@ -630,15 +1027,15 @@ class CisalhamentoDialog(QDialog):
 
 		layout = QFormLayout(self)
 
+		# Input Eixo
 		self.axis = QComboBox()
 		self.axis.addItems(["X", "Y"])
 		self.axis.currentIndexChanged.connect(self.selectionchange)
 		layout.addRow("Eixo: ", self.axis)
 		
 		# Input Força
-		self.force = QLineEdit()
-		self.force.setValidator(QIntValidator())
-		self.force.setMaxLength(4)
+		self.force = QDoubleSpinBox()
+		self.force.setRange(-10, 10)
 		layout.addRow("Força: ", self.force)
 
 		# Butões de OK e Cancel
@@ -650,11 +1047,7 @@ class CisalhamentoDialog(QDialog):
 		layout.addRow(buttons)
 
 	def selectionchange(self, i):
-		pass		
-		#print("Items in the list are :")
-		#for count in range(self.axis.count()):
-		#	print(self.axis.itemText(count))
-		#print("Current index", i, "selection changed ", self.axis.currentText())
+		pass
 
 	def getAxis(self):
 		return self.axis.currentText()
@@ -669,23 +1062,27 @@ class CisalhamentoDialog(QDialog):
 		result = dialog.exec_()
 		axis = dialog.getAxis()
 		force = dialog.getForce()
-		return (axis, force, result == QDialog.Accepted)
+		return (axis, atof(force), result == QDialog.Accepted)
 
 def clearCoordinates():
-	global coord1, coord2
+	global coord1, coord2, cs, lb
 
 	coord1 = None
 	coord2 = None
 
 def clearAll():
-	global pickedTool, lines, circs
+	global pickedTool, lines_dda, lines_bresenham, circs, cs, lb
 	
 	clearCoordinates()
 	
 	pickedTool = 'None'
 
-	lines.clear()
+	lines_dda.clear()
+	lines_bresenham.clear()
 	circs.clear()
+
+	cs = None
+	lb = None
 
 if __name__ == '__main__':
 
@@ -694,7 +1091,8 @@ if __name__ == '__main__':
 
 	pickedTool = 'None'
 
-	lines = []
+	lines_dda = []
+	lines_bresenham = []
 	circs = []
     
 	app = QApplication(sys.argv)

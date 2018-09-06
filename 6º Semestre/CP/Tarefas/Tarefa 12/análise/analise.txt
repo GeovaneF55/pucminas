@@ -1,0 +1,22 @@
+SEQUENCIAL:
+
+Identificando a função mais custosa através da análise de custo da seguinte tabela gerada pelo código:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+ 97.41      0.75     0.75                             compute_path(std::vector<Flight, std::allocator<Flight> >&, 							 	std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, 								std::vector<Travel, std::allocator<Travel> >&, unsigned long, unsigned long, Parameters)
+  1.30      0.76     0.01                             Flight::Flight(Flight const&)
+  1.30      0.77     0.01                             Flight* std::__uninitialized_copy<false>::__uninit_copy<Flight*, Flight*>(Flight*, 								Flight*, Flight*)
+
+Analizando tabela fornecida, é possível descobrir que a função mais custosa é a função compute_path, logo, levando em conta o tempo total e o tempo da função mais custosa, obtemos os seguintes valores:
+
+First Compute Path Time = 0.318367
+Second Compute Path Time = 1.295813
+Work hard time = 1.615596
+
+real	0m1.866s
+user	0m1.792s
+sys	0m0.072s
+
+PARALELO:
