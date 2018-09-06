@@ -23,7 +23,7 @@ class Drawer(QWidget):
 		self.path = QPainterPath()
 
 	def paintEvent(self, event):
-		global cs, lb, lines_dda, lines_bresenham, circs, bfill, ffill
+		global cs, lb, lines_dda, lines_bresenham, circs
 
 		color = Qt.black
 		pen = QPen(color, 1, Qt.SolidLine)
@@ -86,18 +86,8 @@ class Drawer(QWidget):
 				for point in circunferencia(p1, p2):
 					painter.drawPoint(point['x'], point['y'])
 
-			if pickedTool in ['Algoritmo de Boundary - Fill']:
-				print('click: {}'.format(bfill))
-				print('bg color: {}'.format(painter.brush().color().name()))
-				print('origin: [{},{}]'.format(painter.brushOrigin().x(), painter.brushOrigin().y()))
-
-			elif pickedTool in ['Algoritmo de Flood - Fill']:
-				print('click: {}'.format(ffill))
-				print('bg color: {}'.format(painter.brush().color().name()))
-				print('origin: [{},{}]'.format(painter.brushOrigin().x(), painter.brushOrigin().y()))
-
 	def mousePressEvent(self, event):
-		global coord1, bfill, ffill
+		global coord1
 		coord1 = {'x': event.pos().x(), 'y': event.pos().y()}
 
 		self.newPoint.emit(event.pos())
@@ -110,12 +100,6 @@ class Drawer(QWidget):
 			self.update()
 		elif pickedTool in ['Circunferências']:
 			circs.append([coord1, coord1])
-			self.update()
-		elif pickedTool in ['Algoritmo de Boundary - Fill']:
-			bfill.append(coord1)
-			self.update()
-		elif pickedTool in ['Algoritmo de Flood - Fill']:
-			ffill.append(coord1)
 			self.update()
 
 	def mouseMoveEvent(self, event):
@@ -155,7 +139,7 @@ class Drawer(QWidget):
 
 	# Opção Algoritmo de Cohen - Sutherland
 	def makeCS(self):
-		global coord1, coord2, cs
+		global cs
 		p1 = coord1
 		p2 = (coord1 if coord2 is None else coord2)
 
@@ -165,7 +149,7 @@ class Drawer(QWidget):
 
 	# Opção Algoritmo de Liang - Barsky
 	def makeLB(self):
-		global coord1, coord2, lb
+		global lb
 		p1 = coord1
 		p2 = (coord1 if coord2 is None else coord2)
 
@@ -1100,9 +1084,6 @@ def clearAll():
 	cs = None
 	lb = None
 
-	bfill = None
-	ffill = None
-
 if __name__ == '__main__':
 
 	coord1 = None
@@ -1113,12 +1094,6 @@ if __name__ == '__main__':
 	lines_dda = []
 	lines_bresenham = []
 	circs = []
-
-	cs = None
-	lb = None
-
-	bfill = []
-	ffill = []
     
 	app = QApplication(sys.argv)
 	mp = MyPaint()
