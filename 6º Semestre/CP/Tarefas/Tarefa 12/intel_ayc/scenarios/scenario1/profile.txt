@@ -3,9 +3,9 @@ Flat profile:
 Each sample counts as 0.01 seconds.
   %   cumulative   self              self     total           
  time   seconds   seconds    calls  Ts/call  Ts/call  name    
- 97.41      0.75     0.75                             compute_path(std::vector<Flight, std::allocator<Flight> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<Travel, std::allocator<Travel> >&, unsigned long, unsigned long, Parameters)
-  1.30      0.76     0.01                             Flight::Flight(Flight const&)
-  1.30      0.77     0.01                             Flight* std::__uninitialized_copy<false>::__uninit_copy<Flight*, Flight*>(Flight*, Flight*, Flight*)
+ 92.32      0.36     0.36                             fill_travel(std::vector<Travel, std::allocator<Travel> >&, std::vector<Flight, std::allocator<Flight> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, unsigned long)
+  5.13      0.38     0.02                             std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  2.56      0.39     0.01                             Flight* std::__uninitialized_copy<false>::__uninit_copy<Flight*, Flight*>(Flight*, Flight*, Flight*)
 
  %         the percentage of the total running time of the
 time       program used by this function.

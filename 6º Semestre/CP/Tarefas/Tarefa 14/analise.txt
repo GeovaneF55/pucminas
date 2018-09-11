@@ -1,0 +1,15 @@
+Sequencial:
+
+real	0m2.490s
+user	0m2.474s
+sys	0m0.016s
+
+Paralelo:
+
+real	0m1.811s
+user	0m2.520s
+sys	0m0.060s
+
+
+Speedup: (tempo Seq./ tempo Par.) = (2.490/1.811) = 1,374
+

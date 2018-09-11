@@ -1,3 +1,137 @@
+/*
+  Alunos: Geovane Fonseca de Sousa Santos
+	  Marco Tulio Alvares Pires
+	  Rafael Câmara Magalhães
+
+  Matéria: Coputação Paralela
+  Tarefa 12: Paralelização Intel AYC
+
+PARALELIZANDO MÉTODO MAIS CUSTOSO:
+SEQUENCIAL:
+
+	-> Identificando a função mais custosa através da análise de custo da seguinte tabela gerada pelo código:
+
+	Each sample counts as 0.01 seconds.
+	  %   cumulative   self              self     total           
+	 time   seconds   seconds    calls  Ts/call  Ts/call  name    
+	 97.41      0.75     0.75                             compute_path(std::vector<Flight, std::allocator<Flight> >&, 							 	std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, 								std::vector<Travel, std::allocator<Travel> >&, unsigned long, unsigned long, Parameters)
+	  1.30      0.76     0.01                             Flight::Flight(Flight const&)
+	  1.30      0.77     0.01                             Flight* std::__uninitialized_copy<false>::__uninit_copy<Flight*, Flight*
+							      (Flight*, Flight*, Flight*)
+
+	-> Analizando tabela fornecida, é possível descobrir que a função mais custosa é a função compute_path, logo, levando em conta o tempo 		total e o tempo da função mais custosa, obtemos os seguintes valores:
+
+	First Compute Path Time = 0.318367
+	Second Compute Path Time = 1.295813
+	Work hard time = 1.615596
+
+	real	0m1.866s
+	user	0m1.792s
+	sys	0m0.072s
+
+PARALELO:
+
+	-> Utilizando a cláusula:
+	
+		#pragma omp parallel for private(current_city) shared(flights) schedule(static)
+
+	First Compute Path Time = 0.086382
+	Second Compute Path Time = 0.598312
+	Work hard time = 0.686198
+
+	real	0m0.904s
+	user	0m1.566s
+
+	-> Utilizando a cláusula:
+
+		#pragma omp parallel for private(current_city) shared(flights) schedule(dynamic)
+
+	First Compute Path Time = 0.117122
+	Second Compute Path Time = 0.801161
+	Work hard time = 0.919856
+
+	real	0m1.138s
+	user	0m2.023s
+	sys	0m0.036s
+
+	-> Utilizando a cláusula:
+
+		#pragma omp parallel for private(current_city) shared(flights) schedule(dynamic, 1)
+
+
+	First Compute Path Time = 0.116863
+	Second Compute Path Time = 0.805712
+	Work hard time = 0.924113
+
+	real	0m1.153s
+	user	0m2.013s
+	sys	0m0.064s
+
+	-> Utilizando a cláusula:
+
+		#pragma omp parallel for private(current_city) shared(flights) schedule(dynamic, 100)
+
+	First Compute Path Time = 0.089732
+	Second Compute Path Time = 0.619331
+	Work hard time = 0.710644
+
+	real	0m0.936s
+	user	0m1.603s
+	sys	0m0.044s
+
+	-> Utilizando a cláusula:
+
+		#pragma omp parallel for private(current_city) shared(flights) schedule(dynamic, 10000)
+
+	First Compute Path Time = 0.092824
+	Second Compute Path Time = 0.645388
+	Work hard time = 0.739782
+
+	real	0m0.957s
+	user	0m1.645s
+	sys	0m0.052s
+
+
+PARALELIZANDO OUTROS MÉTODOS ALÉM DO MAIS CUSTOSO:
+SEQUENCIAL:
+	First Compute Path Time = 0.315592
+	Second Compute Path Time = 1.298947
+	Merge Paths Time = 0.000096
+	Compute Cost Time = 0.000037
+	Work hard time = 1.616254
+
+	real	0m1.869s
+	user	0m1.777s
+	sys	0m0.092s
+
+
+PARALELO:
+
+	-> Utilizando as cláusulas:
+		Compute Path:
+			#pragma omp parallel for private(current_city) shared(flights) schedule(dynamic, 10000)
+		Merge Paths:
+			#pragma omp parallel for schedule(dynamic, 100)
+		Compute Cost:
+			#pragma omp parallel for reduction(+:result) schedule(dynamic, 10000)
+
+	First Compute Path Time = 0.094137
+	Second Compute Path Time = 0.651192
+	Merge Paths Time = 0.000089
+	Compute Cost Time = 0.000025
+	Work hard time = 0.747079
+
+	real	0m0.974s
+	user	0m1.682s
+	sys	0m0.041s
+
+EXPLICAÇÃO:
+
+	
+
+*/
+
+
 /*!
  * \file main.cpp
  * \brief This file contains source code that solves the Work Hard - Play Hard problem for the Acceler8 contest
@@ -115,7 +249,10 @@ Travel work_hard(vector<Flight>& flights, Parameters& parameters, vector<vector<
   end = omp_get_wtime();
   printf("\nSecond Compute Path Time = %f", end - start); 
   
+  start = omp_get_wtime();
   merge_path(travels, travels_back);
+  end = omp_get_wtime();
+  printf("\nMerge Paths Time = %f", end - start);
   Travel go =  find_cheapest(travels, alliances);
   return go;
 }
@@ -157,6 +294,7 @@ float compute_cost(Travel & travel, vector<vector<string> >&alliances){
   float result = 0;
   apply_discount(travel, alliances);
 
+  #pragma omp parallel for reduction(+:result) schedule(dynamic, 10000)
   for(unsigned int i=0; i<travel.flights.size(); i++){
     result += (travel.flights[i].cost * travel.flights[i].discout);
   }
@@ -184,7 +322,7 @@ void compute_path(vector<Flight>& flights, string to, vector<Travel>& travels, u
     if(current_city.to == to){
       final_travels.push_back(travel);
     }else{//otherwise, we need to compute a path
-      #pragma omp parallel for private(current_city) shared(flights) schedule(static)
+      #pragma omp parallel for private(current_city) shared(flights) schedule(dynamic, 10000)
       for(unsigned int i=0; i<flights.size(); i++){
 	Flight flight = flights[i];
 	if(flight.from == current_city.to &&
@@ -262,6 +400,7 @@ void fill_travel(vector<Travel>& travels, vector<Flight>& flights, string starti
  */
 void merge_path(vector<Travel>& travel1, vector<Travel>& travel2){
   vector<Travel> result;
+  #pragma omp parallel for schedule(dynamic, 100)
   for(unsigned int i=0; i<travel1.size(); i++){
     Travel t1 = travel1[i];
     for(unsigned j=0; j<travel2.size(); j++){
@@ -618,7 +757,10 @@ bool nerver_traveled_to(Travel travel, string city){
  * \param alliances The alliances (used to compute the price).
  */
 void print_travel(Travel& travel, vector<vector<string> >&alliances, ofstream& output){
+  double start = omp_get_wtime();
   output<<"Price : "<<compute_cost(travel, alliances)<<endl;
+  double end = omp_get_wtime();
+  printf("\nCompute Cost Time = %f", end - start);
   print_flights(travel.flights, output);
   output<<endl;
 }

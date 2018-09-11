@@ -87,14 +87,16 @@ class Drawer(QWidget):
 					painter.drawPoint(point['x'], point['y'])
 
 			if pickedTool in ['Algoritmo de Boundary - Fill']:
-				print('click: {}'.format(bfill))
-				print('bg color: {}'.format(painter.brush().color().name()))
-				print('origin: [{},{}]'.format(painter.brushOrigin().x(), painter.brushOrigin().y()))
+				print('bfill: {}'.format(bfill))
+				#print('bg color: {}'.format(painter.brush().color().name()))
+				#print('origin: [{},{}]'.format(painter.brushOrigin().x(), painter.brushOrigin().y()))
+				#self.pixMapItem = QGraphicsPixmapItem(QPixmap(self.local_image), None, self.local_scene)
 
 			elif pickedTool in ['Algoritmo de Flood - Fill']:
-				print('click: {}'.format(ffill))
-				print('bg color: {}'.format(painter.brush().color().name()))
-				print('origin: [{},{}]'.format(painter.brushOrigin().x(), painter.brushOrigin().y()))
+				print('ffill: {}'.format(ffill))
+				#print('bg color: {}'.format(painter.brush().color().name()))
+				#print('origin: [{},{}]'.format(painter.brushOrigin().x(), painter.brushOrigin().y()))
+				#print('Point: {}'.format(QWidget.grab(const QRect &rectangle = QRect(QPoint(ffill['x'], ffill['y']), QSize(-1,-1)))))
 
 	def mousePressEvent(self, event):
 		global coord1, bfill, ffill
@@ -112,12 +114,11 @@ class Drawer(QWidget):
 			circs.append([coord1, coord1])
 			self.update()
 		elif pickedTool in ['Algoritmo de Boundary - Fill']:
-			bfill.append(coord1)
+			bfill = coord1
 			self.update()
 		elif pickedTool in ['Algoritmo de Flood - Fill']:
-			ffill.append(coord1)
+			ffill = coord1
 			self.update()
-
 	def mouseMoveEvent(self, event):
 		global coord2, lines_dda, lines_bresenham, circs
 		coord2 = {'x': event.pos().x(), 'y': event.pos().y()}
@@ -205,6 +206,7 @@ class MyPaint(QMainWindow):
     
 	def __init__(self):
 		super().__init__()
+		self.setWindowIcon(QIcon('../Imagens/logo.png'))
 		self.initUI()
         
         # Adicionando Menus
@@ -1117,8 +1119,8 @@ if __name__ == '__main__':
 	cs = None
 	lb = None
 
-	bfill = []
-	ffill = []
+	bfill = None
+	ffill = None
     
 	app = QApplication(sys.argv)
 	mp = MyPaint()

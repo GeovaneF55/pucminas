@@ -1,0 +1,3 @@
+No material 6 explicado como é possível paralelizar trechos de códigos diferentes, com o objetivo de não ficar preso em somente uma estrutura que pode ser paralelizada e sim em um conjunto de estruturas. Esse conjunto não deve possuir uma ordem de execução em relação as suas estruturas e, por causa disso é um bom candidato para uso em códigos recursivos como o caso do Fibonacci. O problema desse uso, como explicado no material, é a profundidade que códigos recursivos conseguem alcançar, podendo criar Threads desnecessariamente. Dessa forma a minha pergunta é:
+
+Existe uma relação da profundidade máxima de um código paralelo recursivo com o número de núcleos para a criação desnecessária de threads, ou ele não influencia nesse quesito?
