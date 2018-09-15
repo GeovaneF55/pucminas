@@ -429,6 +429,12 @@ class MyPaint(QMainWindow):
 					point['x'] = ((point['x']-init_point['x'])*scale_a) + init_point['x']
 					point['y'] = ((point['y']-init_point['y'])*scale_b) + init_point['y']
 
+			for circ in circs:
+				init_point = circ[0]
+				for point in circ:
+					point['x'] = ((point['x']-init_point['x'])*scale_a) + init_point['x']
+					point['y'] = ((point['y']-init_point['y'])*scale_b) + init_point['y']
+
 	# Rotation Event
 	def rotationEvent(self):
 		clearCoordinates()
@@ -465,6 +471,19 @@ class MyPaint(QMainWindow):
 
 					point['x'] = int(x1 - y1 + init_point['x'])
 					point['y'] = int(x2 + y2 + init_point['y'])
+
+			for circ in circs:
+				init_point = circ[0]
+				for point in circ:
+					x1 = ((point['x']-init_point['x']) * angle_cos)
+					y1 = ((point['y']-init_point['y']) * angle_sin)
+
+					x2 = ((point['x']-init_point['x']) * angle_sin)
+					y2 = ((point['y']-init_point['y']) * angle_cos)
+
+					point['x'] = int(x1 - y1 + init_point['x'])
+					point['y'] = int(x2 + y2 + init_point['y'])
+
 	# Reflection Event
 	def reflectionEvent(self):
 		clearCoordinates()
@@ -496,6 +515,12 @@ class MyPaint(QMainWindow):
 				init_point = bresenham[0]
 
 				for point in bresenham:
+					point['x'] = (x * (point['x'] - init_point['x'])) + init_point['x']
+					point['y'] = (y * (point['y'] - init_point['y'])) + init_point['y']
+
+			for circ in circs:
+				init_point = circ[0]
+				for point in circ:
 					point['x'] = (x * (point['x'] - init_point['x'])) + init_point['x']
 					point['y'] = (y * (point['y'] - init_point['y'])) + init_point['y']
 
@@ -533,6 +558,19 @@ class MyPaint(QMainWindow):
 				init_point = bresenham[0]
 
 				for point in bresenham:
+					x1 = (point['x'] - init_point['x'])
+					y1 = (y * (point['y'] - init_point['y']))
+
+					x2 = (x * (point['x'] - init_point['x']))
+					y2 = (point['y'] - init_point['y'])
+
+					point['x'] = x1 + y1 + init_point['x']
+					point['y'] = x2 + y2 + init_point['y']
+
+			for circ in circs:
+				init_point = circ[0]
+
+				for point in circ:
 					x1 = (point['x'] - init_point['x'])
 					y1 = (y * (point['y'] - init_point['y']))
 
@@ -964,12 +1002,12 @@ class EscalaDialog(QDialog):
 		# Input Escala
 		self.scale_a = QDoubleSpinBox()
 		self.scale_a.setMinimum(0)
-		layout.addRow("Nova Escala (X): ", self.scale_a)
+		layout.addRow("Nova Escala (A): ", self.scale_a)
 
 		# Input Escala
 		self.scale_b = QDoubleSpinBox()
 		self.scale_b.setMinimum(0)
-		layout.addRow("Nova Escala (Y): ", self.scale_b)
+		layout.addRow("Nova Escala (B): ", self.scale_b)
 
 		# Butões de OK e Cancel
 		buttons = QDialogButtonBox(
