@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 960px;
+  height: 500px;
+  position: relative;
+}
+path.slice{
+	stroke-width:2px;
+}
+polyline{
+	opacity: .3;
+	stroke: black;
+	stroke-width: 2px;
+	fill: none;
+} 
+svg text.percent{
+	fill:white;
+	text-anchor:middle;
+	font-size:12px;
+}
+.Row
+{
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+.Column
+{
+    display: table-cell;
+}
+.Inner {
+    width: 100%;
+    text-align: center;
+}
+</style>
+<body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="./Donut3D.js"></script>
+<script>
+
+var colors = [
+    "#229954", //marina
+	"#800080", //jose maria
+	"#008080", //fidelix
+	"#FFFF00", //iasi
+    "#A93226", //krebs
+    "#FF00FF", //eduardo
+	"#FF5733", //everaldo
+	"#273746", //eymael
+	"#979A9A", //rui costa
+    "#FF0000", //dilma
+    "#2980B9"  //aecio
+];
+
+var states = [
+    {estado : "Acre", sigla:"AC"},
+    {estado : "Alagoas", sigla:"AL"},
+    {estado : "Amazonas", sigla:"AM"},
+    {estado : "Amapá", sigla:"AP"},
+    {estado : "Bahia", sigla:"BA"},
+    {estado : "Ceará", sigla:"CE"},
+    {estado : "Distrito Federal", sigla:"DF"},
+    {estado : "Espírito Santo", sigla:"ES"},
+    {estado : "Goiás", sigla:"GO"},
+    {estado : "Maranhão", sigla:"MA"},
+    {estado : "Minas Gerais", sigla:"MG"},
+    {estado : "Mato Grosso do Sul", sigla:"MS"},
+    {estado : "Mato Groso", sigla:"MT"},
+    {estado : "Pará", sigla:"PA"},
+    {estado : "Paraíba", sigla:"PB"},
+    {estado : "Pernambuco", sigla:"PE"},
+    {estado : "Piauí", sigla:"PI"},
+    {estado : "Paraná", sigla:"PR"},
+    {estado : "Rio de Janeiro", sigla:"RJ"},
+    {estado : "Rio Grande do Norte", sigla:"RN"},
+    {estado : "Rondônia", sigla:"RO"},
+    {estado : "Roraima", sigla:"RR"},
+    {estado : "Rio Grande do Sul", sigla:"RS"},
+    {estado : "Santa Catarina", sigla:"SC"},
+    {estado : "Sergipe", sigla:"SE"},
+    {estado : "São Paulo", sigla:"SP"},
+    {estado : "Tocantins", sigla:"TO"},
+    {estado : "ZZ", sigla:"ZZ"}
+];
+
+var principal = d3.select("body");
+principal.append("h1").attr("id", "estado");
+var row = principal.append("div").attr("class", "Row");
+var firstColumn = row.append("div").attr("class", "Column");
+var secondColumn = row.append("div").attr("class", "Column");
+var thirdColumn = row.append("div").attr("class", "Column");
+
+var head = firstColumn.append("div").attr("class", "Row");
+var body = firstColumn.append("div").attr("class", "Row");
+var footer = firstColumn.append("div").attr("class", "Row");
+
+var statesTable = thirdColumn.append("table");
+
+head.append("div").attr("class", "Column").append("h2").text("Primeiro Turno");
+secondColumn.append("div").attr("class", "Row").append("div").attr("class", "Column").append("h2").text("Segundo Turno");
+
+var svg = body.append("div").attr("class", "Column, Inner").append("svg").attr("width",1000).attr("height",300);
+svg.append("g").attr("id","firstTurn");
+svg.append("g").attr("id","secondTurn");
+
+footer.append("div").attr("class", "Column").attr("id","legend");
+
+$(document).ready(function () {
+    var state = states[0].sigla;
+    var nameState = states[0].estado;
+
+    $("#estado").html(nameState);
+
+    $.getJSON('../presidente.json', function(data) {
+
+        var presidentes = data;
+
+        var tr = statesTable.append("tbody").selectAll("tr").data(states).enter().append("tr");
+        tr.append("td").append("button").attr("id", function(d){ return d.sigla; });
+
+        states.forEach(function(state) {
+            $("#" + state.sigla).html(state.estado);
+            $("#" + state.sigla).click(function (event){
+                state = event.target.id;
+                Donut3D.transition("firstTurn", statesData(state, 1), 130, 100, 30, 0);
+                Donut3D.transition("secondTurn", statesData(state, 2), 130, 100, 30, 0);
+                $("#estado").html(event.target.innerText);
+            });
+        })
+
+        Donut3D.draw("firstTurn", statesData(state, 1), 150, 150, 130, 100, 30, 0);
+        Donut3D.draw("secondTurn", statesData(state, 2), 450, 150, 130, 100, 30, 0);
+
+        Donut3D.legend("legend", statesData(state, 1));
+
+        function statesData(state, shift){
+            var i=0;
+            return presidentes.map(function(d){
+                var num_votos = 0;
+                var votos = d.value;
+
+                var resultado = votos.filter(obj => {
+                    return obj.cat_state === state;
+                });
+
+                if(shift == 1){
+                    num_votos = resultado[0].num_votes;
+                } else {
+                    num_votos = resultado[1] == null ? 0 : resultado[1].num_votes;
+                }
+                
+                return {label:d.key, value:num_votos, color:colors[++i%11]};
+            });
+        }
+    });
+});
+</script>
+</body>
