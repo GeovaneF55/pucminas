@@ -34,7 +34,6 @@ class Drawer(QWidget):
 		if curves:
 			for p1, p2, p3, p4 in curves:
 				for point in bezier(p1, p2, p3, p4):
-					print(point)
 					painter.drawPoint(point['x'], point['y'])
 
 	def mousePressEvent(self, event):
@@ -209,7 +208,10 @@ def bezier(p1, p2, p3, p4):
 	mbx = np.matmul(mb, x)
 	mby = np.matmul(mb, y)
 
-	passos = 2*(abs(p1['x']-p4['x']) + abs(p1['y']-p4['y']))
+	dx = abs(p1['x']-p2['x']) + abs(p2['x']-p3['x']) + abs(p3['x']-p4['x'])
+	dy = abs(p1['y']-p4['y']) + abs(p2['y']-p3['y']) + abs(p3['y']-p4['y'])
+
+	passos = 2*((1 if dx == 0 else dx) + (1 if dy == 0 else dy))
 
 	vx = p1['x']
 	vy = p2['y']
