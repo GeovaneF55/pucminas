@@ -1,0 +1,53 @@
+REQUERIMENTOS:
+
+	python3
+	pyqt5
+
+INICIAR:
+
+	- Abra o terminal e na pasta raiz do projeto digite:
+
+		python3 implementacoes.py
+
+
+USO:
+
+	- Os ícones superiores são referentes as transformações, as retas, a circunferência, aos recortes, aos preenchimentos, a limpar a tela e a sair do programa.
+
+	RETAS:
+
+		Para criar uma reta, clique no símbolo da reta DDA ou da reta de Bresenham, logo após, o clique inicial será para o ponto inicial da reta. Arraste o mouse e solte o clique para definir o ponto final da reta.
+
+	CIRCUNFERÊNCIA:
+
+		Para criar uma circunferência, clique no símbolo da circunferência, logo após, o clique inicial será para o centro da circunferência. Arraste o mouse e solte o clique para definir o raio da circunferência.
+
+	TRANSFORMAÇÕES:
+
+		- TRANSLAÇÃO:
+
+			Para transladar os elementos, clique no símbolo da translação e logo após defina a translação nos eixos X e Y. Clique em ok.
+
+		- ESCALA:
+
+			Para escalar os elementos, clique no símbolo da escala e logo após defina a escala nos eixos X e Y. Clique em ok. Clique em ok.
+
+		- ROTAÇÃO:
+
+			Para rotacionar os elementos, clique no símbolo da rotação e logo após defina a rotação desejada num intervalo de -360º a 360º. Clique em ok.
+
+		- REFLEXÃO:
+
+			Para refletir os elementos, clique no símbolo da reflexão e logo após defina em relação a qual eixo será a reflexão. As opções são em relação à origem, ao eixo X e ao eixo Y. Clique em ok.	
+
+		- CISALHAMENTO:
+
+			Para cisalhar os elementos, clique no símbolo do cisalhamento e logo após defina o eixo de cisalhamento e a força aplicada no cisalhamento. Clique em ok.
+
+	RECORTE:
+
+		Para recortar uma reta, clique no símbolo dos recortes de cohen-sutherland ou de liang-barsky, logo após, o clique inicial será para o ponto inicial da janela. Arraste o mouse e solte o clique para definir o ponto final da janela.
+
+	PREENCHIMENTO:
+
+		Para preencher uma circunferência, clique no símbolo dos preenchimentos de boundary-fill ou de flood-fill, logo após, o clique será para definir a área a ser preenchida.
