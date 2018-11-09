@@ -18,7 +18,7 @@ USO:
 
 		Para criar uma reta, clique no símbolo da reta DDA ou da reta de Bresenham, logo após, o clique inicial será para o ponto inicial da reta. Arraste o mouse e solte o clique para definir o ponto final da reta.
 
-	CIRCUNFERÊNCIA:
+	CIRCUNFERÊNCIAS:
 
 		Para criar uma circunferência, clique no símbolo da circunferência, logo após, o clique inicial será para o centro da circunferência. Arraste o mouse e solte o clique para definir o raio da circunferência.
 
