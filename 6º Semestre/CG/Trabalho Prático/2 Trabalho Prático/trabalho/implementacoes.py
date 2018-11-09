@@ -9,12 +9,11 @@ Trabalho: Implementações dos algoritmos dados em sala
 """
 
 import sys
+import math
 import numpy as np
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-from math import *
-from locale import *
 
 class Drawer(QWidget):
 	newPoint = pyqtSignal(QPoint)
@@ -36,37 +35,26 @@ class Drawer(QWidget):
 			for p1, p2, p3, p4 in curves:
 				for point in bezier(p1, p2, p3, p4):
 					painter.drawPoint(point['x'], point['y'])
-		if  coord4 is not None:
-			painter.drawPoint(coord4['x'], coord4['y'])
-		if coord3 is not None:
-			painter.drawPoint(coord3['x'], coord3['y'])
-		if coord2 is not None:
-			painter.drawPoint(coord2['x'], coord2['y'])
-		if coord1 is not None:
-			painter.drawPoint(coord1['x'], coord1['y'])
 
 	def mousePressEvent(self, event):
 		global coord1, coord2, coord3, coord4, pontos
 
 		if coord1 is None:
 			coord1 = { 'x': event.pos().x(), 'y': event.pos().y() }
+			self.newPoint.emit(event.pos())
 		elif coord2 is None:
 			coord2 = { 'x': event.pos().x(), 'y': event.pos().y() }
+			self.newPoint.emit(event.pos())
 		elif coord3 is None:
 			coord3 = { 'x': event.pos().x(), 'y': event.pos().y() }
+			self.newPoint.emit(event.pos())
 		else:
 			coord4 = { 'x': event.pos().x(), 'y': event.pos().y() }
+			self.newPoint.emit(event.pos())
 			if pickedTool in ['Curvas Paramétricas de Bêzier']:
 				curves.clear()
 				curves.append([coord1, coord2, coord3, coord4])
-
-		self.newPoint.emit(event.pos())
-		self.update()
-
-	def mouseReleaseEvent(self, event):
-		if coord4 is not None:
-			clearCoordinates()
-			self.newPoint.emit(event.pos())
+				self.update()
 
 	def sizeHint(self):
 		return QSize(1200, 800)
@@ -217,30 +205,21 @@ def bezier(p1, p2, p3, p4):
 		[p4['y']]
 	]
 
-	"""
-	x = round(p1['x'])
-	y = round(p1['y'])
-	dx = round(p2['x'] - x)
-	dy = round(p2['y'] - y)
+	mbx = np.matmul(mb, x)
+	mby = np.matmul(mb, y)
 
-	if abs(dx) > abs(dy):
-		passos = abs(dx)
-	else:
-		passos = abs(dy)
+	passos = abs(mby[0][0]) * abs(mbx[0][0])
 
-	xincr = dx/(1 if passos == 0 else passos)
-	yincr = dy/(1 if passos == 0 else passos)
+	vx = p1['x']
+	vy = p2['y']
 
-	point = {'x': x, 'y': y}
-	line.append(point)
+	for atual in range(passos):
+		u = atual/passos
+		vx = mbx[0][0] + mbx[1][0] * u + mbx[2][0] * math.pow(u, 2) + mbx[3][0] * math.pow(u, 3)
+		vy = mby[0][0] + mby[1][0] * u + mby[2][0] * math.pow(u, 2) + mby[3][0] * math.pow(u, 3)
 
-	for _ in range(passos):
-		x += xincr
-		y += yincr
-
-		point = {'x': round(x), 'y': round(y)}
-		line.append(point)
-	"""
+		point = {'x': round(vx), 'y': round(vy)}
+		curve.append(point)
 
 	return curve
 
