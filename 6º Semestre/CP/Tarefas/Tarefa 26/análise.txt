@@ -1,0 +1,19 @@
+Aluno: Geovane Fonseca de Sousa Santos
+Matrícula: 553237
+Matéria: Computação Paralela
+Tarefa 26: Padrão SCAN em CUDA
+
+SEQUENCIAL:
+
+real	0m0.425s
+user	0m0.195s
+sys	0m0.226s
+
+PARALELO CUDA:
+
+real	0m2.072s
+user	0m0.849s
+sys	0m1.126s
+
+
+
