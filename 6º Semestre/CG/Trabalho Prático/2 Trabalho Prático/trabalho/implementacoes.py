@@ -31,6 +31,22 @@ class Drawer(QWidget):
 		painter = QPainter(self)
 		painter.setPen(pen)
 
+		if coord1 is not None:
+			for point in self.coords(coord1):
+				painter.drawPoint(point['x'], point['y'])
+
+		if coord2 is not None:
+			for point in self.coords(coord2):
+				painter.drawPoint(point['x'], point['y'])
+
+		if coord3 is not None:
+			for point in self.coords(coord3):
+				painter.drawPoint(point['x'], point['y'])
+
+		if coord4 is not None:
+			for point in self.coords(coord4):
+				painter.drawPoint(point['x'], point['y'])
+
 		if curves:
 			for p1, p2, p3, p4 in curves:
 				for point in bezier(p1, p2, p3, p4):
@@ -42,12 +58,15 @@ class Drawer(QWidget):
 		if coord1 is None:
 			coord1 = { 'x': event.pos().x(), 'y': event.pos().y() }
 			self.newPoint.emit(event.pos())
+			self.update()
 		elif coord2 is None:
 			coord2 = { 'x': event.pos().x(), 'y': event.pos().y() }
 			self.newPoint.emit(event.pos())
+			self.update()
 		elif coord3 is None:
 			coord3 = { 'x': event.pos().x(), 'y': event.pos().y() }
 			self.newPoint.emit(event.pos())
+			self.update()
 		else:
 			coord4 = { 'x': event.pos().x(), 'y': event.pos().y() }
 			self.newPoint.emit(event.pos())
@@ -55,9 +74,34 @@ class Drawer(QWidget):
 				curves.clear()
 				curves.append([coord1, coord2, coord3, coord4])
 				self.update()
+				clearCoordinates()
 
 	def sizeHint(self):
 		return QSize(1200, 800)
+
+	def coords(self, coord):
+		points = []
+
+		point = {'x': coord['x'], 'y': coord['y']}
+		points.append(point)
+		point = {'x': coord['x'], 'y': coord['y']+1}
+		points.append(point)
+		point = {'x': coord['x']+1, 'y': coord['y']}
+		points.append(point)
+		point = {'x': coord['x']+1, 'y': coord['y']+1}
+		points.append(point)
+		point = {'x': coord['x'], 'y': coord['y']-1}
+		points.append(point)
+		point = {'x': coord['x']-1, 'y': coord['y']}
+		points.append(point)
+		point = {'x': coord['x']-1, 'y': coord['y']-1}
+		points.append(point)
+		point = {'x': coord['x']-1, 'y': coord['y']+1}
+		points.append(point)
+		point = {'x': coord['x']+1, 'y': coord['y']-1}
+		points.append(point)
+
+		return points
 
 class MyWidget(QWidget):
 
