@@ -1,11 +1,20 @@
 from random import randint
+import math
 
 def print_game(show_enemy_board, enemy_board, my_board):
-    print('Tabuleiro Inimigo\tMeu Tabuleiro')
+    column = 'A'
+
+    print('\nTabuleiro Inimigo\t\t\tMeu Tabuleiro')
+
+    # Imprime os tabuleiros Inimigo e do jogador
+    print('  ' + '  '.join(rows()) + '\t\t' + '  ' + '  '.join(rows()))
     for (enemy_row, my_row) in zip(show_enemy_board, my_board):
-        print(' '.join(enemy_row) + '\t' + ' '.join(my_row))
+        print(column + ' ' + '  '.join(enemy_row) + '\t\t' + column + ' ' + '  '.join(my_row))
+        column = chr(ord(column) + 1)
+
+    # Imprime a quantidade de navios afundados
     print('Seu inimigo tem ' + sink_ships(enemy_board) + ' afundado(s)')
-    print('Você tem ' + sink_ships(my_board) + ' afundado(s)')
+    print('Você tem ' + sink_ships(my_board) + ' afundado(s)\n')
 
 def sink_ships(board):
     global ships, num_ships
@@ -24,12 +33,21 @@ def sink_ships(board):
                 sb_cells += 1
     
     # Verifica quantos navios não foram afundados
-    ships_alive += int(pa_cells/ships['pa']['tamanho'])
-    ships_alive += int(nt_cells/ships['nt']['tamanho'])
-    ships_alive += int(cp_cells/ships['cp']['tamanho'])
-    ships_alive += int(sb_cells/ships['sb']['tamanho'])
+    ships_alive += math.ceil(pa_cells/ships['pa']['tamanho'])
+    ships_alive += math.ceil(nt_cells/ships['nt']['tamanho'])
+    ships_alive += math.ceil(cp_cells/ships['cp']['tamanho'])
+    ships_alive += math.ceil(sb_cells/ships['sb']['tamanho'])
 
     return str(num_ships - ships_alive)
+
+def rows():
+    global num_ships
+    row = []
+
+    for i in range(num_ships):
+        row.append(str(i+1))
+
+    return row
 
 def print_board(board):
     for row in board:
@@ -102,16 +120,80 @@ def have_won(board):
     
     for row in board:
         for cell in row:
-            if cell != '-' and cell != 'X':
+            if cell != '-' and cell != 'x':
                 won = False
 
     return won
 
 def enemy_turn(my_board):
-    pass
+    while(True):
+        (x, y) = random_coord(my_board)
+        res = make_move(my_board, x, y)
+
+        # Acerto
+        if res == 'hit':
+            print('\nAcerto em (' + chr(ord('A') + x) + ',' + str( y+1 ) + ')')
+            my_board[x][y] = 'x'
+        # Erro
+        elif res == 'miss':
+            print('\nQue pena, (' + chr(ord('A') + x) + ',' + str( y+1 ) + ') não é um acerto.')
+            my_board[x][y] = '*'
+        # Tente novamentee
+        elif res == 'try again':
+            print("\nA coordenada não é válida. Tente Novamente!")
+
+        if res != "try again":
+            return 
 
 def my_turn(show_enemy_board, enemy_board):
-    pass
+    while(True):
+        (x, y) = get_coord(enemy_board)
+        res = make_move(enemy_board, x, y)
+        
+        # Acerto 
+        if res == 'hit':
+            print('Acerto em (' + chr(ord('A') + x) + ',' + str( y+1 ) + ')')
+            enemy_board[x][y] = 'x'
+            show_enemy_board[x][y] = 'x'
+        # Erro
+        elif res == 'miss':
+            print('Que pena, (' + chr(ord('A') + x) + ',' + str( y+1 ) + ') não é um acerto.')
+            enemy_board[x][y] = '*'
+            show_enemy_board[x][y] = '*'
+        # Tente novamente
+        elif res == 'try again':
+            print("A coordenada não é válida. Tente Novamente!")
+
+        if res != "try again":
+            return 
+            
+def make_move(board, x, y):
+
+	# Faz a jogada no tabuleiro e retorna o resultado
+	if board[x][y] == '-':
+		return "miss"
+	elif board[x][y] == '*' or board[x][y] == 'x':
+		return "try again"
+	else:
+		return "hit"
+
+def random_coord(board):
+    x = y = 0
+
+    x = randint(0, len(board) - 1)
+    y = randint(0, len(board[0]) - 1)
+
+    return (x, y)
+
+def get_coord(board):
+    x = y = 0
+
+    x = input("Escolha uma linha (A-J): ")
+    y = input("Escolha uma coluna (1-10): ")
+
+    x = ord(x.upper()) - ord('A')
+
+    return (int(x), int(y)-1)
 
 def play(show_enemy_board, enemy_board, my_board):
     # Loop principal do jogo
@@ -159,10 +241,10 @@ if __name__ == '__main__':
 
     # Inicializando Navios (nome_navio: [tamanho, peca])
     ships = {
-        'pa': { 'nome': 'Porta Aviões', 'tamanho': 5 , 'peca': 'P' },
-        'nt': { 'nome': 'Navio Tanque', 'tamanho': 4 , 'peca': 'T' },
-        'cp': { 'nome': 'Contratorpedeiro', 'tamanho': 3 , 'peca': 'C' },
-        'sb': { 'nome': 'Submarino', 'tamanho': 2 , 'peca': 'S' }
+        'pa': { 'nome': 'Porta Aviões', 'tamanho': 5 , 'peca': 'p' },
+        'nt': { 'nome': 'Navio Tanque', 'tamanho': 4 , 'peca': 't' },
+        'cp': { 'nome': 'Contratorpedeiro', 'tamanho': 3 , 'peca': 'c' },
+        'sb': { 'nome': 'Submarino', 'tamanho': 2 , 'peca': 's' }
     }
 
     # Definindo onde os navios estarão
