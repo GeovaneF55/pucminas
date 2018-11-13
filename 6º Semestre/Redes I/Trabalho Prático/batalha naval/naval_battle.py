@@ -1,9 +1,35 @@
 from random import randint
 
-def print_game(enemy_board, my_board):
+def print_game(show_enemy_board, enemy_board, my_board):
     print('Tabuleiro Inimigo\tMeu Tabuleiro')
-    for (enemy_row, my_row) in zip(enemy_board, my_board):
+    for (enemy_row, my_row) in zip(show_enemy_board, my_board):
         print(' '.join(enemy_row) + '\t' + ' '.join(my_row))
+    print('Seu inimigo tem ' + sink_ships(enemy_board) + ' afundado(s)')
+    print('Você tem ' + sink_ships(my_board) + ' afundado(s)')
+
+def sink_ships(board):
+    global ships, num_ships
+    ships_alive = pa_cells = nt_cells = cp_cells = sb_cells = 0
+
+    # Conta quantidade de peças de cada navio
+    for row in board:
+        for cell in row:
+            if cell == ships['pa']['peca']:
+                pa_cells += 1
+            elif cell == ships['nt']['peca']:
+                nt_cells += 1
+            elif cell == ships['cp']['peca']:
+                cp_cells += 1
+            elif cell == ships['sb']['peca']:
+                sb_cells += 1
+    
+    # Verifica quantos navios não foram afundados
+    ships_alive += int(pa_cells/ships['pa']['tamanho'])
+    ships_alive += int(nt_cells/ships['nt']['tamanho'])
+    ships_alive += int(cp_cells/ships['cp']['tamanho'])
+    ships_alive += int(sb_cells/ships['sb']['tamanho'])
+
+    return str(num_ships - ships_alive)
 
 def print_board(board):
     for row in board:
@@ -45,44 +71,82 @@ def random_cells(board, ship, orientation):
                 board[r][c] = ship['peca']
             break
 
-def random_ships(board, ships):
+    return 1
+
+def random_ships(board):
+    global ships
+
+    num_ships = 0
     # Posiciona Portas-Aviões
-    random_cells(board, ships['pa'] ,random_orientation())
+    num_ships += random_cells(board, ships['pa'] ,random_orientation())
 
     # Posiciona Navios-Tanque
-    random_cells(board, ships['nt'] ,random_orientation())
-    random_cells(board, ships['nt'] ,random_orientation())
+    num_ships += random_cells(board, ships['nt'] ,random_orientation())
+    num_ships += random_cells(board, ships['nt'] ,random_orientation())
 
     # Posiciona Contratorpedeiros
-    random_cells(board, ships['cp'] ,random_orientation())
-    random_cells(board, ships['cp'] ,random_orientation())
-    random_cells(board, ships['cp'] ,random_orientation())
+    num_ships += random_cells(board, ships['cp'] ,random_orientation())
+    num_ships += random_cells(board, ships['cp'] ,random_orientation())
+    num_ships += random_cells(board, ships['cp'] ,random_orientation())
 
     # Posiciona Submarinos
-    random_cells(board, ships['sb'] ,random_orientation())
-    random_cells(board, ships['sb'] ,random_orientation())
-    random_cells(board, ships['sb'] ,random_orientation())
-    random_cells(board, ships['sb'] ,random_orientation())
+    num_ships += random_cells(board, ships['sb'] ,random_orientation())
+    num_ships += random_cells(board, ships['sb'] ,random_orientation())
+    num_ships += random_cells(board, ships['sb'] ,random_orientation())
+    num_ships +=random_cells(board, ships['sb'] ,random_orientation())
+
+    return num_ships
 
 def have_won(board):
     won = True
+    
     for row in board:
         for cell in row:
             if cell != '-' and cell != 'X':
                 won = False
-    
+
     return won
 
-def enemy_turn(board):
+def enemy_turn(my_board):
     pass
 
-def my_turn(board):
+def my_turn(show_enemy_board, enemy_board):
     pass
+
+def play(show_enemy_board, enemy_board, my_board):
+    # Loop principal do jogo
+	while(1):
+
+		# Rodada do jogador
+		print_game(show_board, off_board, my_board)
+		my_turn(show_board ,off_board)
+
+		# Verifica se o jogador venceu
+		if have_won(off_board):
+			print("Você VENCEU! :)")
+			break
+			
+		# Encerra rodada do jogador
+		print_game(show_board, off_board, my_board)
+		input("Para encerrar sua rodada aperte ENTER")
+
+		# Rodada do computador
+		enemy_turn(my_board)
+		
+		# Verifica se o computador venceu
+		if have_won(my_board):
+			print("Você PERDEU! :(")
+			break
+			
+		# Encerra rodada inimiga
+		print_game(show_board, off_board, my_board)
+		input("Para encerrar a rodada do seu inimigo aperte ENTER")
 
 if __name__ == '__main__':
 
     # Inicializando Tabuleiro
     board_size = 10
+    num_ships = 0
 
     show_board = []
     off_board = []
@@ -102,10 +166,10 @@ if __name__ == '__main__':
     }
 
     # Definindo onde os navios estarão
-    random_ships(off_board, ships)
-    random_ships(my_board, ships)
+    num_ships = random_ships(off_board)
+    num_ships = random_ships(my_board)
 
     # Começando o jogo e imprimindo o tabuleiro
     print("\nVamos Jogar Batalha Naval!\n")
-    print_game(show_board, my_board)
 
+    play(show_board, off_board, my_board)
