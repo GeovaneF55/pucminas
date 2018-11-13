@@ -46,17 +46,17 @@ def random_cells(board, ship, orientation):
 
         for s in range(ship['tamanho']):
             # Verifica orientação do navio
-            if(orientation):
+            if orientation:
                 r = row + s
             else:
                 c = col + s
 
             # Verifica controle de posição do navio
-            if(r >= len(board) or c >= len(board[0])):
+            if r >= len(board) or c >= len(board[0]):
                 break
-            elif(board[r][c] != '-'):
+            elif board[r][c] != '-':
                 break
-            elif(s == ship['tamanho']-1):
+            elif s == ship['tamanho']-1:
                 fit = True
 
         # Se o navio couber na posição dada, ele é posicionado nela
