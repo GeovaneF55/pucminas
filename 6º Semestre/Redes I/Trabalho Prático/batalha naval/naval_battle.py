@@ -95,10 +95,10 @@ if __name__ == '__main__':
 
     # Inicializando Navios (nome_navio: [tamanho, peca])
     ships = {
-        'pa': { 'nome': 'Porta Aviões', 'tamanho': 5 , 'peca': 'P'},
-        'nt': { 'nome': 'Navio Tanque', 'tamanho': 4 , 'peca': 'T'},
-        'cp': { 'nome': 'Contratorpedeiro', 'tamanho': 3 , 'peca': 'C'},
-        'sb': { 'nome': 'Submarino', 'tamanho': 2 , 'peca': 'S'}
+        'pa': { 'nome': 'Porta Aviões', 'tamanho': 5 , 'peca': 'P' },
+        'nt': { 'nome': 'Navio Tanque', 'tamanho': 4 , 'peca': 'T' },
+        'cp': { 'nome': 'Contratorpedeiro', 'tamanho': 3 , 'peca': 'C' },
+        'sb': { 'nome': 'Submarino', 'tamanho': 2 , 'peca': 'S' }
     }
 
     # Definindo onde os navios estarão
