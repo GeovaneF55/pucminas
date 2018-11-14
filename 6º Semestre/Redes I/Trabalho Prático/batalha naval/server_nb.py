@@ -22,12 +22,12 @@ serv_socket.listen(10)
 print('aguardando conexao')
 
 # Deixa o servidor escutando possíveis conexões
-con, cliente = serv_socket.accept()
+connection, cliente = serv_socket.accept()
 print('conectado')
 
 # Aguarda um dado enviado pela rede de até 1024 Bytes
-print('aguardando mensagem')
-recebe = con.recv(1024)
+print('aguardando mensagem de ' + cliente[0] + ':' + str(cliente[1]))
+recebe = connection.recv(1024)
 print('mensagem recebida: ' + recebe.decode('utf8').strip())
 
 # Fecha a conexão

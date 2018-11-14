@@ -50,8 +50,12 @@ def rows():
     return row
 
 def print_board(board):
+    column = 'A'
+
+    print('  ' + '  '.join(rows()))
     for row in board:
-        print(' '.join(row))
+        print(column + ' ' + '  '.join(row))
+        column = chr(ord(column) + 1)
 
 def random_orientation():
     return randint(0, 1)
@@ -126,8 +130,14 @@ def have_won(board):
     return won
 
 def enemy_turn(my_board):
+    x = y = None
+
     while(True):
-        (x, y) = random_coord(my_board)
+        if x == None and y == None:
+            (x, y) = random_coord(my_board)
+        else:
+            (x, y) = try_coord(my_board, x, y)
+
         res = make_move(my_board, x, y)
 
         # Acerto
@@ -142,8 +152,11 @@ def enemy_turn(my_board):
         elif res == 'try again':
             print("\nA coordenada não é válida. Tente Novamente!")
 
-        if res != "try again":
-            return 
+        if res != "try again" and res != 'hit':
+            return
+        
+        if have_won(my_board):
+            return
 
 def my_turn(show_enemy_board, enemy_board):
     while(True):
@@ -155,6 +168,9 @@ def my_turn(show_enemy_board, enemy_board):
             print('Acerto em (' + chr(ord('A') + x) + ',' + str( y+1 ) + ')')
             enemy_board[x][y] = 'x'
             show_enemy_board[x][y] = 'x'
+
+            print_game(show_board, off_board, my_board)
+
         # Erro
         elif res == 'miss':
             print('Que pena, (' + chr(ord('A') + x) + ',' + str( y+1 ) + ') não é um acerto.')
@@ -164,8 +180,11 @@ def my_turn(show_enemy_board, enemy_board):
         elif res == 'try again':
             print("A coordenada não é válida. Tente Novamente!")
 
-        if res != "try again":
-            return 
+        if res != "try again" and res != 'hit':
+            return
+
+        if have_won(enemy_board):
+            return
             
 def make_move(board, x, y):
 
@@ -185,44 +204,94 @@ def random_coord(board):
 
     return (x, y)
 
+def try_coord(board, x, y):
+    direction = randint(0, 1)
+    sum_direction = randint(0, 1)
+
+    if direction == 0:
+        x += sum_direction
+        y += ( 1 if sum_direction == 0 else 0 )
+    else:
+        x -= sum_direction
+        y -= ( 1 if sum_direction == 0 else 0 )
+
+    return (x, y)
+
 def get_coord(board):
-    x = y = 0
+    x = get_column()
+    y = get_row()
 
-    x = input("Escolha uma linha (A-J): ")
-    y = input("Escolha uma coluna (1-10): ")
-
-    x = ord(x.upper()) - ord('A')
+    x = ord(x) - ord('A')
 
     return (int(x), int(y)-1)
 
-def play(show_enemy_board, enemy_board, my_board):
+def get_column():
+    x = 'A'
+
+    while True:
+        try:
+            x = chr(ord(input("Escolha uma linha (A-J): ")))
+            x = x.upper()
+
+            if ord(x) < ord('A') or ord(x) > ord('J'):
+               raise Exception()
+
+        except Exception:
+            print("Caractere Inválido")
+            continue
+        else:
+            break
+
+    return x
+
+def get_row():
+    y = 0
+
+    while True:
+        try:
+            y = int(input("Escolha uma coluna (1-10): "))
+
+            if y < 1 or y > 10:
+               raise Exception()
+
+        except ValueError:
+            print("Valor Inválido.")
+            continue
+        except Exception:
+            print("Valores fora do Limite.")
+        else:
+            break
+
+    return y
+
+def play(show_board, off_board, my_board):
     # Loop principal do jogo
-	while(1):
+    while(1):
 
-		# Rodada do jogador
-		print_game(show_board, off_board, my_board)
-		my_turn(show_board ,off_board)
+        # Rodada do jogador
+        print_game(show_board, off_board, my_board)
+        my_turn(show_board, off_board)
 
-		# Verifica se o jogador venceu
-		if have_won(off_board):
-			print("Você VENCEU! :)")
-			break
+        # Verifica se o jogador venceu
+        if have_won(off_board):
+            print("Você VENCEU! :)")
+            return
 			
-		# Encerra rodada do jogador
-		print_game(show_board, off_board, my_board)
-		input("Para encerrar sua rodada aperte ENTER")
+        # Encerra rodada do jogador
+        print_game(show_board, off_board, my_board)
+        input("Para encerrar sua rodada aperte ENTER")
 
-		# Rodada do computador
-		enemy_turn(my_board)
-		
-		# Verifica se o computador venceu
-		if have_won(my_board):
-			print("Você PERDEU! :(")
-			break
-			
-		# Encerra rodada inimiga
-		print_game(show_board, off_board, my_board)
-		input("Para encerrar a rodada do seu inimigo aperte ENTER")
+        # Rodada do computador
+        enemy_turn(my_board)
+
+        # Verifica se o computador venceu
+        if have_won(my_board):
+            print("Você PERDEU! :(")
+            return
+            
+        # Encerra rodada inimiga
+        print_game(show_board, off_board, my_board)
+        input("Para encerrar a rodada do seu inimigo aperte ENTER")
 
 if __name__ == '__main__':
 
