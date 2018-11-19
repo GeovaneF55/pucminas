@@ -1,0 +1,3 @@
+{"comb": 2, "preco": 5044, "coord": [80, 70]}
+{"comb": 0, "preco": 3900, "coord": [80, 90]}
+{"comb": 2, "preco": 7000, "coord": [40, 80]}

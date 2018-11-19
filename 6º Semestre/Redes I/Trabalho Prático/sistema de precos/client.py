@@ -27,7 +27,6 @@ def input_tipo():
     return 1 if t == 'D' else 0
 
 def id_menssagem():
-            
     return 0
 
 def input_comb():
@@ -127,7 +126,9 @@ def prepare_system():
     # Recebe dados iniciais do sistema.
     # A função <struct.unpack> retorna uma tupla que, nesse caso,
     # contém apenas um elemento.
-    start_system(client, addr)
+    while True:
+        start_system(client, addr)
+
     client.close()
 
 def start_system(client, addr):
