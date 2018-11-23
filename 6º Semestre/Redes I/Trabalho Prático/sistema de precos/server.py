@@ -1,30 +1,45 @@
 #Externo
+import json
 import socket
 import struct
-import json
+import sys
 
 # Local
 import util
 
 def prepare_system(server, arquivo):
-    msg, _ = server.recvfrom(1024)
+    msg, client = server.recvfrom(1024)
     j_msg = json.loads(msg.decode())
-    
-    if j_msg['tipo'] == 'D':
-        
-        data = json.dumps({
-            'comb': j_msg['comb'], 
-            'preco': j_msg['preco'], 
-            'coord': j_msg['coord']
-        })
 
-        arquivo.write(data)
+    server.sendto(str(j_msg['id']).encode(), client)
+
+    print('Mensagem {} recebida'.format(str(j_msg['id'])))
+
+    if j_msg['type'] == 'D':
+
+        json.dump({
+            'fuel': j_msg['fuel'], 
+            'price': j_msg['price'], 
+            'coord': j_msg['coord']
+        }, arquivo)
         arquivo.write('\n')
         arquivo.flush()
     
     else:
-        #data = arquivo.read()
-        print('Teste')
+        arquivo.seek(0)
+        data = arquivo.readlines() #json.load(arquivo)
+        
+        menor = sys.maxsize
+
+        for i in range(len(data)):
+            station = json.loads(data[i])
+            
+            if util.haversine(station['coord'], j_msg['center'], j_msg['radius']) \
+            and station['fuel'] == j_msg['fuel'] \
+            and station['price'] < menor:
+                menor = station ['price']
+
+        server.sendto(str(menor).encode(), client)
 
 def start_server():
     """ Inicializa o servidor e espera por conexões. Quando
@@ -44,7 +59,7 @@ def start_server():
     print('Servidor iniciado. Aguardando conexões...')
     print('Host: {}\t Porta: {}'.format(host, port))
     
-    arquivo = open('sistema_preco.txt','a+') 
+    arquivo = open('sistema_preco.json','a+') 
 
     # Inicia a escuta por possíveis conexões
     _, client = server.recvfrom(1024)
