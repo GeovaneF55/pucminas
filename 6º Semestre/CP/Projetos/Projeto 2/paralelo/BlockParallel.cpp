@@ -24,12 +24,34 @@ void Block::MineBlock(uint32_t nDifficulty)
 
     string str(cstr);
 
-    while (sHash.substr(0, nDifficulty) != str)
-    {
-        _nNonce++;
-        sHash = _CalculateHash();
-    }
+	bool found = false;
+	// int i = 0;
+	// while (sHash.substr(0, nDifficulty) != str)
+	#pragma omp parallel
+	{
+		#pragma omp single nowait
+		while (!found)
+		// while (i < 5000000)
+		{
+			#pragma omp task
+			{
+				#pragma critical
+				_nNonce++;
+				string temp = _CalculateHash();
 
+				if (temp.substr(0, nDifficulty) == str) {
+					#pragma critical
+					sHash = temp;
+
+					found = true;
+				}
+			}
+
+			// i++;
+		}
+	}
+
+	cout << nDifficulty << endl;
     cout << "Block mined: " << sHash << endl;
 }
 

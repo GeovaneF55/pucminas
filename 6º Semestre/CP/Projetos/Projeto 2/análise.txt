@@ -1,0 +1,47 @@
+Dificuldade 5:
+
+	TEMPO SEQUENCIAL: 2m24.509s
+
+		- Saída:
+
+			Mining block 1...
+			Block mined: 00000616de156bd5d59c44907563c5130cfab5502c24849a210eb874e23b7a2e
+
+			Mining block 2...
+			Block mined: 0000060c6504bf5d44e270f94d4eda2d13cb395b6bad20ffdb9c2b590b17ebca
+
+			Mining block 3...
+			Block mined: 00000478012b11dca232013b703fb8c91625241eabc3c4fdb6ce131122231ee8
+
+	TEMPO PARALELO CPU: 0m45.898s
+
+		- Saída:
+
+			Mining block 1...
+			Block mined: 0000039c19ab6772cff43d6eb8d354fdc953a0d6abb93533941c41bfcc001984
+
+			Mining block 2...
+			Block mined: 000009439b89ab02851c721a8cc80d74e6ca0e98dc33fda120f2ac4692c3ff14
+
+			Mining block 3...
+			Block mined: 000003ed8d9979e90b1ff995ecc8555eb5b6ccb386586e977e52b119070441d5
+
+		- Speedup:
+
+			(Tempo Sequencial/Tempo Paralelo CPU) = (2m24.509s/0m45.898s) = 4,891476753
+
+	TEMPO PARALELO GPU:
+
+		- Saída:
+
+			Não foi implementado de forma satisfatória para realizar a análise
+
+		- Speedup:
+
+			(Tempo Sequencial/Tempo Paralelo CPU) = X
+
+			
+
+		- Speedup:
+
+			(Tempo Sequencial/Tempo Paralelo CPU) = 
