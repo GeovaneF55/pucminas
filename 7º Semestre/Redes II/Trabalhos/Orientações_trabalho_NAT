@@ -1,0 +1,29 @@
+Orientações para a Trabalho
+
+Nesta atividade você deverá configurar sua 
+rede doméstica para receber conexões de uma rede externa.
+
+
+Incialmente, configure um serviço de rede em um computador 
+de sua casa. Pode ser o XAMPP ou IIS ou o PWS para subir, 
+por exemplo um servidor WEB, ou pode ser um VNC Server, ou seja, qualquer serviço. Não use
+a porta 80, normalmente ela é bloqueada, usem outra porta aleatória.
+
+Dê um print na configuração local deste serviço, mostrando o ip e porta que ele abriu.
+
+Em seguida configure seu Roteador da Internet para redirecionar a porta de seu ip externo 
+para o ip interno onde vc configurou o serviço de rede.
+
+Dê um print ou mais prints para mostrar como foi feita esta configuração.
+
+Configure o DNS dinâmico em seu roteador da internet para que o mesmo faça a 
+gestão de seu ip verdadeiro. Para isto vc pode usar o DYN DNS ou NOIP.org, etc.
+
+Clientes da NET poderão ter que ligar na operadora e pedir para que eles também façam o 
+redirecionamento da primeria camada do NAT deles para o equipamento de sua casa que faz o 
+segundo NAT.
+
+
+Dê um prit desta configuração.
+
+Coloque tudo em um arquivo pdf, na ordem indicada neste texto e suba para pasta de entrega de trabalho.
