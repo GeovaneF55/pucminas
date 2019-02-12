@@ -6,4 +6,59 @@ ping www.uai.com		Mínimo = 169ms, Máximo = 171ms, Média = 170ms
 ping www.louvre.fr		Mínimo = 202ms, Máximo = 210ms, Média = 206ms
 ping www.nintendo.co.jp		Mínimo = 15ms, Máximo = 16ms, Média = 15ms
 
-2. tracert
+2. traceroute
+
+traceroute www.uai.com
+traceroute www.pmrb.gov.br
+traceroute www.pmm.am.gov.br
+traceroute www.louvre.fr
+traceroute www.nintendo.co.jp
+
+3. pathping
+
+Execute o comando pathping no roteador acadêmico de sua unidade e anote os resultados.
+
+4. route
+
+Descubra qual é o "Default Gateway" de seu computador, observe que todo tracert que você
+executa o primeiro salto é feito exatamente neste gateway.
+
+5. nslookup
+
+Descubra os endereços IP das máquinas que podem receber e-mail das seguintes empresas:
+	Google
+	Yahoo
+	UAI
+	Louvre
+Acesse o registro.br, o www.nic.fr ou o whois.net e descubra as pessoas responsáveis pelos sites
+acima.
+
+6. netstat
+
+Use o netstat para mostrar todas as conexões e portas de escuta da sua máquina
+(LISTENING). A saída é mostrada em 4 colunas. Na primeira está o protocolo, na segunda o
+endereço da conexão na porta local. A terceira coluna mostra o endereço na máquina remota (o
+endereço da máquina e a porta TCP da conexão) e a quarta coluna mostra o estado da conexão
+(ESTABLISHED, LISTENING, CLOSE_WAIT, etc).
+Use a opção -r para mostrar o conteúdo da tabela de roteamento da sua estação. Essa tabela
+mostra para qual endereço cada pacote deve ser enviado em função do seu endereço IP. Desta
+forma, a máquina garante que o pacote será entregue para a máquina de destino corretamente.
+
+7. ipconfig
+
+Descubra pelo endereço MAC 1 o fabricante da placa e seu endereço de correspondência.
+
+8. arp
+
+Através do comando ARP descubra o endereço MAC e os fabricantes das placas de rede dos
+servidores DNS, DHCP e o default gateway.
+
+Refaça os comandos através de ferramentas online disponíveis na internet.
+Ping.eu
+http://network-tools.com/
+
+9. net
+
+
+
+
