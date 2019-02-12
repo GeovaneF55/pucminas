@@ -1,0 +1,9 @@
+ATIVIDADE 1
+
+1. ping
+
+ping www.uai.com		Mínimo = 169ms, Máximo = 171ms, Média = 170ms
+ping www.louvre.fr		Mínimo = 202ms, Máximo = 210ms, Média = 206ms
+ping www.nintendo.co.jp		Mínimo = 15ms, Máximo = 16ms, Média = 15ms
+
+2. tracert
