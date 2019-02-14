@@ -1,0 +1,33 @@
+% Aluno: Geovane Fonseca de Sousa Santos
+% Professor: Cristiane
+
+@relation restaurant
+
+@attribute alternativa 		{não, sim}
+@attribute bar			{não, sim}
+@attribute sexta_sabado		{não, sim}
+@attribute fome			{não, sim}
+@attribute clientes		{nenhum, alguns, cheio}
+@attribute preco		{R, RR, RRR}
+@attribute chuva		{não, sim}
+@attribute reserva		{não, sim}
+@attribute tipo_restaurante	{francês, tailandês, italiano, hamburguer}
+@attribute est_tempo_espera	{'0-10', '10-30', '30-60', '>60'}
+@attribute esperar		{não, sim}
+
+@data
+%
+% 12 instances
+%
+sim,não,não,sim,alguns,RRR,não,sim,francês,'0-10',sim
+sim,não,não,sim,cheio,R,não,não,tailandês,'30-60',não
+não,sim,não,não,alguns,R,não,não,hamburguer,'0-10',sim
+sim,não,sim,sim,cheio,R,sim,não,tailandês,'10-30',sim
+sim,não,sim,não,cheio,RRR,não,sim,francês,'>60',não
+não,sim,não,sim,alguns,RR,sim,sim,italiano,'0-10',sim
+não,sim,não,não,nenhum,R,sim,não,hamburguer,'0-10',não
+não,não,não,sim,alguns,RR,sim,sim,tailandês,'0-10',sim
+não,sim,sim,não,cheio,R,sim,não,hamburguer,'>60',não
+sim,sim,sim,sim,cheio,RRR,não,sim,italiano,'10-30',não
+não,não,não,não,nenhum,R,não,não,tailandês,'0-10',não
+sim,sim,sim,sim,cheio,R,não,não,hamburguer,'30-60',sim
