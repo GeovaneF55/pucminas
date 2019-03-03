@@ -1,0 +1,90 @@
+@article{silva2008avaliaccao,
+  title={Avalia{\c{c}}{\~a}o do desempenho dos estudantes da educa{\c{c}}{\~a}o superior: a quest{\~a}o da eq{\"u}idade e obrigatoriedade no prov{\~a}o e Enade},
+  author={Silva Paiva, Giovanni},
+  journal={Ensaio: avalia{\c{c}}{\~a}o e pol{\'\i}ticas p{\'u}blicas em educa{\c{c}}{\~a}o},
+  volume={16},
+  number={58},
+  year={2008},
+  publisher={Funda{\c{c}}{\~a}o Cesgranrio}
+}
+
+@article{da2004avaliaccao,
+  title={A avalia{\c{c}}{\~a}o da compreens{\~a}o em leitura e o desempenho acad{\^e}mico de universit{\'a}rios},
+  author={da Silva, Maria Jos{\'e} Moraes and dos Santos, Ac{\'a}cia Aparecida Angeli},
+  journal={Psicologia em estudo},
+  volume={9},
+  number={3},
+  pages={459--467},
+  year={2004},
+  publisher={SciELO Brasil}
+}
+
+@article{cavalcante2011avaliaccao,
+  title={Avalia{\c{c}}{\~a}o da efici{\^e}ncia acad{\^e}mica dos cursos de gradua{\c{c}}{\~a}o da Universidade federal do cear{\'a} (ufc): utiliza{\c{c}}{\~a}o de indicadores de desempenho como elementos estrat{\'e}gicos da gest{\~a}o},
+  author={CAVALCANTE, Sueli Maria de Ara{\'u}jo},
+  journal={Fortaleza: UFC},
+  year={2011}
+}
+
+@article{primi2002habilidades,
+  title={Habilidades b{\'a}sicas e desempenho acad{\^e}mico em universit{\'a}rios ingressantes},
+  author={Primi, Ricardo and Santos, AAA dos and Vendramini, Claudette Medeiros},
+  journal={Estudos de psicologia},
+  volume={7},
+  number={1},
+  pages={47--55},
+  year={2002},
+  publisher={SciELO Brasil}
+}
+
+@article{capellini2004medidas,
+  title={Medidas de desempenho escolar: avalia{\c{c}}{\~a}o formal e opini{\~a}o de professores},
+  author={Capellini, Simone Aparecida and Tonelotto, Josiane Maria de Freitas and Ciasca, Sylvia Maria and others},
+  journal={Estudos de Psicologia (Campinas)},
+  year={2004},
+  publisher={SciELO Brasil}
+}
+
+@article{pascoal2015abordagem,
+  title={Uma abordagem para a previs{\~a}o de desempenho de alunos de Computa{\c{c}}{\~a}o em disciplinas de programa{\c{c}}{\~a}o},
+  author={Pascoal, T{\'u}lio Albuquerque and de Brito, Daniel Miranda and do R{\^e}go, Tha{\'\i}s Gaudencio},
+  journal={Nuevas Ideas en Inform{\'a}tica Educativa TISE},
+  volume={2015},
+  pages={454--458},
+  year={2015}
+}
+
+@inproceedings{martins2012assistente,
+  title={Um Assistente de Predi{\c{c}}{\~a}o de Evas{\~a}o aplicado a uma disciplina Introdut{\'o}ria do curso de Ci{\^e}ncia da Computa{\c{c}}{\~a}o},
+  author={Martins, Luis Carlos and Lopes, Diogo Alto{\'e} and Raabe, Andr{\'e}},
+  booktitle={Brazilian Symposium on Computers in Education (Simp{\'o}sio Brasileiro de Inform{\'a}tica na Educa{\c{c}}{\~a}o-SBIE)},
+  volume={23},
+  number={1},
+  year={2012}
+}
+
+@article{azevedo2015mineraccao,
+  title={Minera{\c{c}}{\~a}o de dados aplicada ao estudo da evas{\~a}o e desempenho dos alunos do bacharelado em Ci{\^e}ncia da Computa{\c{c}}{\~a}o da Universidade de Bras{\'\i}lia},
+  author={Azevedo, Luiza Alencar and Santos, Yago da Silva},
+  year={2015}
+}
+
+@inproceedings{de2014prediccao,
+  title={Predi{\c{c}}{\~a}o de desempenho de alunos do primeiro per{\'\i}odo baseado nas notas de ingresso utilizando m{\'e}todos de aprendizagem de m{\'a}quina},
+  author={De Brito, Daniel Miranda and de Almeida J{\'u}nior, Iron Ara{\'u}jo and Queiroga, Eduardo Vieira and do R{\^e}go, Tha{\'\i}s Gaudencio},
+  booktitle={Brazilian Symposium on Computers in Education (Simp{\'o}sio Brasileiro de Inform{\'a}tica na Educa{\c{c}}{\~a}o-SBIE)},
+  volume={25},
+  number={1},
+  pages={882},
+  year={2014}
+}
+
+@inproceedings{santos2016analise,
+  title={An{\'a}lise de trabalhos sobre a aplica{\c{c}}ao de t{\'e}cnicas de minera{\c{c}}ao de dados educacionais na previsao de desempenho acad{\^e}mico},
+  author={Santos, Rodrigo and Pitangui, Cristiano and Vivas, Alessandro and Assis, Luciana},
+  booktitle={Anais dos Workshops do Congresso Brasileiro de Inform{\'a}tica na Educa{\c{c}}{\~a}o},
+  volume={5},
+  number={1},
+  pages={960},
+  year={2016}
+}

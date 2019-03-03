@@ -1,0 +1,64 @@
+Citações:
+a) MLA
+b) NBR 6023
+c) APA
+
+1.
+
+a) Silva Paiva, Giovanni. "Avaliação do desempenho dos estudantes da educação superior: a questão da eqüidade e obrigatoriedade no provão e Enade." Ensaio: avaliação e políticas públicas em educação 16.58 (2008).
+b) SILVA PAIVA, Giovanni. Avaliação do desempenho dos estudantes da educação superior: a questão da eqüidade e obrigatoriedade no provão e Enade. Ensaio: avaliação e políticas públicas em educação, v. 16, n. 58, 2008.
+c) Silva Paiva, G. (2008). Avaliação do desempenho dos estudantes da educação superior: a questão da eqüidade e obrigatoriedade no provão e Enade. Ensaio: avaliação e políticas públicas em educação, 16(58).
+
+2.
+
+a) da Silva, Maria José Moraes, and Acácia Aparecida Angeli dos Santos. "A avaliação da compreensão em leitura e o desempenho acadêmico de universitários." Psicologia em estudo 9.3 (2004): 459-467.
+b) DA SILVA, Maria José Moraes; DOS SANTOS, Acácia Aparecida Angeli. A avaliação da compreensão em leitura e o desempenho acadêmico de universitários. Psicologia em estudo, v. 9, n. 3, p. 459-467, 2004.
+c) da Silva, M. J. M., & dos Santos, A. A. A. (2004). A avaliação da compreensão em leitura e o desempenho acadêmico de universitários. Psicologia em estudo, 9(3), 459-467.
+
+3.
+
+a) CAVALCANTE, Sueli Maria de Araújo. "Avaliação da eficiência acadêmica dos cursos de graduação da Universidade federal do ceará (ufc): utilização de indicadores de desempenho como elementos estratégicos da gestão." Fortaleza: UFC (2011).
+b) CAVALCANTE, Sueli Maria de Araújo. Avaliação da eficiência acadêmica dos cursos de graduação da Universidade federal do ceará (ufc): utilização de indicadores de desempenho como elementos estratégicos da gestão. Fortaleza: UFC, 2011.
+c) CAVALCANTE, S. M. D. A. (2011). Avaliação da eficiência acadêmica dos cursos de graduação da Universidade federal do ceará (ufc): utilização de indicadores de desempenho como elementos estratégicos da gestão. Fortaleza: UFC.
+
+4.
+
+a) Primi, Ricardo, AAA dos Santos, and Claudette Medeiros Vendramini. "Habilidades básicas e desempenho acadêmico em universitários ingressantes." Estudos de psicologia 7.1 (2002): 47-55.
+b) PRIMI, Ricardo; SANTOS, AAA dos; VENDRAMINI, Claudette Medeiros. Habilidades básicas e desempenho acadêmico em universitários ingressantes. Estudos de psicologia, v. 7, n. 1, p. 47-55, 2002.
+c) Primi, R., Santos, A. D., & Vendramini, C. M. (2002). Habilidades básicas e desempenho acadêmico em universitários ingressantes. Estudos de psicologia, 7(1), 47-55.
+
+5. 
+
+a) Capellini, Simone Aparecida, Josiane Maria de Freitas Tonelotto, and Sylvia Maria Ciasca. "Medidas de desempenho escolar: avaliação formal e opinião de professores." Estudos de Psicologia (Campinas) (2004).
+b) CAPELLINI, Simone Aparecida et al. Medidas de desempenho escolar: avaliação formal e opinião de professores. Estudos de Psicologia (Campinas), 2004.
+c) Capellini, S. A., Tonelotto, J. M. D. F., & Ciasca, S. M. (2004). Medidas de desempenho escolar: avaliação formal e opinião de professores. Estudos de Psicologia (Campinas).
+
+6.
+
+a) Pascoal, Túlio Albuquerque, Daniel Miranda de Brito, and Thaís Gaudencio do Rêgo. "Uma abordagem para a previsão de desempenho de alunos de Computação em disciplinas de programação." Nuevas Ideas en Informática Educativa TISE 2015 (2015): 454-458.
+b) PASCOAL, Túlio Albuquerque; DE BRITO, Daniel Miranda; DO RÊGO, Thaís Gaudencio. Uma abordagem para a previsão de desempenho de alunos de Computação em disciplinas de programação. Nuevas Ideas en Informática Educativa TISE, v. 2015, p. 454-458, 2015.
+c) Pascoal, T. A., de Brito, D. M., & do Rêgo, T. G. (2015). Uma abordagem para a previsão de desempenho de alunos de Computação em disciplinas de programação. Nuevas Ideas en Informática Educativa TISE, 2015, 454-458.
+
+7.
+
+a) Martins, Luis Carlos, Diogo Altoé Lopes, and André Raabe. "Um Assistente de Predição de Evasão aplicado a uma disciplina Introdutória do curso de Ciência da Computação." Brazilian Symposium on Computers in Education (Simpósio Brasileiro de Informática na Educação-SBIE). Vol. 23. No. 1. 2012.
+b) MARTINS, Luis Carlos; LOPES, Diogo Altoé; RAABE, André. Um Assistente de Predição de Evasão aplicado a uma disciplina Introdutória do curso de Ciência da Computação. In: Brazilian Symposium on Computers in Education (Simpósio Brasileiro de Informática na Educação-SBIE). 2012.
+c) Martins, L. C., Lopes, D. A., & Raabe, A. (2012). Um Assistente de Predição de Evasão aplicado a uma disciplina Introdutória do curso de Ciência da Computação. In Brazilian Symposium on Computers in Education (Simpósio Brasileiro de Informática na Educação-SBIE) (Vol. 23, No. 1).
+
+8.
+
+a) Azevedo, Luiza Alencar, and Yago da Silva Santos. "Mineração de dados aplicada ao estudo da evasão e desempenho dos alunos do bacharelado em Ciência da Computação da Universidade de Brasília." (2015).
+b) AZEVEDO, Luiza Alencar; SANTOS, Yago da Silva. Mineração de dados aplicada ao estudo da evasão e desempenho dos alunos do bacharelado em Ciência da Computação da Universidade de Brasília. 2015.
+c) Azevedo, L. A., & Santos, Y. D. S. (2015). Mineração de dados aplicada ao estudo da evasão e desempenho dos alunos do bacharelado em Ciência da Computação da Universidade de Brasília.
+
+9.
+
+a) De Brito, Daniel Miranda, et al. "Predição de desempenho de alunos do primeiro período baseado nas notas de ingresso utilizando métodos de aprendizagem de máquina." Brazilian Symposium on Computers in Education (Simpósio Brasileiro de Informática na Educação-SBIE). Vol. 25. No. 1. 2014.
+b) DE BRITO, Daniel Miranda et al. Predição de desempenho de alunos do primeiro período baseado nas notas de ingresso utilizando métodos de aprendizagem de máquina. In: Brazilian Symposium on Computers in Education (Simpósio Brasileiro de Informática na Educação-SBIE). 2014. p. 882.
+c) De Brito, D. M., de Almeida Júnior, I. A., Queiroga, E. V., & do Rêgo, T. G. (2014). Predição de desempenho de alunos do primeiro período baseado nas notas de ingresso utilizando métodos de aprendizagem de máquina. In Brazilian Symposium on Computers in Education (Simpósio Brasileiro de Informática na Educação-SBIE) (Vol. 25, No. 1, p. 882).
+
+10.
+
+a) Santos, Rodrigo, et al. "Análise de trabalhos sobre a aplicaçao de técnicas de mineraçao de dados educacionais na previsao de desempenho acadêmico." Anais dos Workshops do Congresso Brasileiro de Informática na Educação. Vol. 5. No. 1. 2016.
+b) SANTOS, Rodrigo et al. Análise de trabalhos sobre a aplicaçao de técnicas de mineraçao de dados educacionais na previsao de desempenho acadêmico. In: Anais dos Workshops do Congresso Brasileiro de Informática na Educação. 2016. p. 960.
+c) Santos, R., Pitangui, C., Vivas, A., & Assis, L. (2016, November). Análise de trabalhos sobre a aplicaçao de técnicas de mineraçao de dados educacionais na previsao de desempenho acadêmico. In Anais dos Workshops do Congresso Brasileiro de Informática na Educação (Vol. 5, No. 1, p. 960).
