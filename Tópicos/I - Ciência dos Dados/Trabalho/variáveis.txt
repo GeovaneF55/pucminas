@@ -1,0 +1,93 @@
+DICIONÁRIO DE VARIÁVEIS DA PNS 2013 - ARQUIVO DE PESSOAS
+
+IDENTIFICAÇÃO E CONTROLE
+
+V0001       Unidade da Federação
+V0006_PNS   Número de ordem do domicílio na PNS
+
+MÓDULO C – CARACTERÍSTICAS GERAIS DOS MORADORES
+
+C001        Quantas pessoas moram neste domicílio?
+C00301      Número de ordem do morador
+C004        Condição no domicílio:
+C006        sexo
+C008        idade
+C009        cor ou raça
+C010        _______ vive com cônjuge ou companheiro(a)?
+C011        Qual o estado civil de _________? 
+
+MÓDULO D – CARACTERÍSTICAS DE EDUCAÇÃO DAS PESSOAS DE 5 ANOS OU MAIS DE IDADE
+
+Depressão ---> problemas educacionais?? (Fundir as variáveis?)
+
+MÓDULO E – TRABALHO DOS MORADORES DO DOMICÍLIO
+
+Juntar as 2?
+E017        Quantas horas ________________ trabalhava normalmente, por semana, nesse trabalho
+E019        Quantas horas ________________ trabalhava normalmente, por semana, nesse(s) outro(s) trabalho(s)?
+
+
+MÓDULO F – RENDIMENTOS DOMICILIARES
+
+????
+
+MÓDULO G – PESSOAS COM DEFICIÊNCIAS
+
+G001        _______tem deficiência intelectual?
+G006        _________tem alguma deficiência física?
+G0014       _________tem deficiência auditiva ?
+G021         _________tem deficiência visual ?
+
+MÓDULO J – UTILIZAÇÃO DE SERVIÇOS DE SAÚDE
+
+J001        De um modo geral, como é o estado de saúde de _______                
+J002 + J003 + J004 ---> 2 últimas semanas, deixou de realizar atividades habituais? Por qual motivo?
+
+MÓDULO K – SAÚDE DOS INDIVÍDUOS COM 60 ANOS OU MAIS E COBERTURA DE MAMOGRAFIA ENTRE MULHERES DE 50 ANOS E MAIS
+
+????
+
+MÓDULO L – CRIANÇAS COM MENOS DE 2 ANOS
+
+
+MÓDULO M – INFORMAÇÕES PARA FUTUROS CONTATOS, CARACTERÍSTICAS DO TRABALHO E APOIO SOCIAL
+
+????
+
+MÓDULO M – INFORMAÇÕES PARA FUTUROS CONTATOS, CARACTERÍSTICAS DO TRABALHO E APOIO SOCIAL
+
+M014        Com quantos familiares ou parentes o(a) Sr(a) se sente à vontade e pode falar sobre quase tudo?
+M015        Com quantos familiares ou parentes o(a) Sr(a) se sente à vontade e pode falar sobre quase tudo?
+
+MÓDULO N – PERCEPÇÃO DO ESTADO DE SAÚDE
+
+N001        Em geral, como o(a) Sr(a) avalia a sua saúde?
+
+Parecem bastante relacionados
+N010 (?)    Nas duas últimas semanas, com que frequência o(a) Sr(a) teve problemas no sono, como dificuldade para adormecer, acordar frequentemente à noite ou dormir mais do que de costume? 
+N011 (?)    Nas duas últimas semanas, com que frequência o(a) Sr(a) teve problemas por não se sentir descansado(a) e disposto(a) durante o dia, sentindo-se cansado(a), sem ter energia?
+N012 (?)    Nas duas últimas semanas, com que frequência o(a) Sr(a) teve problemas por não se sentir descansado(a) e disposto(a) durante o dia, sentindo-se cansado(a), sem ter energia?
+N013 (?)    Nas duas últimas semanas, com que frequência o(a) Sr(a) teve problemas para se concentrar nas suas atividades habituais? 
+
+MÓDULO O – ACIDENTES E VIOLÊNCIAS
+
+
+MÓDULO P – ESTILOS DE VIDA
+
+
+MÓDULO Q – DOENÇAS CRÔNICAS
+
+
+MÓDULO R – SAÚDE DA MULHER (mulheres de 18 anos e mais de idade)
+
+
+MÓDULO S – ATENDIMENTO PRÉ-NATAL
+
+
+MÓDULO U – SAÚDE BUCAL
+
+
+MÓDULO X – ATENDIMENTO MÉDICO
+
+
+MÓDULO W – INFORMAÇÕES LABORATORIAIS
