@@ -1,0 +1,291 @@
+Legenda
+(*)     importante
+(**)    muito importante
+
+#######################################################################
+
+* Resumo Artigo I
+
+AVALIAÇÃO DO DESEMPENHO DOS ESTUDANTES DA EDUCAÇÃO SUPERIOR:
+A QUESTÃO DA EQUIDADE E OBRIGATORIEDADE NO PROVÃO E ENADE
+
+A questão da qualidade do ensino no Brasil é enfatizada pela Lei de Diretrizes e Bases da
+Educação Nacional. A avaliação da educação superior tem destaque dentre as políticas
+educacionais com a criação de avaliações periódicas das instituições e cursos superiores,
+iniciada com a realização anual de exames nacionais. A avaliação do desempenho dos
+estudantes da educação brasileira é uma modalidade avaliativa implantada desde meados
+da década de 90. Inicialmente operacionalizada por meio do Exame Nacional de Cursos,
+que contou com oito aplicações anuais durante o período de 1996 a 2003, foi reformulada
+com a implantação do Exame Nacional de Desempenho dos Estudantes, parte integrante
+do Sistema Nacional de Avaliação da Educação Superior, instituído pela Lei no. 10.861/
+2004. As duas experiências avaliativas do desempenho acadêmico são objetos de observa-
+ção minuciosa no presente trabalho, em face dos princípios de eqüidade e obrigatoriedade
+descritos na Constituição da República Federativa do Brasil.
+
+#######################################################################
+
+Resumo Artigo II
+
+A AVALIAÇÃO DA COMPREENSÃO EM LEITURA E O DESEMPENHO
+ACADÊMICO DE UNIVERSITÁRIOS
+
+Este trabalho avaliou a compreensão em leitura de universitários e sua relação com o
+desempenho na prova de língua portuguesa no vestibular e o rendimento médio no primeiro
+ano. Aplicou-se o Teste de Cloze em 782 ingressantes de oito cursos de uma universidade
+particular e entre os principais resultados destaca-se a baixa pontuação obtida no Cloze,
+inferior à média de pontos possíveis, indicando que os estudantes apresentam um nível de
+compreensão aquém do esperado para essa etapa de escolaridade. A identificação de uma
+correlação positiva e estatisticamente significativa entre a pontuação no Cloze, o
+rendimento acadêmico e a nota em língua portuguesa no vestibular permite afirmar que o
+teste de Cloze pode ser utilizado como um instrumento preditivo do desempenho acadêmico.
+Acredita-se que novas pesquisas sobre o tema possibilitarão uma ampliação do conhecimento
+sobre as habilidades necessárias para a formação adequada do universitário.
+
+#######################################################################
+
+** Resumo Artigo III
+
+AVALIAÇÃO DA EFICIÊNCIA ACADÊMICA DOS CURSOS DE GRADUAÇÃO DA
+UNIVERSIDADE FEDERAL DO CEARÁ (UFC): UTILIZAÇÃO DE INDICADORES
+DE DESEMPENHO COMO ELEMENTOS ESTRATÉGICOS DA GESTÃO
+
+As Instituições Federais de Ensino Superior (IFES) se encontram em um acelerado processo
+de transformação em sua gestão devido à crescente demanda da sociedade por respostas ágeis
+a desafios cada vez mais complexos. Na busca de estabelecer melhores padrões de
+desempenho acadêmico no Ensino Superior, capazes de garantir maior qualidade de seus
+serviços à sociedade em conjunto, com a necessidade de se conhecer o diagnóstico situacional
+dos cursos de graduação da Universidade Federal do Ceará (UFC), a presente tese tem como
+propósito realizar um estudo descritivo sobre o desempenho dos cursos de graduação da UFC,
+durante o período de 2006 a 2009, mediante a aplicação de um método formal de avaliação de
+eficiência. A fundamentação teórica discorre sobre: avaliação superior no Brasil; gestão das
+IFES; indicadores de desempenho; modelo de avaliação de desempenho acadêmico sob os
+indicadores de efetividade, eficácia e eficiência; além do método para avaliação de eficiência
+relativa, denominado Data Envelopment Analysis – DEA (Análise Envoltória de Dados).
+Quanto aos seus objetivos, esta pesquisa se caracteriza como exploratória e descritiva, de
+corte longitudinal, em que são observadas e descritas as tendências ao longo de um período
+preestabelecido numa topologia comparativa. Quanto à coleta de dados, consiste em uma
+pesquisa bibliográfica e um estudo de caso, tipo ex-post facto, pois os dados trabalhados são
+oriundos de fatos observados na unidade em análise. A amostra foi do tipo intencional,
+composta por 30 cursos de graduação da UFC, sediados em Fortaleza. Os dados foram
+fornecidos pela Pró-Reitoria de Planejamento, Pró-Reitoria de Extensão, Pró-Reitoria de
+Pesquisa e Pós-Graduação, bem como pela base de dados disponibilizada pela Pró-Reitoria de
+Graduação e pelo Núcleo de Processamento de Dados, além de informações extraídas dos
+planos departamentais registrados na Comissão Permanente de Pessoal Docente (CPPD).
+Conclui-se que o baixo desempenho de eficiência produtiva é uma prática comum em quase
+todos os cursos da instituição, durante o período de 2006 a 2009, atingindo, em média, 52,5%.
+Em relação aos cursos com eficiência relativa menor do que 80%, os resultados revelaram
+que, no mínimo, 50% deles possuíam carga horária de professores doutores mais elevada do
+que os demais, com titulação de mestre, especialista e graduado. Portanto, o desempenho
+quanto à eficiência produtiva dos cursos depende, principalmente, do empenho, esforço e
+dedicação da sua equipe de professores, alunos e funcionários, e não apenas da titulação de
+seus professores. Observa-se, também, que, em uma mesma unidade acadêmica, existem
+cursos que foram considerados, pela técnica DEA, como eficientes e outros não-eficientes,
+demonstrando a existência de distanciamento entre os valores de eficiência relativa entre
+cursos de graduação da mesma unidade acadêmica. Constata-se, assim, a necessidade de
+integração de um sistema de avaliação da eficiência relativa pelo método DEA ao sistema de
+informação institucional da UFC, o que servirá de referência para as tomadas de decisões dos
+gestores, minimizando as possíveis distorções em alguns dos cursos de graduação na UFC.
+
+#######################################################################
+
+Resumo Artigo IV
+
+HABILIDADES BÁSICAS E DESEMPENHO ACADÊMICO EM UNIVERSITÁRIOS
+INGRESSANTES
+
+Recentes estudos sobre o desenvolvimento cognitivo adulto referem-se à distinção entre inteligência
+fluida como a capacidade geral de relacionar idéias complexas, formar conceitos abstratos e derivar
+implicações lógicas a partir de regras gerais e inteligência cristalizada como a capacidade de derivar
+conhecimento a partir de esquemas organizados de informações sobre disciplinas específicas. Para
+verificar a possível relação entre a habilidade cognitiva requerida e a área de conhecimento, este
+estudo foi proposto com o objetivo de investigar as correlações entre medidas de inteligência fluida e
+cristalizada com desempenho acadêmico em 960 alunos ingressantes dos cursos de Medicina, Odon-
+tologia, Engenharia Civil, Matemática, Psicologia, Pedagogia, Letras e Administração. As correla-
+ções encontradas indicam que o desempenho acadêmico está associado a diferentes perfis de habili-
+dades cognitivas.
+
+#######################################################################
+
+Resumo Artigo V
+
+MEDIDAS DE DESEMPENHO ESCOLAR:
+AVALIAÇÃO FORMAL E OPINIÃO DE PROFESSORES
+
+O objetivo deste estudo foi comparar o desempenho de escolares em
+relação à avaliação formal e a opinião de professores. Participaram 164
+escolares de ensino fundamental de cidade do interior paulista, sendo 81 do
+sexo masculino e 83 do sexo feminino. Foi utilizado o Teste de Desempenho
+Escolar e foram definidos 2 grupos, segundo a opinião da professora quanto
+ao desempenho normal e abaixo da média. Os resultados revelaram
+diferença significativa indicando que o menor desempenho foi verificado
+para o sexo masculino e para a quarta série. As médias do grupo definido
+pela professora com desempenho inferior foram abaixo do esperado e
+diferiram significativamente. A opinião da professora neste estudo foi
+fundamental para a identificação dos problemas relacionados à
+escolaridade.
+
+#######################################################################
+
+* Resumo Artigo VI
+
+UMA ABORDAGEM PARA A PREVISÃO DE DESEMPENHO DE ALUNOS DE COMPUTAÇÃO EM
+DISCIPLINAS DE PROGRAMAÇÃO
+
+As disciplinas de programação de cursos de Computação são
+essenciais para a formação profissional dos estudantes da área. No
+entanto, o baixo rendimento de estudantes nestas disciplinas tem
+preocupado educadores e gestores das universidades, já que este
+fato pode ainda estar relacionado ao aumento da evasão nos
+cursos da área. Neste trabalho, propomos um método de
+identificação de estudantes propensos ao fracasso nas disciplinas
+iniciais de programação de cursos do Centro de Informática de
+uma universidade pública brasileira. Resultados mostram que é
+possível identificar estes estudantes usando informações de
+desempenho na prova de ingresso e nas disciplinas pré-requisito
+com taxas de acerto superiores a 80%.
+
+#######################################################################
+
+* Resumo Artigo VII
+
+UM ASSISTENTE DE PREDIÇÃO DE EVASÃO APLICADO A UMA
+DISCIPLINA INTRODUTÓRIA DO CURSO DE CIÊNCIA DA COMPUTAÇÃO
+
+Este artigo relata duas pesquisas realizadas para detecção de alunos
+candidatos a evasão. Utilizou-se na primeira o conhecimento do especialista
+(professor da disciplina) para modelar uma Rede Bayesiana do perfil dos
+alunos desistentes em uma disciplina de algoritmos e programação, do
+primeiro semestre de um curso de graduação em Ciência da Computação. O
+Assistente de Predição da Evasão (APE) foi incorporado a um Sistema Tutor
+Inteligente (STI) chamado Alice, passando a alertar o professor sobre alunos
+potenciais desistentes. Na segunda pesquisa, buscou-se aprimorar o APE por
+meio da aplicação do processo KDD (Knowledge Discovery in Database),
+acrescentando novas variáveis obtidas com os dados do STI Alice e de outras
+fontes. O artigo apresenta os modelos criados, os experimentos realizados e
+discute os resultados obtidos.
+
+#######################################################################
+
+* Resumo Artigo VIII
+
+MINERAÇÃO DE DADOS APLICADA AO ESTUDO DA EVASÃO E
+DESEMPENHO DOS ALUNOS DO BACHARELADO EM CIÊNCIA DA
+COMPUTAÇÃO DA UNIVERSIDADE DE BRASÍLIA
+
+A evasão no ensino superior é um problema que aflige as Instituições de Ensino públicas
+e privadas. A aprovação do aluno em uma Instituição de Ensino Superior não é suficiente
+para garantir que o mesmo permaneça e conclua a graduação. Analisando estudos anteri-
+ores realizados no Departamento de Ciência da Computação da Universidade de Brasília,
+verificou-se que as taxas de reprovação nas disciplinas obrigatórias iniciais são altas e que
+as taxas de evasão estão em crescimento. Por meio do processo de mineração de dados e
+análise estatística, esse trabalho visa obter informações que permitam ao Departamento
+identificar as principais causas de evasão nos semestres iniciais no Bacharelado em Ciência
+da Computação.
+
+#######################################################################
+
+* Resumo Artigo IX
+
+PREDIÇÃO DE DESEMPENHO DE ALUNOS DO PRIMEIRO PERÍODO
+BASEADO NAS NOTAS DE INGRESSO UTILIZANDO MÉTODOS DE
+APRENDIZAGEM DE MÁQUINA
+
+A evasão de estudantes universitários apresenta uma estatística
+preocupante enfrentada pelas universidades. O problema da reprovação dos
+estudantes em períodos iniciais é muitas vezes considerado como um fator
+influenciador da evasão. Este trabalho propõe a utilização de técnicas de
+Mineração de Dados para tentar predizer o desempenho dos alunos no
+primeiro período do curso de Ciência da Computação da UFPB, através das
+suas notas de ingresso no vestibular. Os resultados mostraram que é possível
+inferir o desempenho dos estudantes com uma acurácia superior a 70%, sendo
+esta informação útil para a realização de ações para evitar a evasão,
+aprimorando o sistema de ensino.
+
+#######################################################################
+
+** Resumo Artigo X
+
+ANÁLISE DE TRABALHOS SOBRE A APLICAÇÃO DE TÉCNICAS DE
+MINERAÇÃO DE DADOS EDUCACIONAIS NA PREVISÃO DE
+DESEMPENHO ACADÊMICO
+
+O presente trabalho apresenta uma análise e classificação de
+publicações na área de Mineração de Dados Educacionais publicados por
+pesquisadores brasileiros em eventos e periódicos na América Latina nos
+últimos quatro anos. O objetivo deste trabalho é apontar e apresentar o que
+está sendo pesquisado na área de predição de desempenho acadêmico. Os
+resultados da classificação das publicações são apresentados e mostram
+informações interessantes a respeito da área de pesquisa, identificando
+possibilidades pouco (ou ainda não) exploradas.
+
+#######################################################################
+
+Resumo Artigo XI
+
+UM MODELO ONTOLÓGICO PARA AVALIAR O DESEMPENHO
+ACADÊMICO NA EDUCAÇÃO A DISTÂNCIA
+
+Este artigo apresenta um trabalho em andamento que descreve uma
+ontologia, OntoLO, que visa formalizar as Taxonomias de Objetivos
+Educacionais. O objetivo desta ontologia é auxiliar no processo de avaliação
+do desempenho acadêmico dos alunos com base nessas taxonomias. O atual
+estágio deste trabalho formaliza duas taxonomias referenciadas e
+consolidadas pelas teorias da aprendizagem. Com OntoLO será possível fazer
+inferências sobre o status de aprendizagem do aluno, com base nas interações
+que ocorreram nos Sistemas de Gestão de Aprendizagem.
+
+#######################################################################
+
+Resumo Artigo XII
+
+DESEMPENHO ACADÊMICO DOS ALUNOS DO CURSO DE CIÊNCIAS
+CONTÁBEIS DA UNIVERSIDADE FEDERAL DA PARAÍBA
+
+O contexto brasileiro é marcado atualmente por mudanças que de certa forma afetam
+o ensino da Contabilidade no Brasil. Alguns desses fatores pode ser dado pela
+expansão do ensino superior e da pós-graduação. Com o crescimento do mercado de
+trabalho, as empresas buscam mais qualificações dos profissionais. Com isto, as
+organizações buscam profissionais mais qualificados com um maior grau de
+educação. Assim, este novo contexto impõe mudanças significativas na esfera
+educacional, uma vez que neste cenário permanece a relevância da educação. Cria-
+se também a necessidade de acompanhar os processos de formação dos
+profissionais. Deste modo avaliar o desempenho acadêmico dos alunos pode
+contribuir para muitos fatores ligados a política educacional, sendo tal avaliação um
+método relevante para a educação já que irá indicar como está a qualidade do ensino.
+Considerando o contexto apresentado, é importante entender as variáveis que
+influenciam o aprendizado bem como o desempenho dos discentes, deste modo, a
+pesquisa tem como objetivo averiguar o desempenho acadêmico dos alunos do curso
+de Ciências Contábeis da UFPB com base no CRA dos discentes. O estudo de caráter
+exploratório descritivo, recorreu a pesquisa bibliográfica e documental. Utilizou-se
+uma amostra de 297 alunos. Os documentos analisados foram os históricos
+acadêmicos que incluem forma de ingresso, tipo de entrada, gênero, naturalidade,
+turno e também foram analisadas listas disponibilizadas pela coordenação do curso.
+Os resultados evidenciam que o turno em que o aluno frequenta não influencia em
+seu desempenho, bem como o gênero também não influencia. Observou-se também
+um aumento do abandono dos alunos e que o desempenho muda no decorrer do curso
+por período de matrícula. Por fim, é importante prosseguir os estudos para identificar
+os fatores que podem impactar de maneira mais relevante o desempenho dos alunos
+bem como identificar o perfil destes a fim de melhorar o processo de ensino
+aprendizagem.
+
+#######################################################################
+
+Resumo Artigo XIII
+
+ANÁLISE DE QUESTÕES DE FÍSICA DO ENEM PELA
+TAXONOMIA DE BLOOM REVISADA
+
+O Exame Nacional do Ensino Médio (Enem), instituído em
+1998, ganhou notoriedade em 2005 como mecanismo de acesso ao
+Programa Universidade para Todos (ProUni) e consagrou-se a partir
+de 2009 como mecanismo de acesso ao Sistema de Seleção Unificado
+(Sisu), superando 7 (sete) milhões de inscritos em 2013. O presente
+trabalho analisa, na perspectiva da Taxonomia de Bloom Revisada
+(TBR), 105 questões de física do Enem aplicadas entre 2009 e 2013,
+almejando compreender as dimensões do conhecimento e do processo
+cognitivo da TBR privilegiadas no Exame. Entre as dimensões do
+conhecimento, destacam-se o conhecimento conceitual (56%),
+seguido pelo conhecimento procedural (31%), e, entre os processos
+cognitivos, destacam-se entender (49%) e aplicar (23%), indicando
+que o exame enfatiza domínios de complexidade intermediários nas
+dimensões analisadas.

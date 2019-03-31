@@ -62,3 +62,27 @@ c) De Brito, D. M., de Almeida Júnior, I. A., Queiroga, E. V., & do Rêgo, T. G
 a) Santos, Rodrigo, et al. "Análise de trabalhos sobre a aplicaçao de técnicas de mineraçao de dados educacionais na previsao de desempenho acadêmico." Anais dos Workshops do Congresso Brasileiro de Informática na Educação. Vol. 5. No. 1. 2016.
 b) SANTOS, Rodrigo et al. Análise de trabalhos sobre a aplicaçao de técnicas de mineraçao de dados educacionais na previsao de desempenho acadêmico. In: Anais dos Workshops do Congresso Brasileiro de Informática na Educação. 2016. p. 960.
 c) Santos, R., Pitangui, C., Vivas, A., & Assis, L. (2016, November). Análise de trabalhos sobre a aplicaçao de técnicas de mineraçao de dados educacionais na previsao de desempenho acadêmico. In Anais dos Workshops do Congresso Brasileiro de Informática na Educação (Vol. 5, No. 1, p. 960).
+
+11.
+
+a) Costa, Laécio, et al. "OntoLo: Um modelo ontológico para avaliar o desempenho acadêmico na Educação a Distância." Brazilian Symposium on Computers in Education (Simpósio Brasileiro de Informática na Educação-SBIE). Vol. 29. No. 1. 2018.
+b) -
+c) Costa, L., Sanches, L., Nascimento, L., Souza, M., & Amorim, R. J. R. (2018, October). OntoLo: Um modelo ontológico para avaliar o desempenho acadêmico na Educação a Distância. In Brazilian Symposium on Computers in Education (Simpósio Brasileiro de Informática na Educação-SBIE) (Vol. 29, No. 1, p. 1898).
+
+12.
+
+a) Rocha, Flávia Arruda de Lima. "Desempenho acadêmico dos alunos do curso de ciências contábeis da Universidade Federal da Paraíba." (2018).
+b) -
+c) Rocha, F. A. D. L. (2018). Desempenho acadêmico dos alunos do curso de ciências contábeis da Universidade Federal da Paraíba.
+
+13.
+
+a) da Silva, Vailton Afonso, and Maria Inês Martins. "ANÁLISE DE QUESTÕES DE FÍSICA DO ENEM PELA TAXONOMIA DE BLOOM REVISADA." Ensaio Pesquisa em Educação em Ciências 16.3 (2014).
+b) -
+c) da Silva, V. A., & Martins, M. I. (2014). ANÁLISE DE QUESTÕES DE FÍSICA DO ENEM PELA TAXONOMIA DE BLOOM REVISADA. Ensaio Pesquisa em Educação em Ciências, 16(3).
+
+14.
+
+a) Luckesi, Cipriano Carlos. "O que é mesmo o ato de avaliar a aprendizagem." Revista Pátio 12 (2000): 6-11.
+b) -
+c) Luckesi, C. C. (2000). O que é mesmo o ato de avaliar a aprendizagem. Revista Pátio, 12, 6-11.
