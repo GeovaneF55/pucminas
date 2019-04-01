@@ -43,7 +43,7 @@ sobre as habilidades necessárias para a formação adequada do universitário.
 
 #######################################################################
 
-** Resumo Artigo III
+* Resumo Artigo III
 
 AVALIAÇÃO DA EFICIÊNCIA ACADÊMICA DOS CURSOS DE GRADUAÇÃO DA
 UNIVERSIDADE FEDERAL DO CEARÁ (UFC): UTILIZAÇÃO DE INDICADORES
@@ -126,7 +126,7 @@ escolaridade.
 
 #######################################################################
 
-* Resumo Artigo VI
+** Resumo Artigo VI
 
 UMA ABORDAGEM PARA A PREVISÃO DE DESEMPENHO DE ALUNOS DE COMPUTAÇÃO EM
 DISCIPLINAS DE PROGRAMAÇÃO
@@ -146,7 +146,7 @@ com taxas de acerto superiores a 80%.
 
 #######################################################################
 
-* Resumo Artigo VII
+** Resumo Artigo VII
 
 UM ASSISTENTE DE PREDIÇÃO DE EVASÃO APLICADO A UMA
 DISCIPLINA INTRODUTÓRIA DO CURSO DE CIÊNCIA DA COMPUTAÇÃO
@@ -166,7 +166,7 @@ discute os resultados obtidos.
 
 #######################################################################
 
-* Resumo Artigo VIII
+** Resumo Artigo VIII
 
 MINERAÇÃO DE DADOS APLICADA AO ESTUDO DA EVASÃO E
 DESEMPENHO DOS ALUNOS DO BACHARELADO EM CIÊNCIA DA
@@ -184,7 +184,7 @@ da Computação.
 
 #######################################################################
 
-* Resumo Artigo IX
+** Resumo Artigo IX
 
 PREDIÇÃO DE DESEMPENHO DE ALUNOS DO PRIMEIRO PERÍODO
 BASEADO NAS NOTAS DE INGRESSO UTILIZANDO MÉTODOS DE
@@ -289,3 +289,81 @@ seguido pelo conhecimento procedural (31%), e, entre os processos
 cognitivos, destacam-se entender (49%) e aplicar (23%), indicando
 que o exame enfatiza domínios de complexidade intermediários nas
 dimensões analisadas.
+
+#######################################################################
+
+Resumo Artigo XIV
+
+O QUE É MESMO O ATO DE AVALIAR A APRENDIZAGEM?
+
+A avaliação da aprendizagem escolar se faz presente na vida de todos nós que, de
+alguma forma, estamos comprometidos com atos e práticas educativas. Pais,
+educadores, educandos, gestores das atividades educativas públicas e particulares,
+administradores da educação, todos, estamos comprometidos com esse fenômeno
+que cada vez mais ocupa espaço em nossas preocupações educativas.
+O que desejamos é uma melhor qualidade de vida. No caso deste texto,
+compreendo e exponho a avaliação da aprendizagem como um recurso pedagógico
+útil e necessário para auxiliar cada educador e cada educando na busca e na
+construção de si mesmo e do seu melhor modo de ser na vida.
+
+#######################################################################
+
+Resumo Artigo XV
+
+APLICAÇÃO DO ALGORITMO K-MEANS CLUSTERING PARA
+PREVISÃO DO DESEMPENHO ACADÊMICO DOS ALUNOS
+
+A capacidade de monitorar o progresso do desempenho acadêmico dos alunos é uma
+questão crítica para a comunidade acadêmica de ensino superior. Um sistema para
+analisar os resultados dos alunos com base na análise de cluster e usa algoritmos
+estatísticos padrão para organizar seus dados de pontuação de acordo com o nível
+de seu desempenho é descrito. Neste documento, também implementamos o algoritmo
+k-mean clustering para analisar os dados dos resultados dos alunos. O modelo foi
+combinado com o modelo determinístico para analisar os resultados dos alunos de
+uma instituição privada na Nigéria, que é um bom ponto de referência para monitorar
+a progressão do desempenho acadêmico de estudantes em Instituição superior com a
+finalidade de tomar uma decisão efetiva pelos planejadores acadêmicos.
+
+#######################################################################
+
+Resumo Artigo XVI
+
+PREDIÇÃO DO DESEMPENHO ACADÊMICO DE GRADUANDOS UTILIZANDO
+MINERAÇÃO DE DADOS EDUCACIONAIS
+
+O Brasil está se tornando um país cada vez mais competitivo no cenário
+internacional, as empresas brasileiras requerem profissionais com competências e
+habilidades específicas. A própria Secretaria de Assuntos Estratégicos da Presidência da
+República (SAE) investiga se os brasileiros estão preparados para atender as novas
+exigências do mercado de trabalho (SAE, 2013a). A produtividade do Brasil é
+aproximadamente cinco vezes menor que a dos Estados Unidos e, segundo a
+Organização para a Cooperação e Desenvolvimento Econômico (OCDE), apenas 11%
+dos brasileiros na faixa etária entre 25 a 64 anos possuem graduação. Nos países ricos,
+essa taxa é de 31% (OECD, 2012, SAE, 2013a). A escassez de mão de obra qualificada
+entre os brasileiros abre perspectivas para que o governo e as empresas busquem mão
+de obra estrangeira para ocupar as vagas ociosas. O governo admite que a educação dos
+brasileiros deveria ser a melhor solução para o problema, no entanto, deixa claro que é
+um caminho demorado. Para solucionar o problema da falta de mão de obra, o governo
+incentiva a imigração de profissionais e espera que os brasileiros busquem mais
+formação para garantir seu espaço no mercado de trabalho (SAE, 2013b). O governo
+relata que há necessidade de seis milhões de profissionais estrangeiros nos próximos
+anos para suprir a falta de pessoal especializado nas áreas de engenharia e saúde (SAE,
+2013c). As discussões em torno do assunto prosseguem envolvendo o governo,
+sindicatos, órgãos de classe e a sociedade civil organizada. Embora as universidades
+não tenham se posicionado claramente a respeito do assunto, elas estão diretamente
+relacionadas ao problema.
+O déficit nacional de mão de obra especializada é uma questão multifacetada, ele é
+parcialmente decorrente de problemas que ocorrem em diversas universidades: elevadas
+taxas de evasão e retenção. Atualmente, as universidades oferecem a cada ano um
+crescente número de vagas, no entanto, o número de formados reduz a cada ano (INEP,
+2012a). A ocupação de uma vaga em uma universidade pública seguido do abandono
+tornou-se um problema generalizado, independente da instituição, gerando perdas
+pessoais, sociais e financeiras (SOARES, 2000, 2006, 2009, MEC, 2007, ANDIFES,
+2008, 2012, TIGRINHO, 2008, FORGRAD, 2012, INEP, 2012b, LIMA JR, 2012).
+De um modo geral, as universidades podem atrair maior ou menor número de
+estudantes em função de vários fatores, por exemplo, sua localização geográfica, forma
+de ingresso, número de vagas ofertadas, formas de ingresso, qualidade dos cursos,
+adequação dos cursos ao contexto socioeconômico da região. Da mesma forma, os
+cursos de graduação são atrativos quando oferecem boas perspectivas de entrada no
+mercado de trabalho, grade curricular atualizada e adequada à formação profissional do
+estudante.

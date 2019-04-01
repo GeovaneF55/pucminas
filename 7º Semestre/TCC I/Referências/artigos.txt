@@ -86,3 +86,53 @@ c) da Silva, V. A., & Martins, M. I. (2014). ANÁLISE DE QUESTÕES DE FÍSICA DO
 a) Luckesi, Cipriano Carlos. "O que é mesmo o ato de avaliar a aprendizagem." Revista Pátio 12 (2000): 6-11.
 b) -
 c) Luckesi, C. C. (2000). O que é mesmo o ato de avaliar a aprendizagem. Revista Pátio, 12, 6-11.
+
+15.
+
+a) Oyelade, O. J., O. O. Oladipupo, and I. C. Obagbuwa. "Application of k Means Clustering algorithm for prediction of Students Academic Performance." arXiv preprint arXiv:1002.2425 (2010).
+b) -
+c) Oyelade, O. J., Oladipupo, O. O., & Obagbuwa, I. C. (2010). Application of k Means Clustering algorithm for prediction of Students Academic Performance. arXiv preprint arXiv:1002.2425.
+
+16.
+
+a) Manhães, Laci Mary Barbosa. "Predição Do Desempenho Acadêmico De Graduandos Utilizando Mineração De Dados Educacionais." Doutorado em Engenharia de Sistemas e Computação Instituição de Ensino: Universidade Federal do Rio de Janeiro, Rio de Janeiro. Biblioteca Depositária: BIBLIOTECA DO CT (2015).
+b) -
+c) Manhães, L. M. B. (2015). Predição Do Desempenho Acadêmico De Graduandos Utilizando Mineração De Dados Educacionais. Doutorado em Engenharia de Sistemas e Computação Instituição de Ensino: Universidade Federal do Rio de Janeiro, Rio de Janeiro. Biblioteca Depositária: BIBLIOTECA DO CT.
+
+Outros:
+
+100.
+
+a) Astin, Alexander W., et al. College student retention: Formula for student success. Rowman & Littlefield Publishers, 2012.
+b) -
+c) Astin, A. W., Berger, J. B., Bibo, E. W., Burkum, K. R., Cabrera, A. F., Crisp, G., ... & Mina, L. (2012). College student retention: Formula for student success. Rowman & Littlefield Publishers.
+
+101.
+
+a) Veenstra, Cindy P. "A strategy for improving freshman college retention." Journal for Quality and Participation 31.4 (2009): 19-23.
+b) -
+c) Veenstra, C. P. (2009). A strategy for improving freshman college retention. Journal for Quality and Participation, 31(4), 19-23.
+
+102.
+
+a) Fayyad, Usama, Gregory Piatetsky-Shapiro, and Padhraic Smyth. "From data mining to knowledge discovery in databases." AI magazine 17.3 (1996): 37.
+b) - 
+c) Fayyad, U., Piatetsky-Shapiro, G., & Smyth, P. (1996). From data mining to knowledge discovery in databases. AI magazine, 17(3), 37.
+
+103.
+
+a) Baker, Ryan, Seiji Isotani, and Adriana Carvalho. "Mineraçao de dados educacionais: Oportunidades para o brasil." Brazilian Journal of Computers in Education 19.02 (2011): 03.
+b) - 
+c) Baker, R., Isotani, S., & Carvalho, A. (2011). Mineraçao de dados educacionais: Oportunidades para o brasil. Brazilian Journal of Computers in Education, 19(02), 03.
+
+104.
+
+a) Santos, Henrique Lemos dos. "Minerando Dados de Ambientes Virtuais de Aprendizagem para Predição de Desempenho de Estudantes." (2012).
+b) -
+c) Santos, H. L. D. (2012). Minerando Dados de Ambientes Virtuais de Aprendizagem para Predição de Desempenho de Estudantes.
+
+105.
+
+a) Gottardo, Ernani, Celso Kaestner, and Robinson Vida Noronha. "Avaliação de desempenho de estudantes em cursos de educação a distância utilizando mineração de dados." Anais do Workshop de Desafios da Computação Aplicada à Educação. 2012.
+b) -
+c) Gottardo, E., Kaestner, C., & Noronha, R. V. (2012, July). Avaliação de desempenho de estudantes em cursos de educação a distância utilizando mineração de dados. In Anais do Workshop de Desafios da Computação Aplicada à Educação (pp. 30-39).
