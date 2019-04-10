@@ -131,18 +131,16 @@ escolaridade.
 UMA ABORDAGEM PARA A PREVISÃO DE DESEMPENHO DE ALUNOS DE COMPUTAÇÃO EM
 DISCIPLINAS DE PROGRAMAÇÃO
 
-As disciplinas de programação de cursos de Computação são
-essenciais para a formação profissional dos estudantes da área. No
-entanto, o baixo rendimento de estudantes nestas disciplinas tem
-preocupado educadores e gestores das universidades, já que este
-fato pode ainda estar relacionado ao aumento da evasão nos
-cursos da área. Neste trabalho, propomos um método de
-identificação de estudantes propensos ao fracasso nas disciplinas
+\cite{pascoal2015abordagem} propõe um método de identificação
+de estudantes com predisposição ao falhar nas disciplinas
 iniciais de programação de cursos do Centro de Informática de
-uma universidade pública brasileira. Resultados mostram que é
-possível identificar estes estudantes usando informações de
-desempenho na prova de ingresso e nas disciplinas pré-requisito
-com taxas de acerto superiores a 80%.
+uma universidade pública brasileira. Ele utilizou quatro algoritmos
+de aprendizagem de máquina (IBk, RandomForest, BayesNET e
+MultilayerPerceptron) sendo que para cada um deles tentou encontrar
+os melhores parâmetros para produzir os melhores resultados. A conclusão
+mostra que é possível identificar estes estudantes usando informações
+de desempenho na prova de ingresso e nas disciplinas pré-requisito com
+taxas de acerto superiores a 80%.
 
 #######################################################################
 
@@ -151,18 +149,16 @@ com taxas de acerto superiores a 80%.
 UM ASSISTENTE DE PREDIÇÃO DE EVASÃO APLICADO A UMA
 DISCIPLINA INTRODUTÓRIA DO CURSO DE CIÊNCIA DA COMPUTAÇÃO
 
-Este artigo relata duas pesquisas realizadas para detecção de alunos
-candidatos a evasão. Utilizou-se na primeira o conhecimento do especialista
-(professor da disciplina) para modelar uma Rede Bayesiana do perfil dos
-alunos desistentes em uma disciplina de algoritmos e programação, do
-primeiro semestre de um curso de graduação em Ciência da Computação. O
-Assistente de Predição da Evasão (APE) foi incorporado a um Sistema Tutor
-Inteligente (STI) chamado Alice, passando a alertar o professor sobre alunos
-potenciais desistentes. Na segunda pesquisa, buscou-se aprimorar o APE por
-meio da aplicação do processo KDD (Knowledge Discovery in Database),
-acrescentando novas variáveis obtidas com os dados do STI Alice e de outras
-fontes. O artigo apresenta os modelos criados, os experimentos realizados e
-discute os resultados obtidos.
+\cite{martins2012assistente} relata duas pesquisas realizadas para detecção
+de alunos candidatos a evasão. Sua primeira pesquisa utiliza-se do conhecimento
+de um especialista, no caso um professor, para modelar o perfil dos alunos
+desistentes utilizando uma Rede Baysiana. As disciplinas analizadas no artigo
+são de algoritmos e programação, do primeiro semestre de um curso de graduação em
+Ciência da Computação. Para tal, utilizou o Assistente de Predição da Evasão
+(APE) incorporado a um Sistema Tutor Inteligente (STI) chamado Alice, de forma
+a alertar o professor sobre alunos desistentes em potencial. Na segunda pesquisa,
+houve a aprimoração do APE por meio do processo KDD (Knowledge Discovery in Database),
+no qual novas variáveis, obtidas com os dados do STI Alice, foram acrescentadas.
 
 #######################################################################
 
@@ -172,15 +168,13 @@ MINERAÇÃO DE DADOS APLICADA AO ESTUDO DA EVASÃO E
 DESEMPENHO DOS ALUNOS DO BACHARELADO EM CIÊNCIA DA
 COMPUTAÇÃO DA UNIVERSIDADE DE BRASÍLIA
 
-A evasão no ensino superior é um problema que aflige as Instituições de Ensino públicas
-e privadas. A aprovação do aluno em uma Instituição de Ensino Superior não é suficiente
-para garantir que o mesmo permaneça e conclua a graduação. Analisando estudos anteri-
-ores realizados no Departamento de Ciência da Computação da Universidade de Brasília,
-verificou-se que as taxas de reprovação nas disciplinas obrigatórias iniciais são altas e que
-as taxas de evasão estão em crescimento. Por meio do processo de mineração de dados e
-análise estatística, esse trabalho visa obter informações que permitam ao Departamento
-identificar as principais causas de evasão nos semestres iniciais no Bacharelado em Ciência
-da Computação.
+Segundo ~\cite{azevedo2015mineraccao}, a evasão no ensino superior é um problema que aflige
+as Instituições de Ensino públicas e privadas no curso de Ciência da Computação. O objeto de
+estudo da monografia são os quatro primeiros semestres por serem, de acordo com ele, os que
+apresentam as maiores taxas de evasão. Foi realizado a mineração de dados utilizando vários
+algoritmos de árvores de decisão e de clusterização afim de classificar as instâncias e assim
+extrair os principais atributos envonvidos na evasão do curso.
+
 
 #######################################################################
 
@@ -190,16 +184,13 @@ PREDIÇÃO DE DESEMPENHO DE ALUNOS DO PRIMEIRO PERÍODO
 BASEADO NAS NOTAS DE INGRESSO UTILIZANDO MÉTODOS DE
 APRENDIZAGEM DE MÁQUINA
 
-A evasão de estudantes universitários apresenta uma estatística
-preocupante enfrentada pelas universidades. O problema da reprovação dos
-estudantes em períodos iniciais é muitas vezes considerado como um fator
-influenciador da evasão. Este trabalho propõe a utilização de técnicas de
+\cite{de2014prediccao} propõe a utilização de técnicas de
 Mineração de Dados para tentar predizer o desempenho dos alunos no
 primeiro período do curso de Ciência da Computação da UFPB, através das
-suas notas de ingresso no vestibular. Os resultados mostraram que é possível
-inferir o desempenho dos estudantes com uma acurácia superior a 70%, sendo
-esta informação útil para a realização de ações para evitar a evasão,
-aprimorando o sistema de ensino.
+suas notas de ingresso no vestibular. Os resultados obtidos por ele, com
+o uso de Mineração de Dados, mostraram a possibilidade de inferir o
+desempenho dos estudantes com uma acurácia superior a 70%, e com essas
+informações o autor sugere aprimorar o sistema de ensino.
 
 #######################################################################
 
@@ -209,14 +200,13 @@ ANÁLISE DE TRABALHOS SOBRE A APLICAÇÃO DE TÉCNICAS DE
 MINERAÇÃO DE DADOS EDUCACIONAIS NA PREVISÃO DE
 DESEMPENHO ACADÊMICO
 
-O presente trabalho apresenta uma análise e classificação de
+\cite{santos2016analise} apresenta uma análise e classificação de
 publicações na área de Mineração de Dados Educacionais publicados por
 pesquisadores brasileiros em eventos e periódicos na América Latina nos
-últimos quatro anos. O objetivo deste trabalho é apontar e apresentar o que
-está sendo pesquisado na área de predição de desempenho acadêmico. Os
-resultados da classificação das publicações são apresentados e mostram
-informações interessantes a respeito da área de pesquisa, identificando
-possibilidades pouco (ou ainda não) exploradas.
+anos de 2012 e 2016. O objetivo do autor é apontar e apresentar o que
+estava sendo pesquisado na área de predição de desempenho acadêmico na
+época em que foi publicado, mostrando o desempenho e a qualidade de cada
+publicação pesquisada.
 
 #######################################################################
 
