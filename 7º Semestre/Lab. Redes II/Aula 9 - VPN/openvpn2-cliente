@@ -1,0 +1,75 @@
+#!/bin/sh -e
+
+### BEGIN INIT INFO
+# Provides:          openvpn
+# Required-Start:    $network $remote_fs $syslog
+# Required-Stop:     $network $remote_fs $syslog
+# Should-Start:      network-manager
+# Should-Stop:       network-manager
+# X-Start-Before:    $x-display-manager gdm kdm xdm wdm ldm sdm nodm
+# X-Interactive:     true
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Openvpn VPN service
+### END INIT INFO
+
+# Original version by Robert Leslie
+# <rob@mars.org>, edited by iwj and cs
+# Modified for openvpn by Alberto Gonzalez Iniesta <agi@inittab.org>
+# Modified for restarting / starting / stopping single tunnels by Richard Mueller <mueller@teamix.net>
+
+#. /lib/lsb/init-functions
+
+test $DEBIAN_SCRIPT_DEBUG && set -v -x
+
+DAEMON=/usr/sbin/openvpn
+DESC="virtual private network daemon"
+CONFIG_DIR=/etc/openvpn
+test -x $DAEMON || exit 0
+test -d $CONFIG_DIR || exit 0
+
+# Source defaults file; edit that file to configure this script.
+AUTOSTART="all"
+STATUSREFRESH=10
+if test -e /etc/default/openvpn ; then
+  . /etc/default/openvpn
+fi
+
+stop_vpn () {
+  kill `cat $PIDFILE` || true
+  rm -f $PIDFILE
+  rm -f /var/run/openvpn.$NAME.status 2> /dev/null
+}
+
+case "$1" in
+start)
+       /usr/sbin/openvpn --writepid /var/run/openvpn.0.pid --script-security 3 system -daemon ovpn --cd /etc/openvpn --config /etc/openvpn/cliente.ovpn &
+  ;;
+stop)
+  if test -z "$2" ; then
+    for PIDFILE in `ls /var/run/openvpn.*.pid 2> /dev/null`; do
+      NAME=`echo $PIDFILE | cut -c18-`
+      NAME=${NAME%%.pid}
+      stop_vpn
+    done
+  else
+    while shift ; do
+      [ -z "$1" ] && break
+      if test -e /var/run/openvpn.$1.pid ; then
+        PIDFILE=`ls /var/run/openvpn.$1.pid 2> /dev/null`
+        NAME=`echo $PIDFILE | cut -c18-`
+        NAME=${NAME%%.pid}
+        stop_vpn
+      fi
+    done
+  fi
+  ;;
+*)
+  echo "Usage: $0 {start|stop}" >&2
+  exit 1
+  ;;
+esac
+
+exit 0
+
+# vim:set ai sts=2 sw=2 tw=0:

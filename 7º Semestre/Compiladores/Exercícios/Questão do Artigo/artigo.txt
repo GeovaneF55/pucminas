@@ -1,0 +1,25 @@
+Vantagens e Desvantagens:
+
+LALR(1):
+
+	Vantagens:
+		- É uma versão mais simplificada do LR(1)
+		- As implementações dos algorítmos são mais rápidas em comparação com o LR(1)
+		- As implementações dos algorítmos custam menos espaço de memória que o LR(1)
+
+	Desvantagens:
+		- Tem conflitos do tipo reduce-reduce 
+		- Abrange um conjunto menor de liguagens em comparação com o LR(1)
+
+LR(1):
+
+	Vantagens:
+		- Abrange um conjunto maior de linguagens em comparação com o LALR(1)
+		- Tem mais implementações de código em relação ao LALR(1)
+
+	Desvantagens: 
+		- As implementações dos algorítmos são mais lentas em comparação com o LALR(1)
+		- As implementações dos algorítmos custam mais espaço de memória que o LALR(1)
+
+Escolha dos Autores:
+	Os autores escolheram o parser LR(1) devido a suas vantagens em relação ao LALR(1). A escolha é devido principalmente porque o LR(1) tem mais implementações de código que o LALR(1), ele abrange maior quantidade de linguagens e o parser LALR(1) tem conflitos do tipo reduce-reduce
