@@ -1,0 +1,205 @@
+Proc S {
+    enquanto tok pertence ('var' || 'constkw') {
+        D;
+    }
+    enquanto tok pertence ('id' || 'for' || 'if' || ';' || 'readln' || 'write' || 'writeln') {
+        C;
+    }
+    casatok ('EOF');
+}
+
+proc D {
+    se tok == 'var' {
+        casatok('var');
+        repita até tok não pertence('integer' || 'char'){
+            se tok == 'integer', casatok('integer');
+            senão casatok('char');
+            Dv;
+            casatok(';');
+        }
+    }
+    senão {
+        casatok('constkw');
+        casatok('id');
+        casatok('=');
+        se tok == '+', casatok('+');
+        senão se tok == '-', casatok('-');
+        casatok('const');
+    }
+}
+
+Proc Dv {
+    casatok('id');
+    se tok == '=' {
+        casatok('=');
+        se tok == '+', casatok('+');
+        senão se tok == '-', casatok('-');
+        casatok('const');
+    }
+    senão se tok == '[' {
+        casatok('[');
+        casatok('const');
+        casatok(']');
+    }
+    enquanto tok == ',' {
+        casatok(',');
+        casatok('id');
+        se tok == '=' {
+            casatok('=');
+            se tok == '+', casatok('+');
+            senão se tok == '-', casatok('-');
+            casatok('const');
+        }
+        senão se tok == '[' {
+            casatok('[');
+            casatok('const');
+            casatok(']');
+        }
+    }
+}
+
+proc C {
+    se tok == 'id' {
+        casatok('id');
+        se tok == '[' {
+            casatok('[');
+            Exp;
+            casatok(']');
+        }
+        casatok('=');
+        Exp;
+        casatok(';');
+    } senão se tok == 'for' {
+        casatok('for');
+        casatok('id');
+        casatok('=');
+        Exp;
+        casatok('to');
+        Exp;
+        se tok == 'step', casatok('step');
+        casatok('const');
+        casatok('do');
+        se tok == '{' {
+            casatok('{');
+            enquanto tok pertence ('id' || 'for' || 'if' || ';' || 'readln' || 'write' || 'writeln') {
+                C;
+            }
+            casatok('}');
+        } senão {
+            C;
+        }
+    } senão se tok == 'if' {
+        casatok('if');
+        Exp;
+        casatok('then');
+        se tok == '{' {
+            casatok('{');
+            enquanto tok pertence ('id' || 'for' || 'if' || ';' || 'readln' || 'write' || 'writeln') {
+                C;
+            }
+            casatok('}');
+        } senão {
+            C;
+        }
+        se tok == 'else' {
+            casatok('else');
+            se tok == '{' {
+                casatok('{');
+                enquanto tok pertence ('id' || 'for' || 'if' || ';' || 'readln' || 'write' || 'writeln') {
+                    C;
+                }
+                casatok('}');
+            } senão {
+                C;
+            }
+        }
+    } senão se tok == ';' {
+        casatok(';');
+    } senão se tok == 'readln' {
+        casatok('readln');
+        casatok('(');
+        casatok('id');
+        casatok(')');
+    } senão {
+        se tok == 'write', casatok('write');
+        senão casatok('writeln');
+        casatok('(');
+        Exp;
+        enquanto tok == ','{
+            casatok(',');
+            Exp;
+        }
+        casatok(')');
+        casatok(';');
+    }
+}
+
+Proc Exp {
+    ExpS;
+    se tok pertence ('=' || '<>' || '<' || '>' || '<=' || '>='){
+        se tok == '=' {
+            casatok('=');
+        }
+        senão se tok == '<>' {
+            casatok('<>');
+        }
+        senão se tok == '<' {
+            casatok('<');
+        }
+        senão se tok == '>' {
+            casatok ('>');
+        }
+        senão se tok == '<=' {
+            casatok('<=');
+        }
+        senão se tok == '>=' {
+            casatok('>=');
+        }
+        ExpS;
+    }
+}
+
+Proc ExpS {
+    se tok == '+', casatok('+');
+    senão se tok == '-', casatok('-');
+    T;
+    enquanto tok pertence ('+' || '-' || 'or') {
+        se tok == '+', casatok('+');
+        senão se tok == '-', casatok('-');
+        senão tok == 'or', casatok('or');
+        T;
+    }
+}
+
+Proc T {
+    F;
+    enquanto tok pertence ('*' || '/' || 'and' || '%') {
+        se tok == '*', casatok('*');
+        senão se tok == '/', casatok('/');
+        senão se tok == 'and', casatok('and');
+        senão se tok == '%', casatok('%');
+        F;
+    }
+}
+
+Proc F {
+    se tok == 'not' {
+        casatok('not');
+        F;
+    }
+    senão se tok == '(' {
+        casatok('(');
+        Exp;
+        casatok(')');
+    }
+    senão se tok == 'const' 
+        casatok('const');
+    senão {
+        casatok('id');
+        se tok == '[' {
+            casatok('[');
+            Exp;
+            casatok(']');
+        }
+    }
+}
