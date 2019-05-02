@@ -136,3 +136,9 @@ c) Santos, H. L. D. (2012). Minerando Dados de Ambientes Virtuais de Aprendizage
 a) Gottardo, Ernani, Celso Kaestner, and Robinson Vida Noronha. "Avaliação de desempenho de estudantes em cursos de educação a distância utilizando mineração de dados." Anais do Workshop de Desafios da Computação Aplicada à Educação. 2012.
 b) -
 c) Gottardo, E., Kaestner, C., & Noronha, R. V. (2012, July). Avaliação de desempenho de estudantes em cursos de educação a distância utilizando mineração de dados. In Anais do Workshop de Desafios da Computação Aplicada à Educação (pp. 30-39).
+
+106.
+
+a) de Freitas, Katia Siqueira. "Alguns estudos sobre evasão e persistência de estudantes." EccoS Revista Científica 11.1 (2009): 247-264.
+b) -
+c) de Freitas, K. S. (2009). Alguns estudos sobre evasão e persistência de estudantes. EccoS Revista Científica, 11(1), 247-264.
