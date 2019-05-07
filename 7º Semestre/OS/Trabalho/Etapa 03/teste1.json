@@ -1,0 +1,102 @@
+{
+  "name": "PUC-MG 1",
+  "students": [
+    {
+      "name": "Gabriel",
+      "skills": [
+        {
+          "task": "Compiladores",
+          "competency": 3
+        },
+        {
+          "task": "Otimização de Sistemas",
+          "competency": 5
+        },
+        {
+          "task": "Inteligência Artificial",
+          "competency": 5
+        },
+        {
+          "task": "Ciência de Dados",
+          "competency": 3
+        },
+        {
+          "task": "Redes Complexas",
+          "competency": 8
+        }
+      ]
+    },
+    {
+      "name": "Geovane",
+      "skills": [
+        {
+          "task": "Compiladores",
+          "competency": 8
+        },
+        {
+          "task": "Otimização de Sistemas",
+          "competency": 5
+        },
+        {
+          "task": "Inteligência Artificial",
+          "competency": 5
+        },
+        {
+          "task": "Ciência de Dados",
+          "competency": 2
+        },
+        {
+          "task": "Redes Complexas",
+          "competency": 3
+        }
+      ]
+    },
+    {
+      "name": "Luigi",
+      "skills": [
+        {
+          "task": "Compiladores",
+          "competency": 8
+        },
+        {
+          "task": "Otimização de Sistemas",
+          "competency": 3
+        },
+        {
+          "task": "Inteligência Artificial",
+          "competency": 3
+        },
+        {
+          "task": "Ciência de Dados",
+          "competency": 2
+        },
+        {
+          "task": "Redes Complexas",
+          "competency": 2
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "name": "Compiladores",
+      "level": 13
+    },
+    {
+      "name": "Otimização de Sistemas",
+      "level": 8
+    },
+    {
+      "name": "Inteligência Artificial",
+      "level": 8
+    },
+    {
+      "name": "Ciência de Dados",
+      "level": 8
+    },
+    {
+      "name": "Redes Complexas",
+      "level": 5
+    }
+  ]
+}
