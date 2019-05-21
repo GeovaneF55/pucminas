@@ -1,0 +1,53 @@
+Discussão
+
+	### Slide 1 ###
+
+	- Problema:
+		- Resultados Limitados
+	- Motivo:		
+		- Entrevista totalmente estruturada
+		- Preditores restritos
+	- Análise:
+		- Resultados apenas exploratórios
+
+
+	### Slide 2 ###
+
+	- Dentro das limitações -> Houveram 3 resultados importantes:
+	1) Partição Recursiva encontrou dois subtipos:
+		a) Ansioso-Suicida (Início):
+			- Persistência
+			- Cronicidade
+			- Hospitalização
+			- Incapacidade
+		b) Ansioso-Suicida (Tardio):
+			- Cronicidade
+
+	### Slide 3 ###
+
+	2) Os Modelos Lineares Generalizados encontraram:
+		Todos sintomas de episódios de índice
+			prediziam significativamente
+		Todos os desfechos
+
+		O episódio de índice com maior consistência
+		foi em Disforia Severa
+
+	### Slide 4 ###
+
+		Outros bem consistentes foram:
+			- História parental de depressão maior
+			- Tendências suicidas
+			- Ataques de pânico
+			- Perfis multivariados de início
+			  pediátrico com ansiedade e / ou
+                          tendências suicidas
+
+	### Slide 4 ###
+
+	3) Forte agrupamento em todos os desfechos, com:
+		- Cronicidade
+		- Gravidade em Longo Prazo
+
+	30% dos entrevistados -> + de 2/3 dos casos com
+	múltiplos indicadores de alta persistência
