@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ServidorImpl",
+            "request": "launch",
+            "mainClass": "ServidorImpl",
+            "projectName": "aula prática 1_1e5953bd"
+        }
+    ]
+}

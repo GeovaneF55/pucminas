@@ -1,0 +1,10 @@
+LINKS ÚTEIS
+
+JAVA RMI:
+https://docs.oracle.com/javase/7/docs/technotes/guides/rmi/hello/hello-world.html
+
+NTP CLient:
+https://commons.apache.org/proper/commons-net/examples/ntp/TimeClient.java
+
+Um dia na vida de um arquiteto do netflix:
+https://www.infoq.com/br/presentations/um-dia-na-vida-de-um-arquiteto-de-performance-do-netflix/
